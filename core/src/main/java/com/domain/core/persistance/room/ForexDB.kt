@@ -6,12 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.domain.core.persistance.room.tables.pairHistory.PairHistoryDAO
 import com.domain.core.persistance.room.tables.pairHistory.PairHistoryTable
-import com.domain.core.persistance.room.tables.popularPair.PopularPairDao
 
 @Database(entities = [PairHistoryTable::class], version = 1, exportSchema = false)
 abstract class ForexDB : RoomDatabase() {
     abstract val pairHistoryDAO: PairHistoryDAO
-    abstract val popularPairDao: PopularPairDao
 
     companion object{
         @Volatile

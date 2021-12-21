@@ -1,8 +1,9 @@
 package com.domain.repositories.weatherRepository
 
-class WeatherRepositoryImpl(private val retrofitServices: String) : WeatherRepository {
-    override fun getTodaysWeather() {
+import com.domain.myapplication.models.Weather
 
+class WeatherRepositoryImpl(private val retrofitServices: String, private val database: String) : WeatherRepository {
+    override fun getTodaysWeather(): List<Weather>? {
+        return null
     }
-
 }

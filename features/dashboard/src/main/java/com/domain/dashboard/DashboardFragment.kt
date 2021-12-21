@@ -7,13 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.domain.dashboard.databinding.FragmentDashboardBinding
-import com.domain.myapplication.adapters.PopularPairsPagingAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DashboardFragment : Fragment() {
     private lateinit var binding: FragmentDashboardBinding
     private val dashboardViewModel: DashboardViewModel by viewModel()
-    private lateinit var popularPairsPagingAdapter: PopularPairsPagingAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,8 +30,10 @@ class DashboardFragment : Fragment() {
     }
 
     private fun addObservers() {
-        //dashboardViewModel.canProceed.observe(viewLifecycleOwner, { btnRequestHistory.visibility = View.VISIBLE })
-        //dashboardViewModel.hideProceed.observe(viewLifecycleOwner, { btnRequestHistory.visibility = View.INVISIBLE })
-        //dashboardViewModel.selectedPairMessage.observe(viewLifecycleOwner, { onPairSelected(it)})
+        dashboardViewModel.showLoading.observe(viewLifecycleOwner, { showLoading() })
+    }
+
+    fun showLoading(){
+
     }
 }
