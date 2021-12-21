@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24427083333333333" />
+        <entry key="common/src/main/res/drawable/splash_background.xml" value="0.2604166666666667" />
+        <entry key="common/src/main/res/drawable/splash_background_gradient.xml" value="0.2604166666666667" />
+        <entry key="features/splash/src/main/res/drawable/splash_background.xml" value="0.2604166666666667" />
+        <entry key="features/splash/src/main/res/drawable/splash_background_gradient.xml" value="0.2604166666666667" />
       </map>
     </option>
   </component>
