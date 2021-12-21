@@ -50,5 +50,6 @@ dependencies {
     implementation "org.koin:koin-androidx-scope:$koin_version"
 
     //Modules
+    implementation project(':common')
     implementation project(':features:splash')
 }

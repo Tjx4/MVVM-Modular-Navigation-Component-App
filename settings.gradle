@@ -9,3 +9,4 @@ dependencyResolutionManagement {
 rootProject.name = "MVVM Modular Navigation Component app"
 include ':app'
 include ':features:splash'
+include ':common'
