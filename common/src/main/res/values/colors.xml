@@ -7,10 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="orange_1">#ff4d02</color>
 
-    <color name="lightText">#DDD</color>
-    <color name="statusBarColor">#FFF</color>
-    <color name="greyBackground">#EEE</color>
-    <color name="lightBackground">#FFF</color>
+    <color name="light_text">#DDD</color>
+    <color name="status_bar_color">#FFF</color>
+    <color name="grey_background">#EEE</color>
+    <color name="dark_gray_background">#222</color>
+    <color name="light_background">#FFF</color>
     <color name="dark_ackground">#000</color>
 </resources>
