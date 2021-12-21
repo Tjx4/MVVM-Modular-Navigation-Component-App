@@ -30,7 +30,8 @@ class DashboardFragment : Fragment() {
         addObservers()
 
         btnNext.setOnClickListener {
-
+            //val action = DashboardFragmentDirections.dashboardToConversion(fromCurrency, toCurrency)
+            //findNavController().navigate(action)
         }
     }
 
@@ -42,7 +43,4 @@ class DashboardFragment : Fragment() {
 
     }
 
-    fun onNextButtonClicked(view: View){
-
-    }
 }

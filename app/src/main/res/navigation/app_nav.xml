@@ -8,4 +8,5 @@
         android:id="@+id/dashboardFragment"
         android:name="com.domain.dashboard.DashboardFragment"
         android:label="DashboardFragment" />
+
 </navigation>
