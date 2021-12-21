@@ -25,6 +25,7 @@
             android:text="Dashboard"/>
 
         <Button
+            android:id="@+id/btnNext"
             style="@style/MyButton"
             android:text="Next"
             android:layout_marginTop="@dimen/large_margin"

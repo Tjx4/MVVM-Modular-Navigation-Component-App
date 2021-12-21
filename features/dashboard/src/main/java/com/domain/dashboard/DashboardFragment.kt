@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.domain.dashboard.databinding.FragmentDashboardBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 class DashboardFragment : Fragment() {
     private lateinit var binding: FragmentDashboardBinding
@@ -27,6 +28,10 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         addObservers()
+
+        btnNext.setOnClickListener {
+
+        }
     }
 
     private fun addObservers() {
@@ -34,6 +39,10 @@ class DashboardFragment : Fragment() {
     }
 
     fun showLoading(){
+
+    }
+
+    fun onNextButtonClicked(view: View){
 
     }
 }
