@@ -20,7 +20,7 @@ abstract class ForexDB : RoomDatabase() {
                 var instance = INSTANCE
 
                 if(instance == null){
-                    instance = Room.databaseBuilder(context.applicationContext, ForexDB::class.java, "forex_db")
+                    instance = Room.databaseBuilder(context.applicationContext, ForexDB::class.java, "forex_database")
                         .fallbackToDestructiveMigration()
                         .build()
                     INSTANCE = instance
