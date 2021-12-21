@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -68,4 +69,5 @@ dependencies {
     implementation project(':repositories')
     implementation project(':features:splash')
     implementation project(':features:dashboard')
+    implementation project(':features:favourites')
 }
