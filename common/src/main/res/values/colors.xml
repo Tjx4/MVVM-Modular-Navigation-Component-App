@@ -10,6 +10,8 @@
 
 
     <color name="statusBarColor">#FFF</color>
+
     <color name="greyBackground">#EEE</color>
     <color name="lightBackground">#FFF</color>
+    <color name="dark_ackground">#000</color>
 </resources>
