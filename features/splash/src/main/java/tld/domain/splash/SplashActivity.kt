@@ -10,5 +10,6 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         navigateToActivity(MAIN_ACTIVITY, null, FADE_IN_ACTIVITY)
+        finish()
     }
 }
