@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.navArgs
 import com.domain.myapplication.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_favourites.*
 import org.koin.androidx.viewmodel.ext.android.viewModel

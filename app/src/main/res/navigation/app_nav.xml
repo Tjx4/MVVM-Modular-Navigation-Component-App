@@ -9,7 +9,7 @@
         android:name="com.domain.dashboard.DashboardFragment"
         android:label="DashboardFragment" >
         <action
-            android:id="@+id/action_dashboardFragment_to_favouritesFragment"
+            android:id="@+id/dashboardFragment_to_favouritesFragment"
             app:destination="@id/favouritesFragment"
             app:enterAnim="@anim/slide_right"
             app:exitAnim="@anim/no_transition"

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.domain.dashboard.databinding.FragmentDashboardBinding
 import com.domain.myapplication.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -31,7 +32,7 @@ class DashboardFragment : BaseFragment() {
 
         btnNext.setOnClickListener {
             val message = "Hello"
-            val action = DashboardFragmentDirections.dashboardToConversion(message)
+            val action = Dashboar//DashboardFragmentDirections.dashboardToFavourites(message)
             findNavController().navigate(action)
         }
     }
