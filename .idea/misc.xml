@@ -11,7 +11,7 @@
         <entry key="common/src/main/res/drawable/splash_background_gradient.xml" value="0.2604166666666667" />
         <entry key="common/src/main/res/layout/currency_pair_layout.xml" value="0.24114583333333334" />
         <entry key="features/dashboard/src/main/res/layout/fragment_dashboard.xml" value="0.215625" />
-        <entry key="features/favourites/src/main/res/layout/fragment_favourites.xml" value="0.23177083333333334" />
+        <entry key="features/favourites/src/main/res/layout/fragment_favourites.xml" value="0.25" />
         <entry key="features/splash/src/main/res/drawable/splash_background.xml" value="0.2604166666666667" />
         <entry key="features/splash/src/main/res/drawable/splash_background_gradient.xml" value="0.2604166666666667" />
       </map>
