@@ -18,10 +18,7 @@ class FavouritesFragment : BaseFragment() {
     private val favouritesViewModel: FavouritesViewModel by viewModel()
     //private val args: FavouritesFragmentArgs by navArgs()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favourites, container, false)
         binding.lifecycleOwner = this
