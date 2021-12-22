@@ -18,21 +18,24 @@
         <TextView
             android:id="@+id/tvTitle"
             style="@style/LargeTextView"
-            android:layout_marginTop="@dimen/large_margin"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/imgBtnBack"
+            app:layout_constraintBottom_toBottomOf="@+id/imgBtnBack"
+            app:layout_constraintLeft_toRightOf="@+id/imgBtnBack"
             app:layout_constraintRight_toRightOf="parent"
             android:text="Favourites"/>
 
-        <Button
-            android:id="@+id/btnBack"
+        <ImageButton
             style="@style/MyButton"
-            android:text="Back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imgBtnBack"
+            android:src="@drawable/ic_back"
             android:layout_marginTop="@dimen/large_margin"
             android:layout_marginHorizontal="@dimen/large_margin"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintLeft_toLeftOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
