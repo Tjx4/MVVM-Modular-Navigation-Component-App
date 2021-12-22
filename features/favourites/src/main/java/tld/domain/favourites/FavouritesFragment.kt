@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.fragment.navArgs
 import com.domain.myapplication.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_favourites.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -15,7 +14,7 @@ import tld.domain.favourites.databinding.FragmentFavouritesBinding
 class FavouritesFragment : BaseFragment() {
     private lateinit var binding: FragmentFavouritesBinding
     private val favouritesViewModel: FavouritesViewModel by viewModel()
-    private val args: FavouritesFragmentArgs by navArgs()
+    //private val args: FavouritesFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +31,7 @@ class FavouritesFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         Toast.makeText(context, "Args", Toast.LENGTH_SHORT).show()
         btnBack.setOnClickListener {
-            //pop back
+            myDrawerController.popBack()
         }
     }
 }

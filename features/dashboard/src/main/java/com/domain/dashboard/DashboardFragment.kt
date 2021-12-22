@@ -32,8 +32,7 @@ class DashboardFragment : BaseFragment() {
 
         btnNext.setOnClickListener {
             val message = "Hello"
-            val action = Dashboar//DashboardFragmentDirections.dashboardToFavourites(message)
-            findNavController().navigate(action)
+            myDrawerController.navigateFromDashboardToFavourites(message)
         }
     }
 
