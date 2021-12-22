@@ -13,11 +13,13 @@
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
         tools:context=".FavouritesFragment"
+        android:background="@color/light_background"
         style="@style/ParentView">
 
         <TextView
             android:id="@+id/tvTitle"
             style="@style/LargeTextView"
+            android:textColor="@color/dark_text"
             android:layout_width="wrap_content"
             app:layout_constraintTop_toTopOf="@+id/imgBtnBack"
             app:layout_constraintBottom_toBottomOf="@+id/imgBtnBack"

@@ -11,6 +11,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="orange_1">#ff4d02</color>
 
+    <color name="dark_text">#111</color>
     <color name="light_text">#DDD</color>
     <color name="status_bar_color">#FFF</color>
     <color name="grey_background">#DDD</color>
