@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.domain.myapplication.models.ErrorResponse
 import com.domain.myapplication.models.LoginResponse
+import com.domain.myapplication.models.User
 import com.domain.repositories.authentication.AuthenticationRepository
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.Dispatchers
@@ -49,7 +50,20 @@ class LoginViewModelTest {
         val username = "email@domain.com"
         val password = "P@12345"
         val expectedErrorMessage = "Error login in please check your details" //mockApplication.getString(R.string.login_error_message)
-        val mockResponse = LoginResponse(null, ErrorResponse("Incorrect password"))
+
+        Mockito.`when`(loginViewModel.authenticationRepository.loginUser(username, password)).thenReturn(null)
+        Mockito.`when`(mockApplication.getString(R.string.login_error_message)).thenReturn(expectedErrorMessage)
+        loginViewModel.loginUser(username, password)
+
+        assertEquals(expectedErrorMessage, loginViewModel.errorMessage.value)
+    }
+
+    @Test
+    fun `check if response error message is displayed when call unsuccessful`() = runBlockingTest {
+        val username = "email@domain.com"
+        val password = "P@12345"
+        val expectedErrorMessage = "Incorrect password"
+        val mockResponse = LoginResponse(null, ErrorResponse(expectedErrorMessage))
 
         Mockito.`when`(loginViewModel.authenticationRepository.loginUser(username, password)).thenReturn(mockResponse)
         loginViewModel.loginUser(username, password)
@@ -58,13 +72,16 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `check if response error message is displayed when call unsuccessful`() = runBlockingTest {
-
-    }
-
-    @Test
     fun `test if user is set on login success`() = runBlockingTest {
+        val username = "email@domain.com"
+        val password = "P@12345"
+        val user = User(username, "")
+        val mockResponse = LoginResponse(user, null)
 
+        Mockito.`when`(loginViewModel.authenticationRepository.loginUser(username, password)).thenReturn(mockResponse)
+        loginViewModel.loginUser(username, password)
+
+        assertEquals(user, loginViewModel.currentUser.value)
     }
 
 }
