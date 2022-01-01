@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.domain.myapplication.base.BaseFragment
 import com.domain.myapplication.extensions.blinkView
@@ -31,7 +30,7 @@ class FavouritesFragment : BaseFragment() {
         //Toast.makeText(context, "Args", Toast.LENGTH_SHORT).show()
         imgBtnBack.setOnClickListener {
             it.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {
-                myDrawerController.popBack()
+                drawerController.popBack()
             })
         }
     }

@@ -5,11 +5,11 @@ import androidx.fragment.app.Fragment
 import com.domain.myapplication.drawerController.MyDrawerController
 
 abstract class BaseFragment : Fragment() {
-   protected lateinit var myDrawerController: MyDrawerController
+   protected lateinit var drawerController: MyDrawerController
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        myDrawerController = context as MyDrawerController
+        drawerController = context as MyDrawerController
     }
 
 }
