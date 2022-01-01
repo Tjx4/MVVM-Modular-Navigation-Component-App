@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class LoginViewModel(private val app: Application, private val authenticationRepository: AuthenticationRepository) : AndroidViewModel(app){
+class LoginViewModel(private val app: Application, val authenticationRepository: AuthenticationRepository) : AndroidViewModel(app){
 
     private val _username: MutableLiveData<String> = MutableLiveData()
     val username: MutableLiveData<String>
@@ -29,7 +29,7 @@ class LoginViewModel(private val app: Application, private val authenticationRep
         get() = _currentUser
 
     fun attemptLogin(){
-        viewModelScope.launch {
+        viewModelScope.launch (Dispatchers.IO){
             loginUser(_username.value ?: "", _password.value ?: "")
         }
     }

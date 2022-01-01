@@ -2,7 +2,10 @@ package tld.domain.login
 
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.domain.myapplication.models.ErrorResponse
+import com.domain.myapplication.models.LoginResponse
 import com.domain.repositories.authentication.AuthenticationRepository
+import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -45,12 +48,13 @@ class LoginViewModelTest {
     fun `check if default error message is displayed when response is null`() = runBlockingTest {
         val username = "email@domain.com"
         val password = "P@12345"
+        val expectedErrorMessage = "Error login in please check your details" //mockApplication.getString(R.string.login_error_message)
+        val mockResponse = LoginResponse(null, ErrorResponse("Incorrect password"))
 
+        Mockito.`when`(loginViewModel.authenticationRepository.loginUser(username, password)).thenReturn(mockResponse)
+        loginViewModel.loginUser(username, password)
 
-       // Mockito.`when`(conversionViewModel.fXRepository.getConversion(API_KEY, from, to, amount)).thenReturn(conversion)
-       // conversionViewModel.convertCurrency(from, to, amount)
-
-        //assertEquals(conversionViewModel.dialogErrorMessage.value, error.info)
+        assertEquals(expectedErrorMessage, loginViewModel.errorMessage.value)
     }
 
     @Test

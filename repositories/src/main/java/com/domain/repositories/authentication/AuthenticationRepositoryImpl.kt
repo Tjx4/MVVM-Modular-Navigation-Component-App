@@ -6,6 +6,13 @@ import com.domain.myapplication.models.LoginResponse
 
 class AuthenticationRepositoryImpl(private val database: ForexDB) : AuthenticationRepository {
     override fun loginUser(username: String, password: String): LoginResponse? {
-        return LoginResponse(null, ErrorResponse("Incorrect password"))
+        return try {
+            //retrofitHelper.convert(username, password)
+            LoginResponse(null, ErrorResponse("Incorrect password"))
+        }
+        catch (ex: Exception){
+            //firebaseCrashlytics.recordException(ex)
+            null
+        }
     }
 }
