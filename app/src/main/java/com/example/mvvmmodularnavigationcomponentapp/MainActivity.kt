@@ -8,16 +8,14 @@ import com.domain.dashboard.DashboardFragmentDirections
 import com.domain.myapplication.drawerController.MyDrawerController
 
 class MainActivity : AppCompatActivity(), MyDrawerController {
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //FirebaseApp.initializeApp(this)
         //FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
         setContentView(R.layout.activity_main)
-
         navController = this.findNavController(R.id.navControllerFragment)
-        //setupWithNavController(navController)
     }
 
     override fun navigateFromDashboardToFavourites(message: String) {
