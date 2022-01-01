@@ -8,19 +8,19 @@ import com.domain.core.persistance.room.tables.pairHistory.PairHistoryDAO
 import com.domain.core.persistance.room.tables.pairHistory.PairHistoryTable
 
 @Database(entities = [PairHistoryTable::class], version = 1, exportSchema = false)
-abstract class ForexDB : RoomDatabase() {
+abstract class MySqliteDB : RoomDatabase() {
     abstract val pairHistoryDAO: PairHistoryDAO
 
     companion object{
         @Volatile
-        private var INSTANCE: ForexDB? = null
+        private var INSTANCE: MySqliteDB? = null
 
-        fun getInstance(context: Context): ForexDB {
+        fun getInstance(context: Context): MySqliteDB {
             synchronized(this){
                 var instance = INSTANCE
 
                 if(instance == null){
-                    instance = Room.databaseBuilder(context.applicationContext, ForexDB::class.java, "forex_database")
+                    instance = Room.databaseBuilder(context.applicationContext, MySqliteDB::class.java, "my_sqlite_database")
                         .fallbackToDestructiveMigration()
                         .build()
                     INSTANCE = instance
