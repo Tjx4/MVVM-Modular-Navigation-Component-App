@@ -1233,6 +1233,7 @@ int color purple_200 0x0
 int color purple_500 0x0
 int color purple_700 0x0
 int color radiobutton_themeable_attribute_color 0x0
+int color red_text 0x0
 int color ripple_material_dark 0x0
 int color ripple_material_light 0x0
 int color secondary_text_default_material_dark 0x0
@@ -2225,6 +2226,7 @@ int id transition_position 0x0
 int id transition_scene_layoutid_cache 0x0
 int id transition_transform 0x0
 int id triangle 0x0
+int id tvError 0x0
 int id tvTitle 0x0
 int id unchecked 0x0
 int id uniform 0x0
@@ -2466,6 +2468,7 @@ int string hello_blank_fragment 0x0
 int string hide_bottom_view_on_scroll_behavior 0x0
 int string icon_content_description 0x0
 int string item_view_role_description 0x0
+int string login_error_message 0x0
 int string material_clock_display_divider 0x0
 int string material_clock_toggle_content_description 0x0
 int string material_hour_selection 0x0
@@ -2763,6 +2766,7 @@ int style CardView 0x0
 int style CardView_Dark 0x0
 int style CardView_Light 0x0
 int style EmptyTheme 0x0
+int style ErrorTextView 0x0
 int style LargeTextView 0x0
 int style MaterialAlertDialog_MaterialComponents 0x0
 int style MaterialAlertDialog_MaterialComponents_Body_Text 0x0

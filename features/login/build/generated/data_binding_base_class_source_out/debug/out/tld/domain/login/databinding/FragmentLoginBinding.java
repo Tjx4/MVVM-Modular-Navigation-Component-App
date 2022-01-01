@@ -28,17 +28,22 @@ public abstract class FragmentLoginBinding extends ViewDataBinding {
   public final EditText etUsername;
 
   @NonNull
+  public final TextView tvError;
+
+  @NonNull
   public final TextView tvTitle;
 
   @Bindable
   protected LoginViewModel mLoginViewModel;
 
   protected FragmentLoginBinding(Object _bindingComponent, View _root, int _localFieldCount,
-      Button btnLogin, EditText etPassword, EditText etUsername, TextView tvTitle) {
+      Button btnLogin, EditText etPassword, EditText etUsername, TextView tvError,
+      TextView tvTitle) {
     super(_bindingComponent, _root, _localFieldCount);
     this.btnLogin = btnLogin;
     this.etPassword = etPassword;
     this.etUsername = etUsername;
+    this.tvError = tvError;
     this.tvTitle = tvTitle;
   }
 

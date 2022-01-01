@@ -27,9 +27,6 @@ class LoginFragment  : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         addObservers()
 
-        btnLogin.setOnClickListener {
-            drawerController.navigateFromLoginToDashboard()
-        }
     }
 
     private fun addObservers() {
@@ -38,7 +35,7 @@ class LoginFragment  : BaseFragment() {
     }
 
     private fun onUserSet(user: User){
-
+        drawerController.navigateFromLoginToDashboard()
     }
 
     private fun onLoginError(message: String){

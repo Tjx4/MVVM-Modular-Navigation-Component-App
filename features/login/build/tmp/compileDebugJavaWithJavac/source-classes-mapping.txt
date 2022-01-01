@@ -8,6 +8,9 @@ tld/domain/login/DataBindingTriggerClass.java
  tld.domain.login.DataBindingTriggerClass
 androidx/databinding/library/baseAdapters/BR.java
  androidx.databinding.library.baseAdapters.BR
+tld/domain/login/generated/callback/OnClickListener.java
+ tld.domain.login.generated.callback.OnClickListener
+ tld.domain.login.generated.callback.OnClickListener$Listener
 tld/domain/login/DataBinderMapperImpl.java
  tld.domain.login.DataBinderMapperImpl
  tld.domain.login.DataBinderMapperImpl$InnerBrLookup
@@ -16,5 +19,6 @@ tld/domain/login/databinding/FragmentLoginBindingImpl.java
  tld.domain.login.databinding.FragmentLoginBindingImpl
  tld.domain.login.databinding.FragmentLoginBindingImpl$1
  tld.domain.login.databinding.FragmentLoginBindingImpl$2
+ tld.domain.login.databinding.FragmentLoginBindingImpl$3
 tld/domain/login/databinding/FragmentLoginBinding.java
  tld.domain.login.databinding.FragmentLoginBinding

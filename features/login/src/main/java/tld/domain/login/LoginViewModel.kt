@@ -3,9 +3,11 @@ package tld.domain.login
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.domain.myapplication.models.User
 import com.domain.repositories.authentication.AuthenticationRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class LoginViewModel(private val app: Application, private val authenticationRepository: AuthenticationRepository) : AndroidViewModel(app){
@@ -26,8 +28,23 @@ class LoginViewModel(private val app: Application, private val authenticationRep
     val currentUser: MutableLiveData<User>
         get() = _currentUser
 
-    suspend fun loginUser(username: String, password: String){
+    fun attemptLogin(){
+        viewModelScope.launch {
+            loginUser(_username.value ?: "", _password.value ?: "")
+        }
+    }
 
+    suspend fun loginUser(username: String, password: String){
+        val login = authenticationRepository.loginUser(username, password)
+
+        withContext(Dispatchers.Main) {
+            when {
+                login == null -> _errorMessage.value = app.getString(R.string.login_error_message)
+                login?.error != null -> _errorMessage.value = login?.error?.message
+                else -> _currentUser.value = login.user
+            }
+
+        }
 
     }
 }

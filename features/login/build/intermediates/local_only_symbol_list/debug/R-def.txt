@@ -3,6 +3,7 @@ local
 id btnLogin
 id etPassword
 id etUsername
+id tvError
 id tvTitle
 layout fragment_login
 string hello_blank_fragment
