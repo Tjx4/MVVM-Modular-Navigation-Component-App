@@ -25,10 +25,10 @@
         <action
             android:id="@+id/dashboardFragment_to_favouritesFragment"
             app:destination="@id/favouritesFragment"
-            app:enterAnim="@anim/slide_right"
+            app:enterAnim="@anim/slide_left"
             app:exitAnim="@anim/no_transition"
             app:popEnterAnim="@anim/no_transition"
-            app:popExitAnim="@anim/slide_left" />
+            app:popExitAnim="@anim/slide_right" />
     </fragment>
 
     <fragment
