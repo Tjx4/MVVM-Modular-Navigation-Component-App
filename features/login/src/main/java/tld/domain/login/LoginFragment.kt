@@ -1,12 +1,12 @@
 package tld.domain.login
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.domain.myapplication.base.BaseFragment
+import com.domain.myapplication.models.User
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.login.databinding.FragmentLoginBinding
@@ -33,6 +33,15 @@ class LoginFragment  : BaseFragment() {
     }
 
     private fun addObservers() {
+        loginViewModel.currentUser.observe(viewLifecycleOwner, { onUserSet(it) })
+        loginViewModel.errorMessage.observe(viewLifecycleOwner, { onLoginError(it) })
+    }
+
+    private fun onUserSet(user: User){
+
+    }
+
+    private fun onLoginError(message: String){
 
     }
 }

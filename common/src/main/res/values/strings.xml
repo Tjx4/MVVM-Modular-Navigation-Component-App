@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MVVM Modular Navigation Component App</string>
+    <string name="login_error_message">Error login in please check your details</string>
 </resources>
