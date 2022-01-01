@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.domain.myapplication.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.login.databinding.FragmentLoginBinding
 
@@ -25,6 +26,10 @@ class LoginFragment  : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         addObservers()
+
+        btnLogin.setOnClickListener {
+            drawerController.navigateFromLoginToDashboard()
+        }
     }
 
     private fun addObservers() {

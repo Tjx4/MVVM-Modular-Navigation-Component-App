@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.domain.dashboard.DashboardFragmentDirections
 import com.domain.myapplication.drawerController.MyDrawerController
+import tld.domain.login.LoginFragmentDirections
 
 class MainActivity : AppCompatActivity(), MyDrawerController {
     private lateinit var navController: NavController
@@ -16,6 +17,11 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
         //FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
         setContentView(R.layout.activity_main)
         navController = this.findNavController(R.id.navControllerFragment)
+    }
+
+    override fun navigateFromLoginToDashboard() {
+        val action = LoginFragmentDirections.actionLoginFragmentToDashboardFragment()
+        navController.navigate(action)
     }
 
     override fun navigateFromDashboardToFavourites(message: String) {

@@ -52,4 +52,12 @@
         <item name="android:background">@drawable/fx_button_background</item>
     </style>
 
+    <style name="MyEditText" parent="ThemeColors">
+        <item name="android:textColor">@color/light_text</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@drawable/edittext_background</item>
+        <item name="android:padding">@dimen/xsmall_margin</item>
+    </style>
+
 </resources>

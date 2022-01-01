@@ -1,6 +1,8 @@
 package com.domain.repositories.authentication
 
-class AuthenticationRepositoryImpl(private val firebaseDB: String) : AuthenticationRepository {
+import com.domain.core.persistance.room.ForexDB
+
+class AuthenticationRepositoryImpl(private val database: ForexDB) : AuthenticationRepository {
     override fun loginUser(username: String, password: String) {
 
     }
