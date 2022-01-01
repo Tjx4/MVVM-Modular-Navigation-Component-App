@@ -9,7 +9,7 @@ import com.domain.myapplication.constants.PAYLOAD_KEY
 import com.domain.myapplication.models.Transition
 
 val SLIDE_IN_ACTIVITY = getTransitionAnimation(R.anim.slide_right, R.anim.no_transition)
-val SLIDE_OUT_ACTIVITY =  getTransitionAnimation(R.anim.no_transition, R.anim.slide_left)
+val SLIDE_OUT_ACTIVITY = getTransitionAnimation(R.anim.no_transition, R.anim.slide_left)
 val FADE_IN_ACTIVITY = getTransitionAnimation(R.anim.fade_in, R.anim.no_transition)
 val FADE_OUT_ACTIVITY = getTransitionAnimation(R.anim.no_transition, R.anim.fade_out)
 val TRAIL_TO = getTransitionAnimation(R.anim.trail_out, R.anim.trail_in)
@@ -28,11 +28,7 @@ private fun AppCompatActivity.goToActivity(
     transitionAnimation: Transition,
     payload: Bundle?
 ) {
-
-    val intent = Intent(
-        this,
-        Class.forName(className)
-    )
+    val intent = Intent(this, Class.forName(className))
 
     val fullPayload = payload ?: Bundle()
     fullPayload.putIntArray(
