@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+                                                       
+                                                   
+    
+                 
+                                 
+                                                    
+           
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        tools:context=".LoginFragment"
+        style="@style/ParentView"
+        android:background="@color/light_background" android:tag="layout/fragment_login_0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/LargeTextView"
+            android:textColor="@color/dark_text"
+            android:layout_marginTop="@dimen/large_margin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="Login"/>
+
+        <EditText
+            style="@style/MyEditText"
+            android:id="@+id/etUsername"
+            android:layout_width="0dp"
+            android:hint="Username"
+            android:textColorHint="@color/grey_text"
+            android:tag="binding_1"                   
+            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginHorizontal="@dimen/large_margin"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <EditText
+            style="@style/MyEditText"
+            android:id="@+id/etPassword"
+            android:layout_width="0dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColorHint="@color/grey_text"
+            android:tag="binding_2"                   
+            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginHorizontal="@dimen/large_margin"
+            app:layout_constraintTop_toBottomOf="@+id/etUsername"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            style="@style/MyButton"
+            android:text="Login"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginHorizontal="@dimen/large_margin"
+            app:layout_constraintTop_toBottomOf="@+id/etPassword"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+         

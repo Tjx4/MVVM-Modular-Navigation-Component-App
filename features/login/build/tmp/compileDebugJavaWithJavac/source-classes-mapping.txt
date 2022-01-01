@@ -1,0 +1,20 @@
+androidx/databinding/DataBindingComponent.java
+ androidx.databinding.DataBindingComponent
+tld/domain/login/BR.java
+ tld.domain.login.BR
+tld/domain/login/BuildConfig.java
+ tld.domain.login.BuildConfig
+tld/domain/login/DataBindingTriggerClass.java
+ tld.domain.login.DataBindingTriggerClass
+androidx/databinding/library/baseAdapters/BR.java
+ androidx.databinding.library.baseAdapters.BR
+tld/domain/login/DataBinderMapperImpl.java
+ tld.domain.login.DataBinderMapperImpl
+ tld.domain.login.DataBinderMapperImpl$InnerBrLookup
+ tld.domain.login.DataBinderMapperImpl$InnerLayoutIdLookup
+tld/domain/login/databinding/FragmentLoginBindingImpl.java
+ tld.domain.login.databinding.FragmentLoginBindingImpl
+ tld.domain.login.databinding.FragmentLoginBindingImpl$1
+ tld.domain.login.databinding.FragmentLoginBindingImpl$2
+tld/domain/login/databinding/FragmentLoginBinding.java
+ tld.domain.login.databinding.FragmentLoginBinding
