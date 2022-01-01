@@ -8,7 +8,7 @@ object API {
 
     init {
         val builder = Retrofit.Builder()
-            .baseUrl(Hosts.Production.url)
+            .baseUrl(Environments.Production.url)
             .addConverterFactory(GsonConverterFactory.create())
         val retrofit = builder.build()
 
