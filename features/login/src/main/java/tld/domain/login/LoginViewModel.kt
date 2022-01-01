@@ -48,7 +48,6 @@ class LoginViewModel(private val app: Application, val authenticationRepository:
                 login?.error != null -> _errorMessage.value = login?.error?.message
                 else -> _currentUser.value = login.user
             }
-
         }
 
     }
