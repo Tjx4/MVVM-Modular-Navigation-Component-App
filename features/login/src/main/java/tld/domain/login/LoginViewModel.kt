@@ -28,6 +28,11 @@ class LoginViewModel(private val app: Application, val authenticationRepository:
     val currentUser: MutableLiveData<User>
         get() = _currentUser
 
+    init {
+        _username.value = "email@domain.com"
+        _password.value = "P@12345"
+    }
+
     fun attemptLogin(){
         viewModelScope.launch (Dispatchers.IO){
             loginUser(_username.value ?: "", _password.value ?: "")
