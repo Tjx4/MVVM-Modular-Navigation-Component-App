@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.domain.myapplication.drawerController.MyDrawerController
+import com.domain.myapplication.extensions.vibratePhone
 
 abstract class BaseFragment : Fragment() {
    protected lateinit var drawerController: MyDrawerController
@@ -21,5 +22,7 @@ abstract class BaseFragment : Fragment() {
         )
     }
 
-    open fun onBackPressed(){}
+    open fun onBackPressed(){
+        drawerController.popBack()
+    }
 }

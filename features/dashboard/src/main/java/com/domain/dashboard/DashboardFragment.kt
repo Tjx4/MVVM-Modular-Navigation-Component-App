@@ -33,10 +33,8 @@ class DashboardFragment : BaseFragment() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
         activity?.moveTaskToBack(true)
     }
-
 
     private fun addObservers() {
         dashboardViewModel.showLoading.observe(viewLifecycleOwner, { showLoading() })
@@ -45,6 +43,5 @@ class DashboardFragment : BaseFragment() {
     fun showLoading(){
 
     }
-
 
 }
