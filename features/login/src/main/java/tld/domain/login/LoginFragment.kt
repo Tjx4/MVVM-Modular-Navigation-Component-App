@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.viewModelScope
 import com.domain.myapplication.base.BaseFragment
 import com.domain.myapplication.models.User
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -43,15 +44,20 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun onInvalidUsername(message: String){
-
+        tvUsernameError.visibility = View.VISIBLE
+        tvError.visibility = View.INVISIBLE
     }
 
     private fun onInvalidPassword(message: String){
-
+        tvPasswordError.visibility = View.VISIBLE
+        tvUsernameError.visibility = View.INVISIBLE
+        tvError.visibility = View.INVISIBLE
     }
 
     private fun onLoginError(message: String){
-
+        tvError.visibility = View.VISIBLE
+        tvUsernameError.visibility = View.INVISIBLE
+        tvPasswordError.visibility = View.INVISIBLE
     }
 
     private fun onValidationComplete(){
