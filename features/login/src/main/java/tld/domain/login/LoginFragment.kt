@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.viewModelScope
 import com.domain.myapplication.base.BaseFragment
+import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.models.User
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.coroutines.Dispatchers
@@ -44,11 +46,13 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun onInvalidUsername(message: String){
+        tvUsernameError.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0)
         tvUsernameError.visibility = View.VISIBLE
         tvError.visibility = View.INVISIBLE
     }
 
     private fun onInvalidPassword(message: String){
+        tvPasswordError.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0)
         tvPasswordError.visibility = View.VISIBLE
         tvUsernameError.visibility = View.INVISIBLE
         tvError.visibility = View.INVISIBLE
