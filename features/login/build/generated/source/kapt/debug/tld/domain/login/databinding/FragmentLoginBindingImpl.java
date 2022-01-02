@@ -123,7 +123,7 @@ public class FragmentLoginBindingImpl extends FragmentLoginBinding implements tl
             if (loginViewModelJavaLangObjectNull) {
 
 
-                loginViewModelErrorMessage = loginViewModel.getErrorMessage();
+                loginViewModelErrorMessage = loginViewModel.getLoginErrorMessage();
 
                 loginViewModelErrorMessageJavaLangObjectNull = (loginViewModelErrorMessage) != (null);
                 if (loginViewModelErrorMessageJavaLangObjectNull) {
@@ -289,7 +289,7 @@ public class FragmentLoginBindingImpl extends FragmentLoginBinding implements tl
 
                     if (loginViewModel != null) {
                         // read loginViewModel.errorMessage
-                        loginViewModelErrorMessage = loginViewModel.getErrorMessage();
+                        loginViewModelErrorMessage = loginViewModel.getLoginErrorMessage();
                     }
                     updateLiveDataRegistration(2, loginViewModelErrorMessage);
 

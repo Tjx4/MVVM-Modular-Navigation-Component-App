@@ -22,9 +22,17 @@ class LoginViewModel(private val app: Application, val authenticationRepository:
     val password: MutableLiveData<String>
         get() = _password
 
-    private val _errorMessage: MutableLiveData<String> = MutableLiveData()
-    val errorMessage: MutableLiveData<String>
-        get() = _errorMessage
+    private val _usernameErrorMessage: MutableLiveData<String> = MutableLiveData()
+    val usernameErrorMessage: MutableLiveData<String>
+        get() = _usernameErrorMessage
+
+    private val _passwordErrorMessage: MutableLiveData<String> = MutableLiveData()
+    val passwordErrorMessage: MutableLiveData<String>
+        get() = _passwordErrorMessage
+
+    private val _loginErrorMessage: MutableLiveData<String> = MutableLiveData()
+    val loginErrorMessage: MutableLiveData<String>
+        get() = _loginErrorMessage
 
     private val _isValidInput: MutableLiveData<Boolean> = MutableLiveData()
     val isValidInput: MutableLiveData<Boolean>
@@ -40,12 +48,13 @@ class LoginViewModel(private val app: Application, val authenticationRepository:
     }
 
     fun attemptLogin(){
-        val username = _username.value
-        val password = _password.value
+        validateDetails(_username.value ?: "", _password.value ?: "")
+    }
 
+    fun validateDetails(username: String, password: String){
         when{
-            username?.isValidUsername() != true -> _errorMessage.value  = app.getString(R.string.invalid_username)
-            password?.isValidPassword() != true -> _errorMessage.value  = app.getString(R.string.invalid_password)
+            username.isValidUsername() -> _usernameErrorMessage.value  = app.getString(R.string.invalid_username)
+            password.isValidPassword() -> _passwordErrorMessage.value  = app.getString(R.string.invalid_password)
             else -> _isValidInput.value = true
         }
     }
@@ -55,19 +64,11 @@ class LoginViewModel(private val app: Application, val authenticationRepository:
 
         withContext(Dispatchers.Main) {
             when {
-                login == null -> _errorMessage.value = app.getString(R.string.login_error_message)
-                login?.error != null -> _errorMessage.value = login?.error?.message
+                login == null -> _loginErrorMessage.value = app.getString(R.string.login_error_message)
+                login?.error != null -> _loginErrorMessage.value = login?.error?.message
                 else -> _currentUser.value = login.user
             }
         }
-
-    }
-
-    fun isValidUsername() {
-
-    }
-
-    fun isValidEmail() {
 
     }
 }

@@ -63,7 +63,7 @@
             app:layout_constraintTop_toBottomOf="@+id/etPassword"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:text="@={loginViewModel.errorMessage}"
+            android:text="@={loginViewModel.loginErrorMessage}"
             tools:text="Login error"/>
 
         <Button

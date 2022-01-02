@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.viewModelScope
 import com.domain.myapplication.base.BaseFragment
 import com.domain.myapplication.models.User
-import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -33,12 +32,22 @@ class LoginFragment : BaseFragment() {
 
     private fun addObservers() {
         loginViewModel.currentUser.observe(viewLifecycleOwner, { onUserSet(it) })
-        loginViewModel.errorMessage.observe(viewLifecycleOwner, { onLoginError(it) })
+        loginViewModel.usernameErrorMessage.observe(viewLifecycleOwner, { onInvalidUsername(it) })
+        loginViewModel.passwordErrorMessage.observe(viewLifecycleOwner, { onInvalidPassword(it) })
+        loginViewModel.loginErrorMessage.observe(viewLifecycleOwner, { onLoginError(it) })
         loginViewModel.isValidInput.observe(viewLifecycleOwner, { onValidationComplete() })
     }
 
     private fun onUserSet(user: User){
         drawerController.navigateFromLoginToDashboard()
+    }
+
+    private fun onInvalidUsername(message: String){
+
+    }
+
+    private fun onInvalidPassword(message: String){
+
     }
 
     private fun onLoginError(message: String){

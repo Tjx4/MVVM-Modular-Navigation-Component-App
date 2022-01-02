@@ -55,7 +55,7 @@ class LoginViewModelTest {
         Mockito.`when`(mockApplication.getString(R.string.login_error_message)).thenReturn(expectedErrorMessage)
         loginViewModel.loginUser(username, password)
 
-        assertEquals(expectedErrorMessage, loginViewModel.errorMessage.value)
+        assertEquals(expectedErrorMessage, loginViewModel.loginErrorMessage.value)
     }
 
     @Test
@@ -68,7 +68,7 @@ class LoginViewModelTest {
         Mockito.`when`(loginViewModel.authenticationRepository.loginUser(username, password)).thenReturn(mockResponse)
         loginViewModel.loginUser(username, password)
 
-        assertEquals(expectedErrorMessage, loginViewModel.errorMessage.value)
+        assertEquals(expectedErrorMessage, loginViewModel.loginErrorMessage.value)
     }
 
     @Test
