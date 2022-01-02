@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.domain.myapplication.extensions.isValidPassword
+import com.domain.myapplication.extensions.isValidUsername
 import com.domain.myapplication.models.User
 import com.domain.repositories.authentication.AuthenticationRepository
 import kotlinx.coroutines.Dispatchers
@@ -24,6 +26,10 @@ class LoginViewModel(private val app: Application, val authenticationRepository:
     val errorMessage: MutableLiveData<String>
         get() = _errorMessage
 
+    private val _isValidInput: MutableLiveData<Boolean> = MutableLiveData()
+    val isValidInput: MutableLiveData<Boolean>
+        get() = _isValidInput
+
     private val _currentUser: MutableLiveData<User> = MutableLiveData()
     val currentUser: MutableLiveData<User>
         get() = _currentUser
@@ -34,8 +40,13 @@ class LoginViewModel(private val app: Application, val authenticationRepository:
     }
 
     fun attemptLogin(){
-        viewModelScope.launch (Dispatchers.IO){
-            loginUser(_username.value ?: "", _password.value ?: "")
+        val username = _username.value
+        val password = _password.value
+
+        when{
+            username?.isValidUsername() != true -> _errorMessage.value  = app.getString(R.string.invalid_username)
+            password?.isValidPassword() != true -> _errorMessage.value  = app.getString(R.string.invalid_password)
+            else -> _isValidInput.value = true
         }
     }
 
@@ -49,6 +60,14 @@ class LoginViewModel(private val app: Application, val authenticationRepository:
                 else -> _currentUser.value = login.user
             }
         }
+
+    }
+
+    fun isValidUsername() {
+
+    }
+
+    fun isValidEmail() {
 
     }
 }
