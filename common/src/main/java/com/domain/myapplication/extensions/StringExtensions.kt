@@ -13,7 +13,9 @@ private fun evaluateRegex(valu: String, regex: String): Boolean {
     return matcher.matches()
 }
 
-fun String.isValidUsername() =  isValidName() || isValidMobileNumber() || isValidEmail()
+fun String.isValidUsername() = isValidName() || isValidMobileNumber() || isValidEmail()
+
+fun String.isValidEmailORMobile() =  isValidMobileNumber() || isValidEmail()
 
 fun String.isValidName(): Boolean =  !this.isEmpty() && this.length > 2
 

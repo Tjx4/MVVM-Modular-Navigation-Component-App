@@ -4,6 +4,8 @@ id btnLogin
 id etPassword
 id etUsername
 id tvError
+id tvPasswordError
 id tvTitle
+id tvUsernameError
 layout fragment_login
 string hello_blank_fragment

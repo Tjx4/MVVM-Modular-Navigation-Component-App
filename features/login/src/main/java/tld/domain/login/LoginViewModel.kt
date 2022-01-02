@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.domain.myapplication.extensions.isValidEmailORMobile
 import com.domain.myapplication.extensions.isValidPassword
 import com.domain.myapplication.extensions.isValidUsername
 import com.domain.myapplication.models.User
@@ -53,8 +54,8 @@ class LoginViewModel(private val app: Application, val authenticationRepository:
 
     fun validateDetails(username: String, password: String){
         when{
-            username.isValidUsername() -> _usernameErrorMessage.value  = app.getString(R.string.invalid_username)
-            password.isValidPassword() -> _passwordErrorMessage.value  = app.getString(R.string.invalid_password)
+            !username.isValidEmailORMobile() -> _usernameErrorMessage.value = app.getString(R.string.invalid_username)
+            !password.isValidPassword() -> _passwordErrorMessage.value = app.getString(R.string.invalid_password)
             else -> _isValidInput.value = true
         }
     }

@@ -176,20 +176,20 @@ public class FragmentLoginBindingImpl extends FragmentLoginBinding implements tl
     private androidx.databinding.InverseBindingListener tvUsernameErrorandroidTextAttrChanged = new androidx.databinding.InverseBindingListener() {
         @Override
         public void onChange() {
-            // Inverse of loginViewModel.passwordErrorMessage.getValue()
-            //         is loginViewModel.passwordErrorMessage.setValue((java.lang.String) callbackArg_0)
+            // Inverse of loginViewModel.usernameErrorMessage.getValue()
+            //         is loginViewModel.usernameErrorMessage.setValue((java.lang.String) callbackArg_0)
             java.lang.String callbackArg_0 = androidx.databinding.adapters.TextViewBindingAdapter.getTextString(tvUsernameError);
             // localize variables for thread safety
             // loginViewModel != null
             boolean loginViewModelJavaLangObjectNull = false;
-            // loginViewModel.passwordErrorMessage
-            androidx.lifecycle.MutableLiveData<java.lang.String> loginViewModelPasswordErrorMessage = null;
-            // loginViewModel.passwordErrorMessage != null
-            boolean loginViewModelPasswordErrorMessageJavaLangObjectNull = false;
+            // loginViewModel.usernameErrorMessage.getValue()
+            java.lang.String loginViewModelUsernameErrorMessageGetValue = null;
+            // loginViewModel.usernameErrorMessage != null
+            boolean loginViewModelUsernameErrorMessageJavaLangObjectNull = false;
+            // loginViewModel.usernameErrorMessage
+            androidx.lifecycle.MutableLiveData<java.lang.String> loginViewModelUsernameErrorMessage = null;
             // loginViewModel
             tld.domain.login.LoginViewModel loginViewModel = mLoginViewModel;
-            // loginViewModel.passwordErrorMessage.getValue()
-            java.lang.String loginViewModelPasswordErrorMessageGetValue = null;
 
 
 
@@ -197,15 +197,15 @@ public class FragmentLoginBindingImpl extends FragmentLoginBinding implements tl
             if (loginViewModelJavaLangObjectNull) {
 
 
-                loginViewModelPasswordErrorMessage = loginViewModel.getPasswordErrorMessage();
+                loginViewModelUsernameErrorMessage = loginViewModel.getUsernameErrorMessage();
 
-                loginViewModelPasswordErrorMessageJavaLangObjectNull = (loginViewModelPasswordErrorMessage) != (null);
-                if (loginViewModelPasswordErrorMessageJavaLangObjectNull) {
-
-
+                loginViewModelUsernameErrorMessageJavaLangObjectNull = (loginViewModelUsernameErrorMessage) != (null);
+                if (loginViewModelUsernameErrorMessageJavaLangObjectNull) {
 
 
-                    loginViewModelPasswordErrorMessage.setValue(((java.lang.String) (callbackArg_0)));
+
+
+                    loginViewModelUsernameErrorMessage.setValue(((java.lang.String) (callbackArg_0)));
                 }
             }
         }
@@ -215,7 +215,7 @@ public class FragmentLoginBindingImpl extends FragmentLoginBinding implements tl
         this(bindingComponent, root, mapBindings(bindingComponent, root, 8, sIncludes, sViewsWithIds));
     }
     private FragmentLoginBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
-        super(bindingComponent, root, 4
+        super(bindingComponent, root, 5
             , (android.widget.Button) bindings[6]
             , (android.widget.EditText) bindings[3]
             , (android.widget.EditText) bindings[1]
@@ -241,7 +241,7 @@ public class FragmentLoginBindingImpl extends FragmentLoginBinding implements tl
     @Override
     public void invalidateAll() {
         synchronized(this) {
-                mDirtyFlags = 0x20L;
+                mDirtyFlags = 0x40L;
         }
         requestRebind();
     }
@@ -271,7 +271,7 @@ public class FragmentLoginBindingImpl extends FragmentLoginBinding implements tl
     public void setLoginViewModel(@Nullable tld.domain.login.LoginViewModel LoginViewModel) {
         this.mLoginViewModel = LoginViewModel;
         synchronized(this) {
-            mDirtyFlags |= 0x10L;
+            mDirtyFlags |= 0x20L;
         }
         notifyPropertyChanged(BR.loginViewModel);
         super.requestRebind();
@@ -288,6 +288,8 @@ public class FragmentLoginBindingImpl extends FragmentLoginBinding implements tl
                 return onChangeLoginViewModelPasswordErrorMessage((androidx.lifecycle.MutableLiveData<java.lang.String>) object, fieldId);
             case 3 :
                 return onChangeLoginViewModelPassword((androidx.lifecycle.MutableLiveData<java.lang.String>) object, fieldId);
+            case 4 :
+                return onChangeLoginViewModelUsernameErrorMessage((androidx.lifecycle.MutableLiveData<java.lang.String>) object, fieldId);
         }
         return false;
     }
@@ -327,6 +329,15 @@ public class FragmentLoginBindingImpl extends FragmentLoginBinding implements tl
         }
         return false;
     }
+    private boolean onChangeLoginViewModelUsernameErrorMessage(androidx.lifecycle.MutableLiveData<java.lang.String> LoginViewModelUsernameErrorMessage, int fieldId) {
+        if (fieldId == BR._all) {
+            synchronized(this) {
+                    mDirtyFlags |= 0x10L;
+            }
+            return true;
+        }
+        return false;
+    }
 
     @Override
     protected void executeBindings() {
@@ -341,14 +352,16 @@ public class FragmentLoginBindingImpl extends FragmentLoginBinding implements tl
         java.lang.String loginViewModelPasswordErrorMessageGetValue = null;
         androidx.lifecycle.MutableLiveData<java.lang.String> loginViewModelPasswordErrorMessage = null;
         java.lang.String loginViewModelUsernameGetValue = null;
+        java.lang.String loginViewModelUsernameErrorMessageGetValue = null;
         java.lang.String loginViewModelLoginErrorMessageGetValue = null;
         androidx.lifecycle.MutableLiveData<java.lang.String> loginViewModelPassword = null;
+        androidx.lifecycle.MutableLiveData<java.lang.String> loginViewModelUsernameErrorMessage = null;
         tld.domain.login.LoginViewModel loginViewModel = mLoginViewModel;
 
-        if ((dirtyFlags & 0x3fL) != 0) {
+        if ((dirtyFlags & 0x7fL) != 0) {
 
 
-            if ((dirtyFlags & 0x31L) != 0) {
+            if ((dirtyFlags & 0x61L) != 0) {
 
                     if (loginViewModel != null) {
                         // read loginViewModel.username
@@ -362,7 +375,7 @@ public class FragmentLoginBindingImpl extends FragmentLoginBinding implements tl
                         loginViewModelUsernameGetValue = loginViewModelUsername.getValue();
                     }
             }
-            if ((dirtyFlags & 0x32L) != 0) {
+            if ((dirtyFlags & 0x62L) != 0) {
 
                     if (loginViewModel != null) {
                         // read loginViewModel.loginErrorMessage
@@ -376,7 +389,7 @@ public class FragmentLoginBindingImpl extends FragmentLoginBinding implements tl
                         loginViewModelLoginErrorMessageGetValue = loginViewModelLoginErrorMessage.getValue();
                     }
             }
-            if ((dirtyFlags & 0x34L) != 0) {
+            if ((dirtyFlags & 0x64L) != 0) {
 
                     if (loginViewModel != null) {
                         // read loginViewModel.passwordErrorMessage
@@ -390,7 +403,7 @@ public class FragmentLoginBindingImpl extends FragmentLoginBinding implements tl
                         loginViewModelPasswordErrorMessageGetValue = loginViewModelPasswordErrorMessage.getValue();
                     }
             }
-            if ((dirtyFlags & 0x38L) != 0) {
+            if ((dirtyFlags & 0x68L) != 0) {
 
                     if (loginViewModel != null) {
                         // read loginViewModel.password
@@ -404,9 +417,23 @@ public class FragmentLoginBindingImpl extends FragmentLoginBinding implements tl
                         loginViewModelPasswordGetValue = loginViewModelPassword.getValue();
                     }
             }
+            if ((dirtyFlags & 0x70L) != 0) {
+
+                    if (loginViewModel != null) {
+                        // read loginViewModel.usernameErrorMessage
+                        loginViewModelUsernameErrorMessage = loginViewModel.getUsernameErrorMessage();
+                    }
+                    updateLiveDataRegistration(4, loginViewModelUsernameErrorMessage);
+
+
+                    if (loginViewModelUsernameErrorMessage != null) {
+                        // read loginViewModel.usernameErrorMessage.getValue()
+                        loginViewModelUsernameErrorMessageGetValue = loginViewModelUsernameErrorMessage.getValue();
+                    }
+            }
         }
         // batch finished
-        if ((dirtyFlags & 0x20L) != 0) {
+        if ((dirtyFlags & 0x40L) != 0) {
             // api target 1
 
             this.btnLogin.setOnClickListener(mCallback1);
@@ -416,26 +443,30 @@ public class FragmentLoginBindingImpl extends FragmentLoginBinding implements tl
             androidx.databinding.adapters.TextViewBindingAdapter.setTextWatcher(this.tvPasswordError, (androidx.databinding.adapters.TextViewBindingAdapter.BeforeTextChanged)null, (androidx.databinding.adapters.TextViewBindingAdapter.OnTextChanged)null, (androidx.databinding.adapters.TextViewBindingAdapter.AfterTextChanged)null, tvPasswordErrorandroidTextAttrChanged);
             androidx.databinding.adapters.TextViewBindingAdapter.setTextWatcher(this.tvUsernameError, (androidx.databinding.adapters.TextViewBindingAdapter.BeforeTextChanged)null, (androidx.databinding.adapters.TextViewBindingAdapter.OnTextChanged)null, (androidx.databinding.adapters.TextViewBindingAdapter.AfterTextChanged)null, tvUsernameErrorandroidTextAttrChanged);
         }
-        if ((dirtyFlags & 0x38L) != 0) {
+        if ((dirtyFlags & 0x68L) != 0) {
             // api target 1
 
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.etPassword, loginViewModelPasswordGetValue);
         }
-        if ((dirtyFlags & 0x31L) != 0) {
+        if ((dirtyFlags & 0x61L) != 0) {
             // api target 1
 
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.etUsername, loginViewModelUsernameGetValue);
         }
-        if ((dirtyFlags & 0x32L) != 0) {
+        if ((dirtyFlags & 0x62L) != 0) {
             // api target 1
 
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvError, loginViewModelLoginErrorMessageGetValue);
         }
-        if ((dirtyFlags & 0x34L) != 0) {
+        if ((dirtyFlags & 0x64L) != 0) {
             // api target 1
 
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvPasswordError, loginViewModelPasswordErrorMessageGetValue);
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvUsernameError, loginViewModelPasswordErrorMessageGetValue);
+        }
+        if ((dirtyFlags & 0x70L) != 0) {
+            // api target 1
+
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvUsernameError, loginViewModelUsernameErrorMessageGetValue);
         }
     }
     // Listener Stub Implementations
@@ -463,8 +494,9 @@ public class FragmentLoginBindingImpl extends FragmentLoginBinding implements tl
         flag 1 (0x2L): loginViewModel.loginErrorMessage
         flag 2 (0x3L): loginViewModel.passwordErrorMessage
         flag 3 (0x4L): loginViewModel.password
-        flag 4 (0x5L): loginViewModel
-        flag 5 (0x6L): null
+        flag 4 (0x5L): loginViewModel.usernameErrorMessage
+        flag 5 (0x6L): loginViewModel
+        flag 6 (0x7L): null
     flag mapping end*/
     //end
 }

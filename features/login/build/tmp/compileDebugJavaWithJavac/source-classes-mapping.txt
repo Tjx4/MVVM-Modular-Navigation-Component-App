@@ -20,5 +20,7 @@ tld/domain/login/databinding/FragmentLoginBindingImpl.java
  tld.domain.login.databinding.FragmentLoginBindingImpl$1
  tld.domain.login.databinding.FragmentLoginBindingImpl$2
  tld.domain.login.databinding.FragmentLoginBindingImpl$3
+ tld.domain.login.databinding.FragmentLoginBindingImpl$4
+ tld.domain.login.databinding.FragmentLoginBindingImpl$5
 tld/domain/login/databinding/FragmentLoginBinding.java
  tld.domain.login.databinding.FragmentLoginBinding
