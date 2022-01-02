@@ -49,6 +49,9 @@
         <item name="android:textSize">@dimen/small_text</item>
         <item name="android:gravity">center</item>
     </style>
+    <style name="SmallErrorTextView" parent="SmallTextView">
+        <item name="android:textColor">@color/red_text</item>
+    </style>
 
     <style name="MyButton">
         <item name="android:layout_width">match_parent</item>

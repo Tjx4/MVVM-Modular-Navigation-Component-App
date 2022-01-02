@@ -2227,7 +2227,9 @@ int id transition_scene_layoutid_cache 0x0
 int id transition_transform 0x0
 int id triangle 0x0
 int id tvError 0x0
+int id tvPasswordError 0x0
 int id tvTitle 0x0
+int id tvUsernameError 0x0
 int id unchecked 0x0
 int id uniform 0x0
 int id unlabeled 0x0
@@ -2467,6 +2469,8 @@ int string fab_transformation_sheet_behavior 0x0
 int string hello_blank_fragment 0x0
 int string hide_bottom_view_on_scroll_behavior 0x0
 int string icon_content_description 0x0
+int string invalid_password 0x0
+int string invalid_username 0x0
 int string item_view_role_description 0x0
 int string login_error_message 0x0
 int string material_clock_display_divider 0x0
@@ -2835,6 +2839,7 @@ int style ShapeAppearance_MaterialComponents_MediumComponent 0x0
 int style ShapeAppearance_MaterialComponents_SmallComponent 0x0
 int style ShapeAppearance_MaterialComponents_Test 0x0
 int style ShapeAppearance_MaterialComponents_Tooltip 0x0
+int style SmallErrorTextView 0x0
 int style SmallTextView 0x0
 int style TestStyleWithLineHeight 0x0
 int style TestStyleWithLineHeightAppearance 0x0

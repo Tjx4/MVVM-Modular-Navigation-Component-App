@@ -40,6 +40,16 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
+        <TextView
+            android:id="@+id/tvUsernameError"
+            style="@style/SmallErrorTextView"
+            android:gravity="left"
+            android:layout_marginHorizontal="@dimen/large_margin"
+            app:layout_constraintTop_toBottomOf="@+id/etUsername"
+            app:layout_constraintLeft_toLeftOf="@+id/etUsername"
+            android:text="@={loginViewModel.passwordErrorMessage}"
+            tools:text="@string/invalid_username"/>
+
         <EditText
             style="@style/MyEditText"
             android:id="@+id/etPassword"
@@ -54,6 +64,16 @@
             app:layout_constraintTop_toBottomOf="@+id/etUsername"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPasswordError"
+            style="@style/SmallErrorTextView"
+            android:gravity="left"
+            android:layout_marginHorizontal="@dimen/large_margin"
+            app:layout_constraintTop_toBottomOf="@+id/etPassword"
+            app:layout_constraintLeft_toLeftOf="@+id/etPassword"
+            android:text="@={loginViewModel.passwordErrorMessage}"
+            tools:text="@string/invalid_password"/>
 
         <TextView
             android:id="@+id/tvError"
