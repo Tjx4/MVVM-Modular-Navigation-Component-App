@@ -7,9 +7,11 @@ object API {
     var retrofit: RetrofitServices
 
     init {
-        val builder = Retrofit.Builder()
+        val builder = Retrofit
+            .Builder()
             .baseUrl(Environments.Production.url)
             .addConverterFactory(GsonConverterFactory.create())
+
         val retrofit = builder.build()
 
         API.retrofit = retrofit.create(RetrofitServices::class.java)
