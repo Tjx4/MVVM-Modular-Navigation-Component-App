@@ -26,6 +26,10 @@ class DashboardFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         addObservers()
 
+        btnLogout.setOnClickListener {
+            drawerController.popBack()
+        }
+
         btnNext.setOnClickListener {
             val message = "Hello"
             drawerController.navigateFromDashboardToFavourites(message)
