@@ -29,6 +29,9 @@
             app:exitAnim="@anim/no_transition"
             app:popEnterAnim="@anim/no_transition"
             app:popExitAnim="@anim/slide_right" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment

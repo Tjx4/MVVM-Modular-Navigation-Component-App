@@ -7,7 +7,7 @@ import com.domain.myapplication.models.LoginResponse
 import com.domain.myapplication.models.User
 
 class AuthenticationRepositoryImpl(private val retrofitServices: RetrofitServices, private val database: MySqliteDB) : AuthenticationRepository {
-    override fun loginUser(username: String, password: String): LoginResponse? {
+    override suspend fun loginUser(username: String, password: String): LoginResponse? {
         return try {
             //retrofitServices.loginUser(username, password)
             if(username == "" || password == "" ){
