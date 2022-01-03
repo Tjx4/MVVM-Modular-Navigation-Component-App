@@ -8,10 +8,11 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MVVM Modular Navigation Component app"
 include ':app'
-include ':features:splash'
 include ':common'
 include ':repositories'
 include ':core'
-include ':features:dashboard'
-include ':features:favourites'
-include ':features:login'
+include ':ui:mobile:splash'
+include ':ui:mobile:dashboard'
+include ':ui:mobile:favourites'
+include ':ui:mobile:login'
+include ':ui:leanback'

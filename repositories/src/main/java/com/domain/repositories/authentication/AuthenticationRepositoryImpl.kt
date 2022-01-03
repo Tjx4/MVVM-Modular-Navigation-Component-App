@@ -13,7 +13,7 @@ class AuthenticationRepositoryImpl(private val retrofitServices: RetrofitService
             if(username == "" || password == "" ){
                 null
             }
-            else if(username == "email@domain.com"  &&  password == "P@12345"){
+            else if(username == "email@domain.com"  &&  password == "Pl@12345"){
                 val user = User(username, "")
                 LoginResponse(user, null)
             }

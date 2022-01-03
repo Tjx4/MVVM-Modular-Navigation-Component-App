@@ -13,12 +13,14 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/core" />
-            <option value="$PROJECT_DIR$/features" />
-            <option value="$PROJECT_DIR$/features/dashboard" />
-            <option value="$PROJECT_DIR$/features/favourites" />
-            <option value="$PROJECT_DIR$/features/login" />
-            <option value="$PROJECT_DIR$/features/splash" />
             <option value="$PROJECT_DIR$/repositories" />
+            <option value="$PROJECT_DIR$/ui" />
+            <option value="$PROJECT_DIR$/ui/leanback" />
+            <option value="$PROJECT_DIR$/ui/mobile" />
+            <option value="$PROJECT_DIR$/ui/mobile/dashboard" />
+            <option value="$PROJECT_DIR$/ui/mobile/favourites" />
+            <option value="$PROJECT_DIR$/ui/mobile/login" />
+            <option value="$PROJECT_DIR$/ui/mobile/splash" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

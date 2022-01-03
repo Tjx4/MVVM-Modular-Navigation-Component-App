@@ -71,8 +71,8 @@ dependencies {
     implementation project(':common')
     implementation project(':core')
     implementation project(':repositories')
-    implementation project(':features:splash')
-    implementation project(':features:login')
-    implementation project(':features:dashboard')
-    implementation project(':features:favourites')
+    implementation project(':ui:mobile:splash')
+    implementation project(':ui:mobile:login')
+    implementation project(':ui:mobile:dashboard')
+    implementation project(':ui:mobile:favourites')
 }
