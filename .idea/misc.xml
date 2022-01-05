@@ -18,6 +18,7 @@
         <entry key="features/splash/src/main/res/drawable/splash_background.xml" value="0.2604166666666667" />
         <entry key="features/splash/src/main/res/drawable/splash_background_gradient.xml" value="0.2604166666666667" />
         <entry key="ui/mobile/dashboard/src/main/res/layout/fragment_dashboard.xml" value="0.28958333333333336" />
+        <entry key="ui/mobile/downloads/src/main/res/layout/fragment_downloads.xml" value="0.25052083333333336" />
         <entry key="ui/mobile/login/src/main/res/layout/fragment_login.xml" value="0.28958333333333336" />
         <entry key="ui/mobile/videos/src/main/res/layout/fragment_videos.xml" value="0.22083333333333333" />
       </map>

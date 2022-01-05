@@ -10,4 +10,9 @@
         android:id="@+id/videosFragment"
         android:title="@string/vidoes"
         android:icon="@drawable/ic_vids" />
+
+    <item
+        android:id="@+id/downloadsFragment"
+        android:title="@string/downloads"
+        android:icon="@drawable/ic_downlods" />
 </menu>

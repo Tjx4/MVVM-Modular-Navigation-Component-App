@@ -76,4 +76,5 @@ dependencies {
     implementation project(':ui:mobile:dashboard')
     implementation project(':ui:mobile:favourites')
     implementation project(':ui:mobile:videos')
+    implementation project(':ui:mobile:downloads')
 }
