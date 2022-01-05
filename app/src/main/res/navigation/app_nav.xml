@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="tld.domain.login.LoginFragment"
-        android:label="LoginFragment">
+        android:label="Login">
 
         <action
             android:id="@+id/action_loginFragment_to_dashboardFragment"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.domain.dashboard.DashboardFragment"
-        android:label="DashboardFragment" >
+        android:label="Dashboard" >
         <action
             android:id="@+id/dashboardFragment_to_favouritesFragment"
             app:destination="@id/favouritesFragment"
@@ -29,19 +29,13 @@
             app:exitAnim="@anim/no_transition"
             app:popEnterAnim="@anim/no_transition"
             app:popExitAnim="@anim/slide_right" />
-        <action
-            android:id="@+id/action_dashboardFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/no_transition"
-            app:popEnterAnim="@anim/no_transition"
-            app:popExitAnim="@anim/fade_out" />
+
     </fragment>
 
     <fragment
         android:id="@+id/favouritesFragment"
         android:name="tld.domain.favourites.FavouritesFragment"
-        android:label="FavouritesFragment">
+        android:label="Favourites">
         <argument
             android:name="message"
             app:argType="string"

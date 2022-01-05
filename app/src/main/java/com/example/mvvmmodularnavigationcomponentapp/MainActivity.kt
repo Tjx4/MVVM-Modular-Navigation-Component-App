@@ -32,10 +32,4 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
     override fun popBack() {
         navController.popBackStack()
     }
-
-    override fun navigateFromDashboardToLogin() {
-        val action = DashboardFragmentDirections.actionDashboardFragmentToLoginFragment()
-        navController.navigate(action)
-    }
-
 }

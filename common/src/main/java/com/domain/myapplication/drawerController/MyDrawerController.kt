@@ -4,5 +4,4 @@ interface MyDrawerController {
     fun navigateFromLoginToDashboard()
     fun navigateFromDashboardToFavourites(message: String)
     fun popBack()
-    fun navigateFromDashboardToLogin()
 }

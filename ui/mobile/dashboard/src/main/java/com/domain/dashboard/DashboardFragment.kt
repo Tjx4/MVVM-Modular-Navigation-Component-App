@@ -27,7 +27,7 @@ class DashboardFragment : BaseFragment() {
         addObservers()
 
         btnLogout.setOnClickListener {
-            drawerController.navigateFromDashboardToLogin()
+            drawerController.popBack()
         }
 
         btnNext.setOnClickListener {
