@@ -1,5 +1,6 @@
 package tld.domain.login
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +32,11 @@ class LoginFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         addObservers()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        drawerController.hideBottomNav()
     }
 
     private fun addObservers() {

@@ -21,6 +21,7 @@
             <option value="$PROJECT_DIR$/ui/mobile/favourites" />
             <option value="$PROJECT_DIR$/ui/mobile/login" />
             <option value="$PROJECT_DIR$/ui/mobile/splash" />
+            <option value="$PROJECT_DIR$/ui/mobile/videos" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

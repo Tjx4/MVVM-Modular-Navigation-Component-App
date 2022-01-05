@@ -6,9 +6,11 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import tld.domain.favourites.FavouritesViewModel
 import tld.domain.login.LoginViewModel
+import tld.domain.videos.VideosViewModel
 
 val viewModelModule = module {
     viewModel { LoginViewModel(androidApplication(), get()) }
     viewModel { DashboardViewModel(androidApplication(), get()) }
     viewModel { FavouritesViewModel(androidApplication()) }
+    viewModel { VideosViewModel(androidApplication()) }
 }
