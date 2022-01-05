@@ -31,8 +31,8 @@
             style="@style/MediumTextView"
             android:textColor="@color/dark_grey_text"
             android:layout_marginTop="@dimen/medium_margin"
-            android:text="@{`Downloading in ` + downloadsViewModel.count}"
-            tools:text="Downloading in 5"
+            android:text="@{`Completing in ` + downloadsViewModel.count}"
+            tools:text="Completing in 5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"/>
