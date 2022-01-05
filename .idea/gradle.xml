@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/ui/leanback" />
             <option value="$PROJECT_DIR$/ui/mobile" />
             <option value="$PROJECT_DIR$/ui/mobile/dashboard" />
+            <option value="$PROJECT_DIR$/ui/mobile/downloads" />
             <option value="$PROJECT_DIR$/ui/mobile/favourites" />
             <option value="$PROJECT_DIR$/ui/mobile/login" />
             <option value="$PROJECT_DIR$/ui/mobile/splash" />
