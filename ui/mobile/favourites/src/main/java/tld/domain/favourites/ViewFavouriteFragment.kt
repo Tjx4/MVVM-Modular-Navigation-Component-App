@@ -8,8 +8,10 @@ import android.view.animation.Animation
 import androidx.databinding.DataBindingUtil
 import com.domain.myapplication.base.BaseFragment
 import com.domain.myapplication.constants.DURATION_SHORT
+import com.domain.myapplication.constants.ITEM_NAME
 import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.extensions.vibratePhone
+import com.domain.myapplication.models.FavItem
 import kotlinx.android.synthetic.main.fragment_view_favourite.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.favourites.databinding.FragmentViewFavouriteBinding
@@ -29,6 +31,11 @@ class ViewFavouriteFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val itemName = arguments?.getString(ITEM_NAME)
+        val favItem = FavItem(itemName, "")
+        viewFavouriteViewModel.setFunItem(favItem)
+
         imgBtnBack.setOnClickListener {
             vibratePhone(DURATION_SHORT)
             it.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {

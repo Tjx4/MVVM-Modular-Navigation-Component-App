@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.domain.dashboard.DashboardFragment"
-        android:label="Dashboard" >
+        android:label="Dashboard">
         <action
             android:id="@+id/action_dashboardFragment_to_favouritesFragment"
             app:destination="@id/favouritesFragment"
