@@ -8,8 +8,8 @@ import retrofit2.http.Query
 
 interface RetrofitServices {
     @GET("???????")
-    suspend fun logIn(@Query("api_key") apiKey: String, @Query("from") from: String): Weather?
+    suspend fun getService(@Query("api_key") apiKey: String, @Query("from") from: String): Weather?
 
     @POST("???????")
-    suspend fun postService(@Field("code")  code: String)
+    suspend fun postService(@Field("data")  data: HashMap<String, String>)
 }
