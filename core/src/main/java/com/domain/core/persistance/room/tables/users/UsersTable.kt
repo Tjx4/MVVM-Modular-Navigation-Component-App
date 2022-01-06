@@ -1,4 +1,4 @@
-package com.domain.core.persistance.room.tables.pairHistory
+package com.domain.core.persistance.room.tables.users
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

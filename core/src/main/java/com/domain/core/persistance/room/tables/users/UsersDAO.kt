@@ -1,4 +1,4 @@
-package com.domain.core.persistance.room.tables.pairHistory
+package com.domain.core.persistance.room.tables.users
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

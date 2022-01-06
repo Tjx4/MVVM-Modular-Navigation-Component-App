@@ -6,8 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.domain.core.persistance.room.tables.items.ItemsDAO
 import com.domain.core.persistance.room.tables.items.ItemsTable
-import com.domain.core.persistance.room.tables.pairHistory.UsersDAO
-import com.domain.core.persistance.room.tables.pairHistory.UsersTable
+import com.domain.core.persistance.room.tables.users.UsersDAO
+import com.domain.core.persistance.room.tables.users.UsersTable
 
 @Database(entities = [UsersTable::class, ItemsTable::class], version = 1, exportSchema = false)
 abstract class MySqliteDB : RoomDatabase() {

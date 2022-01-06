@@ -62,4 +62,5 @@ dependencies {
     implementation project(':common')
     implementation project(':core')
     implementation project(':repositories')
+    implementation project(':viewmodels')
 }
