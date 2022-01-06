@@ -46,10 +46,10 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `check if default error message is displayed when response is null`() = runBlockingTest {
+    fun `default error message should be set on call return null`() = runBlockingTest {
         val username = "email@domain.com"
         val password = "P@12345"
-        val expectedErrorMessage = "Error login in please check your details" //mockApplication.getString(R.string.login_error_message)
+        val expectedErrorMessage = "Error login in please check your details"
 
         Mockito.`when`(loginViewModel.authenticationRepository.loginUser(username, password)).thenReturn(null)
         Mockito.`when`(mockApplication.getString(R.string.login_error_message)).thenReturn(expectedErrorMessage)
@@ -59,12 +59,12 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `check if response error message is displayed when call unsuccessful`() = runBlockingTest {
+    fun `response error message should be set on call fail`() = runBlockingTest {
         val username = "email@domain.com"
         val password = "P@12345"
         val expectedErrorMessage = "Incorrect password"
-        val mockResponse = LoginResponse(null, ErrorResponse(expectedErrorMessage))
 
+        val mockResponse = LoginResponse(null, ErrorResponse(expectedErrorMessage))
         Mockito.`when`(loginViewModel.authenticationRepository.loginUser(username, password)).thenReturn(mockResponse)
         loginViewModel.loginUser(username, password)
 
@@ -72,12 +72,12 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `test if user is set on login success`() = runBlockingTest {
+    fun `is login success should set current user`() = runBlockingTest {
         val username = "email@domain.com"
         val password = "P@12345"
         val user = User(username, "")
-        val mockResponse = LoginResponse(user, null)
 
+        val mockResponse = LoginResponse(user, null)
         Mockito.`when`(loginViewModel.authenticationRepository.loginUser(username, password)).thenReturn(mockResponse)
         loginViewModel.loginUser(username, password)
 
