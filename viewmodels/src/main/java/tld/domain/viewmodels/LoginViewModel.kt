@@ -41,7 +41,7 @@ class LoginViewModel(private val app: Application, val authenticationRepository:
         get() = _currentUser
 
     init {
-        _username.value = "email@domain.com"
+        _username.value = "email@domain.tld"
         _password.value = "Pl@12345"
     }
 

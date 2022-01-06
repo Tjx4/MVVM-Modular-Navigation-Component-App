@@ -47,7 +47,7 @@ class LoginViewModelTest {
 
     @Test
     fun `default error message should be set on call return null`() = runBlockingTest {
-        val username = "email@domain.com"
+        val username = "email@domain.tld"
         val password = "P@12345"
         val expectedErrorMessage = "Error login in please check your details"
 
@@ -60,7 +60,7 @@ class LoginViewModelTest {
 
     @Test
     fun `response error message should be set on call fail`() = runBlockingTest {
-        val username = "email@domain.com"
+        val username = "email@domain.tld"
         val password = "P@12345"
         val expectedErrorMessage = "Incorrect password"
 
@@ -73,7 +73,7 @@ class LoginViewModelTest {
 
     @Test
     fun `is login success should set current user`() = runBlockingTest {
-        val username = "email@domain.com"
+        val username = "email@domain.tld"
         val password = "P@12345"
         val user = User(username, "")
 
