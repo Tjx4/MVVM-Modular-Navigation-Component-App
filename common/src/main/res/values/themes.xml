@@ -67,4 +67,12 @@
         <item name="android:padding">@dimen/xsmall_margin</item>
     </style>
 
+    <style name="SelectableItemTheme">
+        <item name="colorControlHighlight">#eee</item>
+    </style>
+    <style name="SelectableItemBackground">
+        <item name="android:theme">@style/SelectableItemTheme</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:background">@color/light_background</item>
+    </style>
 </resources>

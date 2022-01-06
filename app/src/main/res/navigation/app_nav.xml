@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/app_nav"
     app:startDestination="@id/loginFragment">
+
     <fragment
         android:id="@+id/loginFragment"
         android:name="tld.domain.login.LoginFragment"
@@ -23,7 +24,7 @@
         android:name="com.domain.dashboard.DashboardFragment"
         android:label="Dashboard" >
         <action
-            android:id="@+id/dashboardFragment_to_favouritesFragment"
+            android:id="@+id/action_dashboardFragment_to_favouritesFragment"
             app:destination="@id/favouritesFragment"
             app:enterAnim="@anim/slide_left"
             app:exitAnim="@anim/no_transition"
@@ -36,10 +37,14 @@
         android:id="@+id/favouritesFragment"
         android:name="tld.domain.favourites.FavouritesFragment"
         android:label="Favourites">
-        <argument
-            android:name="message"
-            app:argType="string"
-            app:nullable="false" />
+
+        <action
+            android:id="@+id/action_favouritesFragment_to_viewFavouriteFragment"
+            app:destination="@id/viewFavouriteFragment"
+            app:enterAnim="@anim/slide_left"
+            app:exitAnim="@anim/no_transition"
+            app:popEnterAnim="@anim/no_transition"
+            app:popExitAnim="@anim/slide_right" />
     </fragment>
 
     <fragment
@@ -51,4 +56,15 @@
         android:id="@+id/downloadsFragment"
         android:name="com.example.downloads.DownloadsFragment"
         android:label="DownloadsFragment" />
+
+    <fragment
+        android:id="@+id/viewFavouriteFragment"
+        android:name="tld.domain.favourites.ViewFavouriteFragment"
+        android:label="ViewFavouriteFragment">
+        <argument
+            android:name="itemName"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+
 </navigation>

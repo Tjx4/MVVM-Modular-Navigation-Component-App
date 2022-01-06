@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="favouritesViewModel"
-            type="tld.domain.viewmodels.FavouritesViewModel"/>
+            name="viewFavouriteViewModel"
+            type="tld.domain.viewmodels.ViewFavouriteViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        tools:context=".FavouritesFragment"
+        tools:context=".ViewFavouriteFragment"
         android:background="@color/light_background"
         style="@style/ParentView">
 
@@ -25,7 +25,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/imgBtnBack"
             app:layout_constraintLeft_toRightOf="@+id/imgBtnBack"
             app:layout_constraintRight_toRightOf="parent"
-            android:text="Favourites"/>
+            android:text="Unknown Item"
+            tools:text="Name"/>
 
         <ImageButton
             style="@style/MyButton"
@@ -38,14 +39,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
             app:layout_constraintLeft_toLeftOf="parent"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvFavourites"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/medium_margin"
-            app:layout_constraintTop_toBottomOf="@+id/imgBtnBack"
-            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -32,8 +32,7 @@ class DashboardFragment : TopNavigationFragment() {
         }
 
         btnNext.setOnClickListener {
-            val message = "Hello"
-            drawerController.navigateFromDashboardToFavourites(message)
+            drawerController.navigateFromDashboardToFavourites()
         }
     }
 
