@@ -20,8 +20,6 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navController = findNavController(R.id.navControllerFragment)
-
-        //bnBottomNav.setupWithNavController(navController)
         bnBottomNav.setupWithCustomAnimNavController(navController, R.anim.trail_out, R.anim.trail_in, R.anim.trail_out, R.anim.trail_in)
     }
 
