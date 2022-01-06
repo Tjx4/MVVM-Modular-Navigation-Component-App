@@ -17,10 +17,7 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //FirebaseApp.initializeApp(this)
-        //FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
         setContentView(R.layout.activity_main)
-
         navController = findNavController(R.id.navControllerFragment)
         bnBottomNav.setupWithNavController(navController)
     }
@@ -33,6 +30,11 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
     override fun navigateFromDashboardToFavourites(message: String) {
          val action = DashboardFragmentDirections.dashboardFragmentToFavouritesFragment(message)
         navController.navigate(action)
+    }
+
+    override fun popAll() {
+        navController.popBackStack()
+        navController.navigate(R.id.loginFragment)
     }
 
     override fun popBack() {

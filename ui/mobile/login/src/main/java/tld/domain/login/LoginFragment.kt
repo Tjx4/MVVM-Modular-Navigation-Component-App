@@ -47,6 +47,10 @@ class LoginFragment : BaseFragment() {
         loginViewModel.isValidInput.observe(viewLifecycleOwner, { onValidationComplete() })
     }
 
+    override fun onBackPressed() {
+        activity?.moveTaskToBack(true)
+    }
+
     private fun onUserSet(user: User){
         drawerController.navigateFromLoginToDashboard()
     }

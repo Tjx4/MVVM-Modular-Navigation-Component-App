@@ -24,7 +24,7 @@ class DownloadsViewModel(private val app: Application) : AndroidViewModel(app){
         val flow = flow<Int> {
             for (i in 5 downTo 0){
                 emit(i)
-                delay(2000)
+                delay(1000)
             }
         }
 

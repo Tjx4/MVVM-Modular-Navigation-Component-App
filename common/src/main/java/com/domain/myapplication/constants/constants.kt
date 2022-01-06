@@ -8,3 +8,6 @@ const val API_KEY = "9sREx8VjjIUxLKx_jf_b" //""yX3FHELVRWgpWL2bBcIp"
 
 //Navigation
 const val MAIN_ACTIVITY = "com.example.mvvmmodularnavigationcomponentapp.MainActivity"
+
+//
+const val DURATION_SHORT = 70L

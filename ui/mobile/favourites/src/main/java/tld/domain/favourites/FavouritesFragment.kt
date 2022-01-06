@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import androidx.databinding.DataBindingUtil
 import com.domain.myapplication.base.BaseFragment
+import com.domain.myapplication.constants.DURATION_SHORT
 import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.extensions.vibratePhone
 import kotlinx.android.synthetic.main.fragment_favourites.*
@@ -16,7 +17,6 @@ import tld.domain.favourites.databinding.FragmentFavouritesBinding
 class FavouritesFragment : BaseFragment() {
     private lateinit var binding: FragmentFavouritesBinding
     private val favouritesViewModel: FavouritesViewModel by viewModel()
-    //private val args: FavouritesFragmentArgs by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -28,9 +28,8 @@ class FavouritesFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Toast.makeText(context, "Args", Toast.LENGTH_SHORT).show()
         imgBtnBack.setOnClickListener {
-            vibratePhone(70)
+            vibratePhone(DURATION_SHORT)
             it.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {
                 drawerController.popBack()
             })
