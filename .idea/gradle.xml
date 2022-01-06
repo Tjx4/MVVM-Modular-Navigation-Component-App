@@ -23,6 +23,7 @@
             <option value="$PROJECT_DIR$/ui/mobile/login" />
             <option value="$PROJECT_DIR$/ui/mobile/splash" />
             <option value="$PROJECT_DIR$/ui/mobile/videos" />
+            <option value="$PROJECT_DIR$/viewmodels" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
