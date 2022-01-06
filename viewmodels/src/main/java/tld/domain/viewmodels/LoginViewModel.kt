@@ -50,7 +50,7 @@ class LoginViewModel(private val app: Application, val authenticationRepository:
     }
 
     fun validateDetails(username: String, password: String){
-        when{
+        when {
             !username.isValidEmailORMobile() -> _usernameErrorMessage.value = app.getString(R.string.invalid_username)
             !password.isValidPassword() -> _passwordErrorMessage.value = app.getString(R.string.invalid_password)
             else -> _isValidInput.value = true
