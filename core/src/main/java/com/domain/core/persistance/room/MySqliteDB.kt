@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.domain.core.persistance.room.tables.pairHistory.PairHistoryDAO
-import com.domain.core.persistance.room.tables.pairHistory.PairHistoryTable
+import com.domain.core.persistance.room.tables.pairHistory.UsersDAO
+import com.domain.core.persistance.room.tables.pairHistory.UsersTable
 
-@Database(entities = [PairHistoryTable::class], version = 1, exportSchema = false)
+@Database(entities = [UsersTable::class], version = 1, exportSchema = false)
 abstract class MySqliteDB : RoomDatabase() {
-    abstract val pairHistoryDAO: PairHistoryDAO
+    abstract val usersDAO: UsersDAO
 
     companion object{
         @Volatile

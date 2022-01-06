@@ -7,17 +7,13 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-@Entity(tableName = "pairHistories")
-data class PairHistoryTable (
+@Entity(tableName = "users")
+data class UsersTable (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var id:Long = 0L,
-    @ColumnInfo(name ="tradingPair")
-    var tradingPair: String?,
-    @ColumnInfo(name ="startDate")
-    var startDate: String?,
-    @ColumnInfo(name ="endDate")
-    var endDate: String?,
-    @ColumnInfo(name ="history")
-    var history: String?
+    @ColumnInfo(name ="firstName")
+    var firstName: String?,
+    @ColumnInfo(name ="age")
+    var age: Int,
 ): Parcelable
