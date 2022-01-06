@@ -7,7 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.domain.dashboard.DashboardFragmentDirections
 import com.domain.myapplication.drawerController.MyDrawerController
-import com.domain.myapplication.extensions.setupWithNavControllerWithCustomAnim
+import com.domain.myapplication.extensions.setupWithCustomAnimNavController
 import kotlinx.android.synthetic.main.activity_main.*
 import tld.domain.login.LoginFragmentDirections
 
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
         navController = findNavController(R.id.navControllerFragment)
 
         //bnBottomNav.setupWithNavController(navController)
-        bnBottomNav.setupWithNavControllerWithCustomAnim(navController, R.anim.trail_out, R.anim.trail_in, R.anim.trail_out, R.anim.trail_in)
+        bnBottomNav.setupWithCustomAnimNavController(navController, R.anim.trail_out, R.anim.trail_in, R.anim.trail_out, R.anim.trail_in)
     }
 
     override fun navigateFromLoginToDashboard() {

@@ -5,7 +5,7 @@ import androidx.navigation.NavOptions
 import com.domain.myapplication.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-fun BottomNavigationView.setupWithNavControllerWithCustomAnim(navController: NavController, enterAnim: Int, exitAnim: Int, popEnterAnim: Int, popExitAnim: Int) {
+fun BottomNavigationView.setupWithCustomAnimNavController(navController: NavController, enterAnim: Int, exitAnim: Int, popEnterAnim: Int, popExitAnim: Int) {
     val options = NavOptions.Builder()
         .setLaunchSingleTop(true)
         .setEnterAnim(enterAnim)
@@ -17,16 +17,11 @@ fun BottomNavigationView.setupWithNavControllerWithCustomAnim(navController: Nav
 
     this.setOnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.dashboardFragment -> {
-                navController.navigate(R.id.dashboardFragment, null, options)
-            }
-            R.id.videosFragment -> {
-                navController.navigate(R.id.videosFragment, null, options)
-            }
-            R.id.downloadsFragment -> {
-                navController.navigate(R.id.downloadsFragment, null, options)
-            }
+            R.id.dashboardFragment -> navController.navigate(R.id.dashboardFragment, null, options)
+            R.id.videosFragment -> navController.navigate(R.id.videosFragment, null, options)
+            R.id.downloadsFragment -> navController.navigate(R.id.downloadsFragment, null, options)
         }
+
         true
     }
 
