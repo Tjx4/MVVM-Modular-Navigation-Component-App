@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import tld.domain.login.LoginFragmentDirections
 
 class MainActivity : AppCompatActivity(), MyDrawerController {
-    private lateinit var navController: NavController
+    override lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
