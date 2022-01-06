@@ -1,6 +1,5 @@
 package tld.domain.login
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,17 +33,17 @@ class LoginFragment : BaseFragment() {
         addObservers()
     }
 
-    override fun onResume() {
-        super.onResume()
-        drawerController.hideBottomNav()
-    }
-
     private fun addObservers() {
         loginViewModel.currentUser.observe(viewLifecycleOwner, { onUserSet(it) })
         loginViewModel.usernameErrorMessage.observe(viewLifecycleOwner, { onInvalidUsername(it) })
         loginViewModel.passwordErrorMessage.observe(viewLifecycleOwner, { onInvalidPassword(it) })
         loginViewModel.loginErrorMessage.observe(viewLifecycleOwner, { onLoginError(it) })
         loginViewModel.isValidInput.observe(viewLifecycleOwner, { onValidationComplete() })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        drawerController.hideBottomNav()
     }
 
     override fun onBackPressed() {
