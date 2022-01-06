@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import com.domain.dashboard.databinding.FragmentDashboardBinding
-import com.domain.myapplication.base.BaseFragment
 import com.domain.myapplication.base.TopNavigationFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlinx.android.synthetic.main.fragment_dashboard.*
+import tld.domain.viewmodels.DashboardViewModel
 
 class DashboardFragment : TopNavigationFragment() {
     private lateinit var binding: FragmentDashboardBinding

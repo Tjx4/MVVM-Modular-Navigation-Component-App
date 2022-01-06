@@ -5,7 +5,7 @@
     <data>
         <variable
             name="favouritesViewModel"
-            type="tld.domain.favourites.FavouritesViewModel"/>
+            type="tld.domain.viewmodels.FavouritesViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

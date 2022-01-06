@@ -70,6 +70,7 @@ dependencies {
     //Modules
     implementation project(':common')
     implementation project(':core')
+    implementation project(':viewmodels')
     implementation project(':repositories')
     implementation project(':ui:mobile:splash')
     implementation project(':ui:mobile:login')

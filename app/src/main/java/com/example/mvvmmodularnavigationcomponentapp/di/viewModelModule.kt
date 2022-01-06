@@ -1,18 +1,16 @@
 package com.example.mvvmmodularnavigationcomponentapp.di
 
-import com.domain.dashboard.DashboardViewModel
-import com.example.downloads.DownloadsViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import tld.domain.favourites.FavouritesViewModel
-import tld.domain.login.LoginViewModel
-import tld.domain.videos.VideosViewModel
+import tld.domain.viewmodels.FavouritesViewModel
+import tld.domain.viewmodels.LoginViewModel
+import tld.domain.viewmodels.VideosViewModel
 
 val viewModelModule = module {
     viewModel { LoginViewModel(androidApplication(), get()) }
-    viewModel { DashboardViewModel(androidApplication(), get()) }
+    viewModel { tld.domain.viewmodels.DashboardViewModel(androidApplication(), get()) }
     viewModel { FavouritesViewModel(androidApplication()) }
     viewModel { VideosViewModel(androidApplication()) }
-    viewModel { DownloadsViewModel(androidApplication()) }
+    viewModel { tld.domain.viewmodels.DownloadsViewModel(androidApplication()) }
 }

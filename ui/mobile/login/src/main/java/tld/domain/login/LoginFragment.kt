@@ -15,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.login.databinding.FragmentLoginBinding
+import tld.domain.viewmodels.LoginViewModel
 
 class LoginFragment : BaseFragment() {
     private lateinit var binding: FragmentLoginBinding

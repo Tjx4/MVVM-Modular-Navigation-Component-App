@@ -1,4 +1,4 @@
-package com.domain.dashboard
+package tld.domain.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

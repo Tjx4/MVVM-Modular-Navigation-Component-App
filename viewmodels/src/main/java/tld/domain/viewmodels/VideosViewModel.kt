@@ -1,4 +1,4 @@
-package tld.domain.videos
+package tld.domain.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

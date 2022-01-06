@@ -5,7 +5,7 @@
     <data>
         <variable
             name="loginViewModel"
-            type="tld.domain.login.LoginViewModel"/>
+            type="tld.domain.viewmodels.LoginViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

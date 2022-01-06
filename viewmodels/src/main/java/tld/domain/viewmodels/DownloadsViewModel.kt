@@ -1,4 +1,4 @@
-package com.example.downloads
+package tld.domain.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

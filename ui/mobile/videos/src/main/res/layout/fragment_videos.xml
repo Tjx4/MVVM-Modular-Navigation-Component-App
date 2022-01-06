@@ -5,7 +5,7 @@
     <data>
         <variable
             name="videosViewModel"
-            type="tld.domain.videos.VideosViewModel"/>
+            type="tld.domain.viewmodels.VideosViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
