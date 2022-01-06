@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.domain.dashboard.DashboardFragmentDirections
 import com.domain.myapplication.drawerController.MyDrawerController
 import com.domain.myapplication.extensions.setupWithCustomAnimNavController
@@ -19,8 +20,8 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
         setContentView(R.layout.activity_main)
         navController = findNavController(R.id.navControllerFragment)
 
-        //bnBottomNav.setupWithNavController(navController)
-        bnBottomNav.setupWithCustomAnimNavController(navController, R.anim.trail_out, R.anim.trail_in, R.anim.trail_out, R.anim.trail_in)
+        bnBottomNav.setupWithNavController(navController)
+        //bnBottomNav.setupWithCustomAnimNavController(navController, R.anim.trail_out, R.anim.trail_in, R.anim.trail_out, R.anim.trail_in)
     }
 
     override fun navigateFromLoginToDashboard() {
@@ -48,5 +49,9 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
 
     override fun hideBottomNav() {
         bnBottomNav?.visibility = View.GONE
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 }

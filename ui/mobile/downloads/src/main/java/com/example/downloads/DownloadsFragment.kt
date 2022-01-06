@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.domain.myapplication.base.BaseFragment
+import com.domain.myapplication.base.TopNavigationFragment
 import com.example.downloads.databinding.FragmentDownloadsBinding
 import kotlinx.android.synthetic.main.fragment_downloads.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DownloadsFragment : BaseFragment() {
+class DownloadsFragment : TopNavigationFragment() {
     private lateinit var binding: FragmentDownloadsBinding
     private val downloadsViewModel: DownloadsViewModel by viewModel()
 

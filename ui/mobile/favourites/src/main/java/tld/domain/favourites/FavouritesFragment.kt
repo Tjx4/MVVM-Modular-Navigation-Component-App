@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import com.domain.myapplication.base.BaseFragment
 import com.domain.myapplication.constants.DURATION_SHORT
