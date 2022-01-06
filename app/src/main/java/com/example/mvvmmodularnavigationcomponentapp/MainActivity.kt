@@ -2,6 +2,7 @@ package com.example.mvvmmodularnavigationcomponentapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -20,8 +21,8 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
         setContentView(R.layout.activity_main)
         navController = findNavController(R.id.navControllerFragment)
 
-        bnBottomNav.setupWithNavController(navController)
-        //bnBottomNav.setupWithCustomAnimNavController(navController, R.anim.trail_out, R.anim.trail_in, R.anim.trail_out, R.anim.trail_in)
+        //bnBottomNav.setupWithNavController(navController)
+        bnBottomNav.setupWithCustomAnimNavController(navController, R.anim.trail_out, R.anim.trail_in, R.anim.trail_out, R.anim.trail_in)
     }
 
     override fun navigateFromLoginToDashboard() {
@@ -52,6 +53,19 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+        if (bnBottomNav.selectedItemId == R.id.dashboardFragment) {
+            super.onBackPressed()
+        } else {
+            bnBottomNav.selectedItemId = R.id.dashboardFragment
+        }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            onBackPressed()
+            return false
+        }
+
+        return super.onKeyDown(keyCode, event)
     }
 }
