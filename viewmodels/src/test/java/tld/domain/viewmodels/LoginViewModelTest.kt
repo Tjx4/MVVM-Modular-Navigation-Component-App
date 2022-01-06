@@ -1,4 +1,4 @@
-package tld.domain.login
+package tld.domain.viewmodels
 
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
@@ -20,7 +20,6 @@ import org.junit.rules.TestRule
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations.openMocks
-import tld.domain.viewmodels.LoginViewModel
 
 class LoginViewModelTest {
     private lateinit var loginViewModel: LoginViewModel
