@@ -3,6 +3,7 @@ package tld.domain.viewmodels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.domain.core.persistance.sharedPrefs.SharedPrefs
 import com.domain.myapplication.extensions.isValidEmailORMobile
 import com.domain.myapplication.extensions.isValidPassword
 import com.domain.myapplication.models.User
@@ -10,7 +11,7 @@ import com.domain.repositories.authentication.AuthenticationRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class LoginViewModel(private val app: Application, val authenticationRepository: AuthenticationRepository) : AndroidViewModel(app){
+class LoginViewModel(private val app: Application, val authenticationRepository: AuthenticationRepository, val sharedPrefs: SharedPrefs) : AndroidViewModel(app){
 
     private val _username: MutableLiveData<String> = MutableLiveData()
     val username: MutableLiveData<String>
@@ -40,7 +41,16 @@ class LoginViewModel(private val app: Application, val authenticationRepository:
     val currentUser: MutableLiveData<User>
         get() = _currentUser
 
+    private val _skipLogin: MutableLiveData<Boolean> = MutableLiveData()
+    val skipLogin: MutableLiveData<Boolean>
+        get() = _skipLogin
+
+
     init {
+        sharedPrefs.currentUser?.let {
+            _skipLogin.value = true
+        }
+
         _username.value = "email@domain.tld"
         _password.value = "Pl@12345"
     }
@@ -67,6 +77,5 @@ class LoginViewModel(private val app: Application, val authenticationRepository:
                 else -> _currentUser.value = login.user
             }
         }
-
     }
 }

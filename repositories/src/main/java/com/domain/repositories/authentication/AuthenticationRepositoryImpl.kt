@@ -4,6 +4,7 @@ import com.domain.core.networking.retrofit.RetrofitServices
 import com.domain.core.persistance.room.MySqliteDB
 import com.domain.myapplication.models.ErrorResponse
 import com.domain.myapplication.models.LoginResponse
+import com.domain.myapplication.models.Picture
 import com.domain.myapplication.models.User
 
 class AuthenticationRepositoryImpl(private val retrofitServices: RetrofitServices, private val mySqliteDB: MySqliteDB) : AuthenticationRepository {
@@ -12,7 +13,16 @@ class AuthenticationRepositoryImpl(private val retrofitServices: RetrofitService
             null
         }
         else if(username == "email@domain.tld"  &&  password == "Pl@12345"){
-            val user = User(username, "")
+            val user = User(
+                username,
+                "Tshepo",
+                Picture(
+                    "http://appicsoftware.xyz/demo/images/tshepo.jpg",
+                    "http://appicsoftware.xyz/demo/images/tshepo.jpg",
+                    "http://appicsoftware.xyz/demo/images/tshepo.jpg"
+                )
+            )
+
             LoginResponse(user, null)
         }
         else{

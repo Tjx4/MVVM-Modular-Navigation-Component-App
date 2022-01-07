@@ -28,7 +28,7 @@ class DashboardFragment : TopNavigationFragment() {
         addObservers()
 
         btnLogout.setOnClickListener {
-            drawerController.popAll()
+            dashboardViewModel.logOutUser()
         }
 
         btnNext.setOnClickListener {
@@ -42,10 +42,15 @@ class DashboardFragment : TopNavigationFragment() {
 
     private fun addObservers() {
         dashboardViewModel.showLoading.observe(viewLifecycleOwner, { showLoading() })
+        dashboardViewModel.logout.observe(viewLifecycleOwner, { onLogOut() })
     }
 
     fun showLoading(){
 
+    }
+
+    fun onLogOut(){
+        drawerController.popAll()
     }
 
 }

@@ -3,6 +3,7 @@ package com.domain.core.persistance.sharedPrefs
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.domain.myapplication.models.User
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
@@ -10,6 +11,7 @@ import java.lang.reflect.Type
 class SharedPrefs(private val application: Application) {
     private val sharedPreferences: SharedPreferences = application.getSharedPreferences(application.packageName + "_preferences", Context.MODE_PRIVATE)
     private val FIRSTTIME = "firstTime"
+    private val CURRENT_USER = "current_user"
     private val FAV_ITEMS = "favourite_items"
 
     var isFirstTime: Boolean
@@ -24,6 +26,17 @@ class SharedPrefs(private val application: Application) {
             editor.commit()
         }
 
+    var currentUser: User?
+        get() {
+            val json = sharedPreferences.getString(CURRENT_USER, "")
+            return Gson().fromJson(json, User::class.java)
+        }
+        set(currentUser) {
+            val editor = sharedPreferences.edit()
+            val connectionsJSONString = Gson().toJson(currentUser)
+            editor.putString(CURRENT_USER, connectionsJSONString)
+            editor.commit()
+        }
 
     var favItems: List<String>?
         get() {

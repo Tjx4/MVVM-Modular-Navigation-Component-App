@@ -1,5 +1,6 @@
 package tld.domain.login
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.viewModelScope
+import com.domain.core.persistance.sharedPrefs.SharedPrefs
 import com.domain.myapplication.base.BaseFragment
 import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.models.User
@@ -35,6 +37,7 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun addObservers() {
+        loginViewModel.skipLogin.observe(viewLifecycleOwner, { onSkipLogin() })
         loginViewModel.currentUser.observe(viewLifecycleOwner, { onUserSet(it) })
         loginViewModel.usernameErrorMessage.observe(viewLifecycleOwner, { onInvalidUsername(it) })
         loginViewModel.passwordErrorMessage.observe(viewLifecycleOwner, { onInvalidPassword(it) })
@@ -51,7 +54,12 @@ class LoginFragment : BaseFragment() {
         activity?.moveTaskToBack(true)
     }
 
+    private fun onSkipLogin(){
+        drawerController.navigateFromLoginToDashboard()
+    }
+
     private fun onUserSet(user: User){
+        loginViewModel.sharedPrefs.currentUser = user
         drawerController.navigateFromLoginToDashboard()
     }
 
