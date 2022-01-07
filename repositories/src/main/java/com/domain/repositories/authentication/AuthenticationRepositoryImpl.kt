@@ -14,15 +14,13 @@ class AuthenticationRepositoryImpl(private val retrofitServices: RetrofitService
             null
         }
         else if(username == "email@domain.tld"  &&  password == "Pl@12345"){
-            val user = User(
-                username,
-                "Tshepo",
-                Picture(
-                    "http://appicsoftware.xyz/demo/images/tshepo.jpg",
-                    "http://appicsoftware.xyz/demo/images/tshepo.jpg",
-                    "http://appicsoftware.xyz/demo/images/tshepo.jpg"
-                )
+            val picture = Picture(
+                "http://appicsoftware.xyz/demo/images/tshepo.jpg",
+                "http://appicsoftware.xyz/demo/images/tshepo.jpg",
+                "http://appicsoftware.xyz/demo/images/tshepo.jpg"
             )
+
+            val user = User(username, "Tshepo", picture)
 
             sharedPrefs.currentUser = user
             LoginResponse(user, null)
