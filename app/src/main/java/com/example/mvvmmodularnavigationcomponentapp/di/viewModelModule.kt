@@ -6,8 +6,8 @@ import org.koin.dsl.module
 import tld.domain.viewmodels.*
 
 val viewModelModule = module {
-    viewModel { LoginViewModel(androidApplication(), get(), get()) }
-    viewModel { DashboardViewModel(androidApplication(), get(), get()) }
+    viewModel { LoginViewModel(androidApplication(), get()) }
+    viewModel { DashboardViewModel(androidApplication(), get()) }
     viewModel { FavouritesViewModel(androidApplication()) }
     viewModel { ViewFavouriteViewModel(androidApplication()) }
     viewModel { VideosViewModel(androidApplication()) }

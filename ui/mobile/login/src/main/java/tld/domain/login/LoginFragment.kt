@@ -59,7 +59,6 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun onUserSet(user: User){
-        loginViewModel.sharedPrefs.currentUser = user
         drawerController.navigateFromLoginToDashboard()
     }
 
