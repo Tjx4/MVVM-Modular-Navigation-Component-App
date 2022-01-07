@@ -11,7 +11,7 @@ import com.domain.repositories.authentication.AuthenticationRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class LoginViewModel(private val app: Application, val authenticationRepository: AuthenticationRepository, val sharedPrefs: SharedPrefs) : AndroidViewModel(app){
+class LoginViewModel(private val app: Application, val authenticationRepository: AuthenticationRepository) : AndroidViewModel(app){
 
     private val _username: MutableLiveData<String> = MutableLiveData()
     val username: MutableLiveData<String>
@@ -47,7 +47,7 @@ class LoginViewModel(private val app: Application, val authenticationRepository:
 
 
     init {
-        sharedPrefs.currentUser?.let {
+        if(authenticationRepository.isUserLoggedIn()) {
             _skipLogin.value = true
         }
 
