@@ -8,7 +8,7 @@ import android.view.animation.Animation
 import androidx.databinding.DataBindingUtil
 import com.domain.myapplication.base.BaseFragment
 import com.domain.myapplication.constants.DURATION_SHORT
-import com.domain.myapplication.constants.ITEM_NAME
+import com.domain.myapplication.constants.FAV_ITEM_KEY
 import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.extensions.vibratePhone
 import com.domain.myapplication.models.FavItem
@@ -32,9 +32,9 @@ class ViewFavouriteFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val itemName = arguments?.getString(ITEM_NAME)
-        val favItem = FavItem(itemName, "")
-        viewFavouriteViewModel.setFunItem(favItem)
+        arguments?.getParcelable<FavItem>("favItem")?.let {
+            viewFavouriteViewModel.setFunItem(it)
+        }
 
         imgBtnBack.setOnClickListener {
             vibratePhone(DURATION_SHORT)

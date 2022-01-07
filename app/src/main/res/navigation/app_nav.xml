@@ -62,8 +62,8 @@
         android:name="tld.domain.favourites.ViewFavouriteFragment"
         android:label="ViewFavouriteFragment">
         <argument
-            android:name="itemName"
-            app:argType="string"
+            android:name="favItem"
+            app:argType="com.domain.myapplication.models.FavItem"
             app:nullable="false" />
     </fragment>
 
