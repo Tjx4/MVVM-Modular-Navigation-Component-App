@@ -4,12 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.domain.myapplication.R
+import com.domain.myapplication.extensions.loadImageFromUrl
 import com.domain.myapplication.models.FavItem
+import com.makeramen.roundedimageview.RoundedImageView
 
-class FavouritesAdapter(context: Context, private val favouritesItems: List<FavItem>) : RecyclerView.Adapter<FavouritesAdapter.ViewHolder>() {
+class FavouritesAdapter(private val context: Context, private val favouritesItems: List<FavItem>) : RecyclerView.Adapter<FavouritesAdapter.ViewHolder>() {
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
     private var favouritesClickListener: FavouritesClickListener? = null
 
@@ -20,13 +23,16 @@ class FavouritesAdapter(context: Context, private val favouritesItems: List<FavI
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val favouriteItem = favouritesItems[position]
-        //holder.iconImgB.setImageResource(favouriteItem.icon)
+
         holder.nameTv.text = favouriteItem.name
+        favouriteItem.icon?.let {
+            holder.iconImgB.loadImageFromUrl(context, it, R.drawable.ic_img_dark)
+        }
     }
 
     inner class ViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         internal var nameTv: TextView = itemView.findViewById(R.id.tvName)
-        //internal var iconImgB: ImageView = itemView.findViewById(R.id.imgFavouriteItemIcon)
+        internal var iconImgB: RoundedImageView = itemView.findViewById(R.id.imgFavouriteItemIcon)
 
         init {
             itemView.setOnClickListener(this)

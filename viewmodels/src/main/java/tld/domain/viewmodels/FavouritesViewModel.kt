@@ -11,7 +11,7 @@ class FavouritesViewModel(application: Application) : AndroidViewModel(applicati
         get() = _favItems
 
     init {
-        _favItems.value = arrayListOf<FavItem>(FavItem("Fav item 1", ""), FavItem("Fav item 2", ""))
+        _favItems.value = arrayListOf<FavItem>(FavItem("DSTV", "http://appicsoftware.xyz/demo/images/dstv.jpg"), FavItem("Showmax", "http://appicsoftware.xyz/demo/images/showmax.png"))
     }
 
 }

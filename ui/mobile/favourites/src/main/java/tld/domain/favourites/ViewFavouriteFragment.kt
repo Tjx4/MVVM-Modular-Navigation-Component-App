@@ -10,6 +10,7 @@ import com.domain.myapplication.base.BaseFragment
 import com.domain.myapplication.constants.DURATION_SHORT
 import com.domain.myapplication.constants.FAV_ITEM_KEY
 import com.domain.myapplication.extensions.blinkView
+import com.domain.myapplication.extensions.loadImageFromUrl
 import com.domain.myapplication.extensions.vibratePhone
 import com.domain.myapplication.models.FavItem
 import kotlinx.android.synthetic.main.fragment_view_favourite.*
@@ -34,6 +35,9 @@ class ViewFavouriteFragment : BaseFragment() {
 
         arguments?.getParcelable<FavItem>("favItem")?.let {
             viewFavouriteViewModel.setFunItem(it)
+            it.icon?.let { url ->
+                imgFavouriteItemIcon.loadImageFromUrl(requireContext(), url, com.domain.myapplication.R.drawable.ic_img_dark)
+            }
         }
 
         imgBtnBack.setOnClickListener {
