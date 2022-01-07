@@ -39,12 +39,19 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
+        <View
+            android:id="@+id/vDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/light_gray_background"
+            android:layout_marginTop="@dimen/medium_margin"
+            app:layout_constraintTop_toBottomOf="@+id/imgBtnBack"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFavourites"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/medium_margin"
-            app:layout_constraintTop_toBottomOf="@+id/imgBtnBack"
+            app:layout_constraintTop_toBottomOf="@+id/vDivider"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

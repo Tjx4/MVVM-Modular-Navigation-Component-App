@@ -19,6 +19,7 @@
     <color name="red_text">#f04d02</color>
     <color name="status_bar_color">#FFF</color>
     <color name="grey_background">#DDD</color>
+    <color name="light_gray_background">#EEE</color>
     <color name="dark_gray_background">#111</color>
     <color name="light_background">#FFF</color>
     <color name="light_background_2">#DDD</color>
