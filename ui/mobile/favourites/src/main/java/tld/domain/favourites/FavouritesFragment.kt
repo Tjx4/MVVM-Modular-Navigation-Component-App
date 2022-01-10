@@ -33,6 +33,7 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         addObservers()
+        favouritesViewModel.getUserFavourites()
 
         imgBtnBack.setOnClickListener {
             vibratePhone(DURATION_SHORT)
