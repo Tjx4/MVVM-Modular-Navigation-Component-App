@@ -9,6 +9,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class DownloadsViewModel(private val app: Application) : AndroidViewModel(app){
 
@@ -21,18 +22,20 @@ class DownloadsViewModel(private val app: Application) : AndroidViewModel(app){
         get() = _isComplete
 
     init {
-        val flow = flow<Int> {
-            for (i in 5 downTo 0){
-                emit(i)
-                delay(1000)
+        viewModelScope.launch (Dispatchers.IO) {
+            val flow = flow<Int> {
+                for (i in 5 downTo 0){
+                    emit(i)
+                    delay(1000)
+                }
             }
-        }
 
-        viewModelScope.launch (Dispatchers.Main) {
-            flow.collect {
-                when(it){
-                    0 -> _isComplete.value = true
-                    else -> _count.value = "$it"
+            withContext(Dispatchers.Main){
+                flow.collect {
+                    when(it){
+                        0 -> _isComplete.value = true
+                        else -> _count.value = "$it"
+                    }
                 }
             }
         }

@@ -48,14 +48,18 @@
             app:layout_constraintTop_toBottomOf="@+id/imgBtnBack"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:visibility="invisible"
             android:id="@+id/rvFavourites"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintVertical_bias="0"
+            android:layoutAnimation="@anim/layout_animation"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintTop_toBottomOf="@+id/vDivider"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
-            android:visibility="gone"
+            android:visibility="invisible"
             android:id="@+id/tvNoItems"
             style="@style/MediumTextView"
             android:textColor="@color/dark_text"
@@ -67,7 +71,7 @@
             android:text="@string/no_favourite_items_found"/>
 
         <com.wang.avi.AVLoadingIndicatorView
-            android:visibility="gone"
+            android:visibility="invisible"
             android:id="@+id/avLoader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

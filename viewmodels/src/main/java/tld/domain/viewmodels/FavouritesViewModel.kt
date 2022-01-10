@@ -45,12 +45,6 @@ class FavouritesViewModel(application: Application, private val myRepository: My
         }
         */
 
-        showLoadingAndGetFavItems()
-    }
-
-
-    fun showLoadingAndGetFavItems(){
-        _showLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             getUserFavourites()
         }

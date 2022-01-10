@@ -11,6 +11,7 @@ import com.domain.myapplication.adapters.FavouritesAdapter
 import com.domain.myapplication.base.BaseFragment
 import com.domain.myapplication.constants.DURATION_SHORT
 import com.domain.myapplication.extensions.blinkView
+import com.domain.myapplication.extensions.runWhenReady
 import com.domain.myapplication.extensions.vibratePhone
 import com.domain.myapplication.models.FavItem
 import kotlinx.android.synthetic.main.fragment_favourites.*
@@ -67,9 +68,12 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
         favouritesAdapter.setFavouritesClickListener(this)
         rvFavourites?.adapter = favouritesAdapter
 
-        tvNoItems.visibility = View.INVISIBLE
-        rvFavourites.visibility = View.VISIBLE
-        avLoader.visibility = View.INVISIBLE
+        rvFavourites.runWhenReady {
+            tvNoItems.visibility = View.INVISIBLE
+            rvFavourites.visibility = View.VISIBLE
+            avLoader.visibility = View.INVISIBLE
+        }
+
     }
 
     private fun onNoItems(){
