@@ -44,7 +44,19 @@
             app:enterAnim="@anim/slide_left"
             app:exitAnim="@anim/no_transition"
             app:popEnterAnim="@anim/no_transition"
-            app:popExitAnim="@anim/slide_right" />
+            app:popExitAnim="@anim/slide_right"
+            app:popUpTo="@id/favouritesFragment"
+            app:popUpToInclusive="false"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/viewFavouriteFragment"
+        android:name="tld.domain.favourites.ViewFavouriteFragment"
+        android:label="ViewFavouriteFragment">
+        <argument
+            android:name="favItem"
+            app:argType="com.domain.myapplication.models.FavItem"
+            app:nullable="false" />
     </fragment>
 
     <fragment
@@ -56,15 +68,5 @@
         android:id="@+id/downloadsFragment"
         android:name="com.example.downloads.DownloadsFragment"
         android:label="DownloadsFragment" />
-
-    <fragment
-        android:id="@+id/viewFavouriteFragment"
-        android:name="tld.domain.favourites.ViewFavouriteFragment"
-        android:label="ViewFavouriteFragment">
-        <argument
-            android:name="favItem"
-            app:argType="com.domain.myapplication.models.FavItem"
-            app:nullable="false" />
-    </fragment>
 
 </navigation>
