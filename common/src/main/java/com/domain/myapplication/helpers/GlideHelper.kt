@@ -9,6 +9,6 @@ fun loadImageFromInternet(context: Context, url: String, imageView: ImageView, p
     Glide.with(context).load(url).placeholder(placeHolderPic).fitCenter().into(imageView)
 }
 
-fun loadImageFromBitmap(context: Context, bitmap: Bitmap, imageView: ImageView, placeHolderPic: Int) {
+fun loadImageFromBitmapImage(context: Context, bitmap: Bitmap, imageView: ImageView, placeHolderPic: Int) {
     Glide.with(context).load(bitmap).placeholder(placeHolderPic).fitCenter().into(imageView)
 }
