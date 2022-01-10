@@ -46,6 +46,7 @@ class FavouritesViewModel(application: Application, private val myRepository: My
         */
 
         viewModelScope.launch(Dispatchers.IO) {
+            delay(300)
             getUserFavourites()
         }
     }
