@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/light_gray_background"
-    android:paddingHorizontal="1dp"
+    android:paddingHorizontal="0dp"
     android:paddingBottom="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/small_margin"
+        android:paddingVertical="@dimen/small_margin"
+        android:paddingHorizontal="@dimen/small_margin"
         style="@style/SelectableItemBackground"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">

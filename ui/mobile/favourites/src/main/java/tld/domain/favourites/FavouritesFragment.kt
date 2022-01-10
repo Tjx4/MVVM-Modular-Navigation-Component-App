@@ -33,7 +33,7 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         addObservers()
-        favouritesViewModel.getUserFavourites()
+        favouritesViewModel.showLoadingAndGetFavItems()
 
         imgBtnBack.setOnClickListener {
             vibratePhone(DURATION_SHORT)
@@ -44,7 +44,15 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
     }
 
     private fun addObservers() {
+        favouritesViewModel.showLoading.observe(viewLifecycleOwner, { onShowLoading() })
         favouritesViewModel.favItems.observe(viewLifecycleOwner, { onFavItemsSet(it) })
+        favouritesViewModel.noItems.observe(viewLifecycleOwner, { onNoItems() })
+    }
+
+    private fun onShowLoading(){
+        tvNoItems.visibility = View.INVISIBLE
+        rvFavourites.visibility = View.INVISIBLE
+        avLoader.visibility = View.VISIBLE
     }
 
     private fun onFavItemsSet(favItems: List<FavItem>){
@@ -59,6 +67,16 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
         var favouritesAdapter = FavouritesAdapter(requireContext(), favItems)
         favouritesAdapter.setFavouritesClickListener(this)
         rvFavourites?.adapter = favouritesAdapter
+
+        tvNoItems.visibility = View.INVISIBLE
+        rvFavourites.visibility = View.VISIBLE
+        avLoader.visibility = View.INVISIBLE
+    }
+
+    private fun onNoItems(){
+        tvNoItems.visibility = View.VISIBLE
+        rvFavourites.visibility = View.INVISIBLE
+        avLoader.visibility = View.INVISIBLE
     }
 
     override fun onFavouritesClick(view: View, position: Int) {

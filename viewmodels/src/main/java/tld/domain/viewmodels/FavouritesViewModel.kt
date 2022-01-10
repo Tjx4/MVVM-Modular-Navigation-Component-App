@@ -11,7 +11,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FavouritesViewModel(application: Application, private val myRepository: MyRepository) : AndroidViewModel(application){
+class FavouritesViewModel(application: Application, private val myRepository: MyRepository) : AndroidViewModel(application) {
+    private val _showLoading: MutableLiveData<Boolean> = MutableLiveData()
+    val showLoading: MutableLiveData<Boolean>
+        get() = _showLoading
+
     private val _favItems: MutableLiveData<List<FavItem>> = MutableLiveData()
     val favItems: MutableLiveData<List<FavItem>>
         get() = _favItems
@@ -40,15 +44,20 @@ class FavouritesViewModel(application: Application, private val myRepository: My
     }
    */
 
-    fun getUserFavourites(){
+    fun showLoadingAndGetFavItems(){
+        _showLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
-            val favourites = myRepository.getFavourites()
+            getUserFavourites()
+        }
+    }
 
-            withContext(Dispatchers.Main){
-                when {
-                    favourites.isNullOrEmpty() -> _noItems.value = true
-                    else -> _favItems.value = favourites
-                }
+    suspend fun getUserFavourites() {
+        val favourites = myRepository.getFavourites()
+
+        withContext(Dispatchers.Main){
+            when {
+                favourites.isNullOrEmpty() -> _noItems.value = true
+                else -> _favItems.value = favourites
             }
         }
     }
