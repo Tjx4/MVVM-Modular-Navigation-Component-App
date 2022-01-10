@@ -4,15 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.domain.core.persistance.room.tables.items.ItemsDAO
-import com.domain.core.persistance.room.tables.items.ItemsTable
+import com.domain.core.persistance.room.tables.favItems.FavItemsDAO
+import com.domain.core.persistance.room.tables.favItems.FavItemsTable
 import com.domain.core.persistance.room.tables.users.UsersDAO
 import com.domain.core.persistance.room.tables.users.UsersTable
 
-@Database(entities = [UsersTable::class, ItemsTable::class], version = 1, exportSchema = false)
+@Database(entities = [UsersTable::class, FavItemsTable::class], version = 1, exportSchema = false)
 abstract class MySqliteDB : RoomDatabase() {
     abstract val usersDAO: UsersDAO
-    abstract val itemsDAO: ItemsDAO
+    abstract val favItemsDAO: FavItemsDAO
 
     companion object{
         @Volatile

@@ -8,7 +8,7 @@ import tld.domain.viewmodels.*
 val viewModelModule = module {
     viewModel { LoginViewModel(androidApplication(), get()) }
     viewModel { DashboardViewModel(androidApplication(), get()) }
-    viewModel { FavouritesViewModel(androidApplication()) }
+    viewModel { FavouritesViewModel(androidApplication(), get()) }
     viewModel { ViewFavouriteViewModel(androidApplication()) }
     viewModel { VideosViewModel(androidApplication()) }
     viewModel { DownloadsViewModel(androidApplication()) }

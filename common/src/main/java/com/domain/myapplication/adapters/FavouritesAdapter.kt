@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.domain.myapplication.R
@@ -24,8 +23,8 @@ class FavouritesAdapter(private val context: Context, private val favouritesItem
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val favouriteItem = favouritesItems[position]
 
-        holder.nameTv.text = favouriteItem.name
-        favouriteItem.icon?.let {
+        holder.nameTv.text = favouriteItem.itemName
+        favouriteItem.image?.thumbNail?.let {
             holder.iconImgB.loadImageFromUrl(context, it, R.drawable.ic_img_dark)
         }
     }

@@ -5,6 +5,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class FavItem(
-    var name: String?,
-    var icon: String?,
+    var itemName: String?,
+    var image: Image?,
 ) : Parcelable

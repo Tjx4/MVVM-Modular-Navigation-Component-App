@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Picture (
+data class Image (
     @SerializedName("thumbNail") open var thumbNail: String? = null,
     @SerializedName("medium") open var medium: String? = null,
     @SerializedName("xl") open var xl: String? = null
