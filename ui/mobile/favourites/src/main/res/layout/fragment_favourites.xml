@@ -67,6 +67,7 @@
             android:text="@string/no_favourite_items_found"/>
 
         <com.wang.avi.AVLoadingIndicatorView
+            android:visibility="gone"
             android:id="@+id/avLoader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

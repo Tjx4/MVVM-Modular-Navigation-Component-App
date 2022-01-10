@@ -8,6 +8,7 @@ import com.domain.myapplication.models.FavItem
 import com.domain.myapplication.models.Image
 import com.domain.repositories.my.MyRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -24,25 +25,29 @@ class FavouritesViewModel(application: Application, private val myRepository: My
     val noItems: MutableLiveData<Boolean>
         get() = _noItems
 
-    /*
+
     init {
+        /*
         viewModelScope.launch(Dispatchers.IO) {
-            val item1Image = Image(
-                "http://appicsoftware.xyz/demo/images/dstv.jpg",
-                "http://appicsoftware.xyz/demo/images/dstv.jpg",
-                "http://appicsoftware.xyz/demo/images/dstv.jpg"
-            )
-            val item2Image = Image(
-                "http://appicsoftware.xyz/demo/images/showmax.png",
-                "http://appicsoftware.xyz/demo/images/showmax.png",
-                "http://appicsoftware.xyz/demo/images/showmax.png"
-            )
-            val favourites =
-                arrayListOf<FavItem>(FavItem("DSTV", item1Image), FavItem("Showmax", item2Image))
-            myRepository.saveFavouritesItems(favourites)
+           val item1Image = Image(
+               "http://appicsoftware.xyz/demo/images/dstv.jpg",
+               "http://appicsoftware.xyz/demo/images/dstv.jpg",
+               "http://appicsoftware.xyz/demo/images/dstv.jpg"
+           )
+           val item2Image = Image(
+               "http://appicsoftware.xyz/demo/images/showmax.png",
+               "http://appicsoftware.xyz/demo/images/showmax.png",
+               "http://appicsoftware.xyz/demo/images/showmax.png"
+           )
+           val favourites =
+               arrayListOf<FavItem>(FavItem("DSTV", item1Image), FavItem("Showmax", item2Image))
+           myRepository.saveFavouritesItems(favourites)
         }
+        */
+
+        showLoadingAndGetFavItems()
     }
-   */
+
 
     fun showLoadingAndGetFavItems(){
         _showLoading.value = true
