@@ -27,23 +27,6 @@ class FavouritesViewModel(application: Application, private val myRepository: My
 
 
     init {
-        /*
-        viewModelScope.launch(Dispatchers.IO) {
-           val item1Image = Image(
-               "http://appicsoftware.xyz/demo/images/dstv.jpg",
-               "http://appicsoftware.xyz/demo/images/dstv.jpg",
-               "http://appicsoftware.xyz/demo/images/dstv.jpg"
-           )
-           val item2Image = Image(
-               "http://appicsoftware.xyz/demo/images/showmax.png",
-               "http://appicsoftware.xyz/demo/images/showmax.png",
-               "http://appicsoftware.xyz/demo/images/showmax.png"
-           )
-           val favourites =
-               arrayListOf<FavItem>(FavItem("DSTV", item1Image), FavItem("Showmax", item2Image))
-           myRepository.saveFavouritesItems(favourites)
-        }
-        */
 
         viewModelScope.launch(Dispatchers.IO) {
             delay(300)
