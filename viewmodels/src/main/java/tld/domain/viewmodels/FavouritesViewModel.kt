@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.domain.myapplication.models.FavItem
+import com.domain.myapplication.models.Image
 import com.domain.repositories.items.ItemsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -42,9 +43,87 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
         }
     }
 
-    fun addItemToFavourites(favItem: FavItem){
+    suspend fun addItemsToFavourites(favItems: List<FavItem>) {
+        itemsRepository.saveFavouriteItems(favItems)
+    }
+
+    fun addFavItems() {
+        val item1Image = Image(
+            "http://appicsoftware.xyz/demo/images/dstv.jpg",
+            "http://appicsoftware.xyz/demo/images/dstv.jpg",
+            "http://appicsoftware.xyz/demo/images/dstv.jpg"
+        )
+
+        val item2Image = Image(
+            "http://appicsoftware.xyz/demo/images/showmax.png",
+            "http://appicsoftware.xyz/demo/images/showmax.png",
+            "http://appicsoftware.xyz/demo/images/showmax.png"
+        )
+
+        val favItems = arrayListOf<FavItem>(FavItem("DSTV", item1Image), FavItem("Showmax", item2Image))
         viewModelScope.launch(Dispatchers.IO) {
-            itemsRepository.saveFavouriteItem(favItem)
+            addItemsToFavourites(favItems)
+            getUserFavourites()
+        }
+    }
+
+    fun addManyItems() {
+        val item1Image = Image(
+            "http://appicsoftware.xyz/demo/images/dstv.jpg",
+            "http://appicsoftware.xyz/demo/images/dstv.jpg",
+            "http://appicsoftware.xyz/demo/images/dstv.jpg"
+        )
+
+        val item2Image = Image(
+            "http://appicsoftware.xyz/demo/images/showmax.png",
+            "http://appicsoftware.xyz/demo/images/showmax.png",
+            "http://appicsoftware.xyz/demo/images/showmax.png"
+        )
+
+        val favItems = arrayListOf<FavItem>(
+            FavItem("DSTV", item1Image),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Item", null),
+            FavItem("Showmax", item2Image)
+        )
+
+        viewModelScope.launch(Dispatchers.IO) {
+            addItemsToFavourites(favItems)
+            getUserFavourites()
         }
     }
 

@@ -41,6 +41,24 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
                 drawerController.popBack()
             })
         }
+
+        btnAdd.setOnClickListener {
+            vibratePhone(DURATION_SHORT)
+            it.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {
+                favouritesViewModel.addFavItems()
+                it.visibility = View.INVISIBLE
+                btnAddMany.visibility = View.INVISIBLE
+            })
+        }
+
+        btnAddMany.setOnClickListener {
+            vibratePhone(DURATION_SHORT)
+            it.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {
+                favouritesViewModel.addManyItems()
+                it.visibility = View.INVISIBLE
+                btnAdd.visibility = View.INVISIBLE
+            })
+        }
     }
 
     private fun addObservers() {
@@ -51,6 +69,8 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
 
     private fun onShowLoading(){
         tvNoItems.visibility = View.INVISIBLE
+        btnAdd.visibility = View.INVISIBLE
+        btnAddMany.visibility = View.INVISIBLE
         rvFavourites.visibility = View.INVISIBLE
         avLoader.visibility = View.VISIBLE
     }
@@ -70,6 +90,8 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
 
         rvFavourites.runWhenReady {
             tvNoItems.visibility = View.INVISIBLE
+            btnAdd.visibility = View.INVISIBLE
+            btnAddMany.visibility = View.INVISIBLE
             rvFavourites.visibility = View.VISIBLE
             avLoader.visibility = View.INVISIBLE
         }
@@ -78,6 +100,8 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
 
     private fun onNoItems(){
         tvNoItems.visibility = View.VISIBLE
+        btnAdd.visibility = View.VISIBLE
+        btnAddMany.visibility = View.VISIBLE
         rvFavourites.visibility = View.INVISIBLE
         avLoader.visibility = View.INVISIBLE
     }
