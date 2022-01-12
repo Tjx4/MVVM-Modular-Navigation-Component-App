@@ -53,6 +53,7 @@ class AuthenticationRepositoryImpl(private val retrofitServices: RetrofitService
 
     override suspend fun getPreviousUsers(oldPassword: String, newPassword: String): List<User> {
         val previousUsers = ArrayList<User>()
+
         mySqliteDB.usersDAO.getAllUsers()?.forEach {
             val image = Image(it.imageThumbNail, it.imageMedium, it.imageXl)
             val user = User(it.userName, it.firstName, image)

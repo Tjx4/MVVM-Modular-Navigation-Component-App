@@ -8,7 +8,7 @@ import com.domain.myapplication.models.FavItem
 import com.domain.myapplication.models.Image
 
 class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, private val database: MySqliteDB) : ItemsRepository {
-    override suspend fun getRemoteFavourites(userId: String): List<FavItem>? {
+    override suspend fun getRemoteItems(userId: String): List<FavItem>? {
         return retrofitServices.getItems(API_KEY, userId)
     }
 
@@ -25,7 +25,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         return favItems
     }
 
-    override suspend fun saveFavouritesItems(favourites: List<FavItem>) {
+    override suspend fun saveFavouriteItems(favourites: List<FavItem>) {
         val favouriteTables = ArrayList<FavItemsTable>()
 
         favourites?.forEach {
