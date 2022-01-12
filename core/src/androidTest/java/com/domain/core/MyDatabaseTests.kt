@@ -37,7 +37,7 @@ class MyDatabaseTests{
 
     @Test
     @Throws(Exception::class)
-    fun check_if_currency_pair_successfully_added_to_DB(){
+    fun is_fav_item_successfully_added_to_db(){
         var expectedFavItemsTable = FavItemsTable(1, "", "", "", "")
 
         favItemsDAO.insert(expectedFavItemsTable)

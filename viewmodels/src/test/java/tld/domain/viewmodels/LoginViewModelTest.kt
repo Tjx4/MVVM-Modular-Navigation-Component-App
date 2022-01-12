@@ -3,6 +3,7 @@ package tld.domain.viewmodels
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.domain.myapplication.models.ErrorResponse
+import com.domain.myapplication.models.Image
 import com.domain.myapplication.models.LoginResponse
 import com.domain.myapplication.models.User
 import com.domain.repositories.authentication.AuthenticationRepository
@@ -75,7 +76,8 @@ class LoginViewModelTest {
     fun `is login success should set current user`() = runBlockingTest {
         val username = "email@domain.tld"
         val password = "P@12345"
-        val user = User(username, "")
+        val picture = Image("", "", "")
+        val user = User(username, "", picture)
 
         val mockResponse = LoginResponse(user, null)
         Mockito.`when`(loginViewModel.authenticationRepository.loginUser(username, password)).thenReturn(mockResponse)

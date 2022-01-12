@@ -8,6 +8,7 @@ import android.view.animation.Animation
 import androidx.databinding.DataBindingUtil
 import com.domain.myapplication.base.BaseFragment
 import com.domain.myapplication.constants.DURATION_SHORT
+import com.domain.myapplication.constants.FAV_ITEM
 import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.extensions.loadImageFromUrl
 import com.domain.myapplication.extensions.vibratePhone
@@ -32,7 +33,7 @@ class ViewFavouriteFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.getParcelable<FavItem>("favItem")?.let {
+        arguments?.getParcelable<FavItem>(FAV_ITEM)?.let {
             viewFavouriteViewModel.setFunItem(it)
 
             it.image?.xl?.let { url ->

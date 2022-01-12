@@ -5,14 +5,13 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.domain.myapplication.models.FavItem
-import com.domain.myapplication.models.Image
-import com.domain.repositories.my.MyRepository
+import com.domain.repositories.items.ItemsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FavouritesViewModel(application: Application, private val myRepository: MyRepository) : AndroidViewModel(application) {
+class FavouritesViewModel(application: Application, private val itemsRepository: ItemsRepository) : AndroidViewModel(application) {
     private val _showLoading: MutableLiveData<Boolean> = MutableLiveData()
     val showLoading: MutableLiveData<Boolean>
         get() = _showLoading
@@ -25,26 +24,7 @@ class FavouritesViewModel(application: Application, private val myRepository: My
     val noItems: MutableLiveData<Boolean>
         get() = _noItems
 
-
     init {
-        /*
-              viewModelScope.launch(Dispatchers.IO) {
-                 val item1Image = Image(
-                     "http://appicsoftware.xyz/demo/images/dstv.jpg",
-                     "http://appicsoftware.xyz/demo/images/dstv.jpg",
-                     "http://appicsoftware.xyz/demo/images/dstv.jpg"
-                 )
-                 val item2Image = Image(
-                     "http://appicsoftware.xyz/demo/images/showmax.png",
-                     "http://appicsoftware.xyz/demo/images/showmax.png",
-                     "http://appicsoftware.xyz/demo/images/showmax.png"
-                 )
-                 val favourites =
-                     arrayListOf<FavItem>(FavItem("DSTV", item1Image), FavItem("Showmax", item2Image))
-                 myRepository.saveFavouritesItems(favourites)
-              }
-        */
-
         viewModelScope.launch(Dispatchers.IO) {
             delay(300)
             getUserFavourites()
@@ -52,7 +32,7 @@ class FavouritesViewModel(application: Application, private val myRepository: My
     }
 
     suspend fun getUserFavourites() {
-        val favourites = myRepository.getFavourites()
+        val favourites = itemsRepository.getFavourites()
 
         withContext(Dispatchers.Main){
             when {
@@ -64,7 +44,7 @@ class FavouritesViewModel(application: Application, private val myRepository: My
 
     fun addItemToFavourites(favItem: FavItem){
         viewModelScope.launch(Dispatchers.IO) {
-            myRepository.saveFavouriteItem(favItem)
+            itemsRepository.saveFavouriteItem(favItem)
         }
     }
 
