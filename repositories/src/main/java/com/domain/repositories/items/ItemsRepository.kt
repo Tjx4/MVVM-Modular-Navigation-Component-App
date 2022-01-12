@@ -7,4 +7,5 @@ interface ItemsRepository {
     suspend fun getFavourites(): List<FavItem>?
     suspend fun saveFavouriteItem(favItem: FavItem)
     suspend fun saveFavouriteItems(favourites: List<FavItem>)
+    suspend fun clearItems()
 }

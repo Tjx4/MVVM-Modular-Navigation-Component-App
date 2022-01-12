@@ -55,6 +55,18 @@
             android:layoutAnimation="@anim/layout_animation"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintTop_toBottomOf="@+id/vDivider"
+            app:layout_constraintBottom_toTopOf="@+id/btnClear"/>
+
+        <Button
+            android:visibility="invisible"
+            android:id="@+id/btnClear"
+            style="@style/MyButton"
+            android:background="@color/orange_1"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/large_margin"
+            android:text="Clear Items"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <com.wang.avi.AVLoadingIndicatorView

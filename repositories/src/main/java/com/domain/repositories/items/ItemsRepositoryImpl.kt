@@ -41,4 +41,8 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         database.favItemsDAO.insert(favItemTable)
     }
 
+    override suspend fun clearItems() {
+        database.favItemsDAO.clear()
+    }
+
 }

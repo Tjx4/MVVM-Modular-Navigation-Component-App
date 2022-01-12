@@ -47,6 +47,16 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
         itemsRepository.saveFavouriteItems(favItems)
     }
 
+    fun clearItems() {
+        viewModelScope.launch(Dispatchers.IO) {
+            itemsRepository.clearItems()
+
+            withContext(Dispatchers.Main){
+                _noItems.value = true
+            }
+        }
+    }
+
     fun addFavItems() {
         val item1Image = Image(
             "http://appicsoftware.xyz/demo/images/dstv.jpg",

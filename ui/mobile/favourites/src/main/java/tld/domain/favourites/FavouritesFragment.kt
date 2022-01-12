@@ -46,8 +46,6 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
             vibratePhone(DURATION_SHORT)
             it.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {
                 favouritesViewModel.addFavItems()
-                it.visibility = View.INVISIBLE
-                btnAddMany.visibility = View.INVISIBLE
             })
         }
 
@@ -55,9 +53,12 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
             vibratePhone(DURATION_SHORT)
             it.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {
                 favouritesViewModel.addManyItems()
-                it.visibility = View.INVISIBLE
-                btnAdd.visibility = View.INVISIBLE
+
             })
+        }
+
+        btnClear.setOnClickListener {
+            favouritesViewModel.clearItems()
         }
     }
 
@@ -72,6 +73,7 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
         btnAdd.visibility = View.INVISIBLE
         btnAddMany.visibility = View.INVISIBLE
         rvFavourites.visibility = View.INVISIBLE
+        btnClear.visibility = View.INVISIBLE
         avLoader.visibility = View.VISIBLE
     }
 
@@ -93,6 +95,7 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
             btnAdd.visibility = View.INVISIBLE
             btnAddMany.visibility = View.INVISIBLE
             rvFavourites.visibility = View.VISIBLE
+            btnClear.visibility = View.VISIBLE
             avLoader.visibility = View.INVISIBLE
         }
 
@@ -103,6 +106,7 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
         btnAdd.visibility = View.VISIBLE
         btnAddMany.visibility = View.VISIBLE
         rvFavourites.visibility = View.INVISIBLE
+        btnClear.visibility = View.INVISIBLE
         avLoader.visibility = View.INVISIBLE
     }
 
