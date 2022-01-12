@@ -1,6 +1,5 @@
 package tld.domain.login
 
-import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,6 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.viewModelScope
-import com.domain.core.persistance.sharedPrefs.SharedPrefs
 import com.domain.myapplication.base.BaseFragment
 import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.models.User

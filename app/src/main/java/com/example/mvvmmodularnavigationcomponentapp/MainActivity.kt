@@ -7,7 +7,6 @@ import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.domain.dashboard.DashboardFragmentDirections
-import com.domain.myapplication.constants.FAV_ITEM_KEY
 import com.domain.myapplication.drawerController.MyDrawerController
 import com.domain.myapplication.extensions.setupWithCustomAnimNavController
 import com.domain.myapplication.models.FavItem
@@ -28,10 +27,6 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
     override fun navigateFromLoginToDashboard() {
         val action = LoginFragmentDirections.actionLoginFragmentToDashboardFragment()
         navController.navigate(action)
-
-        //val bundle = Bundle()
-        //bundle.putParcelable(FAV_ITEM_KEY, favItem)
-        //navController.navigate(R.id.viewFavouriteFragment, bundle)
     }
 
     override fun navigateFromDashboardToFavourites() {

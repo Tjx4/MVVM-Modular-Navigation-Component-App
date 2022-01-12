@@ -45,4 +45,20 @@ class AuthenticationRepositoryImpl(private val retrofitServices: RetrofitService
     }
 
     override fun isUserLoggedIn() = sharedPrefs.currentUser != null
+
+    override suspend fun updatePassword(oldPassword: String, newPassword: String) {
+        val data = hashMapOf<String, String>(Pair(oldPassword, newPassword))
+        retrofitServices.updatePassword(data)
+    }
+
+    override suspend fun getPreviousUsers(oldPassword: String, newPassword: String): List<User> {
+        val previousUsers = ArrayList<User>()
+        mySqliteDB.usersDAO.getAllUsers()?.forEach {
+            val image = Image(it.imageThumbNail, it.imageMedium, it.imageXl)
+            val user = User(it.userName, it.firstName, image)
+            previousUsers.add(user)
+        }
+
+        return previousUsers
+    }
 }
