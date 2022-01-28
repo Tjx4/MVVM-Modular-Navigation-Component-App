@@ -61,11 +61,15 @@ class LoginViewModel(private val app: Application, val authenticationRepository:
 
     fun validateDetails(username: String, password: String){
         when {
-            !username.isValidEmailORMobile() -> _usernameErrorMessage.value = app.getString(R.string.invalid_username)
-            !password.isValidPassword() -> _passwordErrorMessage.value = app.getString(R.string.invalid_password)
+            !isValidUsername(username) -> _usernameErrorMessage.value = app.getString(R.string.invalid_username)
+            !isValidPassword(password) -> _passwordErrorMessage.value = app.getString(R.string.invalid_password)
             else -> _isValidInput.value = true
         }
     }
+
+    fun isValidUsername(username: String) = username.isValidEmailORMobile()
+
+    fun isValidPassword(password: String) = password.isValidPassword()
 
     suspend fun loginUser(username: String, password: String){
         val login = authenticationRepository.loginUser(username, password)

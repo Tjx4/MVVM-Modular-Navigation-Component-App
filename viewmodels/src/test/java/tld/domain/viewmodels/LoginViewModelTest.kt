@@ -8,6 +8,7 @@ import com.domain.myapplication.models.LoginResponse
 import com.domain.myapplication.models.User
 import com.domain.repositories.authentication.AuthenticationRepository
 import junit.framework.Assert.assertEquals
+import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -21,6 +22,12 @@ import org.junit.rules.TestRule
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations.openMocks
+import android.R.attr.password
+
+import java.util.concurrent.ThreadLocalRandom.current
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 
 class LoginViewModelTest {
     private lateinit var loginViewModel: LoginViewModel
@@ -84,6 +91,38 @@ class LoginViewModelTest {
         loginViewModel.loginUser(username, password)
 
         assertEquals(user, loginViewModel.currentUser.value)
+    }
+
+    @Test
+    fun `is password contain a minimum of 7 characters`() = runBlockingTest {
+        val password = "P@12345"
+
+        val actual = loginViewModel.isValidPassword(password)
+        val expected = password.length >= 7
+
+        assertEquals(actual, expected)
+    }
+
+    @Test
+    fun `is password contain a special characters`() = runBlockingTest {
+        val password = "P@12345"
+
+        val actual = loginViewModel.isValidPassword(password)
+        val pattern = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE)
+        val matcher = pattern.matcher(password)
+        val expected = matcher.find()
+
+        assertEquals(actual, expected)
+    }
+
+    @Test
+    fun `is password contain a capital letter`() = runBlockingTest {
+
+    }
+
+    @Test
+    fun `is password contain a numbers`() = runBlockingTest {
+
     }
 
 }
