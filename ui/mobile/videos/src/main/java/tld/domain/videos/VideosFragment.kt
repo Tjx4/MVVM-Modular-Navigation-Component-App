@@ -53,6 +53,7 @@ class VideosFragment : TopNavigationFragment() , ItemsPagingAdapter.ItemClickLis
     fun initRecyclerView(){
         itemsPagingAdapter = ItemsPagingAdapter(requireContext())
         itemsPagingAdapter.addPairClickListener(this)
+        itemsPagingAdapter.addItemVisibleListener(this)
 
         rvItems.apply {
             rvItems?.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

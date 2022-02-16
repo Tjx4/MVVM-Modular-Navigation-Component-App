@@ -55,7 +55,7 @@
         android:label="ViewFavouriteFragment">
         <argument
             android:name="favItem"
-            app:argType="com.domain.myapplication.models.FavItem"
+            app:argType="com.domain.myapplication.models.Item"
             app:nullable="false" />
     </fragment>
 

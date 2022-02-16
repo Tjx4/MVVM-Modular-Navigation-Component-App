@@ -31,14 +31,13 @@ class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item,
         val outlet = getItem(position)
         holder.itemNameTv.text = outlet?.itemName
 
-        outlet?.image?.let {
-            it.medium?.let{ url ->
-                holder.previewRImv.loadImageFromUrl(context, url, R.drawable.ic_place_holder)
-            }
+        holder.previewRImv.setImageResource(R.drawable.ic_place_holder)
+        outlet?.image?.medium?.let{ url ->
+            holder.previewRImv.loadImageFromUrl(context, url, R.drawable.ic_place_holder)
         }
 
         outlet?.metaData?.let {
-            itemVisibleListener?.onItemVisible(it, position)
+            //itemVisibleListener?.onItemVisible(it, position)
         }
     }
 

@@ -13,13 +13,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        tools:context=".VideosFragment">
+        tools:context=".VideosFragment"
+        android:background="@color/light_background">
 
         <TextView
             android:id="@+id/tvTitle"
             style="@style/LargeTextView"
             android:layout_marginTop="@dimen/large_margin"
             android:text="Videos"
+            android:textColor="@color/dark_text"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +31,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle"/>
+            android:paddingRight="@dimen/small_margin"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            android:background="@color/light_gray_background"/>
 
         <com.wang.avi.AVLoadingIndicatorView
             android:visibility="visible"

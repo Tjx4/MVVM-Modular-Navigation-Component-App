@@ -19,6 +19,13 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
         else {
             val pages =  items.size / OUTLETS_PAGE_SIZE
             val currentPage = getCurrentPage(items, loadPage)
+            currentPage?.forEach {
+                val url = it.metaData
+                if(!url.isNullOrEmpty()){
+                    val image = itemsRepository.getItemImage(url)
+                    it.image = image
+                }
+            }
 
             LoadResult.Page(
                 data = currentPage,
@@ -37,6 +44,6 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
     }
 
     override fun getRefreshKey(state: PagingState<Int, Item>): Int? {
-       return 5
+       return 4
     }
 }

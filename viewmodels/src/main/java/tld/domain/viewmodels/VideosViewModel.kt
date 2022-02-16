@@ -26,12 +26,11 @@ class VideosViewModel(application: Application, val itemsRepository: ItemsReposi
     }.flow.cachedIn(viewModelScope)
 
     fun checkAndFetchImage(url: String, position: Int){
-        viewModelScope.launch(Dispatchers.IO) {
+        val isImageDownloaded = false
+        if(isImageDownloaded) return
 
-            when(items){
-                null -> {}
-                else -> {} // getItemImage(url, position)
-            }
+        viewModelScope.launch(Dispatchers.IO) {
+            getItemImage(url, position)
         }
     }
 
