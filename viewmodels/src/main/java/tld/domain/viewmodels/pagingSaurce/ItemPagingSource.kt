@@ -39,7 +39,14 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
     }
 
     fun getCurrentPage(response: List<Item>, loadPage: Int): List<Item>{
-        val pageData = response.withIndex().groupBy { it.index / OUTLETS_PAGE_SIZE }.values.map { pp -> pp.map { it.value } }
+        val pageData = response.withIndex().groupBy {
+            it.index / OUTLETS_PAGE_SIZE
+        }.values.map { items ->
+            items.map {
+                it.value
+            }
+        }
+
         return pageData[loadPage]
     }
 
