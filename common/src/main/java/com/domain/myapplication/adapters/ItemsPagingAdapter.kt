@@ -29,7 +29,7 @@ class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item,
 
     override fun onBindViewHolder(holder: ItemsViewHolder, position: Int) {
         val outlet = getItem(position)
-        holder.itemNameTv.text = outlet?.itemName
+        holder.itemNameTv.text = "${outlet?.itemName} $position"
 
         holder.previewRImv.setImageResource(R.drawable.ic_place_holder)
         outlet?.image?.medium?.let{ url ->

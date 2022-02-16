@@ -15,7 +15,13 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
     }
 
     override suspend fun getItemImage(url: String): Image? {
-        return retrofitServices.getItemImage(url)
+        return try {
+            retrofitServices.getItemImage(url)
+        }
+        catch (ex: Exception) {
+            //firebaseCrashlytics.recordException(ex)
+            null
+        }
     }
 
     override suspend fun getFavourites(): List<Item>? {
