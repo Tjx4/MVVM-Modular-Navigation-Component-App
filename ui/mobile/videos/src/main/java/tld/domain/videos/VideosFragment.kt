@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.domain.myapplication.adapters.ItemsPagingAdapter
 import com.domain.myapplication.adapters.PPLoadStateAdapter
 import com.domain.myapplication.base.TopNavigationFragment
+import com.domain.myapplication.helpers.showErrorDialog
+import com.domain.myapplication.models.Image
 import kotlinx.android.synthetic.main.fragment_videos.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -19,7 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.videos.databinding.FragmentVideosBinding
 import tld.domain.viewmodels.VideosViewModel
 
-class VideosFragment : TopNavigationFragment() , ItemsPagingAdapter.ItemClickListener{
+class VideosFragment : TopNavigationFragment() , ItemsPagingAdapter.ItemClickListener, ItemsPagingAdapter.ItemVisibleListener{
     private lateinit var binding: FragmentVideosBinding
     private val videosViewModel: VideosViewModel by viewModel()
     private lateinit var itemsPagingAdapter: ItemsPagingAdapter
@@ -34,7 +36,16 @@ class VideosFragment : TopNavigationFragment() , ItemsPagingAdapter.ItemClickLis
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        addObservers()
         initRecyclerView()
+    }
+
+    private fun addObservers() {
+        videosViewModel.itemImage.observe(viewLifecycleOwner, { onImageRetrieved(it) })
+    }
+
+    private fun onImageRetrieved(image: Image) {
+
     }
 
     fun initRecyclerView(){
@@ -84,8 +95,19 @@ class VideosFragment : TopNavigationFragment() , ItemsPagingAdapter.ItemClickLis
         Toast.makeText(requireContext(), "${ videosViewModel.items} ${position}", Toast.LENGTH_SHORT).show()
     }
 
+    override fun onItemVisible(metaData: String, position: Int) {
+        videosViewModel.getItemImage(metaData)
+    }
+
     fun showError(message: String) {
-        val dd = message
+        showErrorDialog(
+            requireContext(),
+            "Error",
+            message,
+            "Close"
+        ) {
+
+        }
     }
 
     fun showLoading(){
@@ -97,4 +119,5 @@ class VideosFragment : TopNavigationFragment() , ItemsPagingAdapter.ItemClickLis
         avlClosestLoader.visibility = View.INVISIBLE
         rvItems.visibility = View.VISIBLE
     }
+
 }

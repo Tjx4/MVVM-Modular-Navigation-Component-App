@@ -5,7 +5,7 @@ import com.domain.myapplication.models.Item
 
 interface ItemsRepository {
     suspend fun getRemoteItems(): List<Item>?
-    suspend fun getItemImage(itemId: String): Image?
+    suspend fun getItemImage(url: String): Image?
     suspend fun getFavourites(): List<Item>?
     suspend fun saveFavouriteItem(item: Item)
     suspend fun saveFavouriteItems(favourites: List<Item>)

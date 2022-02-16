@@ -14,7 +14,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         return retrofitServices.getItems(API_KEY)
     }
 
-    override suspend fun getItemImage(itemId: String): Image? {
+    override suspend fun getItemImage(url: String): Image? {
         return retrofitServices.getItemImage(API_KEY, itemId)
     }
 

@@ -10,10 +10,12 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.domain.myapplication.R
+import com.domain.myapplication.extensions.loadImageFromUrl
 import com.domain.myapplication.models.Item
 
 class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item, ItemsPagingAdapter.ItemsViewHolder>(ItemsComparator) {
     private var itemClickListener: ItemClickListener? = null
+    private var itemVisibleListener: ItemVisibleListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
@@ -21,6 +23,7 @@ class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item,
             parent,
             false
         )
+
         return ItemsViewHolder(itemView)
     }
 
@@ -28,8 +31,15 @@ class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item,
         val outlet = getItem(position)
         holder.itemNameTv.text = outlet?.itemName
 
-        //val url = ""
-        //holder.previewRImv.loadImageFromUrl(context, url)
+        outlet?.image?.let {
+            it.medium?.let{ url ->
+                holder.previewRImv.loadImageFromUrl(context, url, R.drawable.ic_place_holder)
+            }
+        }
+
+        outlet?.metaData?.let {
+            itemVisibleListener?.onItemVisible(it, position)
+        }
     }
 
     inner class ItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
@@ -52,6 +62,15 @@ class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item,
     fun addPairClickListener(itemClickListener: ItemClickListener) {
         this.itemClickListener = itemClickListener
     }
+
+    interface ItemVisibleListener {
+        fun onItemVisible(metaData: String, position: Int)
+    }
+
+    fun addItemVisibleListener(itemVisibleListener: ItemVisibleListener) {
+        this.itemVisibleListener = itemVisibleListener
+    }
+
 }
 
 object ItemsComparator : DiffUtil.ItemCallback<Item>() {

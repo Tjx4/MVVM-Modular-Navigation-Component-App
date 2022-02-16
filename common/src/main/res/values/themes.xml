@@ -23,6 +23,10 @@
     <style name="ThemeColors">
         <item name="android:textColor">@color/light_text</item>
     </style>
+
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
+    </style>
+
     <style name="ParentView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
