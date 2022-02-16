@@ -15,7 +15,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
     }
 
     override suspend fun getItemImage(url: String): Image? {
-        return retrofitServices.getItemImage(API_KEY, itemId)
+        return retrofitServices.getItemImage(API_KEY, url)
     }
 
     override suspend fun getFavourites(): List<Item>? {

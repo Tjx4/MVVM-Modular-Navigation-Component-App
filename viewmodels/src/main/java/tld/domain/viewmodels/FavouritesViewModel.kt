@@ -70,7 +70,7 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
             "http://appicsoftware.xyz/demo/images/showmax.png"
         )
 
-        val favItems = arrayListOf<Item>(Item("DSTV", item1Image), Item("Showmax", item2Image))
+        val favItems = arrayListOf<Item>(Item("1", "DSTV", item1Image, null), Item("2", "Showmax", item2Image, null))
         viewModelScope.launch(Dispatchers.IO) {
             addItemsToFavourites(favItems)
             getUserFavourites()
@@ -91,44 +91,40 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
         )
 
         val favItems = arrayListOf<Item>(
-            Item("DSTV", item1Image),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Item", null),
-            Item("Showmax", item2Image)
+            Item("", "DSTV", item1Image, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Item", null, null),
+            Item("", "Showmax", item2Image, null)
         )
 
         viewModelScope.launch(Dispatchers.IO) {

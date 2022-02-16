@@ -13,6 +13,6 @@ interface RetrofitServices {
     @GET("api/itemImages.php")
     suspend fun getItemImage(@Query("api_key") apiKey: String, @Query("itemId") itemId: String): Image?
 
-   // @POST("???????")
-   // suspend fun updatePassword(@Field("data")  data: HashMap<String, String>)
+    @POST("???????")
+    suspend fun updatePassword(@Field("data")  data: HashMap<String, String>)
 }
