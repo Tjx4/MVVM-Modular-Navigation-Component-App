@@ -8,4 +8,6 @@
     <string name="downloads">Downloads</string>
     <string name="favourites">Favourites</string>
     <string name="logout">Logout</string>
+    <string name="error">Error</string>
+    <string name="retry">Retry</string>
 </resources>

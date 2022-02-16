@@ -10,6 +10,7 @@ const val API_KEY = "9sREx8VjjIUxLKx_jf_b"
 
 //Navigation
 const val MAIN_ACTIVITY = "com.example.mvvmmodularnavigationcomponentapp.MainActivity"
-
 //
 const val DURATION_SHORT = 70L
+//
+const val OUTLETS_PAGE_SIZE = 10

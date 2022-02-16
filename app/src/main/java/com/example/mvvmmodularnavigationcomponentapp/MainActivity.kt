@@ -9,7 +9,7 @@ import androidx.navigation.findNavController
 import com.domain.dashboard.DashboardFragmentDirections
 import com.domain.myapplication.drawerController.MyDrawerController
 import com.domain.myapplication.extensions.setupWithCustomAnimNavController
-import com.domain.myapplication.models.FavItem
+import com.domain.myapplication.models.Item
 import kotlinx.android.synthetic.main.activity_main.*
 import tld.domain.favourites.FavouritesFragmentDirections
 import tld.domain.login.LoginFragmentDirections
@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
         navController.navigate(action)
     }
 
-    override fun navigateFromFavouritesToViewFavourites(favItem: FavItem) {
-        val action = FavouritesFragmentDirections.actionFavouritesFragmentToViewFavouriteFragment(favItem)
+    override fun navigateFromFavouritesToViewFavourites(item: Item) {
+        val action = FavouritesFragmentDirections.actionFavouritesFragmentToViewFavouriteFragment(item)
         navController.navigate(action)
     }
 

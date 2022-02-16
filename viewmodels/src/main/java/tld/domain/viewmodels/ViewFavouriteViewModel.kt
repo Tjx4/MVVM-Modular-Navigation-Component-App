@@ -3,15 +3,15 @@ package tld.domain.viewmodels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.domain.myapplication.models.FavItem
+import com.domain.myapplication.models.Item
 
 class ViewFavouriteViewModel(application: Application) : AndroidViewModel(application){
-    private val _favItem: MutableLiveData<FavItem> = MutableLiveData()
-    val favItem: MutableLiveData<FavItem>
-        get() = _favItem
+    private val _Item: MutableLiveData<Item> = MutableLiveData()
+    val item: MutableLiveData<Item>
+        get() = _Item
 
-    fun setFunItem(favItem: FavItem){
-        _favItem.value = favItem
+    fun setFunItem(item: Item){
+        _Item.value = item
     }
 
 }

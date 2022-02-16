@@ -1,11 +1,13 @@
 package com.domain.repositories.items
 
-import com.domain.myapplication.models.FavItem
+import com.domain.myapplication.models.Image
+import com.domain.myapplication.models.Item
 
 interface ItemsRepository {
-    suspend fun getRemoteItems(userId: String): List<FavItem>?
-    suspend fun getFavourites(): List<FavItem>?
-    suspend fun saveFavouriteItem(favItem: FavItem)
-    suspend fun saveFavouriteItems(favourites: List<FavItem>)
+    suspend fun getRemoteItems(): List<Item>?
+    suspend fun getItemImage(itemId: String): Image?
+    suspend fun getFavourites(): List<Item>?
+    suspend fun saveFavouriteItem(item: Item)
+    suspend fun saveFavouriteItems(favourites: List<Item>)
     suspend fun clearItems()
 }

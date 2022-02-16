@@ -13,7 +13,7 @@ import com.domain.myapplication.constants.DURATION_SHORT
 import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.extensions.runWhenReady
 import com.domain.myapplication.extensions.vibratePhone
-import com.domain.myapplication.models.FavItem
+import com.domain.myapplication.models.Item
 import kotlinx.android.synthetic.main.fragment_favourites.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.favourites.databinding.FragmentFavouritesBinding
@@ -64,7 +64,7 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
 
     private fun addObservers() {
         favouritesViewModel.showLoading.observe(viewLifecycleOwner, { onShowLoading() })
-        favouritesViewModel.favItems.observe(viewLifecycleOwner, { onFavItemsSet(it) })
+        favouritesViewModel.items.observe(viewLifecycleOwner, { onFavItemsSet(it) })
         favouritesViewModel.noItems.observe(viewLifecycleOwner, { onNoItems() })
     }
 
@@ -77,16 +77,16 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
         avLoader.visibility = View.VISIBLE
     }
 
-    private fun onFavItemsSet(favItems: List<FavItem>){
+    private fun onFavItemsSet(items: List<Item>){
         val favouritesLayoutManager = LinearLayoutManager(
             context,
             LinearLayoutManager.VERTICAL,
             false
         )
 
-        favouritesLayoutManager.initialPrefetchItemCount = favItems.size
+        favouritesLayoutManager.initialPrefetchItemCount = items.size
         rvFavourites?.layoutManager = favouritesLayoutManager
-        var favouritesAdapter = FavouritesAdapter(requireContext(), favItems)
+        var favouritesAdapter = FavouritesAdapter(requireContext(), items)
         favouritesAdapter.setFavouritesClickListener(this)
         rvFavourites?.adapter = favouritesAdapter
 
@@ -111,12 +111,12 @@ class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickList
     }
 
     override fun onFavouritesClick(view: View, position: Int) {
-        favouritesViewModel.favItems.value?.get(position)?.let {
+        favouritesViewModel.items.value?.get(position)?.let {
             viewFavItem(it)
         }
     }
 
-    private fun viewFavItem(favItem: FavItem){
-        drawerController.navigateFromFavouritesToViewFavourites(favItem)
+    private fun viewFavItem(item: Item){
+        drawerController.navigateFromFavouritesToViewFavourites(item)
     }
 }

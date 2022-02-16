@@ -8,10 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.domain.myapplication.R
 import com.domain.myapplication.extensions.loadImageFromUrl
-import com.domain.myapplication.models.FavItem
+import com.domain.myapplication.models.Item
 import com.makeramen.roundedimageview.RoundedImageView
 
-class FavouritesAdapter(private val context: Context, private val favouritesItems: List<FavItem>) : RecyclerView.Adapter<FavouritesAdapter.ViewHolder>() {
+class FavouritesAdapter(private val context: Context, private val favouritesItems: List<Item>) : RecyclerView.Adapter<FavouritesAdapter.ViewHolder>() {
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
     private var favouritesClickListener: FavouritesClickListener? = null
 
@@ -42,7 +42,7 @@ class FavouritesAdapter(private val context: Context, private val favouritesItem
         }
     }
 
-    internal fun getItem(id: Int): FavItem? {
+    internal fun getItem(id: Int): Item? {
         return favouritesItems[id]
     }
 

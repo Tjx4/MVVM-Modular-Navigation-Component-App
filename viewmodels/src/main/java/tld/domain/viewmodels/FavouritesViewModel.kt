@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.domain.myapplication.models.FavItem
+import com.domain.myapplication.models.Item
 import com.domain.myapplication.models.Image
 import com.domain.repositories.items.ItemsRepository
 import kotlinx.coroutines.Dispatchers
@@ -17,9 +17,9 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
     val showLoading: MutableLiveData<Boolean>
         get() = _showLoading
 
-    private val _favItems: MutableLiveData<List<FavItem>> = MutableLiveData()
-    val favItems: MutableLiveData<List<FavItem>>
-        get() = _favItems
+    private val _Items: MutableLiveData<List<Item>> = MutableLiveData()
+    val items: MutableLiveData<List<Item>>
+        get() = _Items
 
     private val _noItems: MutableLiveData<Boolean> = MutableLiveData()
     val noItems: MutableLiveData<Boolean>
@@ -38,13 +38,13 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
         withContext(Dispatchers.Main){
             when {
                 favourites.isNullOrEmpty() -> _noItems.value = true
-                else -> _favItems.value = favourites
+                else -> _Items.value = favourites
             }
         }
     }
 
-    suspend fun addItemsToFavourites(favItems: List<FavItem>) {
-        itemsRepository.saveFavouriteItems(favItems)
+    suspend fun addItemsToFavourites(items: List<Item>) {
+        itemsRepository.saveFavouriteItems(items)
     }
 
     fun clearItems() {
@@ -70,7 +70,7 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
             "http://appicsoftware.xyz/demo/images/showmax.png"
         )
 
-        val favItems = arrayListOf<FavItem>(FavItem("DSTV", item1Image), FavItem("Showmax", item2Image))
+        val favItems = arrayListOf<Item>(Item("DSTV", item1Image), Item("Showmax", item2Image))
         viewModelScope.launch(Dispatchers.IO) {
             addItemsToFavourites(favItems)
             getUserFavourites()
@@ -90,45 +90,45 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
             "http://appicsoftware.xyz/demo/images/showmax.png"
         )
 
-        val favItems = arrayListOf<FavItem>(
-            FavItem("DSTV", item1Image),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Item", null),
-            FavItem("Showmax", item2Image)
+        val favItems = arrayListOf<Item>(
+            Item("DSTV", item1Image),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Item", null),
+            Item("Showmax", item2Image)
         )
 
         viewModelScope.launch(Dispatchers.IO) {

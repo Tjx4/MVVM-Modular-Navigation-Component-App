@@ -12,7 +12,7 @@ import com.domain.myapplication.constants.FAV_ITEM
 import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.extensions.loadImageFromUrl
 import com.domain.myapplication.extensions.vibratePhone
-import com.domain.myapplication.models.FavItem
+import com.domain.myapplication.models.Item
 import kotlinx.android.synthetic.main.fragment_view_favourite.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.favourites.databinding.FragmentViewFavouriteBinding
@@ -33,7 +33,7 @@ class ViewFavouriteFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.getParcelable<FavItem>(FAV_ITEM)?.let {
+        arguments?.getParcelable<Item>(FAV_ITEM)?.let {
             viewFavouriteViewModel.setFunItem(it)
 
             it.image?.xl?.let { url ->
