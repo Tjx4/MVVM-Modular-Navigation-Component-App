@@ -8,6 +8,7 @@ interface MyDrawerController {
     fun navigateFromLoginToDashboard()
     fun navigateFromDashboardToFavourites()
     fun navigateFromFavouritesToViewFavourites(item: Item)
+    fun navigateFromVideoToViewFavourites(item: Item)
     fun popAll()
     fun popBack()
     fun showBottomNav()

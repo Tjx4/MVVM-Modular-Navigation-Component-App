@@ -62,7 +62,17 @@
     <fragment
         android:id="@+id/videosFragment"
         android:name="tld.domain.videos.VideosFragment"
-        android:label="VideosFragment" />
+        android:label="VideosFragment" >
+        <action
+            android:id="@+id/action_videosFragment_to_viewFavouriteFragment"
+            app:destination="@id/viewFavouriteFragment"
+            app:enterAnim="@anim/slide_left"
+            app:exitAnim="@anim/no_transition"
+            app:popEnterAnim="@anim/no_transition"
+            app:popExitAnim="@anim/slide_right"
+            app:popUpTo="@id/videosFragment"
+            app:popUpToInclusive="false"/>
+    </fragment>
 
     <fragment
         android:id="@+id/downloadsFragment"

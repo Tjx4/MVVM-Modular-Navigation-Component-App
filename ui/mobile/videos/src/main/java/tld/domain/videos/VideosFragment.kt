@@ -96,7 +96,7 @@ class VideosFragment : TopNavigationFragment() , ItemsPagingAdapter.ItemClickLis
     }
 
     override fun onItemClicked(view: View, item: Item, position: Int) {
-        Toast.makeText(requireContext(), "${ item.itemName}", Toast.LENGTH_SHORT).show()
+        drawerController.navigateFromVideoToViewFavourites(item)
     }
 
     override fun onItemVisible(metaData: String, position: Int) {

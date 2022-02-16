@@ -13,6 +13,7 @@ import com.domain.myapplication.models.Item
 import kotlinx.android.synthetic.main.activity_main.*
 import tld.domain.favourites.FavouritesFragmentDirections
 import tld.domain.login.LoginFragmentDirections
+import tld.domain.videos.VideosFragmentDirections
 
 class MainActivity : AppCompatActivity(), MyDrawerController {
     override lateinit var navController: NavController
@@ -36,6 +37,11 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
 
     override fun navigateFromFavouritesToViewFavourites(item: Item) {
         val action = FavouritesFragmentDirections.actionFavouritesFragmentToViewFavouriteFragment(item)
+        navController.navigate(action)
+    }
+
+    override fun navigateFromVideoToViewFavourites(item: Item) {
+        val action = VideosFragmentDirections.actionVideosFragmentToViewFavouriteFragment(item)
         navController.navigate(action)
     }
 
