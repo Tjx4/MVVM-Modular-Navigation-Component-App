@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.domain.myapplication.adapters.ItemsPagingAdapter
@@ -15,6 +16,7 @@ import com.domain.myapplication.base.TopNavigationFragment
 import com.domain.myapplication.helpers.showErrorDialog
 import com.domain.myapplication.models.Image
 import kotlinx.android.synthetic.main.fragment_videos.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -41,11 +43,11 @@ class VideosFragment : TopNavigationFragment() , ItemsPagingAdapter.ItemClickLis
     }
 
     private fun addObservers() {
-        videosViewModel.itemImage.observe(viewLifecycleOwner, { onImageRetrieved(it) })
+        videosViewModel.imageAndIndex.observe(viewLifecycleOwner, { onImageRetrieved(it) })
     }
 
-    private fun onImageRetrieved(image: Image) {
-
+    private fun onImageRetrieved(imageAndIndex: Pair<Image, Int>) {
+        itemsPagingAdapter.notifyItemChanged(imageAndIndex.second)
     }
 
     fun initRecyclerView(){
@@ -96,7 +98,7 @@ class VideosFragment : TopNavigationFragment() , ItemsPagingAdapter.ItemClickLis
     }
 
     override fun onItemVisible(metaData: String, position: Int) {
-        videosViewModel.getItemImage(metaData)
+       videosViewModel.checkAndFetchImage(metaData, position)
     }
 
     fun showError(message: String) {
