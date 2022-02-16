@@ -15,6 +15,7 @@ import com.domain.myapplication.adapters.PPLoadStateAdapter
 import com.domain.myapplication.base.TopNavigationFragment
 import com.domain.myapplication.helpers.showErrorDialog
 import com.domain.myapplication.models.Image
+import com.domain.myapplication.models.Item
 import kotlinx.android.synthetic.main.fragment_videos.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -94,8 +95,8 @@ class VideosFragment : TopNavigationFragment() , ItemsPagingAdapter.ItemClickLis
         }
     }
 
-    override fun onItemClicked(view: View, position: Int) {
-        Toast.makeText(requireContext(), "${ videosViewModel.items} ${position}", Toast.LENGTH_SHORT).show()
+    override fun onItemClicked(view: View, item: Item, position: Int) {
+        Toast.makeText(requireContext(), "${ item.itemName}", Toast.LENGTH_SHORT).show()
     }
 
     override fun onItemVisible(metaData: String, position: Int) {

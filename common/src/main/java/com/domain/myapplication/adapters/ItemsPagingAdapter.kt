@@ -29,16 +29,18 @@ class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item,
 
     override fun onBindViewHolder(holder: ItemsViewHolder, position: Int) {
         val outlet = getItem(position)
-        holder.itemNameTv.text = "${outlet?.itemName} $position"
+        holder.itemNameTv.text = "${outlet?.itemName}"
 
         holder.previewRImv.setImageResource(R.drawable.ic_place_holder)
         outlet?.image?.medium?.let{ url ->
             holder.previewRImv.loadImageFromUrl(context, url, R.drawable.ic_place_holder)
         }
 
+        /*
         outlet?.metaData?.let {
-            //itemVisibleListener?.onItemVisible(it, position)
+            itemVisibleListener?.onItemVisible(it, outlet, position)
         }
+        */
     }
 
     inner class ItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
@@ -50,12 +52,14 @@ class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item,
         }
 
         override fun onClick(view: View) {
-            itemClickListener?.onItemClicked(view, adapterPosition)
+            getItem(position)?.let {
+                itemClickListener?.onItemClicked(view, it, adapterPosition)
+            }
         }
     }
 
     interface ItemClickListener {
-        fun onItemClicked(view: View, position: Int)
+        fun onItemClicked(view: View, item: Item, position: Int)
     }
 
     fun addPairClickListener(itemClickListener: ItemClickListener) {

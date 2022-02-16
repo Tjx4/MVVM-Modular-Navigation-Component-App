@@ -63,6 +63,7 @@
         <item name="android:background">@drawable/fx_button_background</item>
     </style>
     <style name="BlackButton" parent="MyButton">
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:textColor">@color/light_text</item>
         <item name="android:background">@drawable/black_button_background</item>
     </style>
