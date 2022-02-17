@@ -53,6 +53,6 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
     }
 
     override fun getRefreshKey(state: PagingState<Int, Item>): Int? {
-       return 4
+       return 0
     }
 }
