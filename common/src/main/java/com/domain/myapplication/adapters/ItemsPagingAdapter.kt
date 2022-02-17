@@ -36,7 +36,6 @@ class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item,
             holder.previewRImv.loadImageFromUrl(context, url, R.drawable.ic_place_holder)
         }
 
-
         outlet?.metaData?.let {
             itemVisibleListener?.onItemVisible(outlet, position)
         }

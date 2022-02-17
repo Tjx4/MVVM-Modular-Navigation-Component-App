@@ -107,7 +107,7 @@ class VideosFragment : TopNavigationFragment() , ItemsPagingAdapter.ItemClickLis
             requireContext(),
             "Error",
             message,
-            "Close"
+            "Retry"
         ) {
             itemsPagingAdapter.refresh()
         }
