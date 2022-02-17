@@ -64,8 +64,11 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
 
     override fun onBackPressed() {
         //Todo fix back nav
-        if (bnBottomNav.selectedItemId == R.id.dashboardFragment || bnBottomNav.selectedItemId == R.id.videosFragment) {
+        if (bnBottomNav.selectedItemId == R.id.dashboardFragment) {
             super.onBackPressed()
+        } else if (bnBottomNav.selectedItemId == R.id.videosFragment) {
+            super.onBackPressed()
+            bnBottomNav.selectedItemId = R.id.dashboardFragment
         } else {
             bnBottomNav.selectedItemId = R.id.dashboardFragment
         }
