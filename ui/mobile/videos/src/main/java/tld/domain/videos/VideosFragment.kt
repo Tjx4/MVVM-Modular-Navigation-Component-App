@@ -17,7 +17,6 @@ import com.domain.myapplication.helpers.showErrorDialog
 import com.domain.myapplication.models.Image
 import com.domain.myapplication.models.Item
 import kotlinx.android.synthetic.main.fragment_videos.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -47,7 +46,7 @@ class VideosFragment : TopNavigationFragment() , ItemsPagingAdapter.ItemClickLis
         videosViewModel.imageAndIndex.observe(viewLifecycleOwner, { onImageRetrieved(it) })
     }
 
-    private fun onImageRetrieved(imageAndIndex: Pair<Image, Int>) {
+    private fun onImageRetrieved(imageAndIndex: Pair<Item, Int>) {
         itemsPagingAdapter.notifyItemChanged(imageAndIndex.second)
     }
 
@@ -99,8 +98,8 @@ class VideosFragment : TopNavigationFragment() , ItemsPagingAdapter.ItemClickLis
         drawerController.navigateFromVideoToViewFavourites(item)
     }
 
-    override fun onItemVisible(metaData: String, position: Int) {
-       videosViewModel.checkAndFetchImage(metaData, position)
+    override fun onItemVisible(item: Item, position: Int) {
+       videosViewModel.checkAndFetchImage(item, position)
     }
 
     fun showError(message: String) {
@@ -110,7 +109,7 @@ class VideosFragment : TopNavigationFragment() , ItemsPagingAdapter.ItemClickLis
             message,
             "Close"
         ) {
-
+            itemsPagingAdapter.refresh()
         }
     }
 

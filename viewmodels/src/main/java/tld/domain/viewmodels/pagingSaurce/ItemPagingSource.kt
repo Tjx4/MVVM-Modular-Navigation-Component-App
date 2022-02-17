@@ -19,6 +19,7 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
         else {
             val pages =  items.size / OUTLETS_PAGE_SIZE
             val currentPage = getCurrentPage(items, loadPage)
+            /*
             currentPage?.forEach {
                 val url = it.metaData
                 if(!url.isNullOrEmpty()){
@@ -26,6 +27,7 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
                     it.image = image
                 }
             }
+            */
 
             LoadResult.Page(
                 data = currentPage,
