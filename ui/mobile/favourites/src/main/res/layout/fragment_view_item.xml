@@ -5,14 +5,14 @@
     <data>
         <variable
             name="viewFavouriteViewModel"
-            type="tld.domain.viewmodels.ViewFavouriteViewModel"/>
+            type="tld.domain.viewmodels.ViewItemViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        tools:context=".ViewFavouriteFragment"
+        tools:context=".ViewItemFragment"
         android:background="@color/light_background"
         style="@style/ParentView">
 

@@ -13,20 +13,20 @@ import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.extensions.loadImageFromUrl
 import com.domain.myapplication.extensions.vibratePhone
 import com.domain.myapplication.models.Item
-import kotlinx.android.synthetic.main.fragment_view_favourite.*
+import kotlinx.android.synthetic.main.fragment_view_item.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import tld.domain.favourites.databinding.FragmentViewFavouriteBinding
-import tld.domain.viewmodels.ViewFavouriteViewModel
+import tld.domain.favourites.databinding.FragmentViewItemBinding
+import tld.domain.viewmodels.ViewItemViewModel
 
-class ViewFavouriteFragment : BaseFragment() {
-    private lateinit var binding: FragmentViewFavouriteBinding
-    private val viewFavouriteViewModel: ViewFavouriteViewModel by viewModel()
+class ViewItemFragment : BaseFragment() {
+    private lateinit var binding: FragmentViewItemBinding
+    private val viewItemViewModel: ViewItemViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_view_favourite, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_view_item, container, false)
         binding.lifecycleOwner = this
-        binding.viewFavouriteViewModel = viewFavouriteViewModel
+        binding.viewFavouriteViewModel = viewItemViewModel
         return binding.root
     }
 
@@ -34,7 +34,7 @@ class ViewFavouriteFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.getParcelable<Item>(FAV_ITEM)?.let {
-            viewFavouriteViewModel.setFunItem(it)
+            viewItemViewModel.setFunItem(it)
 
             it.image?.xl?.let { url ->
                 imgFavouriteItemIcon.loadImageFromUrl(requireContext(), url, com.domain.myapplication.R.drawable.ic_img_dark)

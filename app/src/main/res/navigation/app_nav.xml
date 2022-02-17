@@ -40,7 +40,7 @@
 
         <action
             android:id="@+id/action_favouritesFragment_to_viewFavouriteFragment"
-            app:destination="@id/viewFavouriteFragment"
+            app:destination="@id/viewItemFragment"
             app:enterAnim="@anim/slide_left"
             app:exitAnim="@anim/no_transition"
             app:popEnterAnim="@anim/no_transition"
@@ -50,9 +50,9 @@
     </fragment>
 
     <fragment
-        android:id="@+id/viewFavouriteFragment"
-        android:name="tld.domain.favourites.ViewFavouriteFragment"
-        android:label="ViewFavouriteFragment">
+        android:id="@+id/viewItemFragment"
+        android:name="tld.domain.favourites.ViewItemFragment"
+        android:label="ViewItemFragment">
         <argument
             android:name="favItem"
             app:argType="com.domain.myapplication.models.Item"
@@ -65,7 +65,7 @@
         android:label="VideosFragment" >
         <action
             android:id="@+id/action_videosFragment_to_viewFavouriteFragment"
-            app:destination="@id/viewFavouriteFragment"
+            app:destination="@id/viewItemFragment"
             app:enterAnim="@anim/slide_left"
             app:exitAnim="@anim/no_transition"
             app:popEnterAnim="@anim/no_transition"

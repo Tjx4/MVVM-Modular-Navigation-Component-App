@@ -9,7 +9,7 @@ val viewModelModule = module {
     viewModel { LoginViewModel(androidApplication(), get()) }
     viewModel { DashboardViewModel(androidApplication(), get()) }
     viewModel { FavouritesViewModel(androidApplication(), get()) }
-    viewModel { ViewFavouriteViewModel(androidApplication()) }
+    viewModel { ViewItemViewModel(androidApplication()) }
     viewModel { VideosViewModel(androidApplication(), get()) }
     viewModel { DownloadsViewModel(androidApplication()) }
 }
