@@ -39,7 +39,6 @@ class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item,
         outlet?.metaData?.let {
             itemVisibleListener?.onItemVisible(outlet, position)
         }
-
     }
 
     inner class ItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {

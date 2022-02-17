@@ -4,17 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.domain.myapplication.adapters.ItemsPagingAdapter
 import com.domain.myapplication.adapters.PPLoadStateAdapter
 import com.domain.myapplication.base.TopNavigationFragment
 import com.domain.myapplication.helpers.showErrorDialog
-import com.domain.myapplication.models.Image
 import com.domain.myapplication.models.Item
 import kotlinx.android.synthetic.main.fragment_videos.*
 import kotlinx.coroutines.flow.collectLatest
@@ -43,7 +40,7 @@ class VideosFragment : TopNavigationFragment() , ItemsPagingAdapter.ItemClickLis
     }
 
     private fun addObservers() {
-        videosViewModel.imageAndIndex.observe(viewLifecycleOwner, { onImageRetrieved(it) })
+        videosViewModel.currentItem.observe(viewLifecycleOwner, { onImageRetrieved(it) })
     }
 
     private fun onImageRetrieved(imageAndIndex: Pair<Item, Int>) {

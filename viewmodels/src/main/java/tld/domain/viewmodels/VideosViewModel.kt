@@ -8,7 +8,6 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.domain.myapplication.constants.OUTLETS_PAGE_SIZE
-import com.domain.myapplication.models.Image
 import com.domain.myapplication.models.Item
 import com.domain.repositories.items.ItemsRepository
 import kotlinx.coroutines.Dispatchers
@@ -18,9 +17,9 @@ import tld.domain.viewmodels.pagingSaurce.ItemPagingSource
 
 class VideosViewModel(application: Application, val itemsRepository: ItemsRepository) : AndroidViewModel(application){
 
-    private var _imageAndIndex: MutableLiveData<Pair<Item, Int>> = MutableLiveData()
-    val imageAndIndex: MutableLiveData<Pair<Item, Int>>
-        get() = _imageAndIndex
+    private var _currentItem: MutableLiveData<Pair<Item, Int>> = MutableLiveData()
+    val currentItem: MutableLiveData<Pair<Item, Int>>
+        get() = _currentItem
 
     val items = Pager(config = PagingConfig(pageSize = OUTLETS_PAGE_SIZE)) {
         ItemPagingSource(itemsRepository)
@@ -43,7 +42,7 @@ class VideosViewModel(application: Application, val itemsRepository: ItemsReposi
                     null -> {}
                     else -> {
                         item.image = itemImage
-                        _imageAndIndex.value = Pair(item, position)
+                        _currentItem.value = Pair(item, position)
                     }
                 }
             }
