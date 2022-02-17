@@ -1,4 +1,4 @@
-package com.domain.myapplication.base
+package com.domain.myapplication.base.fragments
 
 abstract class TopNavigationFragment : BaseFragment()  {
     /*

@@ -1,4 +1,4 @@
-package com.domain.myapplication.base
+package com.domain.myapplication.base.fragments
 
 import android.content.Context
 import androidx.activity.OnBackPressedCallback
@@ -21,6 +21,8 @@ abstract class BaseFragment : Fragment() {
                 }
             }
         )
+
+        //requireActivity().on
     }
 
     open fun onBackPressed(){

@@ -3,9 +3,10 @@ package tld.domain.viewmodels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.models.Item
 
-class ViewItemViewModel(application: Application) : AndroidViewModel(application){
+class ViewItemViewModel(application: Application) : BaseViewModel(application){
     private val _Item: MutableLiveData<Item> = MutableLiveData()
     val item: MutableLiveData<Item>
         get() = _Item

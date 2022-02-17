@@ -4,12 +4,13 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.repositories.authentication.AuthenticationRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class DashboardViewModel(application: Application, private val authenticationRepository: AuthenticationRepository) : AndroidViewModel(application){
+class DashboardViewModel(application: Application, private val authenticationRepository: AuthenticationRepository) : BaseViewModel(application){
     private val _showLoading: MutableLiveData<Boolean> = MutableLiveData()
     val showLoading: MutableLiveData<Boolean>
         get() = _showLoading

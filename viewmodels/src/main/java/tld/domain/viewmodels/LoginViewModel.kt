@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.domain.core.persistance.sharedPrefs.SharedPrefs
+import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.extensions.isValidEmailORMobile
 import com.domain.myapplication.extensions.isValidPassword
 import com.domain.myapplication.models.User
@@ -11,7 +12,7 @@ import com.domain.repositories.authentication.AuthenticationRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class LoginViewModel(private val app: Application, val authenticationRepository: AuthenticationRepository) : AndroidViewModel(app){
+class LoginViewModel(application: Application, val authenticationRepository: AuthenticationRepository) : BaseViewModel(application){
 
     private val _username: MutableLiveData<String> = MutableLiveData()
     val username: MutableLiveData<String>

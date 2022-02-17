@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import androidx.databinding.DataBindingUtil
-import com.domain.myapplication.base.BaseFragment
+import com.domain.myapplication.base.fragments.SubNavigationFragment
 import com.domain.myapplication.constants.DURATION_SHORT
 import com.domain.myapplication.constants.FAV_ITEM
 import com.domain.myapplication.extensions.blinkView
@@ -18,7 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.favourites.databinding.FragmentViewItemBinding
 import tld.domain.viewmodels.ViewItemViewModel
 
-class ViewItemFragment : BaseFragment() {
+class ViewItemFragment : SubNavigationFragment() {
     private lateinit var binding: FragmentViewItemBinding
     private val viewItemViewModel: ViewItemViewModel by viewModel()
 

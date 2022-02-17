@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.viewModelScope
-import com.domain.myapplication.base.BaseFragment
+import com.domain.myapplication.base.fragments.BaseFragment
 import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.models.User
 import kotlinx.android.synthetic.main.fragment_login.*

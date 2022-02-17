@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
+import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.constants.OUTLETS_PAGE_SIZE
 import com.domain.myapplication.models.Item
 import com.domain.repositories.items.ItemsRepository
@@ -15,7 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import tld.domain.viewmodels.pagingSaurce.ItemPagingSource
 
-class VideosViewModel(application: Application, val itemsRepository: ItemsRepository) : AndroidViewModel(application){
+class VideosViewModel(application: Application, val itemsRepository: ItemsRepository) : BaseViewModel(application){
 
     private var _currentItem: MutableLiveData<Pair<Item, Int>> = MutableLiveData()
     val currentItem: MutableLiveData<Pair<Item, Int>>

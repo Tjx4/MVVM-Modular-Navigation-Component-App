@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.domain.dashboard.databinding.FragmentDashboardBinding
-import com.domain.myapplication.base.TopNavigationFragment
+import com.domain.myapplication.base.fragments.TopNavigationFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import tld.domain.viewmodels.DashboardViewModel

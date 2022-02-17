@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.domain.myapplication.base.viewModel.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
@@ -11,7 +12,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class DownloadsViewModel(private val app: Application) : AndroidViewModel(app){
+class DownloadsViewModel(application: Application) : BaseViewModel(application){
 
     private val _count: MutableLiveData<String> = MutableLiveData()
     val count: MutableLiveData<String>

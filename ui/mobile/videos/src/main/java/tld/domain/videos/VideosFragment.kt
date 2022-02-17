@@ -10,7 +10,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.domain.myapplication.adapters.ItemsPagingAdapter
 import com.domain.myapplication.adapters.PPLoadStateAdapter
-import com.domain.myapplication.base.TopNavigationFragment
+import com.domain.myapplication.base.fragments.TopNavigationFragment
 import com.domain.myapplication.helpers.showErrorDialog
 import com.domain.myapplication.models.Item
 import kotlinx.android.synthetic.main.fragment_videos.*
@@ -20,7 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.videos.databinding.FragmentVideosBinding
 import tld.domain.viewmodels.VideosViewModel
 
-class VideosFragment : TopNavigationFragment() , ItemsPagingAdapter.ItemClickListener, ItemsPagingAdapter.ItemVisibleListener{
+class VideosFragment : TopNavigationFragment(), ItemsPagingAdapter.ItemClickListener, ItemsPagingAdapter.ItemVisibleListener{
     private lateinit var binding: FragmentVideosBinding
     private val videosViewModel: VideosViewModel by viewModel()
     private lateinit var itemsPagingAdapter: ItemsPagingAdapter

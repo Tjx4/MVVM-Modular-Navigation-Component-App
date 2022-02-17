@@ -8,7 +8,7 @@ import android.view.animation.Animation
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.domain.myapplication.adapters.FavouritesAdapter
-import com.domain.myapplication.base.BaseFragment
+import com.domain.myapplication.base.fragments.SubNavigationFragment
 import com.domain.myapplication.constants.DURATION_SHORT
 import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.extensions.runWhenReady
@@ -19,7 +19,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.favourites.databinding.FragmentFavouritesBinding
 import tld.domain.viewmodels.FavouritesViewModel
 
-class FavouritesFragment : BaseFragment(), FavouritesAdapter.FavouritesClickListener {
+class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.FavouritesClickListener {
     private lateinit var binding: FragmentFavouritesBinding
     private val favouritesViewModel: FavouritesViewModel by viewModel()
 

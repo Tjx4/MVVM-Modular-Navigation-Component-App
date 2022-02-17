@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.models.Item
 import com.domain.myapplication.models.Image
 import com.domain.repositories.items.ItemsRepository
@@ -12,7 +13,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FavouritesViewModel(application: Application, private val itemsRepository: ItemsRepository) : AndroidViewModel(application) {
+class FavouritesViewModel(application: Application, private val itemsRepository: ItemsRepository) : BaseViewModel(application) {
     private val _showLoading: MutableLiveData<Boolean> = MutableLiveData()
     val showLoading: MutableLiveData<Boolean>
         get() = _showLoading
