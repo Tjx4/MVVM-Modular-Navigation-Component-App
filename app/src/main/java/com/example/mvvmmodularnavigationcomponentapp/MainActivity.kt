@@ -75,8 +75,6 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
     }
 
     override fun onBackPressed() {
-        //super.onBackPressed()
-
         when(currentFragment is TopNavigationFragment){
             true ->  handleBottomNavigation()
             false -> currentFragment?.onBackPressed()
