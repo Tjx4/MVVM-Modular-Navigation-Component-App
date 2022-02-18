@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import com.domain.myapplication.constants.OUTLETS_PAGE_SIZE
+import com.domain.myapplication.constants.PAGE_SIZE
 import com.domain.myapplication.models.Item
 import com.domain.repositories.items.ItemsRepository
 import kotlinx.coroutines.Dispatchers
@@ -21,7 +21,7 @@ class VideosViewModel(application: Application, val itemsRepository: ItemsReposi
     val currentItem: MutableLiveData<Pair<Item, Int>>
         get() = _currentItem
 
-    val items = Pager(config = PagingConfig(pageSize = OUTLETS_PAGE_SIZE)) {
+    val items = Pager(config = PagingConfig(pageSize = PAGE_SIZE)) {
         ItemPagingSource(itemsRepository)
     }.flow.cachedIn(viewModelScope)
 
