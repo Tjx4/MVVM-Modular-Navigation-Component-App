@@ -13,4 +13,4 @@ const val MAIN_ACTIVITY = "com.example.mvvmmodularnavigationcomponentapp.MainAct
 //
 const val DURATION_SHORT = 70L
 //
-const val OUTLETS_PAGE_SIZE = 5
+const val PAGE_SIZE = 5
