@@ -27,8 +27,10 @@
         <entry key="ui/mobile/downloads/src/main/res/layout/fragment_downloads.xml" value="0.25052083333333336" />
         <entry key="ui/mobile/favourites/src/main/res/layout/fragment_favourites.xml" value="0.2755208333333333" />
         <entry key="ui/mobile/favourites/src/main/res/layout/fragment_view_favourite.xml" value="0.2755208333333333" />
+        <entry key="ui/mobile/favourites/src/main/res/layout/fragment_view_item.xml" value="0.25104166666666666" />
         <entry key="ui/mobile/login/src/main/res/layout/fragment_login.xml" value="0.28958333333333336" />
         <entry key="ui/mobile/videos/src/main/res/layout/fragment_videos.xml" value="0.22083333333333333" />
+        <entry key="ui/mobile/viewItem/src/main/res/layout/fragment_view_item.xml" value="0.25104166666666666" />
       </map>
     </option>
   </component>

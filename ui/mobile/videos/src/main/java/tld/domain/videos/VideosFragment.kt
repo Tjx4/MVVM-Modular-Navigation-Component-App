@@ -92,7 +92,7 @@ class VideosFragment : TopNavigationFragment(), ItemsPagingAdapter.ItemClickList
     }
 
     override fun onItemClicked(view: View, item: Item, position: Int) {
-        drawerController.navigateFromVideoToViewFavourites(item)
+        drawerController.navigateFromVideoToViewItem(item)
     }
 
     override fun onItemVisible(item: Item, position: Int) {

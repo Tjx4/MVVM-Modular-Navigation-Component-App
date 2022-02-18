@@ -35,12 +35,12 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
         navController.navigate(action)
     }
 
-    override fun navigateFromFavouritesToViewFavourites(item: Item) {
+    override fun navigateFromFavouritesToViewItem(item: Item) {
         val action = FavouritesFragmentDirections.actionFavouritesFragmentToViewFavouriteFragment(item)
         navController.navigate(action)
     }
 
-    override fun navigateFromVideoToViewFavourites(item: Item) {
+    override fun navigateFromVideoToViewItem(item: Item) {
         val action = VideosFragmentDirections.actionVideosFragmentToViewFavouriteFragment(item)
         navController.navigate(action)
     }

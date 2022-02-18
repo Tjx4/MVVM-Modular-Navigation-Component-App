@@ -117,6 +117,6 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
     }
 
     private fun viewFavItem(item: Item){
-        drawerController.navigateFromFavouritesToViewFavourites(item)
+        drawerController.navigateFromFavouritesToViewItem(item)
     }
 }

@@ -1,4 +1,4 @@
-package tld.domain.favourites
+package tld.domain.viewitem
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +15,7 @@ import com.domain.myapplication.extensions.vibratePhone
 import com.domain.myapplication.models.Item
 import kotlinx.android.synthetic.main.fragment_view_item.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import tld.domain.favourites.databinding.FragmentViewItemBinding
+import tld.domain.viewitem.databinding.FragmentViewItemBinding
 import tld.domain.viewmodels.ViewItemViewModel
 
 class ViewItemFragment : SubNavigationFragment() {

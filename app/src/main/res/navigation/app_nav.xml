@@ -51,7 +51,7 @@
 
     <fragment
         android:id="@+id/viewItemFragment"
-        android:name="tld.domain.favourites.ViewItemFragment"
+        android:name="tld.domain.viewitem.ViewItemFragment"
         android:label="ViewItemFragment">
         <argument
             android:name="favItem"
