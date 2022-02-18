@@ -44,7 +44,7 @@ class ViewItemFragment : SubNavigationFragment() {
         imgBtnBack.setOnClickListener {
             vibratePhone(DURATION_SHORT)
             it.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {
-                drawerController.popBack()
+                onBackPressed()
             })
         }
     }

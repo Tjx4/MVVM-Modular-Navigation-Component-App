@@ -7,6 +7,7 @@ import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.domain.dashboard.DashboardFragmentDirections
+import com.domain.myapplication.base.fragments.BaseFragment
 import com.domain.myapplication.drawerController.MyDrawerController
 import com.domain.myapplication.extensions.setupWithCustomAnimNavController
 import com.domain.myapplication.models.Item
@@ -16,6 +17,7 @@ import tld.domain.login.LoginFragmentDirections
 import tld.domain.videos.VideosFragmentDirections
 
 class MainActivity : AppCompatActivity(), MyDrawerController {
+    override var currentFragment: BaseFragment? = null
     override lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,21 +64,21 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
         bnBottomNav?.visibility = View.GONE
     }
 
-    override fun onBackPressed() {
-        //Todo fix back nav
-        if (bnBottomNav.selectedItemId == R.id.dashboardFragment) {
-            super.onBackPressed()
-        }  else {
+    fun handleBottomNavigation() {
+        if (bnBottomNav.selectedItemId != R.id.dashboardFragment) {
             bnBottomNav.selectedItemId = R.id.dashboardFragment
         }
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            onBackPressed()
-            return false
-        }
+    override fun onBackPressed() {
+        //super.onBackPressed()
+        currentFragment?.onBackPressed()
+        handleBottomNavigation()
+    }
 
-        return super.onKeyDown(keyCode, event)
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        currentFragment?.onKeyDown(keyCode, event)
+        handleBottomNavigation()
+        return false //super.onKeyDown(keyCode, event)
     }
 }
