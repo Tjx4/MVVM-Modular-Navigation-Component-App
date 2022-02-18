@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.domain.dashboard.DashboardFragmentDirections
 import com.domain.myapplication.base.fragments.BaseFragment
+import com.domain.myapplication.base.fragments.TopNavigationFragment
 import com.domain.myapplication.drawerController.MyDrawerController
 import com.domain.myapplication.extensions.setupWithCustomAnimNavController
 import com.domain.myapplication.models.Item
@@ -72,13 +73,19 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
 
     override fun onBackPressed() {
         //super.onBackPressed()
-        currentFragment?.onBackPressed()
-        handleBottomNavigation()
+
+        when(currentFragment is TopNavigationFragment){
+            true ->  handleBottomNavigation()
+            false -> currentFragment?.onBackPressed()
+        }
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        currentFragment?.onKeyDown(keyCode, event)
-        handleBottomNavigation()
+        when(currentFragment is TopNavigationFragment){
+            true ->  handleBottomNavigation()
+            false -> currentFragment?.onBackPressed()
+        }
+
         return false //super.onKeyDown(keyCode, event)
     }
 }
