@@ -66,7 +66,10 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
     }
 
     fun handleBottomNavigation() {
-        if (bnBottomNav.selectedItemId != R.id.dashboardFragment) {
+        if(bnBottomNav.selectedItemId == R.id.dashboardFragment){
+            finish()
+        }
+        else{
             bnBottomNav.selectedItemId = R.id.dashboardFragment
         }
     }
@@ -82,10 +85,14 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         when(currentFragment is TopNavigationFragment){
-            true ->  handleBottomNavigation()
-            false -> currentFragment?.onBackPressed()
+            true ->  {
+                handleBottomNavigation()
+            }
+            else -> {
+                currentFragment?.onBackPressed()
+            }
         }
 
-        return false //super.onKeyDown(keyCode, event)
+        return false
     }
 }

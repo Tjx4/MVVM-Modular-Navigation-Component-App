@@ -14,7 +14,6 @@ abstract class BaseFragment : Fragment() {
         super.onAttach(context)
         drawerController = context as MyDrawerController
         drawerController.showBottomNav()
-        drawerController.currentFragment = this
 
         /*
         requireActivity().onBackPressedDispatcher.addCallback(
@@ -25,6 +24,11 @@ abstract class BaseFragment : Fragment() {
             }
         )
         */
+    }
+
+    override fun onResume() {
+        super.onResume()
+        drawerController.currentFragment = this
     }
 
     open fun onBackPressed(){
