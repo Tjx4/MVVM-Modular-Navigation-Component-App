@@ -44,9 +44,7 @@ class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item,
 
             (holder.favImgb as ImageView).setColorFilter(getColor(context, item.tintColor), android.graphics.PorterDuff.Mode.MULTIPLY)
             holder.favImgb.setOnClickListener {
-                item.tintColor = R.color.gold
-                (holder.favImgb as ImageView).setColorFilter(getColor(context, item.tintColor), android.graphics.PorterDuff.Mode.MULTIPLY)
-                itemClickListener?.onFavClicked(it, item)
+                itemClickListener?.onFavClicked(item, position)
             }
         }
     }
@@ -69,7 +67,7 @@ class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item,
 
     interface ItemClickListener {
         fun onItemClicked(view: View, item: Item, position: Int)
-        fun onFavClicked(view: View, item: Item)
+        fun onFavClicked(item: Item, position: Int)
     }
 
     fun addPairClickListener(itemClickListener: ItemClickListener) {

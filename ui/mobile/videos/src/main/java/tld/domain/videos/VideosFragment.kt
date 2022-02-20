@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
@@ -45,12 +43,12 @@ class VideosFragment : TopNavigationFragment(), ItemsPagingAdapter.ItemClickList
     }
 
     private fun addObservers() {
-        videosViewModel.currentItem.observe(viewLifecycleOwner, { onImageRetrieved(it) })
+        videosViewModel.currentItem.observe(viewLifecycleOwner, { onItemUpdated(it) })
         videosViewModel.favItem.observe(viewLifecycleOwner, { onItemAddedToFav(it) })
     }
 
-    private fun onImageRetrieved(imageAndIndex: Pair<Item, Int>) {
-        itemsPagingAdapter.notifyItemChanged(imageAndIndex.second)
+    private fun onItemUpdated(position: Int) {
+        itemsPagingAdapter.notifyItemChanged(position)
     }
 
     private fun onItemAddedToFav(item: Item) {
@@ -105,9 +103,9 @@ class VideosFragment : TopNavigationFragment(), ItemsPagingAdapter.ItemClickList
         drawerController.navigateFromVideoToViewItem(item)
     }
 
-    override fun onFavClicked(view: View, item: Item) {
+    override fun onFavClicked(item: Item, position: Int) {
         videosViewModel.viewModelScope.launch(Dispatchers.IO) {
-            videosViewModel.addItemToFavourites(item)
+            videosViewModel.addItemToFavourites(item, position)
         }
     }
 

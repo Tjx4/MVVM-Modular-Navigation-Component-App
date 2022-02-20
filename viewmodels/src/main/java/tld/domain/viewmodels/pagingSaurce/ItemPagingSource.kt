@@ -6,6 +6,7 @@ import com.domain.myapplication.constants.PAGE_SIZE
 import com.domain.myapplication.models.Item
 import com.domain.repositories.items.ItemsRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import tld.domain.viewmodels.FavouritesViewModel
 import tld.domain.viewmodels.R
@@ -14,22 +15,13 @@ import java.lang.NullPointerException
 class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSource<Int, Item>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Item> = try {
         val loadPage = params.key ?: 0
-
         val items = itemsRepository.getRemoteItems()
 
         if (items == null) {
             LoadResult.Error(NullPointerException("Unknown error"))
-        }
-        else {
+        } else {
             val currentPage = getCurrentPage(items, loadPage).first
             val pages = getCurrentPage(items, loadPage).second
-
-            currentPage?.forEach { item ->
-                item.apply {
-                    isFav = isFave(item)
-                    tintColor = if(isFav) R.color.gold else R.color.grey_background
-                }
-            }
 
             /*
             currentPage?.forEach {
@@ -41,7 +33,7 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
             }
             */
 
-            val prevKey = if (loadPage < 1) null  else loadPage - 1
+            val prevKey = if (loadPage < 1) null else loadPage - 1
             val nextKey = if (loadPage < (pages - 1)) loadPage + 1 else null
 
             LoadResult.Page(
@@ -49,16 +41,9 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
                 prevKey = prevKey,
                 nextKey = nextKey
             )
-
         }
     } catch (e: Exception) {
         LoadResult.Error(e)
-    }
-
-   private suspend fun isFave(item: Item) : Boolean {
-        return withContext(Dispatchers.IO){
-            itemsRepository.getFavourites()?.contains(item) ?: false
-        }
     }
 
    private fun getCurrentPage(response: List<Item>, loadPage: Int): Pair<List<Item>, Int>{
