@@ -44,6 +44,17 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         return favItems
     }
 
+    override suspend fun saveItemFavourites(item: Item): DBOperation {
+        return try {
+            val favItemTable = FavItemsTable(itemId = item.id, itemName = item.itemName, imageThumbNail = item.image?.thumbNail,  imageMedium = item.image?.medium, imageXl = item.image?.xl)
+            database.favItemsDAO.insert(favItemTable)
+            DBOperation(true)
+        }
+        catch (ex: Exception){
+            DBOperation(false, "$ex")
+        }
+    }
+
     override suspend fun saveItemsToFavourites(favourites: List<Item>): DBOperation {
         return try {
             val favouriteTables = ArrayList<FavItemsTable>()
@@ -64,17 +75,6 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         return try {
             val favItemTable = FavItemsTable(itemId = item.id, itemName = item.itemName, imageThumbNail = item.image?.thumbNail,  imageMedium = item.image?.medium, imageXl = item.image?.xl)
             database.favItemsDAO.delete(favItemTable)
-            DBOperation(true)
-        }
-        catch (ex: Exception){
-            DBOperation(false, "$ex")
-        }
-    }
-
-    override suspend fun saveItemFavourites(item: Item): DBOperation {
-        return try {
-            val favItemTable = FavItemsTable(itemId = item.id, itemName = item.itemName, imageThumbNail = item.image?.thumbNail,  imageMedium = item.image?.medium, imageXl = item.image?.xl)
-            database.favItemsDAO.insert(favItemTable)
             DBOperation(true)
         }
         catch (ex: Exception){
