@@ -1,5 +1,6 @@
 package tld.domain.favourites
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -42,24 +43,13 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
             })
         }
 
-        btnAdd.setOnClickListener {
-            vibratePhone(DURATION_SHORT)
-            it.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {
-                favouritesViewModel.addFavItems()
-            })
-        }
-
-        btnAddMany.setOnClickListener {
-            vibratePhone(DURATION_SHORT)
-            it.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {
-                favouritesViewModel.addManyItems()
-
-            })
-        }
-
         btnClear.setOnClickListener {
             favouritesViewModel.clearItems()
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
     private fun addObservers() {
@@ -70,8 +60,6 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
 
     private fun onShowLoading(){
         tvNoItems.visibility = View.INVISIBLE
-        btnAdd.visibility = View.INVISIBLE
-        btnAddMany.visibility = View.INVISIBLE
         rvFavourites.visibility = View.INVISIBLE
         btnClear.visibility = View.INVISIBLE
         avLoader.visibility = View.VISIBLE
@@ -92,8 +80,6 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
 
         rvFavourites.runWhenReady {
             tvNoItems.visibility = View.INVISIBLE
-            btnAdd.visibility = View.INVISIBLE
-            btnAddMany.visibility = View.INVISIBLE
             rvFavourites.visibility = View.VISIBLE
             btnClear.visibility = View.VISIBLE
             avLoader.visibility = View.INVISIBLE
@@ -103,8 +89,6 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
 
     private fun onNoItems(){
         tvNoItems.visibility = View.VISIBLE
-        btnAdd.visibility = View.VISIBLE
-        btnAddMany.visibility = View.VISIBLE
         rvFavourites.visibility = View.INVISIBLE
         btnClear.visibility = View.INVISIBLE
         avLoader.visibility = View.INVISIBLE

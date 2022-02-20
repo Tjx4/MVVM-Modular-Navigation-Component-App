@@ -1,12 +1,10 @@
 package tld.domain.viewmodels
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.models.Item
-import com.domain.myapplication.models.Image
 import com.domain.repositories.items.ItemsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -29,11 +27,11 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
     init {
         viewModelScope.launch(Dispatchers.IO) {
             delay(300)
-            getUserFavourites()
+            getFavourites()
         }
     }
 
-    suspend fun getUserFavourites() {
+    suspend fun getFavourites() {
         val favourites = itemsRepository.getFavourites()
 
         withContext(Dispatchers.Main){
@@ -44,10 +42,6 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
         }
     }
 
-    suspend fun addItemsToFavourites(items: List<Item>) {
-        itemsRepository.saveFavouriteItems(items)
-    }
-
     fun clearItems() {
         viewModelScope.launch(Dispatchers.IO) {
             itemsRepository.clearItems()
@@ -55,82 +49,6 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
             withContext(Dispatchers.Main){
                 _noItems.value = true
             }
-        }
-    }
-
-    fun addFavItems() {
-        val item1Image = Image(
-            "http://appicsoftware.xyz/demo/images/dstv.jpg",
-            "http://appicsoftware.xyz/demo/images/dstv.jpg",
-            "http://appicsoftware.xyz/demo/images/dstv.jpg"
-        )
-
-        val item2Image = Image(
-            "http://appicsoftware.xyz/demo/images/showmax.png",
-            "http://appicsoftware.xyz/demo/images/showmax.png",
-            "http://appicsoftware.xyz/demo/images/showmax.png"
-        )
-
-        val favItems = arrayListOf<Item>(Item("1", "DSTV", item1Image, null), Item("2", "Showmax", item2Image, null))
-        viewModelScope.launch(Dispatchers.IO) {
-            addItemsToFavourites(favItems)
-            getUserFavourites()
-        }
-    }
-
-    fun addManyItems() {
-        val item1Image = Image(
-            "http://appicsoftware.xyz/demo/images/dstv.jpg",
-            "http://appicsoftware.xyz/demo/images/dstv.jpg",
-            "http://appicsoftware.xyz/demo/images/dstv.jpg"
-        )
-
-        val item2Image = Image(
-            "http://appicsoftware.xyz/demo/images/showmax.png",
-            "http://appicsoftware.xyz/demo/images/showmax.png",
-            "http://appicsoftware.xyz/demo/images/showmax.png"
-        )
-
-        val favItems = arrayListOf<Item>(
-            Item("", "DSTV", item1Image, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Item", null, null),
-            Item("", "Showmax", item2Image, null)
-        )
-
-        viewModelScope.launch(Dispatchers.IO) {
-            addItemsToFavourites(favItems)
-            getUserFavourites()
         }
     }
 

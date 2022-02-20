@@ -11,7 +11,13 @@ import com.domain.myapplication.models.Image
 class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, private val database: MySqliteDB) : ItemsRepository {
 
     override suspend fun getRemoteItems(): List<Item>? {
-        return retrofitServices.getItems(API_KEY)
+        return try {
+            retrofitServices.getItems(API_KEY)
+        }
+        catch (ex: Exception) {
+            //firebaseCrashlytics.recordException(ex)
+            null
+        }
     }
 
     override suspend fun getItemImage(url: String): Image? {
@@ -37,7 +43,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         return favItems
     }
 
-    override suspend fun saveFavouriteItems(favourites: List<Item>) {
+    override suspend fun saveItemsToFavourites(favourites: List<Item>) {
         val favouriteTables = ArrayList<FavItemsTable>()
 
         favourites?.forEach {
@@ -48,7 +54,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         database.favItemsDAO.insertAll(favouriteTables)
     }
 
-    override suspend fun saveFavouriteItem(item: Item) {
+    override suspend fun saveItemFavourites(item: Item) {
         val favItemTable = FavItemsTable(itemName = item.itemName, imageThumbNail = item.image?.thumbNail,  imageMedium = item.image?.medium, imageXl = item.image?.xl)
         database.favItemsDAO.insert(favItemTable)
     }
