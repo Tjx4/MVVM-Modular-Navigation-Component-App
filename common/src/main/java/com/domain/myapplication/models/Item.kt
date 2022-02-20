@@ -10,4 +10,5 @@ data class Item(
     @SerializedName("itemName") var itemName: String?,
     @SerializedName("image") var image: Image?,
     @SerializedName("metaData") var metaData: String?,
-) : Parcelable
+
+) : Parcelable, Fav()

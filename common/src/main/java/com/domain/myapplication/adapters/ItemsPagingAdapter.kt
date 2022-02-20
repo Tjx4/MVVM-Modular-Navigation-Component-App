@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -28,22 +30,31 @@ class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item,
     }
 
     override fun onBindViewHolder(holder: ItemsViewHolder, position: Int) {
-        val outlet = getItem(position)
-        holder.itemNameTv.text = "${outlet?.itemName}"
+        getItem(position)?.let { item ->
+            holder.itemNameTv.text = "${item?.itemName}"
 
-        holder.previewRImv.setImageResource(R.drawable.ic_place_holder)
-        outlet?.image?.medium?.let{ url ->
-            holder.previewRImv.loadImageFromUrl(context, url, R.drawable.ic_place_holder)
-        }
+            holder.previewRImv.setImageResource(R.drawable.ic_place_holder)
+            item?.image?.medium?.let{ url ->
+                holder.previewRImv.loadImageFromUrl(context, url, R.drawable.ic_place_holder)
+            }
 
-        outlet?.metaData?.let {
-            itemVisibleListener?.onItemVisible(outlet, position)
+            item?.metaData?.let {
+                itemVisibleListener?.onItemVisible(item, position)
+            }
+
+            (holder.favImgb as ImageView).setColorFilter(getColor(context, item.tintColor), android.graphics.PorterDuff.Mode.MULTIPLY)
+            holder.favImgb.setOnClickListener {
+                item.tintColor = R.color.gold
+                (holder.favImgb as ImageView).setColorFilter(getColor(context, item.tintColor), android.graphics.PorterDuff.Mode.MULTIPLY)
+                itemClickListener?.onFavClicked(it, item)
+            }
         }
     }
 
     inner class ItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         internal var itemNameTv = itemView.findViewById<TextView>(R.id.tvItemName)
         internal var previewRImv = itemView.findViewById<ImageView>(R.id.imgPreview)
+        internal var favImgb = itemView.findViewById<ImageView>(R.id.imgbFav)
 
         init {
             itemView.setOnClickListener(this)
@@ -58,6 +69,7 @@ class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item,
 
     interface ItemClickListener {
         fun onItemClicked(view: View, item: Item, position: Int)
+        fun onFavClicked(view: View, item: Item)
     }
 
     fun addPairClickListener(itemClickListener: ItemClickListener) {

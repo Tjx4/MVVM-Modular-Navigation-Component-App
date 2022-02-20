@@ -33,13 +33,26 @@
             <TextView
                 android:id="@+id/tvItemName"
                 style="@style/LargeTextView"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:text="Name"
                 android:maxLines="1"
                 android:gravity="left"
                 android:layout_marginTop="@dimen/xsmall_margin"
                 android:layout_marginHorizontal="@dimen/xsmall_margin"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/imgbFav"
                 app:layout_constraintTop_toBottomOf="@+id/imgPreview"/>
+
+            <ImageButton
+                android:id="@+id/imgbFav"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_fav"
+                app:tint="@color/grey_background"
+                android:background="@android:color/transparent"
+                android:layout_marginRight="@dimen/small_margin"
+                app:layout_constraintTop_toTopOf="@+id/tvItemName"
+                app:layout_constraintRight_toRightOf="parent"/>
 
             <TextView
                 android:visibility="gone"

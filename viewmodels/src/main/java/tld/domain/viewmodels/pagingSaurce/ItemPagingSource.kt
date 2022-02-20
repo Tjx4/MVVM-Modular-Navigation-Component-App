@@ -5,6 +5,10 @@ import androidx.paging.PagingState
 import com.domain.myapplication.constants.PAGE_SIZE
 import com.domain.myapplication.models.Item
 import com.domain.repositories.items.ItemsRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import tld.domain.viewmodels.FavouritesViewModel
+import tld.domain.viewmodels.R
 import java.lang.NullPointerException
 
 class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSource<Int, Item>() {
@@ -19,6 +23,14 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
         else {
             val currentPage = getCurrentPage(items, loadPage).first
             val pages = getCurrentPage(items, loadPage).second
+
+            currentPage?.forEach { item ->
+                item.apply {
+                    isFav = isFave(item)
+                    tintColor = if(isFav) R.color.gold else R.color.grey_background
+                }
+            }
+
             /*
             currentPage?.forEach {
                 val url = it.metaData
@@ -43,7 +55,13 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
         LoadResult.Error(e)
     }
 
-    fun getCurrentPage(response: List<Item>, loadPage: Int): Pair<List<Item>, Int>{
+   private suspend fun isFave(item: Item) : Boolean {
+        return withContext(Dispatchers.IO){
+            itemsRepository.getFavourites()?.contains(item) ?: false
+        }
+    }
+
+   private fun getCurrentPage(response: List<Item>, loadPage: Int): Pair<List<Item>, Int>{
         val pageData = response.withIndex().groupBy {
             it.index / PAGE_SIZE
         }.values.map { items ->
