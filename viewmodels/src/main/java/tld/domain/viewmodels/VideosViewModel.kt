@@ -16,10 +16,13 @@ import kotlinx.coroutines.withContext
 import tld.domain.viewmodels.pagingSaurce.ItemPagingSource
 
 class VideosViewModel(application: Application, val itemsRepository: ItemsRepository) : AndroidViewModel(application){
-
     private var _currentItem: MutableLiveData<Pair<Item, Int>> = MutableLiveData()
     val currentItem: MutableLiveData<Pair<Item, Int>>
         get() = _currentItem
+
+    private var _favItem: MutableLiveData<Item> = MutableLiveData()
+    val favItem: MutableLiveData<Item>
+        get() = _favItem
 
     val items = Pager(config = PagingConfig(pageSize = PAGE_SIZE)) {
         ItemPagingSource(itemsRepository)
@@ -48,6 +51,17 @@ class VideosViewModel(application: Application, val itemsRepository: ItemsReposi
             }
         }
 
+    }
+
+    suspend fun addItemToFavourites(item: Item){
+        val addItem = itemsRepository.saveItemFavourites(item)
+
+        withContext(Dispatchers.Main){
+            when(addItem.isSuccessful){
+                true ->_favItem.value = item
+                else -> { /* Show error */}
+            }
+        }
     }
 
 }

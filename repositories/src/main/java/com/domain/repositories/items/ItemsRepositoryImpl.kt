@@ -5,6 +5,7 @@ import com.domain.core.persistance.room.MySqliteDB
 import com.domain.core.persistance.room.tables.favItems.FavItemsTable
 import com.domain.myapplication.constants.API_KEY
 import com.domain.myapplication.extensions.getUniqueString
+import com.domain.myapplication.models.DBOperation
 import com.domain.myapplication.models.Item
 import com.domain.myapplication.models.Image
 
@@ -43,24 +44,41 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         return favItems
     }
 
-    override suspend fun saveItemsToFavourites(favourites: List<Item>) {
-        val favouriteTables = ArrayList<FavItemsTable>()
+    override suspend fun saveItemsToFavourites(favourites: List<Item>): DBOperation {
+        return try {
+            val favouriteTables = ArrayList<FavItemsTable>()
+            favourites?.forEach {
+                val favItemTable = FavItemsTable(itemName = it.itemName, imageThumbNail = it.image?.thumbNail,  imageMedium = it.image?.medium, imageXl = it.image?.xl)
+                favouriteTables.add(favItemTable)
+            }
 
-        favourites?.forEach {
-            val favItemTable = FavItemsTable(itemName = it.itemName, imageThumbNail = it.image?.thumbNail,  imageMedium = it.image?.medium, imageXl = it.image?.xl)
-            favouriteTables.add(favItemTable)
+            database.favItemsDAO.insertAll(favouriteTables)
+            DBOperation(true)
         }
-
-        database.favItemsDAO.insertAll(favouriteTables)
+        catch (ex: Exception){
+            DBOperation(false, "$ex")
+        }
     }
 
-    override suspend fun saveItemFavourites(item: Item) {
-        val favItemTable = FavItemsTable(itemName = item.itemName, imageThumbNail = item.image?.thumbNail,  imageMedium = item.image?.medium, imageXl = item.image?.xl)
-        database.favItemsDAO.insert(favItemTable)
+    override suspend fun saveItemFavourites(item: Item): DBOperation {
+        return try {
+            val favItemTable = FavItemsTable(itemName = item.itemName, imageThumbNail = item.image?.thumbNail,  imageMedium = item.image?.medium, imageXl = item.image?.xl)
+            database.favItemsDAO.insert(favItemTable)
+            DBOperation(true)
+        }
+        catch (ex: Exception){
+            DBOperation(false, "$ex")
+        }
     }
 
-    override suspend fun clearItems() {
-        database.favItemsDAO.clear()
+    override suspend fun clearItems(): DBOperation {
+        return try {
+            database.favItemsDAO.clear()
+            DBOperation(true)
+        }
+        catch (ex: Exception){
+            DBOperation(false, "$ex")
+        }
     }
 
 }

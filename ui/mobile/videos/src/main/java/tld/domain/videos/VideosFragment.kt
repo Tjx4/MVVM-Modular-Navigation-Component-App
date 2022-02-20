@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
@@ -41,10 +42,15 @@ class VideosFragment : TopNavigationFragment(), ItemsPagingAdapter.ItemClickList
 
     private fun addObservers() {
         videosViewModel.currentItem.observe(viewLifecycleOwner, { onImageRetrieved(it) })
+        videosViewModel.favItem.observe(viewLifecycleOwner, { onItemAddedToFav(it) })
     }
 
     private fun onImageRetrieved(imageAndIndex: Pair<Item, Int>) {
         itemsPagingAdapter.notifyItemChanged(imageAndIndex.second)
+    }
+
+    private fun onItemAddedToFav(item: Item) {
+        Toast.makeText(requireContext(), getString(R.string.item_added_to_fav, item.itemName), Toast.LENGTH_SHORT).show()
     }
 
     fun initRecyclerView(){
