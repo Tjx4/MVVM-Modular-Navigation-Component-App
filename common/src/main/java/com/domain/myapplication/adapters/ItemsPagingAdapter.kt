@@ -42,7 +42,8 @@ class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item,
                 itemVisibleListener?.onItemVisible(item, position)
             }
 
-            (holder.favImgb as ImageView).setColorFilter(getColor(context, item.tintColor), android.graphics.PorterDuff.Mode.MULTIPLY)
+            val tintColor = if(item.isFav) {R.color.grey_background } else {R.color.gold }
+            (holder.favImgb as ImageView).setColorFilter(getColor(context, tintColor), android.graphics.PorterDuff.Mode.MULTIPLY)
             holder.favImgb.setOnClickListener {
                 itemClickListener?.onFavClicked(item, position)
             }

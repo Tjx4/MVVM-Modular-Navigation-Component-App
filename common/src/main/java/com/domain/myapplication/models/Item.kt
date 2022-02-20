@@ -1,6 +1,7 @@
 package com.domain.myapplication.models
 
 import android.os.Parcelable
+import com.domain.myapplication.R
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -10,4 +11,5 @@ data class Item(
     @SerializedName("itemName") var itemName: String?,
     @SerializedName("image") var image: Image?,
     @SerializedName("metaData") var metaData: String?,
-) : Parcelable, Fav()
+    @Transient var isFav: Boolean,
+) : Parcelable

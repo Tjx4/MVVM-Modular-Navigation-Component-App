@@ -37,7 +37,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         val favItemTables = database.favItemsDAO.getAllItems()
         favItemTables?.forEach {
             val image = Image(it.imageThumbNail, it.imageMedium, it.imageXl)
-            val favItem = Item(getUniqueString(), it.itemName, image, "")
+            val favItem = Item(getUniqueString(), it.itemName, image, "", true)
             favItems.add(favItem)
         }
 
