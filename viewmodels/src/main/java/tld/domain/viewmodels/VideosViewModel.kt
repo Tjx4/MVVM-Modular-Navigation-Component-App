@@ -55,7 +55,7 @@ class VideosViewModel(application: Application, val itemsRepository: ItemsReposi
     fun toggleFavItem(item: Item, position: Int){
         viewModelScope.launch(Dispatchers.IO) {
            val favItems = itemsRepository.getFavourites()
-            val ifFav = favItems?.contains(item)
+            val ifFav =  favItems?.any{  it.id == item.id }
 
             when(ifFav){
                 true -> removeItemFromFavourites(item, position)

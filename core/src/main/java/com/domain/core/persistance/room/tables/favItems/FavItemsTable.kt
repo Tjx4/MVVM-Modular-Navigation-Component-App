@@ -12,6 +12,8 @@ data class FavItemsTable (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var id:Long = 0L,
+    @ColumnInfo(name ="itemId")
+    var itemId: String? = null,
     @ColumnInfo(name ="itemName")
     var itemName: String?,
     @ColumnInfo(name = "imageThumbNail")
