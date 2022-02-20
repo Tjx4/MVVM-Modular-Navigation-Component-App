@@ -32,7 +32,6 @@ abstract class BaseFragment : Fragment() {
     }
 
     open fun onBackPressed(){
-        drawerController.popBack()
     }
 
     open fun onKeyDown(keyCode: Int, event: KeyEvent?){

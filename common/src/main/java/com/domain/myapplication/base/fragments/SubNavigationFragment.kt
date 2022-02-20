@@ -12,4 +12,8 @@ abstract class SubNavigationFragment : BaseFragment()  {
         }
     }
     */
+
+    override fun onBackPressed(){
+        drawerController.popBack()
+    }
 }

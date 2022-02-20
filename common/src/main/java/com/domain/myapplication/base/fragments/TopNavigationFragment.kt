@@ -1,5 +1,7 @@
 package com.domain.myapplication.base.fragments
 
+import android.view.KeyEvent
+
 abstract class TopNavigationFragment : BaseFragment()  {
     /*
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
@@ -10,4 +12,9 @@ abstract class TopNavigationFragment : BaseFragment()  {
         }
     }
     */
+
+
+    override fun onBackPressed(){
+    }
+
 }
