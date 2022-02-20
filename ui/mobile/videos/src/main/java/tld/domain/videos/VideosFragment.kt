@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.domain.myapplication.adapters.ItemsPagingAdapter
@@ -16,7 +15,6 @@ import com.domain.myapplication.base.fragments.TopNavigationFragment
 import com.domain.myapplication.helpers.showErrorDialog
 import com.domain.myapplication.models.Item
 import kotlinx.android.synthetic.main.fragment_videos.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -104,9 +102,7 @@ class VideosFragment : TopNavigationFragment(), ItemsPagingAdapter.ItemClickList
     }
 
     override fun onFavClicked(item: Item, position: Int) {
-        videosViewModel.viewModelScope.launch(Dispatchers.IO) {
-            videosViewModel.addItemToFavourites(item, position)
-        }
+        videosViewModel.toggleFavItem(item, position)
     }
 
     override fun onItemVisible(item: Item, position: Int) {

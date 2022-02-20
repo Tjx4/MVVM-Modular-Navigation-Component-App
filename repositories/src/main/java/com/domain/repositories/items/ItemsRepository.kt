@@ -10,5 +10,6 @@ interface ItemsRepository {
     suspend fun getFavourites(): List<Item>?
     suspend fun saveItemFavourites(item: Item): DBOperation
     suspend fun saveItemsToFavourites(favourites: List<Item>): DBOperation
+    suspend fun removeItemFromFavourites(item: Item): DBOperation
     suspend fun clearItems(): DBOperation
 }

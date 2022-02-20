@@ -52,6 +52,18 @@ class VideosViewModel(application: Application, val itemsRepository: ItemsReposi
         }
     }
 
+    fun toggleFavItem(item: Item, position: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+           val favItems = itemsRepository.getFavourites()
+            val ifFav = favItems?.contains(item)
+
+            when(ifFav){
+                true -> removeItemFromFavourites(item, position)
+                else -> addItemToFavourites(item, position)
+            }
+        }
+    }
+
     suspend fun addItemToFavourites(item: Item, position: Int){
         val addItem = itemsRepository.saveItemFavourites(item)
 
@@ -59,8 +71,23 @@ class VideosViewModel(application: Application, val itemsRepository: ItemsReposi
             when (addItem.isSuccessful) {
                 true -> {
                     item.isFav = true
-                    item.tintColor = R.color.gold
                     _favItem.value = item
+                    _currentItem.value = position
+                }
+                else -> { /* Show error */
+                }
+            }
+        }
+
+    }
+
+    suspend fun removeItemFromFavourites(item: Item, position: Int){
+        val removeItem = itemsRepository.removeItemFromFavourites(item)
+
+        withContext(Dispatchers.Main) {
+            when (removeItem.isSuccessful) {
+                true -> {
+                    item.isFav = false
                     _currentItem.value = position
                 }
                 else -> { /* Show error */
