@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
+import com.domain.myapplication.R
 import com.domain.myapplication.constants.PAGE_SIZE
 import com.domain.myapplication.models.Item
 import com.domain.repositories.items.ItemsRepository
@@ -52,6 +53,24 @@ class VideosViewModel(application: Application, val itemsRepository: ItemsReposi
         }
     }
 
+    fun checkAndShowFav(item: Item, position: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            val favItems = itemsRepository.getFavourites()
+            val ifFav =  favItems?.any{  it.id == item.id }
+
+            withContext(Dispatchers.Main) {
+                when(ifFav){
+                    true -> {
+                        item.isFav = true
+                        _currentItem.value = position
+                    }
+                    else -> { /* do something */ }
+                }
+            }
+
+        }
+    }
+
     fun toggleFavItem(item: Item, position: Int){
         viewModelScope.launch(Dispatchers.IO) {
            val favItems = itemsRepository.getFavourites()
@@ -71,14 +90,12 @@ class VideosViewModel(application: Application, val itemsRepository: ItemsReposi
             when (addItem.isSuccessful) {
                 true -> {
                     item.isFav = true
-                    _favItem.value = item
                     _currentItem.value = position
+                    _favItem.value = item
                 }
-                else -> { /* Show error */
-                }
+                else -> { /* Show error */ }
             }
         }
-
     }
 
     suspend fun removeItemFromFavourites(item: Item, position: Int){
