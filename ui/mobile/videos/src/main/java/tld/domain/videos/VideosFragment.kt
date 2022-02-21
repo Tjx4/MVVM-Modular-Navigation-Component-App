@@ -43,7 +43,6 @@ class VideosFragment : TopNavigationFragment(), ItemsPagingAdapter.ItemClickList
     private fun addObservers() {
         videosViewModel.currentItem.observe(viewLifecycleOwner, { onItemUpdated(it) })
         videosViewModel.favItem.observe(viewLifecycleOwner, { onItemAddedToFav(it) })
-        videosViewModel.isIntiItems.observe(viewLifecycleOwner, { onItemsInit() })
     }
 
     private fun onItemsInit() {

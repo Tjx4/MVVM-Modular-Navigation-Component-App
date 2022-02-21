@@ -71,6 +71,7 @@ class VideosViewModel(application: Application, val itemsRepository: ItemsReposi
         }
     }
 
+    /*
     fun iniFav(items: List<Item>){
         viewModelScope.launch(Dispatchers.IO) {
            val favItems = itemsRepository.getFavourites()
@@ -79,6 +80,7 @@ class VideosViewModel(application: Application, val itemsRepository: ItemsReposi
             }
         }
     }
+    */
 
     fun toggleFavItem(item: Item, position: Int){
         viewModelScope.launch(Dispatchers.IO) {
