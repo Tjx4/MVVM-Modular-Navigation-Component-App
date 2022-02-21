@@ -96,7 +96,6 @@ class VideosFragment : TopNavigationFragment(), ItemsPagingAdapter.ItemClickList
                     }
                     is LoadState.NotLoading -> {
                         showContent()
-                        videosViewModel.iniFav(itemsPagingAdapter.snapshot().items)
                     }
                 }
             }

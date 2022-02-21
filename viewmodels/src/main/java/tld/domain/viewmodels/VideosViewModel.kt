@@ -21,10 +21,6 @@ class VideosViewModel(application: Application, val itemsRepository: ItemsReposi
     val currentItem: MutableLiveData<Int>
         get() = _currentItem
 
-    private var _isIntiItems: MutableLiveData<Boolean> = MutableLiveData()
-    val isIntiItems: MutableLiveData<Boolean>
-        get() = _isIntiItems
-
     private var _favItem: MutableLiveData<Item> = MutableLiveData()
     val favItem: MutableLiveData<Item>
         get() = _favItem
@@ -80,10 +76,6 @@ class VideosViewModel(application: Application, val itemsRepository: ItemsReposi
            val favItems = itemsRepository.getFavourites()
             favItems?.forEach { item ->
                 item.isFav = favItems?.any{ it.id == item.id }
-            }
-
-            withContext(Dispatchers.Main) {
-                _isIntiItems.value = true
             }
         }
     }
