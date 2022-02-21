@@ -9,11 +9,9 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity(tableName = "fav_items")
 data class FavItemsTable (
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id")
-    var id:Long = 0L,
-    @ColumnInfo(name ="itemId")
-    var itemId: String? = null,
+    var id: String,
     @ColumnInfo(name ="itemName")
     var itemName: String?,
     @ColumnInfo(name = "imageThumbNail")

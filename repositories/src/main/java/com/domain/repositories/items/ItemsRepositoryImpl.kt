@@ -37,7 +37,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         val favItemTables = database.favItemsDAO.getAllItems()
         favItemTables?.forEach {
             val image = Image(it.imageThumbNail, it.imageMedium, it.imageXl)
-            val favItem = Item(it.itemId, it.itemName, image, "", true)
+            val favItem = Item(it.id, it.itemName, image, "", true)
             favItems.add(favItem)
         }
 
@@ -46,7 +46,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
 
     override suspend fun saveItemFavourites(item: Item): DBOperation {
         return try {
-            val favItemTable = FavItemsTable(itemId = item.id, itemName = item.itemName, imageThumbNail = item.image?.thumbNail,  imageMedium = item.image?.medium, imageXl = item.image?.xl)
+            val favItemTable = FavItemsTable(id = "${item.id}", itemName = item.itemName, imageThumbNail = item.image?.thumbNail,  imageMedium = item.image?.medium, imageXl = item.image?.xl)
             database.favItemsDAO.insert(favItemTable)
             DBOperation(true)
         }
@@ -59,7 +59,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         return try {
             val favouriteTables = ArrayList<FavItemsTable>()
             favourites?.forEach {
-                val favItemTable = FavItemsTable(itemId = it.id, itemName = it.itemName, imageThumbNail = it.image?.thumbNail,  imageMedium = it.image?.medium, imageXl = it.image?.xl)
+                val favItemTable = FavItemsTable(id = "${it.id}", itemName = it.itemName, imageThumbNail = it.image?.thumbNail,  imageMedium = it.image?.medium, imageXl = it.image?.xl)
                 favouriteTables.add(favItemTable)
             }
 
@@ -73,7 +73,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
 
     override suspend fun removeItemFromFavourites(item: Item): DBOperation {
         return try {
-            val favItemTable = FavItemsTable(itemId = item.id, itemName = item.itemName, imageThumbNail = item.image?.thumbNail,  imageMedium = item.image?.medium, imageXl = item.image?.xl)
+            val favItemTable = FavItemsTable(id = "${item.id}", itemName = item.itemName, imageThumbNail = item.image?.thumbNail,  imageMedium = item.image?.medium, imageXl = item.image?.xl)
             database.favItemsDAO.delete(favItemTable)
             DBOperation(true)
         }
