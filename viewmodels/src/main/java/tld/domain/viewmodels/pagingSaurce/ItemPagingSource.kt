@@ -20,8 +20,8 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
         if (items == null) {
             LoadResult.Error(NullPointerException("Unknown error"))
         } else {
-            val currentPage = getCurrentPage(items, loadPage).first
-            val pages = getCurrentPage(items, loadPage).second
+            val currentPage = getCurrentPage(items, loadPage)
+            val pages = items.size / PAGE_SIZE
 
             /*
             currentPage?.forEach {
@@ -46,7 +46,7 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
         LoadResult.Error(e)
     }
 
-   private fun getCurrentPage(response: List<Item>, loadPage: Int): Pair<List<Item>, Int>{
+   private fun getCurrentPage(response: List<Item>, loadPage: Int): List<Item>{
         val pageData = response.withIndex().groupBy {
             it.index / PAGE_SIZE
         }.values.map { items ->
@@ -55,7 +55,7 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
             }
         }
 
-        return Pair(pageData[loadPage], pageData.size)
+        return pageData[loadPage]
     }
 
     override fun getRefreshKey(state: PagingState<Int, Item>): Int? {
