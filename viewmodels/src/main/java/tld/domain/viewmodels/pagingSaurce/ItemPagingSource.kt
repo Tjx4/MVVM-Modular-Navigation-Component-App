@@ -21,7 +21,9 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
             LoadResult.Error(NullPointerException("Unknown error"))
         } else {
             val currentPage = getCurrentPage(items, loadPage)
-            val pages = items.size / PAGE_SIZE
+            val mainPages = items.size / PAGE_SIZE
+            val additionalPages = if((items.size % PAGE_SIZE) > 0) 1 else 0
+            val pages = mainPages + additionalPages
 
             /*
             currentPage?.forEach {
