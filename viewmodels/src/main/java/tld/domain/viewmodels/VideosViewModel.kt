@@ -29,6 +29,7 @@ class VideosViewModel(application: Application, val itemsRepository: ItemsReposi
         ItemPagingSource(itemsRepository)
     }.flow.cachedIn(viewModelScope)
 
+
     fun checkAndFetchImage(item: Item, position: Int){
         if(item.image != null || item.metaData.isNullOrEmpty()) return
 
