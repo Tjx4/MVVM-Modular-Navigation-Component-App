@@ -12,4 +12,5 @@ val viewModelModule = module {
     viewModel { ViewItemViewModel(androidApplication()) }
     viewModel { VideosViewModel(androidApplication(), get()) }
     viewModel { DownloadsViewModel(androidApplication()) }
+    viewModel { PlayerViewModel(androidApplication(), get()) }
 }

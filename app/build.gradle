@@ -79,4 +79,5 @@ dependencies {
     implementation project(':ui:mobile:viewItem')
     implementation project(':ui:mobile:videos')
     implementation project(':ui:mobile:downloads')
+    implementation project(':ui:shared:player')
 }
