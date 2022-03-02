@@ -2,6 +2,7 @@ package tld.domain.player
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.viewModelScope
@@ -30,6 +31,8 @@ class PlayerActivity : AppCompatActivity() {
         playerViewModel.setVideoId(videoId)
 
         addObservers()
+
+        Toast.makeText(this, "id = $videoId", Toast.LENGTH_SHORT).show()
     }
 
     private fun addObservers() {
