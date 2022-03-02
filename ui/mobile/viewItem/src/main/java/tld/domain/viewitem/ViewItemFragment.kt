@@ -33,19 +33,30 @@ class ViewItemFragment : SubNavigationFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.getParcelable<Item>(FAV_ITEM)?.let {
-            viewItemViewModel.setFunItem(it)
-
-            it.image?.xl?.let { url ->
-                imgFavouriteItemIcon.loadImageFromUrl(requireContext(), url, com.domain.myapplication.R.drawable.ic_img_dark)
-            }
-        }
-
         imgBtnBack.setOnClickListener {
             vibratePhone(DURATION_SHORT)
             it.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {
                 onBackPressed()
             })
         }
+
+        arguments?.getParcelable<Item>(FAV_ITEM)?.let {
+            viewItemViewModel.setFunItem(it)
+
+            it.image?.xl?.let { url ->
+                imgFavouriteItemIcon.loadImageFromUrl(requireContext(), url, com.domain.myapplication.R.drawable.ic_img_dark)
+            }
+
+            imgbPlayVid.setOnClickListener { playButton ->
+                vibratePhone(DURATION_SHORT)
+                playButton.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {
+                    it.id?.let { id ->
+                        drawerController.navigateFromViewItemToPlayer(id)
+                    }
+                })
+            }
+        }
+
+
     }
 }

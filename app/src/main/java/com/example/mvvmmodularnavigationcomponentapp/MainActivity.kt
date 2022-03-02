@@ -18,6 +18,7 @@ import tld.domain.favourites.FavouritesFragmentDirections
 import tld.domain.login.LoginFragmentDirections
 import tld.domain.player.PlayerFragment
 import tld.domain.videos.VideosFragmentDirections
+import tld.domain.viewitem.ViewItemFragmentDirections
 
 class MainActivity : AppCompatActivity(), MyDrawerController {
     override var currentFragment: BaseFragment? = null
@@ -50,9 +51,9 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
         navController.navigate(action)
     }
 
-    override fun navigateFromViewItemToPlayer(video: Video) {
-        //val action = PlayerFragmentDirections.ff(video)
-        //navController.navigate(action)
+    override fun navigateFromViewItemToPlayer(videoId: String) {
+        val action = ViewItemFragmentDirections.actionViewItemFragmentToPlayerFragment(videoId)
+        navController.navigate(action)
     }
 
     override fun popAll() {

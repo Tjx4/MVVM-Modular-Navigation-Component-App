@@ -44,7 +44,6 @@ class LoginViewModel(application: Application, val authenticationRepository: Aut
     val skipLogin: MutableLiveData<Boolean>
         get() = _skipLogin
 
-
     init {
         if(authenticationRepository.isUserLoggedIn()) {
             _skipLogin.value = true
@@ -71,13 +70,12 @@ class LoginViewModel(application: Application, val authenticationRepository: Aut
     fun isValidPassword(password: String) = password.isValidPassword()
 
     suspend fun loginUser(username: String, password: String){
-        val login = authenticationRepository.loginUser(username, password)
+        val response = authenticationRepository.loginUser(username, password)
 
         withContext(Dispatchers.Main) {
-            when {
-                login == null -> _loginErrorMessage.value = app.getString(R.string.login_error_message)
-                login?.API != null -> _loginErrorMessage.value = login?.API?.errorMessage
-                else -> _currentUser.value = login.user
+            when(response?.data) {
+                null -> _loginErrorMessage.value = response.errorMessage
+                else -> _currentUser.value = response.data as User
             }
         }
     }

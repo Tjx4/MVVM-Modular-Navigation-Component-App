@@ -87,6 +87,7 @@
         android:id="@+id/downloadsFragment"
         android:name="com.example.downloads.DownloadsFragment"
         android:label="DownloadsFragment" />
+
     <fragment
         android:id="@+id/playerFragment"
         android:name="tld.domain.player.PlayerFragment"

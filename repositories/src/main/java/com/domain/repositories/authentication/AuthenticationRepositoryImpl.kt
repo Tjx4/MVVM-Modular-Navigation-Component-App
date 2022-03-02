@@ -8,11 +8,8 @@ import com.domain.myapplication.models.Image
 import com.domain.myapplication.models.User
 
 class AuthenticationRepositoryImpl(private val retrofitServices: RetrofitServices, private val mySqliteDB: MySqliteDB, private val sharedPrefs: SharedPrefs) : AuthenticationRepository {
-    override suspend fun loginUser(username: String, password: String): APIResponse? {
-        return if(username == "" || password == "" ){
-            null
-        }
-        else if(username == "email@domain.tld"  &&  password == "Pl@12345"){
+    override suspend fun loginUser(username: String, password: String): APIResponse {
+        return if(username == "email@domain.tld"  &&  password == "Pl@12345"){
             val picture = Image(
                 "http://appicsoftware.xyz/demo/images/tshepo.jpg",
                 "http://appicsoftware.xyz/demo/images/tshepo.jpg",

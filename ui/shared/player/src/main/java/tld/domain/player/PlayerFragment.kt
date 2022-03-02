@@ -96,7 +96,7 @@ class PlayerFragment : TopNavigationFragment(){
 
     override fun onResume() {
         super.onResume()
-        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        //activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
     }
 
 }
