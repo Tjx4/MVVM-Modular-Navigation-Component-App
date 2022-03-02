@@ -3,6 +3,7 @@ package com.domain.myapplication.drawerController
 import androidx.navigation.NavController
 import com.domain.myapplication.base.fragments.BaseFragment
 import com.domain.myapplication.models.Item
+import com.domain.myapplication.models.Video
 
 interface MyDrawerController {
     var currentFragment: BaseFragment?
@@ -11,6 +12,7 @@ interface MyDrawerController {
     fun navigateFromDashboardToFavourites()
     fun navigateFromFavouritesToViewItem(item: Item)
     fun navigateFromVideoToViewItem(item: Item)
+    fun navigateFromViewItemToPlayer(video: Video)
     fun popAll()
     fun popBack()
     fun showBottomNav()

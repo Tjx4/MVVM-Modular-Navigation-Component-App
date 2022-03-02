@@ -12,9 +12,10 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.player.databinding.FragmentPlayerBinding
 import tld.domain.viewmodels.PlayerViewModel
 import android.content.pm.ActivityInfo
-
-
-
+import com.domain.myapplication.constants.FAV_ITEM
+import com.domain.myapplication.constants.VIDEO
+import com.domain.myapplication.models.Item
+import com.domain.myapplication.models.Video
 
 class PlayerFragment : TopNavigationFragment(){
     private lateinit var binding: FragmentPlayerBinding
@@ -31,6 +32,10 @@ class PlayerFragment : TopNavigationFragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         addObservers()
+
+        arguments?.getParcelable<Video>(VIDEO)?.let {
+            val vid = it
+        }
     }
 
     private fun addObservers() {

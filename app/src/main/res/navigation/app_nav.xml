@@ -57,6 +57,15 @@
             android:name="favItem"
             app:argType="com.domain.myapplication.models.Item"
             app:nullable="false" />
+        <action
+            android:id="@+id/action_viewItemFragment_to_playerFragment"
+            app:destination="@id/playerFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/no_transition"
+            app:popEnterAnim="@anim/no_transition"
+            app:popExitAnim="@anim/fade_out"
+            app:popUpTo="@id/viewItemFragment"
+            app:popUpToInclusive="false"/>
     </fragment>
 
     <fragment
@@ -78,5 +87,14 @@
         android:id="@+id/downloadsFragment"
         android:name="com.example.downloads.DownloadsFragment"
         android:label="DownloadsFragment" />
+    <fragment
+        android:id="@+id/playerFragment"
+        android:name="tld.domain.player.PlayerFragment"
+        android:label="PlayerFragment">
+        <argument
+            android:name="video"
+            app:argType="com.domain.myapplication.models.Video"
+            app:nullable="false" />
+    </fragment>
 
 </navigation>

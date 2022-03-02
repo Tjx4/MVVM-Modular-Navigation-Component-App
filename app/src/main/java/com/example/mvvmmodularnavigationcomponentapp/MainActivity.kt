@@ -12,9 +12,11 @@ import com.domain.myapplication.base.fragments.TopNavigationFragment
 import com.domain.myapplication.drawerController.MyDrawerController
 import com.domain.myapplication.extensions.setupWithCustomAnimNavController
 import com.domain.myapplication.models.Item
+import com.domain.myapplication.models.Video
 import kotlinx.android.synthetic.main.activity_main.*
 import tld.domain.favourites.FavouritesFragmentDirections
 import tld.domain.login.LoginFragmentDirections
+import tld.domain.player.PlayerFragment
 import tld.domain.videos.VideosFragmentDirections
 
 class MainActivity : AppCompatActivity(), MyDrawerController {
@@ -46,6 +48,11 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
     override fun navigateFromVideoToViewItem(item: Item) {
         val action = VideosFragmentDirections.actionVideosFragmentToViewFavouriteFragment(item)
         navController.navigate(action)
+    }
+
+    override fun navigateFromViewItemToPlayer(video: Video) {
+        //val action = PlayerFragmentDirections.ff(video)
+        //navController.navigate(action)
     }
 
     override fun popAll() {
