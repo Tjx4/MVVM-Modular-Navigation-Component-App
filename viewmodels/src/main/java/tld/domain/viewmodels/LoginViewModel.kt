@@ -1,9 +1,7 @@
 package tld.domain.viewmodels
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.domain.core.persistance.sharedPrefs.SharedPrefs
 import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.extensions.isValidEmailORMobile
 import com.domain.myapplication.extensions.isValidPassword
@@ -78,7 +76,7 @@ class LoginViewModel(application: Application, val authenticationRepository: Aut
         withContext(Dispatchers.Main) {
             when {
                 login == null -> _loginErrorMessage.value = app.getString(R.string.login_error_message)
-                login?.error != null -> _loginErrorMessage.value = login?.error?.message
+                login?.API != null -> _loginErrorMessage.value = login?.API?.errorMessage
                 else -> _currentUser.value = login.user
             }
         }

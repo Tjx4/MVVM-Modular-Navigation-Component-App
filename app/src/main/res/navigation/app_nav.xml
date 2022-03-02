@@ -92,8 +92,8 @@
         android:name="tld.domain.player.PlayerFragment"
         android:label="PlayerFragment">
         <argument
-            android:name="video"
-            app:argType="com.domain.myapplication.models.Video"
+            android:name="videoId"
+            app:argType="string"
             app:nullable="false" />
     </fragment>
 

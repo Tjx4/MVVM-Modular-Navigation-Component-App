@@ -2,13 +2,11 @@ package tld.domain.viewmodels
 
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.domain.myapplication.models.ErrorResponse
+import com.domain.myapplication.models.APIResponse
 import com.domain.myapplication.models.Image
-import com.domain.myapplication.models.LoginResponse
 import com.domain.myapplication.models.User
 import com.domain.repositories.authentication.AuthenticationRepository
 import junit.framework.Assert.assertEquals
-import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -22,10 +20,7 @@ import org.junit.rules.TestRule
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations.openMocks
-import android.R.attr.password
 
-import java.util.concurrent.ThreadLocalRandom.current
-import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 
@@ -72,7 +67,7 @@ class LoginViewModelTest {
         val password = "P@12345"
         val expectedErrorMessage = "Incorrect password"
 
-        val mockResponse = LoginResponse(null, ErrorResponse(expectedErrorMessage))
+        val mockResponse = LoginResponse(null, APIResponse(expectedErrorMessage))
         Mockito.`when`(loginViewModel.authenticationRepository.loginUser(username, password)).thenReturn(mockResponse)
         loginViewModel.loginUser(username, password)
 

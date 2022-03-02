@@ -3,13 +3,12 @@ package com.domain.repositories.authentication
 import com.domain.core.networking.retrofit.RetrofitServices
 import com.domain.core.persistance.room.MySqliteDB
 import com.domain.core.persistance.sharedPrefs.SharedPrefs
-import com.domain.myapplication.models.ErrorResponse
-import com.domain.myapplication.models.LoginResponse
+import com.domain.myapplication.models.APIResponse
 import com.domain.myapplication.models.Image
 import com.domain.myapplication.models.User
 
 class AuthenticationRepositoryImpl(private val retrofitServices: RetrofitServices, private val mySqliteDB: MySqliteDB, private val sharedPrefs: SharedPrefs) : AuthenticationRepository {
-    override suspend fun loginUser(username: String, password: String): LoginResponse? {
+    override suspend fun loginUser(username: String, password: String): APIResponse? {
         return if(username == "" || password == "" ){
             null
         }
@@ -23,10 +22,10 @@ class AuthenticationRepositoryImpl(private val retrofitServices: RetrofitService
             val user = User(username, "Tshepo", picture)
 
             sharedPrefs.currentUser = user
-            LoginResponse(user, null)
+            APIResponse(user)
         }
         else{
-            LoginResponse(null, ErrorResponse("Incorrect login details"))
+            APIResponse(null, "Incorrect login details")
         }
 
         /*

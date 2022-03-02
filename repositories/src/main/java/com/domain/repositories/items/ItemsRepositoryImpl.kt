@@ -5,9 +5,7 @@ import com.domain.core.persistance.room.MySqliteDB
 import com.domain.core.persistance.room.tables.favItems.FavItemsTable
 import com.domain.myapplication.constants.API_KEY
 import com.domain.myapplication.extensions.getUniqueString
-import com.domain.myapplication.models.DBOperation
-import com.domain.myapplication.models.Item
-import com.domain.myapplication.models.Image
+import com.domain.myapplication.models.*
 
 class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, private val database: MySqliteDB) : ItemsRepository {
 
@@ -28,6 +26,17 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         catch (ex: Exception) {
             //firebaseCrashlytics.recordException(ex)
             null
+        }
+    }
+
+    override suspend fun getItemVideo(id: String): APIResponse  {
+        return try {
+            val video = retrofitServices.getItemVideo(API_KEY, id)
+            APIResponse(video)
+        }
+        catch (ex: Exception) {
+            //firebaseCrashlytics.recordException(ex)
+            APIResponse(null, ex.message)
         }
     }
 
