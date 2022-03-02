@@ -9,16 +9,18 @@ import androidx.navigation.findNavController
 import com.domain.dashboard.DashboardFragmentDirections
 import com.domain.myapplication.base.fragments.BaseFragment
 import com.domain.myapplication.base.fragments.TopNavigationFragment
+import com.domain.myapplication.constants.MAIN_ACTIVITY
+import com.domain.myapplication.constants.PLAYER_ACTIVITY
+import com.domain.myapplication.constants.VIDEO_ID
 import com.domain.myapplication.drawerController.MyDrawerController
+import com.domain.myapplication.extensions.FADE_IN_ACTIVITY
+import com.domain.myapplication.extensions.navigateToActivity
 import com.domain.myapplication.extensions.setupWithCustomAnimNavController
 import com.domain.myapplication.models.Item
-import com.domain.myapplication.models.Video
 import kotlinx.android.synthetic.main.activity_main.*
 import tld.domain.favourites.FavouritesFragmentDirections
 import tld.domain.login.LoginFragmentDirections
-import tld.domain.player.PlayerFragment
 import tld.domain.videos.VideosFragmentDirections
-import tld.domain.viewitem.ViewItemFragmentDirections
 
 class MainActivity : AppCompatActivity(), MyDrawerController {
     override var currentFragment: BaseFragment? = null
@@ -52,8 +54,9 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
     }
 
     override fun navigateFromViewItemToPlayer(videoId: String) {
-        val action = ViewItemFragmentDirections.actionViewItemFragmentToPlayerFragment(videoId)
-        navController.navigate(action)
+        val payload = Bundle()
+        payload.putString(VIDEO_ID, videoId)
+        navigateToActivity(PLAYER_ACTIVITY, payload, FADE_IN_ACTIVITY)
     }
 
     override fun popAll() {

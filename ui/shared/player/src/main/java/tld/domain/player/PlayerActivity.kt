@@ -1,49 +1,43 @@
 package tld.domain.player
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.domain.myapplication.base.fragments.TopNavigationFragment
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import tld.domain.player.databinding.FragmentPlayerBinding
-import tld.domain.viewmodels.PlayerViewModel
-import android.content.pm.ActivityInfo
 import androidx.lifecycle.viewModelScope
+import com.domain.myapplication.constants.PAYLOAD_KEY
 import com.domain.myapplication.constants.VIDEO_ID
 import com.domain.myapplication.helpers.showErrorDialog
 import com.domain.myapplication.models.Video
-import kotlinx.android.synthetic.main.fragment_player.*
+import kotlinx.android.synthetic.main.activity_player.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import tld.domain.player.databinding.ActivityPlayerBinding
+import tld.domain.viewmodels.PlayerViewModel
 
-class PlayerFragment : TopNavigationFragment(){
-    private lateinit var binding: FragmentPlayerBinding
+class PlayerActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityPlayerBinding
     private val playerViewModel: PlayerViewModel by viewModel()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_player, container, false)
-        binding.lifecycleOwner = this
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_player)
         binding.playerViewModel = playerViewModel
-        return binding.root
-    }
+        binding.lifecycleOwner = this
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        addObservers()
-
-        val videoId = arguments?.getString(VIDEO_ID)
+        val videoId = intent.extras?.getBundle(PAYLOAD_KEY)?.getString(VIDEO_ID)
         playerViewModel.setVideoId(videoId)
+
+        addObservers()
     }
 
     private fun addObservers() {
-        playerViewModel.isLoading.observe(viewLifecycleOwner, { onLoading() })
-        playerViewModel.videoIdError.observe(viewLifecycleOwner, { onVideoIdError() })
-        playerViewModel.videoId.observe(viewLifecycleOwner, { onVideoIdSet(it) })
-        playerViewModel.videoError.observe(viewLifecycleOwner, { onVideoError(it) })
-        playerViewModel.video.observe(viewLifecycleOwner, { onVideoSet(it) })
+        playerViewModel.isLoading.observe(this, { onLoading() })
+        playerViewModel.videoIdError.observe(this, { onVideoIdError() })
+        playerViewModel.videoId.observe(this, { onVideoIdSet(it) })
+        playerViewModel.videoError.observe(this, { onVideoError(it) })
+        playerViewModel.video.observe(this, { onVideoSet(it) })
     }
 
     private fun onLoading(){
@@ -54,12 +48,12 @@ class PlayerFragment : TopNavigationFragment(){
         avlPlayerLoader.visibility = View.GONE
 
         showErrorDialog(
-            requireContext(),
+            this,
             getString(R.string.error),
             getString(tld.domain.viewmodels.R.string.no_video_id),
             getString(R.string.close)
         ) {
-            drawerController.popBack()
+            finish()
         }
     }
 
@@ -70,12 +64,13 @@ class PlayerFragment : TopNavigationFragment(){
     private fun onVideoError(errorMessage: String){
         avlPlayerLoader.visibility = View.GONE
         showErrorDialog(
-            requireContext(),
+            this,
             getString(R.string.error),
             errorMessage,
             getString(R.string.retry)
         ) {
             playerViewModel.videoId.value?.let {
+                avlPlayerLoader.visibility = View.VISIBLE
                 fetchVideoById(it)
             }
         }
@@ -92,11 +87,6 @@ class PlayerFragment : TopNavigationFragment(){
     private fun onVideoSet(video: Video){
         avlPlayerLoader.visibility = View.GONE
         playerViewModel.startPlayback(video)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        //activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
     }
 
 }

@@ -27,4 +27,5 @@
     <color name="dark_background">#000</color>
     <color name="dark_background_2">#222</color>
     <color name="dark_background_3">#333</color>
+    <color name="trans_gray_1">#7FFFFFFF</color>
 </resources>

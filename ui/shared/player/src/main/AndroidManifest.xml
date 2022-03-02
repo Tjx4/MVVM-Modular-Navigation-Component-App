@@ -2,4 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tld.domain.player">
 
+    <application>
+        <activity
+            android:name=".PlayerActivity"
+            android:theme="@style/NoActionBarTheme"
+            android:exported="false"
+            android:screenOrientation="landscape"/>
+    </application>
+
 </manifest>
