@@ -24,6 +24,8 @@
             <option value="$PROJECT_DIR$/ui/mobile/splash" />
             <option value="$PROJECT_DIR$/ui/mobile/videos" />
             <option value="$PROJECT_DIR$/ui/mobile/viewItem" />
+            <option value="$PROJECT_DIR$/ui/shared" />
+            <option value="$PROJECT_DIR$/ui/shared/player" />
             <option value="$PROJECT_DIR$/viewmodels" />
           </set>
         </option>
