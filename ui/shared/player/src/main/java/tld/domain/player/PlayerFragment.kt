@@ -11,6 +11,10 @@ import com.domain.myapplication.base.fragments.TopNavigationFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.player.databinding.FragmentPlayerBinding
 import tld.domain.viewmodels.PlayerViewModel
+import android.content.pm.ActivityInfo
+
+
+
 
 class PlayerFragment : TopNavigationFragment(){
     private lateinit var binding: FragmentPlayerBinding
@@ -31,6 +35,11 @@ class PlayerFragment : TopNavigationFragment(){
 
     private fun addObservers() {
        // playerViewModel.ld.observe(viewLifecycleOwner, { })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
     }
 
 }
