@@ -160,19 +160,23 @@ class PlayerActivity : AppCompatActivity() {
         player?.seekTo(currentWindow, playbackPosition)
         player?.prepare()
 
+        addPlayerListener()
+    }
 
+    private fun addPlayerListener() {
         player?.addListener(object : Player.EventListener {
-            fun onTimelineChanged(timeline: Timeline?, manifest: Any?) {}
-            override fun onTracksChanged(
-                trackGroups: TrackGroupArray,
-                trackSelections: TrackSelectionArray
-            ) {
+            fun onTimelineChanged(timeline: Timeline?, manifest: Any?) {
+
+            }
+
+            override fun onTracksChanged(trackGroups: TrackGroupArray, trackSelections: TrackSelectionArray) {
+
             }
 
             override fun onLoadingChanged(isLoading: Boolean) {
 
-
             }
+
             override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
                 if (playbackState == ExoPlayer.STATE_BUFFERING) {
                     avlPlayerLoader.visibility = View.VISIBLE
@@ -183,11 +187,12 @@ class PlayerActivity : AppCompatActivity() {
 
             override fun onPlayerError(error: ExoPlaybackException) {
 
-
             }
+
             fun onPositionDiscontinuity() {
 
             }
+
             override fun onPlaybackParametersChanged(playbackParameters: PlaybackParameters) {
 
             }
