@@ -11,8 +11,7 @@ import com.domain.myapplication.constants.PAYLOAD_KEY
 import com.domain.myapplication.constants.VIDEO_ID
 import com.domain.myapplication.helpers.showErrorDialog
 import com.domain.myapplication.models.Video
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.util.Util
 import kotlinx.android.synthetic.main.activity_player.*
@@ -21,6 +20,11 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.player.databinding.ActivityPlayerBinding
 import tld.domain.viewmodels.PlayerViewModel
+
+import com.google.android.exoplayer2.trackselection.TrackSelectionArray
+
+import com.google.android.exoplayer2.source.TrackGroupArray
+
 
 class PlayerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPlayerBinding
@@ -41,8 +45,6 @@ class PlayerActivity : AppCompatActivity() {
         playerViewModel.setVideoId(videoId)
 
         addObservers()
-
-        Toast.makeText(this, "id = $videoId", Toast.LENGTH_SHORT).show()
     }
 
     override fun onStart() {
@@ -133,7 +135,6 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun onVideoSet(video: Video){
-        avlPlayerLoader.visibility = View.GONE
         playerViewModel.startPlayback(video)
     }
 
@@ -158,6 +159,39 @@ class PlayerActivity : AppCompatActivity() {
         player?.playWhenReady = playWhenReady
         player?.seekTo(currentWindow, playbackPosition)
         player?.prepare()
+
+
+        player?.addListener(object : Player.EventListener {
+            fun onTimelineChanged(timeline: Timeline?, manifest: Any?) {}
+            override fun onTracksChanged(
+                trackGroups: TrackGroupArray,
+                trackSelections: TrackSelectionArray
+            ) {
+            }
+
+            override fun onLoadingChanged(isLoading: Boolean) {
+
+
+            }
+            override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+                if (playbackState == ExoPlayer.STATE_BUFFERING) {
+                    avlPlayerLoader.visibility = View.VISIBLE
+                } else {
+                    avlPlayerLoader.visibility = View.GONE
+                }
+            }
+
+            override fun onPlayerError(error: ExoPlaybackException) {
+
+
+            }
+            fun onPositionDiscontinuity() {
+
+            }
+            override fun onPlaybackParametersChanged(playbackParameters: PlaybackParameters) {
+
+            }
+        })
     }
 
     private fun releasePlayer() {
