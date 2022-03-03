@@ -184,6 +184,7 @@ class PlayerActivity : AppCompatActivity() {
 // val secondMediaItem = MediaItem.fromUri("http://appicsoftware.xyz/api/cars/videos/bugatti/4k_bug.mp4")
 // player?.addMediaItem(secondMediaItem)
 */
+
         player?.playWhenReady = playWhenReady
         player?.seekTo(currentWindow, playbackPosition)
         player?.prepare()
