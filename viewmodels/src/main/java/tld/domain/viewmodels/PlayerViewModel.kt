@@ -70,7 +70,6 @@ class PlayerViewModel(application: Application, val authenticationRepository: Au
         }
     }
 
-
     fun handlePlayerState(playWhenReady: Boolean, playbackState: Int){
         when (playbackState) {
             ExoPlayer.STATE_BUFFERING -> _isLoading.value = true
