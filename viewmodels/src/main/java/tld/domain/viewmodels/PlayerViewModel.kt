@@ -31,6 +31,14 @@ class PlayerViewModel(application: Application, val authenticationRepository: Au
     val video: MutableLiveData<Video>
         get() = _video
 
+    private val _noVideo: MutableLiveData<Boolean> = MutableLiveData()
+    val noVideo: MutableLiveData<Boolean>
+        get() = _noVideo
+
+    private val _videoUri: MutableLiveData<String> = MutableLiveData()
+    val videoUri: MutableLiveData<String>
+        get() = _videoUri
+
     fun setVideoId(videoId: String?){
         when{
             videoId?.isNullOrEmpty() == true -> _videoIdError.value = true
@@ -50,7 +58,10 @@ class PlayerViewModel(application: Application, val authenticationRepository: Au
     }
 
     fun startPlayback(video: Video){
-        val dd = video.high
+        when{
+            video.high.isNullOrEmpty() -> _noVideo.value = true
+            else -> _videoUri.value = video.high
+        }
     }
 
 }
