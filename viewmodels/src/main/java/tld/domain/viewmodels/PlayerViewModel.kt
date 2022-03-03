@@ -7,6 +7,7 @@ import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.models.Video
 import com.domain.repositories.authentication.AuthenticationRepository
 import com.domain.repositories.items.ItemsRepository
+import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.ExoPlayer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -75,6 +76,16 @@ class PlayerViewModel(application: Application, val authenticationRepository: Au
             ExoPlayer.STATE_BUFFERING -> _isLoading.value = true
             else -> _showVideo.value = true
         }
+    }
+
+    fun handlePlayerError(error: ExoPlaybackException){
+      _videoError.value = error.message
+        /*
+        when (error) {
+            //ExoPlayer.STATE_BUFFERING -> _isLoading.value = true
+            else -> _videoError.value = error.message
+        }
+        */
     }
 
 }

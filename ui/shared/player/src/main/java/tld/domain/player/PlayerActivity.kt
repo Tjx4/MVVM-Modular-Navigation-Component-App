@@ -3,7 +3,6 @@ package tld.domain.player
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.viewModelScope
@@ -12,7 +11,10 @@ import com.domain.myapplication.constants.VIDEO_ID
 import com.domain.myapplication.helpers.showErrorDialog
 import com.domain.myapplication.models.Video
 import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.source.TrackGroupArray
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
+import com.google.android.exoplayer2.trackselection.TrackSelectionArray
+import com.google.android.exoplayer2.util.MimeTypes
 import com.google.android.exoplayer2.util.Util
 import kotlinx.android.synthetic.main.activity_player.*
 import kotlinx.coroutines.Dispatchers
@@ -20,10 +22,6 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.player.databinding.ActivityPlayerBinding
 import tld.domain.viewmodels.PlayerViewModel
-
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray
-
-import com.google.android.exoplayer2.source.TrackGroupArray
 
 
 class PlayerActivity : AppCompatActivity() {
@@ -158,10 +156,34 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun initializePlayer(url: String) {
+        if (player == null) {
+            val trackSelector = DefaultTrackSelector(this)
+            trackSelector.setParameters(
+                trackSelector.buildUponParameters().setMaxVideoSizeSd()
+            )
+            player = SimpleExoPlayer.Builder(this)
+                .setTrackSelector(trackSelector)
+                .build()
+        }
+
+        video_view.player = player
+        val mediaItem = MediaItem.Builder()
+            .setUri(getString(R.string.media_url_dash))
+            .setMimeType(MimeTypes.APPLICATION_MPD)
+            .build()
+
+        player?.setMediaItem(mediaItem)
+
+/*
         player = SimpleExoPlayer.Builder(this).build()
         video_view.player = player
+
         val mediaItem = MediaItem.fromUri(url)
         player?.setMediaItem(mediaItem)
+
+// val secondMediaItem = MediaItem.fromUri("http://appicsoftware.xyz/api/cars/videos/bugatti/4k_bug.mp4")
+// player?.addMediaItem(secondMediaItem)
+*/
         player?.playWhenReady = playWhenReady
         player?.seekTo(currentWindow, playbackPosition)
         player?.prepare()
@@ -188,7 +210,7 @@ class PlayerActivity : AppCompatActivity() {
             }
 
             override fun onPlayerError(error: ExoPlaybackException) {
-
+                playerViewModel.handlePlayerError(error)
             }
 
             fun onPositionDiscontinuity() {
