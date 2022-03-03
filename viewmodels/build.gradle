@@ -63,6 +63,10 @@ dependencies {
     implementation "org.koin:koin-androidx-scope:$koin_version"
     //Paging
     implementation "androidx.paging:paging-runtime:$paging_version"
+    //exoplayer
+    implementation "com.google.android.exoplayer:exoplayer-core:$exo_player"
+    implementation "com.google.android.exoplayer:exoplayer-dash:$exo_player"
+    implementation "com.google.android.exoplayer:exoplayer-ui:$exo_player"
 
     //Modules
     implementation project(':common')

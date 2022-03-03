@@ -82,6 +82,7 @@ class PlayerActivity : AppCompatActivity() {
 
     private fun addObservers() {
         playerViewModel.isLoading.observe(this, { onLoading() })
+        playerViewModel.showVideo.observe(this, { showContent() })
         playerViewModel.videoIdError.observe(this, { onVideoIdError() })
         playerViewModel.videoId.observe(this, { onVideoIdSet(it) })
         playerViewModel.videoError.observe(this, { onVideoError(it) })
@@ -94,8 +95,12 @@ class PlayerActivity : AppCompatActivity() {
         avlPlayerLoader.visibility = View.VISIBLE
     }
 
-    private fun onVideoIdError(){
+    private fun showContent(){
         avlPlayerLoader.visibility = View.GONE
+    }
+
+    private fun onVideoIdError(){
+        showContent()
 
         showErrorDialog(
             this,
@@ -112,7 +117,8 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun onVideoError(errorMessage: String){
-        avlPlayerLoader.visibility = View.GONE
+        showContent()
+
         showErrorDialog(
             this,
             getString(R.string.error),
@@ -178,11 +184,7 @@ class PlayerActivity : AppCompatActivity() {
             }
 
             override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
-                if (playbackState == ExoPlayer.STATE_BUFFERING) {
-                    avlPlayerLoader.visibility = View.VISIBLE
-                } else {
-                    avlPlayerLoader.visibility = View.GONE
-                }
+                playerViewModel.handlePlayerState(playWhenReady, playbackState)
             }
 
             override fun onPlayerError(error: ExoPlaybackException) {

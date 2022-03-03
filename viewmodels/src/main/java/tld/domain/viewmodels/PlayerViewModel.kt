@@ -1,11 +1,13 @@
 package tld.domain.viewmodels
 
 import android.app.Application
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.models.Video
 import com.domain.repositories.authentication.AuthenticationRepository
 import com.domain.repositories.items.ItemsRepository
+import com.google.android.exoplayer2.ExoPlayer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -14,6 +16,10 @@ class PlayerViewModel(application: Application, val authenticationRepository: Au
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData()
     val isLoading: MutableLiveData<Boolean>
         get() = _isLoading
+
+    private val _showVideo: MutableLiveData<Boolean> = MutableLiveData()
+    val showVideo: MutableLiveData<Boolean>
+        get() = _showVideo
 
     private val _videoIdError: MutableLiveData<Boolean> = MutableLiveData()
     val videoIdError: MutableLiveData<Boolean>
@@ -61,6 +67,14 @@ class PlayerViewModel(application: Application, val authenticationRepository: Au
         when{
             video.high.isNullOrEmpty() -> _noVideo.value = true
             else -> _videoUri.value = video.high
+        }
+    }
+
+
+    fun handlePlayerState(playWhenReady: Boolean, playbackState: Int){
+        when (playbackState) {
+            ExoPlayer.STATE_BUFFERING -> _isLoading.value = true
+            else -> _showVideo.value = true
         }
     }
 
