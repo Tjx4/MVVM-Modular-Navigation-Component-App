@@ -4,6 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.domain.myapplication.constants.PAGE_SIZE
 import com.domain.myapplication.models.Item
+import com.domain.myapplication.models.Video
 import com.domain.repositories.items.ItemsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -35,6 +36,8 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
             }
             */
 
+            setFav(currentPage)
+
             val prevKey = if (loadPage < 1) null else loadPage - 1
             val nextKey = if (loadPage < (pages - 1)) loadPage + 1 else null
 
@@ -46,6 +49,15 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
         }
     } catch (e: Exception) {
         LoadResult.Error(e)
+    }
+
+    private suspend fun setFav(items: List<Item>){
+        withContext(Dispatchers.IO) {
+            items?.forEach { item ->
+                val favourites = itemsRepository.getFavourites()
+                item.isFav = favourites?.any{ it -> it.id == item.id } ?: false
+            }
+        }
     }
 
    private fun getCurrentPage(response: List<Item>, loadPage: Int): List<Item>{
