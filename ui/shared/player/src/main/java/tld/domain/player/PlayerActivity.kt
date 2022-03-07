@@ -42,6 +42,10 @@ class PlayerActivity : AppCompatActivity() {
         val videoId = intent.extras?.getBundle(PAYLOAD_KEY)?.getString(VIDEO_ID)
         playerViewModel.setVideoId(videoId)
 
+        imgBtnBack.setOnClickListener {
+            onBackPressed()
+        }
+
         addObservers()
     }
 
