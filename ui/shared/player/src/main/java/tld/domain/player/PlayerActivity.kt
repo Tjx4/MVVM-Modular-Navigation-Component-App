@@ -175,8 +175,8 @@ class PlayerActivity : AppCompatActivity() {
                 .createDefaultLoadControl()
 
             val trackSelector = DefaultTrackSelector(this)
-
             trackSelector.setParameters(trackSelector.buildUponParameters().setMaxVideoSizeSd())
+
             player = SimpleExoPlayer.Builder(this)
                 .setTrackSelector(trackSelector)
                 .setLoadControl(loadControl)
