@@ -3,12 +3,16 @@ package tld.domain.player
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import android.view.animation.Animation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.viewModelScope
+import com.domain.myapplication.constants.DURATION_SHORT
 import com.domain.myapplication.constants.PAYLOAD_KEY
 import com.domain.myapplication.constants.VIDEO_ID
+import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.helpers.showErrorDialog
+import com.domain.myapplication.helpers.vibratePhone
 import com.domain.myapplication.models.Video
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.source.TrackGroupArray
@@ -43,7 +47,11 @@ class PlayerActivity : AppCompatActivity() {
         playerViewModel.setVideoId(videoId)
 
         imgBtnBack.setOnClickListener {
-            onBackPressed()
+            vibratePhone(this, DURATION_SHORT)
+            it.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {
+                onBackPressed()
+            })
+
         }
 
         addObservers()
@@ -222,6 +230,7 @@ class PlayerActivity : AppCompatActivity() {
         })
 
         video_view.setControllerVisibilityListener { visibility ->
+            //Todo move logic
             if (visibility == View.VISIBLE) {
                 imgBtnBack.visibility = View.VISIBLE
             } else {
@@ -231,11 +240,11 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun releasePlayer() {
-        if (player != null) {
-            playbackPosition = player?.currentPosition ?: 0
-            currentWindow = player?.currentWindowIndex ?: 0
-            playWhenReady = player?.playWhenReady == true
-            player?.release()
+        player?.let {
+            playbackPosition = it.currentPosition
+            currentWindow = it.currentWindowIndex
+            playWhenReady = it.playWhenReady
+            it.release()
             player = null
         }
     }

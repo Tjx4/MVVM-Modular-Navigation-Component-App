@@ -13,7 +13,7 @@ import com.domain.myapplication.base.fragments.SubNavigationFragment
 import com.domain.myapplication.constants.DURATION_SHORT
 import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.extensions.runWhenReady
-import com.domain.myapplication.extensions.vibratePhone
+import com.domain.myapplication.helpers.vibratePhone
 import com.domain.myapplication.models.Item
 import kotlinx.android.synthetic.main.fragment_favourites.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -37,7 +37,7 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
         addObservers()
 
         imgBtnBack.setOnClickListener {
-            vibratePhone(DURATION_SHORT)
+            vibratePhone(requireContext(), DURATION_SHORT)
             it.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {
                 drawerController.popBack()
             })

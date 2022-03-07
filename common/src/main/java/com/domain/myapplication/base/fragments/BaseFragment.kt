@@ -5,7 +5,6 @@ import android.view.KeyEvent
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.domain.myapplication.drawerController.MyDrawerController
-import com.domain.myapplication.extensions.vibratePhone
 
 abstract class BaseFragment : Fragment() {
    protected lateinit var drawerController: MyDrawerController
