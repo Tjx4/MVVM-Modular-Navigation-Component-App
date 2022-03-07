@@ -137,6 +137,7 @@ class PlayerActivity : AppCompatActivity() {
         ) {
             playerViewModel.videoId.value?.let {
                 avlPlayerLoader.visibility = View.VISIBLE
+                playbackPosition = player?.currentPosition ?: 0
                 fetchVideoById(it)
             }
         }
