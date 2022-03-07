@@ -55,7 +55,7 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
         withContext(Dispatchers.IO) {
             items?.forEach { item ->
                 val favourites = itemsRepository.getFavourites()
-                item.isFav = favourites?.any{ it -> it.id == item.id } ?: false
+                item.isFav = favourites?.any{ it.id == item.id } ?: false
             }
         }
     }
