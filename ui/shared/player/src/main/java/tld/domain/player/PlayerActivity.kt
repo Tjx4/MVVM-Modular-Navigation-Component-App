@@ -170,9 +170,18 @@ class PlayerActivity : AppCompatActivity() {
 
     private fun initializePlayer(url: String) {
         if(player == null){
+            val loadControl = DefaultLoadControl.Builder()
+                .setBufferDurationsMs(32 * 1024, 64 * 1024, 1024, 1024)
+                .createDefaultLoadControl()
+
             val trackSelector = DefaultTrackSelector(this)
+
             trackSelector.setParameters(trackSelector.buildUponParameters().setMaxVideoSizeSd())
-            player = SimpleExoPlayer.Builder(this).setTrackSelector(trackSelector).build()
+            player = SimpleExoPlayer.Builder(this)
+                .setTrackSelector(trackSelector)
+                .setLoadControl(loadControl)
+                .build()
+
             video_view.player = player
         }
 
