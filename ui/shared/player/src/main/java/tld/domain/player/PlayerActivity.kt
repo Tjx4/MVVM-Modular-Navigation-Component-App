@@ -156,17 +156,11 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun initializePlayer(url: String) {
-        if (player == null) {
-            val trackSelector = DefaultTrackSelector(this)
-            trackSelector.setParameters(
-                trackSelector.buildUponParameters().setMaxVideoSizeSd()
-            )
-            player = SimpleExoPlayer.Builder(this)
-                .setTrackSelector(trackSelector)
-                .build()
-        }
-
+        val trackSelector = DefaultTrackSelector(this)
+        trackSelector.setParameters(trackSelector.buildUponParameters().setMaxVideoSizeSd())
+        player = SimpleExoPlayer.Builder(this).setTrackSelector(trackSelector).build()
         video_view.player = player
+
         val mediaItem = MediaItem.Builder()
             .setUri(getString(R.string.media_url_dash))
             .setMimeType(MimeTypes.APPLICATION_MPD)
@@ -222,6 +216,14 @@ class PlayerActivity : AppCompatActivity() {
 
             }
         })
+
+        video_view.setControllerVisibilityListener { visibility ->
+            if (visibility == View.VISIBLE) {
+                imgBtnBack.visibility = View.VISIBLE
+            } else {
+                imgBtnBack.visibility = View.GONE
+            }
+        }
     }
 
     private fun releasePlayer() {
