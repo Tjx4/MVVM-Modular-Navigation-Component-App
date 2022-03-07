@@ -176,12 +176,14 @@ class PlayerActivity : AppCompatActivity() {
             video_view.player = player
         }
 
-        val mediaItem = MediaItem.Builder()
+        val mediaItem = MediaItem.fromUri(url)
+        player?.setMediaItem(mediaItem)
+
+        val secondMediaItem = MediaItem.Builder()
             .setUri(getString(R.string.media_url_dash))
             .setMimeType(MimeTypes.APPLICATION_MPD)
             .build()
-
-        player?.setMediaItem(mediaItem)
+        player?.addMediaItem(secondMediaItem)
 
 /*
         player = SimpleExoPlayer.Builder(this).build()
