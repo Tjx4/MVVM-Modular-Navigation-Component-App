@@ -169,13 +169,14 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun initializePlayer(url: String) {
+        //Todo fix: The code within the if should only run once
         if(player == null){
+            val trackSelector = DefaultTrackSelector(this)
+            trackSelector.setParameters(trackSelector.buildUponParameters().setMaxVideoSizeSd())
+
             val loadControl = DefaultLoadControl.Builder()
                 .setBufferDurationsMs(32 * 1024, 64 * 1024, 1024, 1024)
                 .createDefaultLoadControl()
-
-            val trackSelector = DefaultTrackSelector(this)
-            trackSelector.setParameters(trackSelector.buildUponParameters().setMaxVideoSizeSd())
 
             player = SimpleExoPlayer.Builder(this)
                 .setTrackSelector(trackSelector)
