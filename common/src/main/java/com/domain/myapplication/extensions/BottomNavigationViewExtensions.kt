@@ -1,11 +1,17 @@
 package com.domain.myapplication.extensions
 
+import android.app.Activity
+import androidx.core.view.children
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import com.domain.myapplication.R
+import com.domain.myapplication.base.fragments.BaseFragment
+import com.domain.myapplication.base.fragments.TopNavigationFragment
+import com.domain.myapplication.drawerController.MyDrawerController
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-fun BottomNavigationView.setupWithCustomAnimNavController(navController: NavController, enterAnim: Int, exitAnim: Int, popEnterAnim: Int, popExitAnim: Int) {
+fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: MyDrawerController, navController: NavController, enterAnim: Int, exitAnim: Int, popEnterAnim: Int, popExitAnim: Int) {
     val options = NavOptions.Builder()
         .setLaunchSingleTop(true)
         .setEnterAnim(enterAnim)
@@ -26,6 +32,11 @@ fun BottomNavigationView.setupWithCustomAnimNavController(navController: NavCont
     }
 
     this.setOnNavigationItemReselectedListener { item ->
+        when(myDrawerController.currentFragment is TopNavigationFragment ){
+            true -> {}
+            else -> myDrawerController.onBackNav()
+        }
+
         return@setOnNavigationItemReselectedListener
     }
 }

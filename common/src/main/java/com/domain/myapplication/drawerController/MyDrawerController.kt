@@ -8,6 +8,7 @@ import com.domain.myapplication.models.Video
 interface MyDrawerController {
     var currentFragment: BaseFragment?
     var navController: NavController
+    fun onBackNav()
     fun navigateFromLoginToDashboard()
     fun navigateFromDashboardToFavourites()
     fun navigateFromFavouritesToViewItem(item: Item)

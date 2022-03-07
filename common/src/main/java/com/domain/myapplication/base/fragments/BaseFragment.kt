@@ -1,6 +1,7 @@
 package com.domain.myapplication.base.fragments
 
 import android.content.Context
+import android.os.Bundle
 import android.view.KeyEvent
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
@@ -8,6 +9,10 @@ import com.domain.myapplication.drawerController.MyDrawerController
 
 abstract class BaseFragment : Fragment() {
    protected lateinit var drawerController: MyDrawerController
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

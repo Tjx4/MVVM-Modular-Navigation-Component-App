@@ -9,7 +9,6 @@ import androidx.navigation.findNavController
 import com.domain.dashboard.DashboardFragmentDirections
 import com.domain.myapplication.base.fragments.BaseFragment
 import com.domain.myapplication.base.fragments.TopNavigationFragment
-import com.domain.myapplication.constants.MAIN_ACTIVITY
 import com.domain.myapplication.constants.PLAYER_ACTIVITY
 import com.domain.myapplication.constants.VIDEO_ID
 import com.domain.myapplication.drawerController.MyDrawerController
@@ -30,7 +29,7 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navController = findNavController(R.id.navControllerFragment)
-        bnBottomNav.setupWithCustomAnimNavController(navController, R.anim.trail_out, R.anim.trail_in, R.anim.trail_out, R.anim.trail_in)
+        bnBottomNav.setupWithCustomAnimNavController(this, navController, R.anim.trail_out, R.anim.trail_in, R.anim.trail_out, R.anim.trail_in)
     }
 
     override fun navigateFromLoginToDashboard() {
@@ -76,7 +75,11 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
         bnBottomNav?.visibility = View.GONE
     }
 
-    fun handleBottomNavigation() {
+    override fun onBackNav() {
+        onBackPressed()
+    }
+
+    fun handleTopNavigation() {
         if(bnBottomNav.selectedItemId == R.id.dashboardFragment){
             finish()
         }
@@ -87,19 +90,15 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
 
     override fun onBackPressed() {
         when(currentFragment is TopNavigationFragment){
-            true ->  handleBottomNavigation()
+            true -> handleTopNavigation()
             false -> currentFragment?.onBackPressed()
         }
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         when(currentFragment is TopNavigationFragment){
-            true ->  {
-                handleBottomNavigation()
-            }
-            else -> {
-                currentFragment?.onBackPressed()
-            }
+            true -> handleTopNavigation()
+            else -> currentFragment?.onBackPressed()
         }
 
         return false
