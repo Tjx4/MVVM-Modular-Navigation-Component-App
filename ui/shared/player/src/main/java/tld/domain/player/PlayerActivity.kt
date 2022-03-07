@@ -169,10 +169,12 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun initializePlayer(url: String) {
-        val trackSelector = DefaultTrackSelector(this)
-        trackSelector.setParameters(trackSelector.buildUponParameters().setMaxVideoSizeSd())
-        player = SimpleExoPlayer.Builder(this).setTrackSelector(trackSelector).build()
-        video_view.player = player
+        if(player == null){
+            val trackSelector = DefaultTrackSelector(this)
+            trackSelector.setParameters(trackSelector.buildUponParameters().setMaxVideoSizeSd())
+            player = SimpleExoPlayer.Builder(this).setTrackSelector(trackSelector).build()
+            video_view.player = player
+        }
 
         val mediaItem = MediaItem.Builder()
             .setUri(getString(R.string.media_url_dash))
