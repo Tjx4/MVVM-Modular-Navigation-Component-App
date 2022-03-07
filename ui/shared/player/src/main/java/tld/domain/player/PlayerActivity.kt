@@ -137,7 +137,6 @@ class PlayerActivity : AppCompatActivity() {
         ) {
             playerViewModel.videoId.value?.let {
                 avlPlayerLoader.visibility = View.VISIBLE
-                playbackPosition = player?.currentPosition ?: 0
                 fetchVideoById(it)
             }
         }
@@ -232,6 +231,7 @@ class PlayerActivity : AppCompatActivity() {
             }
 
             override fun onPlayerError(error: ExoPlaybackException) {
+                playbackPosition = player?.currentPosition ?: 0
                 playerViewModel.handlePlayerError(error)
             }
 
