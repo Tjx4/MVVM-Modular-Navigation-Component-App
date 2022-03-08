@@ -35,7 +35,7 @@ class PlayerActivity : AppCompatActivity() {
     private var player: SimpleExoPlayer? = null
     private var playWhenReady = true
     private var currentWindow = 0
-    private var playbackPosition: Long = 0
+    //private var playbackPosition: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -168,7 +168,6 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun initializePlayer(url: String) {
-        //Todo fix: The code within the if should only run once
         if(player == null){
             val trackSelector = DefaultTrackSelector(this)
             trackSelector.setParameters(trackSelector.buildUponParameters().setMaxVideoSizeSd())
@@ -195,6 +194,8 @@ class PlayerActivity : AppCompatActivity() {
         player?.addMediaItem(secondMediaItem)
 
 /*
+//Dash?
+
         player = SimpleExoPlayer.Builder(this).build()
         video_view.player = player
 
@@ -205,9 +206,11 @@ class PlayerActivity : AppCompatActivity() {
 // player?.addMediaItem(secondMediaItem)
 */
 
-        player?.playWhenReady = playWhenReady
-        player?.seekTo(currentWindow, playbackPosition)
-        player?.prepare()
+        player?.let {
+            it.playWhenReady = playWhenReady
+            it.seekTo(currentWindow, it.currentPosition)
+            it.prepare()
+        }
 
         addPlayerListener()
     }
@@ -231,7 +234,7 @@ class PlayerActivity : AppCompatActivity() {
             }
 
             override fun onPlayerError(error: ExoPlaybackException) {
-                playbackPosition = player?.currentPosition ?: 0
+                //playbackPosition = player?.currentPosition ?: 0
                 playerViewModel.handlePlayerError(error)
             }
 
@@ -256,7 +259,7 @@ class PlayerActivity : AppCompatActivity() {
 
     private fun releasePlayer() {
         player?.let {
-            playbackPosition = it.currentPosition
+            //playbackPosition = it.currentPosition
             currentWindow = it.currentWindowIndex
             playWhenReady = it.playWhenReady
             it.release()
