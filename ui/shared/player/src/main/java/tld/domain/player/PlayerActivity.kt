@@ -230,7 +230,7 @@ class PlayerActivity : AppCompatActivity() {
             }
 
             override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
-                playerViewModel.handlePlayerState(playWhenReady, playbackState)
+                playerViewModel.onPlayerStateChanged(playWhenReady, playbackState)
             }
 
             override fun onPlayerError(error: ExoPlaybackException) {
