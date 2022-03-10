@@ -15,7 +15,7 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
     val showLoading: MutableLiveData<Boolean>
         get() = _showLoading
 
-    private val _items: MutableLiveData<List<Item>> = MutableLiveData()
+    private val _items: MutableLiveData<List<Item>> = MutableLiveData(ArrayList())
     val items: MutableLiveData<List<Item>>
         get() = _items
 

@@ -22,6 +22,16 @@ class ViewItemFragment : SubNavigationFragment() {
     private lateinit var binding: FragmentViewItemBinding
     private val viewItemViewModel: ViewItemViewModel by viewModel()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        drawerController.hideBottomNav()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        drawerController.showBottomNav()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_view_item, container, false)
