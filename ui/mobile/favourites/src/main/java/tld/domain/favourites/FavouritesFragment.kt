@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.domain.myapplication.adapters.FavouritesAdapter
 import com.domain.myapplication.base.fragments.SubNavigationFragment
@@ -16,6 +17,8 @@ import com.domain.myapplication.extensions.runWhenReady
 import com.domain.myapplication.helpers.vibratePhone
 import com.domain.myapplication.models.Item
 import kotlinx.android.synthetic.main.fragment_favourites.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.favourites.databinding.FragmentFavouritesBinding
 import tld.domain.viewmodels.FavouritesViewModel
@@ -36,6 +39,10 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
         super.onViewCreated(view, savedInstanceState)
         addObservers()
 
+        favouritesViewModel.viewModelScope.launch(Dispatchers.IO) {
+            favouritesViewModel.getFavourites()
+        }
+
         imgBtnBack.setOnClickListener {
             vibratePhone(requireContext(), DURATION_SHORT)
             it.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {
@@ -46,10 +53,6 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
         btnClear.setOnClickListener {
             favouritesViewModel.clearItems()
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     private fun addObservers() {
@@ -80,7 +83,7 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
 
         rvFavourites.runWhenReady {
             tvNoItems.visibility = View.INVISIBLE
-            rvFavourites.visibility = View.VISIBLE
+            //rvFavourites.visibility = View.VISIBLE
             btnClear.visibility = View.VISIBLE
             avLoader.visibility = View.INVISIBLE
         }
