@@ -48,6 +48,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imgBtnBack"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:visibility="invisible"
             android:id="@+id/rvFavourites"
             android:layout_width="match_parent"
             android:layout_height="0dp"

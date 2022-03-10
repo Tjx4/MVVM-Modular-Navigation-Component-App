@@ -84,7 +84,7 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
 
         rvFavourites.runWhenReady {
             tvNoItems.visibility = View.INVISIBLE
-            //rvFavourites.visibility = View.VISIBLE
+            rvFavourites.visibility = View.VISIBLE
             btnClear.visibility = View.VISIBLE
             avLoader.visibility = View.INVISIBLE
         }
