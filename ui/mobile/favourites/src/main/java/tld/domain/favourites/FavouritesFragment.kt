@@ -39,7 +39,7 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
         imgBtnBack.setOnClickListener {
             vibratePhone(requireContext(), DURATION_SHORT)
             it.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {
-                drawerController.popBack()
+                onBackPressed()
             })
         }
 
@@ -53,9 +53,9 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
     }
 
     private fun addObservers() {
-        favouritesViewModel.showLoading.observe(viewLifecycleOwner, { onShowLoading() })
-        favouritesViewModel.items.observe(viewLifecycleOwner, { onFavItemsSet(it) })
-        favouritesViewModel.noItems.observe(viewLifecycleOwner, { onNoItems() })
+        favouritesViewModel.showLoading.observe(viewLifecycleOwner) { onShowLoading() }
+        favouritesViewModel.items.observe(viewLifecycleOwner) { onFavItemsSet(it) }
+        favouritesViewModel.noItems.observe(viewLifecycleOwner) { onNoItems() }
     }
 
     private fun onShowLoading(){

@@ -7,7 +7,6 @@ import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.models.Item
 import com.domain.repositories.items.ItemsRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -16,9 +15,9 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
     val showLoading: MutableLiveData<Boolean>
         get() = _showLoading
 
-    private val _Items: MutableLiveData<List<Item>> = MutableLiveData()
+    private val _items: MutableLiveData<List<Item>> = MutableLiveData()
     val items: MutableLiveData<List<Item>>
-        get() = _Items
+        get() = _items
 
     private val _noItems: MutableLiveData<Boolean> = MutableLiveData()
     val noItems: MutableLiveData<Boolean>
@@ -26,7 +25,6 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            delay(300)
             getFavourites()
         }
     }
@@ -37,17 +35,21 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
         withContext(Dispatchers.Main){
             when {
                 favourites.isNullOrEmpty() -> _noItems.value = true
-                else -> _Items.value = favourites
+                else -> _items.value = favourites
             }
         }
     }
 
     fun clearItems() {
         viewModelScope.launch(Dispatchers.IO) {
-            itemsRepository.clearItems()
+            val clearItems = itemsRepository.clearItems()
 
-            withContext(Dispatchers.Main){
-                _noItems.value = true
+            withContext(Dispatchers.Main) {
+                when (clearItems.isSuccessful) {
+                    true -> _noItems.value = true
+                    else -> { /*Handle Db error */
+                    }
+                }
             }
         }
     }
