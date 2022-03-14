@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
     }
 
     override fun hideBottomNav() {
-        bnBottomNav?.visibility = View.GONE
+        bnBottomNav?.visibility = View.INVISIBLE
     }
 
     override fun onBackNav() {

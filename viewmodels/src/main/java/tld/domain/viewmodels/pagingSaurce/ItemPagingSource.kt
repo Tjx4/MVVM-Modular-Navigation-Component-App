@@ -14,16 +14,21 @@ import tld.domain.viewmodels.R
 import java.lang.NullPointerException
 
 class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSource<Int, Item>() {
+    private var items: List<Item>? = null
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Item> = try {
         val loadPage = params.key ?: 0
-        val items = itemsRepository.getRemoteItems()
+
+        if(items.isNullOrEmpty()){
+            items = itemsRepository.getRemoteItems()
+        }
 
         if (items == null) {
+            //No items recieved
             LoadResult.Error(NullPointerException("Unknown error"))
         } else {
-            val currentPage = getCurrentPage(items, loadPage)
-            val mainPages = items.size / PAGE_SIZE
-            val additionalPages = if((items.size % PAGE_SIZE) > 0) 1 else 0
+            val currentPage = getCurrentPage(items!!, loadPage)
+            val mainPages = items!!.size / PAGE_SIZE
+            val additionalPages = if((items!!.size % PAGE_SIZE) > 0) 1 else 0
             val pages = mainPages + additionalPages
 
             /*
