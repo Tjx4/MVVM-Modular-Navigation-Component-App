@@ -23,8 +23,7 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
         }
 
         if (items == null) {
-            //No items recieved
-            LoadResult.Error(NullPointerException("Unknown error"))
+            LoadResult.Error(NullPointerException("No items received"))
         } else {
             val currentPage = getCurrentPage(items!!, loadPage)
             val mainPages = items!!.size / PAGE_SIZE
