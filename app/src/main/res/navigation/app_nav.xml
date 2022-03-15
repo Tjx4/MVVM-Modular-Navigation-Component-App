@@ -29,7 +29,8 @@
             app:enterAnim="@anim/slide_left"
             app:exitAnim="@anim/no_transition"
             app:popEnterAnim="@anim/no_transition"
-            app:popExitAnim="@anim/slide_right" />
+            app:popExitAnim="@anim/slide_right"
+            app:popUpToInclusive="true" />
 
     </fragment>
 
@@ -45,7 +46,6 @@
             app:exitAnim="@anim/no_transition"
             app:popEnterAnim="@anim/no_transition"
             app:popExitAnim="@anim/slide_right"
-            app:popUpTo="@id/favouritesFragment"
             app:popUpToInclusive="false"/>
     </fragment>
 
@@ -70,7 +70,6 @@
             app:exitAnim="@anim/no_transition"
             app:popEnterAnim="@anim/no_transition"
             app:popExitAnim="@anim/fade_out"
-            app:popUpTo="@id/videosFragment"
             app:popUpToInclusive="false"/>
     </fragment>
 
