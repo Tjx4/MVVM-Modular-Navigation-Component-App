@@ -9,6 +9,16 @@ import com.domain.myapplication.models.*
 
 class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, private val database: MySqliteDB) : ItemsRepository {
 
+    override suspend fun getCategorizedItems(): List<ItemType>? {
+        return try {
+            retrofitServices.getDashBoard(API_KEY)
+        }
+        catch (ex: Exception) {
+            //firebaseCrashlytics.recordException(ex)
+            null
+        }
+    }
+
     override suspend fun getRemoteItems(): List<Item>? {
         return try {
             retrofitServices.getItems(API_KEY)

@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.viewModelScope
 import com.domain.dashboard.databinding.FragmentDashboardBinding
 import com.domain.myapplication.base.fragments.TopNavigationFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlinx.android.synthetic.main.fragment_dashboard.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import tld.domain.viewmodels.DashboardViewModel
 
 class DashboardFragment : TopNavigationFragment() {
@@ -28,7 +31,9 @@ class DashboardFragment : TopNavigationFragment() {
         addObservers()
 
         btnLogout.setOnClickListener {
-            dashboardViewModel.logOutUser()
+            dashboardViewModel.viewModelScope.launch (Dispatchers.IO){
+                dashboardViewModel.logOutUser()
+            }
         }
 
         btnNext.setOnClickListener {

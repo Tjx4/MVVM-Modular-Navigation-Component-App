@@ -3,6 +3,7 @@ package com.domain.repositories.items
 import com.domain.myapplication.models.*
 
 interface ItemsRepository {
+    suspend fun getCategorizedItems(): List<ItemType>?
     suspend fun getRemoteItems(): List<Item>?
     suspend fun getItemImage(url: String): Image?
     suspend fun getItemVideo(id: String): APIResponse
