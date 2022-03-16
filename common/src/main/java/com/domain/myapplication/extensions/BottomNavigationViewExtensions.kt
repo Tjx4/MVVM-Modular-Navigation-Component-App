@@ -1,19 +1,15 @@
 package com.domain.myapplication.extensions
 
-import android.app.Activity
-import androidx.core.view.children
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import com.domain.myapplication.R
-import com.domain.myapplication.base.fragments.BaseFragment
 import com.domain.myapplication.base.fragments.TopNavigationFragment
 import com.domain.myapplication.drawerController.MyDrawerController
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: MyDrawerController, navController: NavController, enterAnim: Int, exitAnim: Int, popEnterAnim: Int, popExitAnim: Int) {
 
-    var lasttItmeIdex = 0
+    var lastItemIndex = 0
 
     this.setOnNavigationItemSelectedListener { item ->
 
@@ -29,9 +25,9 @@ fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: My
         val options2 = NavOptions.Builder()
             .setLaunchSingleTop(true)
             .setEnterAnim(R.anim.no_transition)
-            .setExitAnim(exitAnim)
+            .setExitAnim(R.anim.no_transition)
             .setPopEnterAnim(R.anim.no_transition)
-            .setPopExitAnim(popExitAnim)
+            .setPopExitAnim(R.anim.no_transition)
             .setPopUpTo(navController.graph.startDestination, false)
             .build()
 
@@ -42,7 +38,7 @@ fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: My
            else -> 0
         }
 
-        val options = if(itemIndex >= lasttItmeIdex)  options1 else options2
+        val options = if(itemIndex >= lastItemIndex)  options1 else options2
 
         when (item.itemId) {
             R.id.dashboardFragment -> navController.navigate(R.id.dashboardFragment, null, options)
@@ -50,7 +46,7 @@ fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: My
             R.id.downloadsFragment -> navController.navigate(R.id.downloadsFragment, null, options)
         }
 
-        lasttItmeIdex = itemIndex
+        lastItemIndex = itemIndex
 
         true
     }
