@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingRight="@dimen/small_margin">
+
+    <androidx.cardview.widget.CardView
+        android:background="@drawable/large_outlet_background"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:elevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/SelectableItemBackground"
+            android:paddingBottom="@dimen/xsmall_margin">
+
+            <ImageView
+                android:id="@+id/imgPreview"
+                android:background="@color/light_background"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_place_holder"
+                android:scaleType="centerCrop"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tvItemName"
+                style="@style/LargeTextView"
+                android:layout_width="match_parent"
+                android:text="Name"
+                android:maxLines="1"
+                android:gravity="left"
+                android:layout_marginTop="@dimen/xsmall_margin"
+                android:layout_marginHorizontal="@dimen/xsmall_margin"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgPreview"/>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tvLocationDescription"
+                style="@style/MediumTextView"
+                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_marginLeft="@dimen/xsmall_margin"
+                android:maxLines="2"
+                android:text="Location description ation description on des crription ation description on des cr"
+                app:layout_constraintTop_toBottomOf="@+id/tvItemName"/>
+
+            <TextView
+                android:visibility="gone"
+                style="@style/SmallTextView"
+                android:id="@+id/txtDistance"
+                android:layout_width="wrap_content"
+                tools:text="0km away"
+                android:text="0km away"
+                android:layout_marginLeft="@dimen/xsmall_margin"
+                android:layout_marginTop="@dimen/xsmall_margin"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLocationDescription"/>
+
+            <ImageButton
+                android:visibility="gone"
+                android:layout_height="55dp"
+                android:layout_width="60dp"
+                android:id="@+id/ImgBtnLocation"
+                android:src="@drawable/ic_location"
+                android:textColor="@color/dark_text"
+                android:layout_marginBottom="@dimen/small_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <Button
+                android:visibility="gone"
+                android:layout_height="55dp"
+                android:layout_width="0dp"
+                android:id="@+id/btnMore"
+                android:text="View host"
+                android:textColor="@color/dark_text"
+                android:layout_marginBottom="@dimen/small_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/ImgBtnLocation"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

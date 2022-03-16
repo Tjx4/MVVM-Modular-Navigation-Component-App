@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.domain.myapplication.adapters.ItemsPagingAdapter
-import com.domain.myapplication.adapters.PPLoadStateAdapter
+import com.domain.myapplication.adapters.ItemLoadStateAdapter
 import com.domain.myapplication.base.fragments.TopNavigationFragment
 import com.domain.myapplication.helpers.showErrorDialog
 import com.domain.myapplication.models.Item
@@ -40,33 +40,17 @@ class VideosFragment : TopNavigationFragment(), ItemsPagingAdapter.ItemClickList
         initRecyclerView()
     }
 
-    private fun addObservers() {
-        videosViewModel.currentItem.observe(viewLifecycleOwner, { onItemUpdated(it) })
-        videosViewModel.favItem.observe(viewLifecycleOwner, { onItemAddedToFav(it) })
-    }
-
-    private fun onItemsInit() {
-        //itemsPagingAdapter.notifyDataSetChanged()
-    }
-
-    private fun onItemUpdated(position: Int) {
-        itemsPagingAdapter.notifyItemChanged(position)
-    }
-
-    private fun onItemAddedToFav(item: Item) {
-        Toast.makeText(requireContext(), getString(R.string.item_added_to_fav, item.itemName), Toast.LENGTH_SHORT).show()
-    }
 
     fun initRecyclerView(){
-        itemsPagingAdapter = ItemsPagingAdapter(requireContext())
+        itemsPagingAdapter = ItemsPagingAdapter(requireContext(), R.layout.item_layout)
         itemsPagingAdapter.addPairClickListener(this)
         itemsPagingAdapter.addItemVisibleListener(this)
 
         rvItems.apply {
-            rvItems?.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(false)
             adapter = itemsPagingAdapter.withLoadStateFooter(
-                footer = PPLoadStateAdapter(itemsPagingAdapter)
+                footer = ItemLoadStateAdapter(itemsPagingAdapter)
             )
         }
 
@@ -110,7 +94,24 @@ class VideosFragment : TopNavigationFragment(), ItemsPagingAdapter.ItemClickList
     }
 
     override fun onItemVisible(item: Item, position: Int) {
-       videosViewModel.checkAndFetchImage(item, position)
+        videosViewModel.checkAndFetchImage(item, position)
+    }
+
+    private fun addObservers() {
+        videosViewModel.currentItem.observe(viewLifecycleOwner, { onItemUpdated(it) })
+        videosViewModel.favItem.observe(viewLifecycleOwner, { onItemAddedToFav(it) })
+    }
+
+    private fun onItemsInit() {
+        //itemsPagingAdapter.notifyDataSetChanged()
+    }
+
+    private fun onItemUpdated(position: Int) {
+        itemsPagingAdapter.notifyItemChanged(position)
+    }
+
+    private fun onItemAddedToFav(item: Item) {
+        Toast.makeText(requireContext(), getString(R.string.item_added_to_fav, item.itemName), Toast.LENGTH_SHORT).show()
     }
 
     fun showError(message: String) {

@@ -2,13 +2,13 @@ package com.domain.core.networking.retrofit
 
 import com.domain.myapplication.models.Image
 import com.domain.myapplication.models.Item
-import com.domain.myapplication.models.ItemType
+import com.domain.myapplication.models.ItemCategory
 import com.domain.myapplication.models.Video
 import retrofit2.http.*
 
 interface RetrofitServices {
     @GET("api/cars/dashboard.php")
-    suspend fun getDashBoard(@Query("api_key") apiKey: String): List<ItemType>?
+    suspend fun getDashBoard(@Query("api_key") apiKey: String): List<ItemCategory>?
     @GET("api/cars/items.php")
     suspend fun getItems(@Query("api_key") apiKey: String): List<Item>?
     @GET

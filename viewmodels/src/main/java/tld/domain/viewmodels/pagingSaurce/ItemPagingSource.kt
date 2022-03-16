@@ -2,15 +2,11 @@ package tld.domain.viewmodels.pagingSaurce
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.domain.myapplication.constants.PAGE_SIZE
+import com.domain.myapplication.constants.ITEM_PAGE_SIZE
 import com.domain.myapplication.models.Item
-import com.domain.myapplication.models.Video
 import com.domain.repositories.items.ItemsRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import tld.domain.viewmodels.FavouritesViewModel
-import tld.domain.viewmodels.R
 import java.lang.NullPointerException
 
 class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSource<Int, Item>() {
@@ -26,8 +22,8 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
             LoadResult.Error(NullPointerException("No items received"))
         } else {
             val currentPage = getCurrentPage(items!!, loadPage)
-            val mainPages = items!!.size / PAGE_SIZE
-            val additionalPages = if((items!!.size % PAGE_SIZE) > 0) 1 else 0
+            val mainPages = items!!.size / ITEM_PAGE_SIZE
+            val additionalPages = if((items!!.size % ITEM_PAGE_SIZE) > 0) 1 else 0
             val pages = mainPages + additionalPages
 
             /*
@@ -66,7 +62,7 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
 
    private fun getCurrentPage(response: List<Item>, loadPage: Int): List<Item>{
         val pageData = response.withIndex().groupBy {
-            it.index / PAGE_SIZE
+            it.index / ITEM_PAGE_SIZE
         }.values.map { items ->
             items.map {
                 it.value

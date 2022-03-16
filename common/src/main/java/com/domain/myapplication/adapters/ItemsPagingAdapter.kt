@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -15,13 +14,13 @@ import com.domain.myapplication.R
 import com.domain.myapplication.extensions.loadImageFromUrl
 import com.domain.myapplication.models.Item
 
-class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item, ItemsPagingAdapter.ItemsViewHolder>(ItemsComparator) {
+class ItemsPagingAdapter(private val context: Context, private val itemLayout: Int) : PagingDataAdapter<Item, ItemsPagingAdapter.ItemsViewHolder>(ItemsComparator) {
     private var itemClickListener: ItemClickListener? = null
     private var itemVisibleListener: ItemVisibleListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.outlet_layout,
+            itemLayout,
             parent,
             false
         )
@@ -43,10 +42,14 @@ class ItemsPagingAdapter(private val context: Context) : PagingDataAdapter<Item,
             }
 
             val tintColor = if(item.isFav) {R.color.fav } else {R.color.grey_background }
-            (holder.favImgb as ImageView).setColorFilter(getColor(context, tintColor), android.graphics.PorterDuff.Mode.MULTIPLY)
-            holder.favImgb.setOnClickListener {
-                itemClickListener?.onFavClicked(item, position)
+            holder.favImgb?.let {
+                val imgBtnFav = it as ImageView
+                imgBtnFav?.setColorFilter(getColor(context, tintColor), android.graphics.PorterDuff.Mode.MULTIPLY)
+                holder.favImgb.setOnClickListener {
+                    itemClickListener?.onFavClicked(item, position)
+                }
             }
+
         }
     }
 

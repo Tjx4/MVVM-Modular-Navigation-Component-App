@@ -4,12 +4,11 @@ import com.domain.core.networking.retrofit.RetrofitServices
 import com.domain.core.persistance.room.MySqliteDB
 import com.domain.core.persistance.room.tables.favItems.FavItemsTable
 import com.domain.myapplication.constants.API_KEY
-import com.domain.myapplication.extensions.getUniqueString
 import com.domain.myapplication.models.*
 
 class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, private val database: MySqliteDB) : ItemsRepository {
 
-    override suspend fun getCategorizedItems(): List<ItemType>? {
+    override suspend fun getCategorizedItems(): List<ItemCategory>? {
         return try {
             retrofitServices.getDashBoard(API_KEY)
         }
