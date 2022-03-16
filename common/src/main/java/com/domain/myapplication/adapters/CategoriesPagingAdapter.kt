@@ -41,6 +41,9 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
                 this.categoriesItems = categoriesItems
 
                 val itemsPagingAdapter = ItemsPagingAdapter(context, R.layout.basic_item_layout)
+                //itemsPagingAdapter.addItemClickListener(fragment as ItemsPagingAdapter.ItemClickListener)
+                itemsPagingAdapter.addItemVisibleListener(fragment as ItemsPagingAdapter.ItemVisibleListener)
+
                 holder.categoryItemsRv.apply {
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                     setHasFixedSize(false)

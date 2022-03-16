@@ -40,10 +40,9 @@ class VideosFragment : TopNavigationFragment(), ItemsPagingAdapter.ItemClickList
         initRecyclerView()
     }
 
-
     fun initRecyclerView(){
         itemsPagingAdapter = ItemsPagingAdapter(requireContext(), R.layout.item_layout)
-        itemsPagingAdapter.addPairClickListener(this)
+        itemsPagingAdapter.addItemClickListener(this)
         itemsPagingAdapter.addItemVisibleListener(this)
 
         rvItems.apply {
@@ -98,8 +97,8 @@ class VideosFragment : TopNavigationFragment(), ItemsPagingAdapter.ItemClickList
     }
 
     private fun addObservers() {
-        videosViewModel.currentItem.observe(viewLifecycleOwner, { onItemUpdated(it) })
-        videosViewModel.favItem.observe(viewLifecycleOwner, { onItemAddedToFav(it) })
+        videosViewModel.currentItem.observe(viewLifecycleOwner) { onItemUpdated(it) }
+        videosViewModel.favItem.observe(viewLifecycleOwner) { onItemAddedToFav(it) }
     }
 
     private fun onItemsInit() {

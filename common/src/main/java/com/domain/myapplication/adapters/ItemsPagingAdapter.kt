@@ -74,7 +74,7 @@ class ItemsPagingAdapter(private val context: Context, private val itemLayout: I
         fun onFavClicked(item: Item, position: Int)
     }
 
-    fun addPairClickListener(itemClickListener: ItemClickListener) {
+    fun addItemClickListener(itemClickListener: ItemClickListener) {
         this.itemClickListener = itemClickListener
     }
 

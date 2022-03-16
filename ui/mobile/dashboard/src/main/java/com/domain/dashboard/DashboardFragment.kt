@@ -13,8 +13,10 @@ import com.domain.dashboard.databinding.FragmentDashboardBinding
 import com.domain.myapplication.adapters.CategoriesPagingAdapter
 import com.domain.myapplication.adapters.CategoryLoadStateAdapter
 import com.domain.myapplication.adapters.ItemLoadStateAdapter
+import com.domain.myapplication.adapters.ItemsPagingAdapter
 import com.domain.myapplication.base.fragments.TopNavigationFragment
 import com.domain.myapplication.helpers.showErrorDialog
+import com.domain.myapplication.models.Item
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +24,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import tld.domain.viewmodels.DashboardViewModel
 
-class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.CategoryClickListener{
+class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.CategoryClickListener, ItemsPagingAdapter.ItemVisibleListener{
     private lateinit var binding: FragmentDashboardBinding
     private val dashboardViewModel: DashboardViewModel by viewModel()
     private lateinit var categoriesPagingAdapter: CategoriesPagingAdapter
@@ -122,6 +124,9 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
     private fun addObservers() {
         dashboardViewModel.showLoading.observe(viewLifecycleOwner) { showLoading() }
         dashboardViewModel.logout.observe(viewLifecycleOwner) { onLogOut() }
+
+
+        dashboardViewModel.currentItem.observe(viewLifecycleOwner) { onItemUpdated(it) }
     }
 
     fun showLoading(){
@@ -134,5 +139,23 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
 
     override fun onBackPressed() {
         activity?.moveTaskToBack(true)
+    }
+
+
+
+
+
+
+
+
+
+
+//Deal with sub
+    private fun onItemUpdated(position: Int) {
+        categoriesPagingAdapter.notifyItemChanged(position)
+    }
+
+    override fun onItemVisible(item: Item, position: Int) {
+        dashboardViewModel.checkAndFetchImage(item, position)
     }
 }
