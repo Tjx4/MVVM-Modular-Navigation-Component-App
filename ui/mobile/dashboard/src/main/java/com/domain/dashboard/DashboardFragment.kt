@@ -101,12 +101,16 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
     }
 
     fun showError(message: String) {
+        avlCategoryLoader.visibility = View.INVISIBLE
+        rvCategories.visibility = View.INVISIBLE
+
         showErrorDialog(
             requireContext(),
             "Error",
             message,
             "Retry"
         ) {
+            avlCategoryLoader.visibility = View.VISIBLE
             categoriesPagingAdapter.refresh()
         }
     }

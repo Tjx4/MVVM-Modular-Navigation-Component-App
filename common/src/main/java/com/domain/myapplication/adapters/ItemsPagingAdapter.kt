@@ -32,9 +32,9 @@ class ItemsPagingAdapter(private val context: Context, private val itemLayout: I
         getItem(position)?.let { item ->
             holder.itemNameTv.text = "${item?.itemName}"
 
-            holder.previewRImv.setImageResource(R.drawable.ic_place_holder)
+            holder.previewRImv.setImageResource(R.drawable.ic_normal_car)
             item?.image?.medium?.let{ url ->
-                holder.previewRImv.loadImageFromUrl(context, url, R.drawable.ic_place_holder)
+                holder.previewRImv.loadImageFromUrl(context, url, R.drawable.ic_normal_car)
             }
 
             item?.metaData?.let {

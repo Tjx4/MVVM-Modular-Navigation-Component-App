@@ -70,8 +70,8 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
             itemsPagingAdapter.loadStateFlow.collectLatest { loadState ->
                 when (loadState.refresh) {
                     is LoadState.Loading -> {
-                        holder.noItemsTv.visibility = View.INVISIBLE
-                        holder.categoryItemsRv.visibility = View.INVISIBLE
+                        holder.noItemsTv.visibility = View.GONE
+                        holder.categoryItemsRv.visibility = View.GONE
                     }
                     is LoadState.Error -> {
                         val error = when {
@@ -85,11 +85,11 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
                             val message = if(it.error.message.isNullOrEmpty()) context.getString(R.string.error) else it.error.message
 
                             holder.noItemsTv.visibility = View.VISIBLE
-                            holder.categoryItemsRv.visibility = View.INVISIBLE
+                            holder.categoryItemsRv.visibility = View.GONE
                         }
                     }
                     is LoadState.NotLoading -> {
-                        holder.noItemsTv.visibility = View.INVISIBLE
+                        holder.noItemsTv.visibility = View.GONE
                         holder.categoryItemsRv.visibility = View.VISIBLE
                     }
                 }

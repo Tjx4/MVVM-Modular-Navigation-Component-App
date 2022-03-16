@@ -38,7 +38,7 @@ fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: My
            else -> 0
         }
 
-        val options = if(itemIndex >= lastItemIndex)  options1 else options2
+        val options = if(itemIndex >= lastItemIndex)  options1 else options1 //Todo fix return animation
 
         when (item.itemId) {
             R.id.dashboardFragment -> navController.navigate(R.id.dashboardFragment, null, options)
