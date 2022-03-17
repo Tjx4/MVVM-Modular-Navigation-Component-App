@@ -15,4 +15,4 @@ const val PLAYER_ACTIVITY = "tld.domain.player.PlayerActivity"
 const val DURATION_SHORT = 70L
 //
 const val ITEM_PAGE_SIZE = 5
-const val CATEGORY_PAGE_SIZE = 3
+const val CATEGORY_PAGE_SIZE = 5
