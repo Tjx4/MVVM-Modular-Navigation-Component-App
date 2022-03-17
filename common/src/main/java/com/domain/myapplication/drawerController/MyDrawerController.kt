@@ -13,6 +13,7 @@ interface MyDrawerController {
     fun navigateFromDashboardToFavourites()
     fun navigateFromFavouritesToViewItem(item: Item)
     fun navigateFromVideoToViewItem(item: Item)
+    fun navigateFromDashboardToViewItem(item: Item)
     fun navigateFromViewItemToPlayer(videoId: String)
     fun popAll()
     fun popBack()

@@ -32,6 +32,15 @@
             app:popExitAnim="@anim/slide_right"
             app:popUpToInclusive="true" />
 
+        <action
+            android:id="@+id/action_dashboardFragment_to_viewItemFragment"
+            app:destination="@id/viewItemFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/no_transition"
+            app:popEnterAnim="@anim/no_transition"
+            app:popExitAnim="@anim/fade_out"
+            app:popUpToInclusive="false"/>
+
     </fragment>
 
     <fragment

@@ -54,6 +54,11 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
         navController.navigate(action)
     }
 
+    override fun navigateFromDashboardToViewItem(item: Item) {
+        val action = DashboardFragmentDirections.actionDashboardFragmentToViewItemFragment(item)
+        navController.navigate(action)
+    }
+
     override fun navigateFromViewItemToPlayer(videoId: String) {
         val payload = Bundle()
         payload.putString(VIDEO_ID, videoId)

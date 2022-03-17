@@ -42,7 +42,7 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
                 //this.categoriesItems = categoriesItems
 
                 val categoryItemsPagingAdapter = CategoryItemsPagingAdapter(context, R.layout.basic_item_layout, position)
-                //categoryItemsPagingAdapter.addItemClickListener(fragment as BaseItemsPagingAdapter.ItemClickListener)
+                categoryItemsPagingAdapter.addItemClickListener(fragment as BaseItemsPagingAdapter.ItemClickListener)
                 categoryItemsPagingAdapter.addItemVisibleListener(fragment as CategoryItemsPagingAdapter.CategoryItemVisibleListener)
 
                 holder.categoryItemsRv.apply {
@@ -71,7 +71,10 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
     }
 
     fun updateCurrentCategory(categoryPosition: Int, itemPosition: Int){
-        subAdapters.get(categoryPosition)?.notifyItemChanged(itemPosition)
+        //Todo Remove once back issue is sorted
+        if(!subAdapters.isNullOrEmpty()){
+            subAdapters[categoryPosition]?.notifyItemChanged(itemPosition)
+        }
     }
 
     fun initChildeRecyclerView(categoryItemsPagingAdapter: CategoryItemsPagingAdapter, holder: CategoriesViewHolder){

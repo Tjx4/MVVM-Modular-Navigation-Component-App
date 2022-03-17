@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import tld.domain.viewmodels.DashboardViewModel
 
-class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.CategoryClickListener, CategoryItemsPagingAdapter.CategoryItemVisibleListener {
+class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.CategoryClickListener, CategoryItemsPagingAdapter.CategoryItemVisibleListener, BaseItemsPagingAdapter.ItemClickListener {
     private lateinit var binding: FragmentDashboardBinding
     private val dashboardViewModel: DashboardViewModel by viewModel()
     private lateinit var categoriesPagingAdapter: CategoriesPagingAdapter
@@ -144,5 +144,9 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
 
     override fun onCategoryItemVisible(item: Item, categoryPosition: Int, itemPosition: Int) {
         dashboardViewModel.checkAndFetchCategoryImage(item, categoryPosition, itemPosition)
+    }
+
+    override fun onItemClicked(view: View, item: Item, position: Int) {
+        drawerController.navigateFromDashboardToViewItem(item)
     }
 }
