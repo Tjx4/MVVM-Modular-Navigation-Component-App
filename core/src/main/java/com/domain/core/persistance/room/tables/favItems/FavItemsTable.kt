@@ -14,10 +14,33 @@ data class FavItemsTable (
     var id: String,
     @ColumnInfo(name ="itemName")
     var itemName: String?,
+
     @ColumnInfo(name = "imageThumbNail")
     var imageThumbNail: String? = null,
     @ColumnInfo(name = "imageMedium")
     var imageMedium: String? = null,
     @ColumnInfo(name = "imageXl")
-    var imageXl: String? = null
+    var imageXl: String? = null,
+
+    @ColumnInfo(name = "cardInfoRel")
+    var cardInfoRel: String? = null,
+    @ColumnInfo(name = "cardInfoDataMethod")
+    var cardInfoMethod: String? = null,
+    @ColumnInfo(name = "metaDataHref")
+    var cardInfoHref: String? = null,
+
+    @ColumnInfo(name = "updateRel")
+    var updateRel: String? = null,
+    @ColumnInfo(name = "updateMethod")
+    var updateMethod: String? = null,
+    @ColumnInfo(name = "updateHref")
+    var updateHref: String? = null,
+
+    @ColumnInfo(name = "deleteRel")
+    var deleteRel: String? = null,
+    @ColumnInfo(name = "deleteMethod")
+    var deleteMethod: String? = null,
+    @ColumnInfo(name = "deleteHref")
+    var deleteHref: String? = null
+
 ): Parcelable

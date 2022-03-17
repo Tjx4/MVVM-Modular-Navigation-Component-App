@@ -55,7 +55,14 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         val favItemTables = database.favItemsDAO.getAllItems()
         favItemTables?.forEach {
             val image = Image(it.imageThumbNail, it.imageMedium, it.imageXl)
-            val favItem = Item(it.id, it.itemName, image, "", true)
+
+            val links = arrayListOf(
+                Link(it.cardInfoRel, it.cardInfoMethod, it.cardInfoHref),
+                Link(it.updateRel, it.updateMethod, it.updateHref),
+                Link(it.deleteRel, it.deleteMethod, it.deleteHref)
+            )
+
+            val favItem = Item(it.id, it.itemName, image, links, true)
             favItems.add(favItem)
         }
 
@@ -64,7 +71,22 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
 
     override suspend fun saveItemFavourites(item: Item): DBOperation {
         return try {
-            val favItemTable = FavItemsTable(id = "${item.id}", itemName = item.itemName, imageThumbNail = item.image?.thumbNail,  imageMedium = item.image?.medium, imageXl = item.image?.xl)
+            val favItemTable = FavItemsTable(
+                "${item.id}",
+                item.itemName,
+                item.image?.thumbNail,
+                item.image?.medium,
+                item.image?.xl,
+                item.links?.get(0)?.rel,
+                item.links?.get(0)?.method,
+                item.links?.get(0)?.href,
+                item.links?.get(1)?.rel,
+                item.links?.get(1)?.method,
+                item.links?.get(1)?.href,
+                item.links?.get(2)?.rel,
+                item.links?.get(2)?.method,
+                item.links?.get(2)?.href
+            )
             database.favItemsDAO.insert(favItemTable)
             DBOperation(true)
         }

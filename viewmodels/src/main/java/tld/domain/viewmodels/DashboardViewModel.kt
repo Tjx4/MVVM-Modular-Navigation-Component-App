@@ -58,7 +58,11 @@ class DashboardViewModel(application: Application, val authenticationRepository:
 */
 
     fun checkAndFetchCategoryImage(item: Item, categoryPosition: Int, itemPosition: Int){
-        if(item.image != null || item.metaData.isNullOrEmpty()) return
+        item.links?.let {
+            val links = it
+        }
+
+        if(item.image != null || item.links?.get(0)?.href.isNullOrEmpty()) return
 
         viewModelScope.launch(Dispatchers.IO) {
             getItemImage(item, itemPosition)

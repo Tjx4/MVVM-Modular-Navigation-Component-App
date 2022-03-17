@@ -25,7 +25,7 @@ class ItemsPagingAdapter(private val context: Context, itemLayout: Int) : BaseIt
                 previewRImv.loadImageFromUrl(context, url, R.drawable.ic_normal_car)
             }
 
-            item?.metaData?.let {
+            item?.links?.get(0)?.href?.let {
                 itemVisibleListener?.onItemVisible(item, position)
             }
 

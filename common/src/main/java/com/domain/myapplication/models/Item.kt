@@ -10,6 +10,6 @@ data class Item(
     @SerializedName("id")  var id: String?,
     @SerializedName("itemName") var itemName: String?,
     @SerializedName("image") var image: Image?,
-    @SerializedName("metaData") var metaData: String?,
+    @SerializedName("links") var links: List<Link>?,
     @Transient var isFav: Boolean,
 ) : Parcelable

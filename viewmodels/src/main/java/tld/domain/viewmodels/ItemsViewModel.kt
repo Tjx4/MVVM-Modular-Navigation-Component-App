@@ -21,7 +21,7 @@ abstract class ItemsViewModel(application: Application, val itemsRepo: ItemsRepo
         get() = _favItem
 
     fun checkAndFetchImage(item: Item, position: Int){
-        if(item.image != null || item.metaData.isNullOrEmpty()) return
+        if(item.image != null || item.links?.get(0)?.href.isNullOrEmpty()) return
 
         viewModelScope.launch(Dispatchers.IO) {
             getItemImage(item, position)
@@ -29,7 +29,7 @@ abstract class ItemsViewModel(application: Application, val itemsRepo: ItemsRepo
     }
     
     suspend fun getItemImage(item: Item, position: Int){
-        item.metaData?.let { url ->
+        item.links?.get(0)?.href?.let { url ->
             val itemImage = itemsRepo.getItemImage(url)
 
             withContext(Dispatchers.Main){
