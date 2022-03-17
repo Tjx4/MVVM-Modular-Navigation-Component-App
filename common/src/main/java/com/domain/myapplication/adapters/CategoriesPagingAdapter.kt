@@ -21,7 +21,8 @@ import java.lang.NullPointerException
 
 class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFragment) : PagingDataAdapter<ItemCategory, CategoriesPagingAdapter.CategoriesViewHolder>(CategoriesComparator) {
     private var categoryClickListener: CategoryClickListener? = null
-    private var categoriesItems: List<Item>? = null
+    //private var categoriesItems: List<Item>? = null
+    var subAdapters = ArrayList<CategoryItemsPagingAdapter>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
@@ -38,17 +39,17 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
             holder.itemTitleTv.text = "${item?.title}"
 
             item.items?.let { categoriesItems ->
-                this.categoriesItems = categoriesItems
+                //this.categoriesItems = categoriesItems
 
-                val itemsPagingAdapter = ItemsPagingAdapter(context, R.layout.basic_item_layout)
-                //itemsPagingAdapter.addItemClickListener(fragment as ItemsPagingAdapter.ItemClickListener)
-                itemsPagingAdapter.addItemVisibleListener(fragment as ItemsPagingAdapter.ItemVisibleListener)
+                val categoryItemsPagingAdapter = CategoryItemsPagingAdapter(context, R.layout.basic_item_layout, position)
+                //categoryItemsPagingAdapter.addItemClickListener(fragment as BaseItemsPagingAdapter.ItemClickListener)
+                categoryItemsPagingAdapter.addItemVisibleListener(fragment as CategoryItemsPagingAdapter.CategoryItemVisibleListener)
 
                 holder.categoryItemsRv.apply {
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                     setHasFixedSize(false)
-                    adapter = itemsPagingAdapter.withLoadStateFooter(
-                        footer = ItemLoadStateAdapter(itemsPagingAdapter)
+                    adapter = categoryItemsPagingAdapter.withLoadStateFooter(
+                        footer = ItemLoadStateAdapter(categoryItemsPagingAdapter)
                     )
                 }
 
@@ -58,19 +59,24 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
 
                 fragment.lifecycleScope.launch {
                     items.collectLatest {
-                        itemsPagingAdapter.submitData(it)
+                        categoryItemsPagingAdapter.submitData(it)
                     }
                 }
 
-                initChildeRV(itemsPagingAdapter, holder)
+                initChildeRecyclerView(categoryItemsPagingAdapter, holder)
+                subAdapters.add(categoryItemsPagingAdapter)
             }
 
         }
     }
 
-    fun initChildeRV(itemsPagingAdapter: ItemsPagingAdapter, holder: CategoriesViewHolder){
+    fun updateCurrentCategory(categoryPosition: Int, itemPosition: Int){
+        subAdapters.get(categoryPosition)?.notifyItemChanged(itemPosition)
+    }
+
+    fun initChildeRecyclerView(categoryItemsPagingAdapter: CategoryItemsPagingAdapter, holder: CategoriesViewHolder){
         fragment.lifecycleScope.launch {
-            itemsPagingAdapter.loadStateFlow.collectLatest { loadState ->
+            categoryItemsPagingAdapter.loadStateFlow.collectLatest { loadState ->
                 when (loadState.refresh) {
                     is LoadState.Loading -> {
                         holder.noItemsTv.visibility = View.GONE
@@ -163,6 +169,7 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
     fun addCategoryClickListener(categoryClickListener: CategoryClickListener) {
         this.categoryClickListener = categoryClickListener
     }
+
 }
 
 object CategoriesComparator : DiffUtil.ItemCallback<ItemCategory>() {

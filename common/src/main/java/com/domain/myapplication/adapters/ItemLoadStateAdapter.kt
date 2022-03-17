@@ -11,7 +11,7 @@ import com.domain.myapplication.R
 import com.wang.avi.AVLoadingIndicatorView
 
 class ItemLoadStateAdapter(
-    private val pagingAdapter: ItemsPagingAdapter
+    private val pagingAdapter: BaseItemsPagingAdapter
 ) : LoadStateAdapter<ItemLoadStateAdapter.NetworkStateItemViewHolder>() {
 
     override fun onBindViewHolder(holder: NetworkStateItemViewHolder, loadState: LoadState) {

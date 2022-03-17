@@ -10,10 +10,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.domain.dashboard.databinding.FragmentDashboardBinding
-import com.domain.myapplication.adapters.CategoriesPagingAdapter
-import com.domain.myapplication.adapters.CategoryLoadStateAdapter
-import com.domain.myapplication.adapters.ItemLoadStateAdapter
-import com.domain.myapplication.adapters.ItemsPagingAdapter
+import com.domain.myapplication.adapters.*
 import com.domain.myapplication.base.fragments.TopNavigationFragment
 import com.domain.myapplication.helpers.showErrorDialog
 import com.domain.myapplication.models.Item
@@ -24,7 +21,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import tld.domain.viewmodels.DashboardViewModel
 
-class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.CategoryClickListener, ItemsPagingAdapter.ItemVisibleListener{
+class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.CategoryClickListener, CategoryItemsPagingAdapter.CategoryItemVisibleListener {
     private lateinit var binding: FragmentDashboardBinding
     private val dashboardViewModel: DashboardViewModel by viewModel()
     private lateinit var categoriesPagingAdapter: CategoriesPagingAdapter
@@ -124,9 +121,7 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
     private fun addObservers() {
         dashboardViewModel.showLoading.observe(viewLifecycleOwner) { showLoading() }
         dashboardViewModel.logout.observe(viewLifecycleOwner) { onLogOut() }
-
-
-        dashboardViewModel.currentItem.observe(viewLifecycleOwner) { onItemUpdated(it) }
+        dashboardViewModel.currentCategoryAndItem.observe(viewLifecycleOwner) { onCategoryItemUpdated(it) }
     }
 
     fun showLoading(){
@@ -141,21 +136,13 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
         activity?.moveTaskToBack(true)
     }
 
-
-
-
-
-
-
-
-
-
-//Deal with sub
-    private fun onItemUpdated(position: Int) {
-        categoriesPagingAdapter.notifyItemChanged(position)
+    private fun onCategoryItemUpdated(categoryAndItem: Pair<Int, Int>) {
+        val categoryPosition = categoryAndItem.first
+        val itemPosition = categoryAndItem.second
+        categoriesPagingAdapter.updateCurrentCategory(categoryPosition, itemPosition)
     }
 
-    override fun onItemVisible(item: Item, position: Int) {
-        dashboardViewModel.checkAndFetchImage(item, position)
+    override fun onCategoryItemVisible(item: Item, categoryPosition: Int, itemPosition: Int) {
+        dashboardViewModel.checkAndFetchCategoryImage(item, categoryPosition, itemPosition)
     }
 }

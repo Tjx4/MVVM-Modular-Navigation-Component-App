@@ -22,15 +22,20 @@ class DashboardViewModel(application: Application, val authenticationRepository:
     val showLoading: MutableLiveData<Boolean>
         get() = _showLoading
 
+    private var _currentCategoryAndItem: MutableLiveData<Pair<Int, Int>> = MutableLiveData()
+    val currentCategoryAndItem: MutableLiveData<Pair<Int, Int>>
+        get() = _currentCategoryAndItem
+
 /*
     private val _errorFetchingItems: MutableLiveData<Boolean> = MutableLiveData()
     val errorFetchingItems: MutableLiveData<Boolean>
         get() = _errorFetchingItems
-*/
+
 
     private val _types: MutableLiveData<List<ItemCategory>> = MutableLiveData()
     val types: MutableLiveData<List<ItemCategory>>
         get() = _types
+*/
 
     private val _logout: MutableLiveData<Boolean> = MutableLiveData()
     val logout: MutableLiveData<Boolean>
@@ -51,6 +56,20 @@ class DashboardViewModel(application: Application, val authenticationRepository:
         }
     }
 */
+
+    fun checkAndFetchCategoryImage(item: Item, categoryPosition: Int, itemPosition: Int){
+        if(item.image != null || item.metaData.isNullOrEmpty()) return
+
+        viewModelScope.launch(Dispatchers.IO) {
+            getItemImage(item, itemPosition)
+
+            withContext(Dispatchers.Main) {
+                _currentCategoryAndItem.value = Pair(categoryPosition, itemPosition)
+            }
+
+        }
+    }
+
 
     suspend fun logOutUser(){
         authenticationRepository.logOutUser()

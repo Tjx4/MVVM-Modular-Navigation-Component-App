@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.domain.myapplication.adapters.BaseItemsPagingAdapter
 import com.domain.myapplication.adapters.ItemsPagingAdapter
 import com.domain.myapplication.adapters.ItemLoadStateAdapter
 import com.domain.myapplication.base.fragments.TopNavigationFragment
@@ -21,7 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.videos.databinding.FragmentVideosBinding
 import tld.domain.viewmodels.VideosViewModel
 
-class VideosFragment : TopNavigationFragment(), ItemsPagingAdapter.ItemClickListener, ItemsPagingAdapter.ItemVisibleListener{
+class VideosFragment : TopNavigationFragment(), BaseItemsPagingAdapter.ItemClickListener, ItemsPagingAdapter.ItemVisibleListener, ItemsPagingAdapter.ItemFavClickListener{
     private lateinit var binding: FragmentVideosBinding
     private val videosViewModel: VideosViewModel by viewModel()
     private lateinit var itemsPagingAdapter: ItemsPagingAdapter
@@ -44,6 +45,7 @@ class VideosFragment : TopNavigationFragment(), ItemsPagingAdapter.ItemClickList
         itemsPagingAdapter = ItemsPagingAdapter(requireContext(), R.layout.item_layout)
         itemsPagingAdapter.addItemClickListener(this)
         itemsPagingAdapter.addItemVisibleListener(this)
+        itemsPagingAdapter.addItemFavClickListener(this)
 
         rvItems.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
