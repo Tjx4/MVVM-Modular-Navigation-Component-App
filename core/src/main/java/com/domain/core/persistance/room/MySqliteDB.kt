@@ -9,7 +9,7 @@ import com.domain.core.persistance.room.tables.favItems.FavItemsTable
 import com.domain.core.persistance.room.tables.users.UsersDAO
 import com.domain.core.persistance.room.tables.users.UsersTable
 
-@Database(entities = [UsersTable::class, FavItemsTable::class], version = 2, exportSchema = false)
+@Database(entities = [UsersTable::class, FavItemsTable::class], version = 1, exportSchema = false)
 abstract class MySqliteDB : RoomDatabase() {
     abstract val usersDAO: UsersDAO
     abstract val favItemsDAO: FavItemsDAO
