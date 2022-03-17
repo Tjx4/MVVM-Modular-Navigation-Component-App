@@ -17,14 +17,16 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import tld.domain.viewmodels.pagingSaurce.ItemCategoryPagingSource
 
-class DashboardViewModel(application: Application, val authenticationRepository: AuthenticationRepository, val itemsRepository: ItemsRepository) : BaseViewModel(application){
+class DashboardViewModel(application: Application, val authenticationRepository: AuthenticationRepository, val itemsRepository: ItemsRepository) : ItemsViewModel(application, itemsRepository){
     private val _showLoading: MutableLiveData<Boolean> = MutableLiveData()
     val showLoading: MutableLiveData<Boolean>
         get() = _showLoading
 
+/*
     private val _errorFetchingItems: MutableLiveData<Boolean> = MutableLiveData()
     val errorFetchingItems: MutableLiveData<Boolean>
         get() = _errorFetchingItems
+*/
 
     private val _types: MutableLiveData<List<ItemCategory>> = MutableLiveData()
     val types: MutableLiveData<List<ItemCategory>>
@@ -38,6 +40,7 @@ class DashboardViewModel(application: Application, val authenticationRepository:
         ItemCategoryPagingSource(itemsRepository)
     }.flow.cachedIn(viewModelScope)
 
+/*
     suspend fun initDashboard(){
         val types = itemsRepository.getCategorizedItems()
         withContext(Dispatchers.Main) {
@@ -47,57 +50,12 @@ class DashboardViewModel(application: Application, val authenticationRepository:
             }
         }
     }
+*/
 
     suspend fun logOutUser(){
         authenticationRepository.logOutUser()
         withContext(Dispatchers.Main) {
             _logout.value = true
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private var _currentItem: MutableLiveData<Int> = MutableLiveData()
-    val currentItem: MutableLiveData<Int>
-        get() = _currentItem
-
-    fun checkAndFetchImage(item: Item, position: Int){
-        if(item.image != null || item.metaData.isNullOrEmpty()) return
-
-        viewModelScope.launch(Dispatchers.IO) {
-            getItemImage(item, position)
-        }
-    }
-
-
-    suspend fun getItemImage(item: Item, position: Int){
-        item.metaData?.let { url ->
-            val itemImage = itemsRepository.getItemImage(url)
-
-            withContext(Dispatchers.Main){
-                when(itemImage){
-                    null -> {}
-                    else -> {
-                        item.image = itemImage
-                        _currentItem.value = position
-                    }
-                }
-            }
         }
     }
 
