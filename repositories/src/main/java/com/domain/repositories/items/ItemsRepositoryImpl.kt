@@ -51,18 +51,8 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
 
     override suspend fun getFavourites(): List<Item>? {
         val favItems = ArrayList<Item>()
-
-        val favItemTables = database.favItemsDAO.getAllItems()
-        favItemTables?.forEach {
-            val image = Image(it.imageThumbNail, it.imageMedium, it.imageXl)
-
-            val links = arrayListOf(
-                Link(it.cardInfoRel, it.cardInfoMethod, it.cardInfoHref),
-                Link(it.updateRel, it.updateMethod, it.updateHref),
-                Link(it.deleteRel, it.deleteMethod, it.deleteHref)
-            )
-
-            val favItem = Item(it.id, it.itemName, image, links, true)
+        database.favItemsDAO.getAllItems()?.forEach {
+            val favItem = getFavItemFromFavTable(it)
             favItems.add(favItem)
         }
 
@@ -71,22 +61,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
 
     override suspend fun saveItemFavourites(item: Item): DBOperation {
         return try {
-            val favItemTable = FavItemsTable(
-                "${item.id}",
-                item.itemName,
-                item.image?.thumbNail,
-                item.image?.medium,
-                item.image?.xl,
-                item.links?.get(0)?.rel,
-                item.links?.get(0)?.method,
-                item.links?.get(0)?.href,
-                item.links?.get(1)?.rel,
-                item.links?.get(1)?.method,
-                item.links?.get(1)?.href,
-                item.links?.get(2)?.rel,
-                item.links?.get(2)?.method,
-                item.links?.get(2)?.href
-            )
+            val favItemTable = getFavTableFromItem(item)
             database.favItemsDAO.insert(favItemTable)
             DBOperation(true)
         }
@@ -99,8 +74,8 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         return try {
             val favouriteTables = ArrayList<FavItemsTable>()
             favourites?.forEach {
-                val favItemTable = FavItemsTable(id = "${it.id}", itemName = it.itemName, imageThumbNail = it.image?.thumbNail,  imageMedium = it.image?.medium, imageXl = it.image?.xl)
-                favouriteTables.add(favItemTable)
+                val favItemTable = getFavTableFromItem(it)
+                    favouriteTables.add(favItemTable)
             }
 
             database.favItemsDAO.insertAll(favouriteTables)
@@ -113,7 +88,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
 
     override suspend fun removeItemFromFavourites(item: Item): DBOperation {
         return try {
-            val favItemTable = FavItemsTable(id = "${item.id}", itemName = item.itemName, imageThumbNail = item.image?.thumbNail,  imageMedium = item.image?.medium, imageXl = item.image?.xl)
+            val favItemTable = getFavTableFromItem(item)
             database.favItemsDAO.delete(favItemTable)
             DBOperation(true)
         }
@@ -130,6 +105,36 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         catch (ex: Exception){
             DBOperation(false, "$ex")
         }
+    }
+
+    //Todo consider moving to extensions
+    private fun getFavTableFromItem(item: Item) = FavItemsTable(
+            "${item.id}",
+            item.itemName,
+            item.image?.thumbNail,
+            item.image?.medium,
+            item.image?.xl,
+            item.links?.get(0)?.rel,
+            item.links?.get(0)?.method,
+            item.links?.get(0)?.href,
+            item.links?.get(1)?.rel,
+            item.links?.get(1)?.method,
+            item.links?.get(1)?.href,
+            item.links?.get(2)?.rel,
+            item.links?.get(2)?.method,
+            item.links?.get(2)?.href
+        )
+
+    private fun getFavItemFromFavTable(item: FavItemsTable) : Item {
+        val image = Image(item.imageThumbNail, item.imageMedium, item.imageXl)
+
+        val links = arrayListOf(
+            Link(item.cardInfoRel, item.cardInfoMethod, item.cardInfoHref),
+            Link(item.updateRel, item.updateMethod, item.updateHref),
+            Link(item.deleteRel, item.deleteMethod, item.deleteHref)
+        )
+
+        return Item(item.id, item.itemName, image, links, true)
     }
 
 }
