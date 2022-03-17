@@ -22,27 +22,48 @@
             android:padding="@dimen/small_margin"
             app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/btnLogout"
-                style="@style/MyButton"
-                android:layout_width="0dp"
-                android:layout_marginHorizontal="@dimen/large_margin"
-                android:text="@string/logout"
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_height="40dp"
+                android:layout_width="40dp"
+                android:src="@drawable/logo"
+                android:scaleType="fitXY"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnNext"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"/>
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <Button
-                android:id="@+id/btnNext"
-                style="@style/MyButton"
-                android:layout_width="0dp"
-                android:layout_marginHorizontal="@dimen/large_margin"
-                android:text="@string/favourites"
+            <TextView
+                android:id="@+id/tvName"
+                style="@style/SubHeadingTextView"
+                android:layout_width="wrap_content"
+                android:text="@string/demo_app_name"
+                android:textStyle="bold"
+                android:gravity="left"
+                android:layout_marginLeft="@dimen/xsmall_margin"
+                app:layout_constraintLeft_toRightOf="@+id/imgLogo"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btnLogout"
-                app:layout_constraintHorizontal_bias="0.5" />
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ImageButton
+                android:id="@+id/btnSearch"
+                style="@style/MenuItems"
+                android:src="@drawable/ic_search"
+                app:tint="@color/light_text"
+                android:background="@android:color/transparent"
+                android:layout_marginRight="@dimen/small_margin"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnMenu"/>
+
+            <ImageButton
+                android:id="@+id/btnMenu"
+                style="@style/MenuItems"
+                android:src="@drawable/ic_menu"
+                app:tint="@color/light_text"
+                android:background="@android:color/transparent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -61,7 +82,7 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:indicatorName="BallPulseIndicator"
+            app:indicatorName="BallClipRotateIndicator"
             app:indicatorColor="@color/light_text"
             android:layout_marginTop="@dimen/medium_margin"
             app:layout_constraintTop_toTopOf="@+id/rvCategories"

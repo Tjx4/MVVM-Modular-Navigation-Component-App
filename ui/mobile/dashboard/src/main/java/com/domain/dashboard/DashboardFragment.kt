@@ -2,8 +2,11 @@ package com.domain.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
@@ -39,15 +42,33 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
         addObservers()
         initRecyclerView()
 
-        btnLogout.setOnClickListener {
-            dashboardViewModel.viewModelScope.launch (Dispatchers.IO){
-                dashboardViewModel.logOutUser()
-            }
+        btnSearch.setOnClickListener {
+            Toast.makeText(requireContext(), "Search", Toast.LENGTH_SHORT).show()
         }
 
-        btnNext.setOnClickListener {
-            drawerController.navigateFromDashboardToFavourites()
+        btnMenu.setOnClickListener {
+            showPopup(it)
         }
+    }
+
+    fun showPopup(v : View){
+        val popup = PopupMenu(requireContext(), v)
+        val inflater: MenuInflater = popup.menuInflater
+        inflater.inflate(R.menu.dashboard_menu, popup.menu)
+        popup.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.action_favourites -> {
+                    drawerController.navigateFromDashboardToFavourites()
+                }
+                R.id.action_logout -> {
+                    dashboardViewModel.viewModelScope.launch (Dispatchers.IO){
+                        dashboardViewModel.logOutUser()
+                    }
+                }
+            }
+            true
+        }
+        popup.show()
     }
 
     fun initRecyclerView(){

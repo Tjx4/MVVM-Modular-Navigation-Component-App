@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/tvItemTitle"
-        style="@style/LargeTextView"
+        style="@style/SubHeadingTextView"
         android:text="Tittle"
         android:maxLines="1"
         android:gravity="left"/>

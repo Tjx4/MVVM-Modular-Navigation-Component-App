@@ -23,6 +23,7 @@
         <entry key="common/src/main/res/layout/load_state_layout.xml" value="0.23020833333333332" />
         <entry key="common/src/main/res/layout/outlet_layout.xml" value="0.23020833333333332" />
         <entry key="common/src/main/res/menu/bottom_menu.xml" value="0.2604166666666667" />
+        <entry key="common/src/main/res/menu/dashboard_menu.xml" value="0.2734375" />
         <entry key="features/dashboard/src/main/res/layout/fragment_dashboard.xml" value="0.215625" />
         <entry key="features/favourites/src/main/res/layout/fragment_favourites.xml" value="0.25" />
         <entry key="features/login/src/main/res/layout/fragment_login.xml" value="0.29322916666666665" />

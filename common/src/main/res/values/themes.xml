@@ -41,6 +41,10 @@
         <item name="android:textSize">@dimen/large_text</item>
         <item name="android:gravity">center</item>
     </style>
+    <style name="SubHeadingTextView" parent="BaseTextView">
+        <item name="android:textSize">@dimen/sub_heading_text</item>
+        <item name="android:gravity">center</item>
+    </style>
     <style name="MediumTextView" parent="BaseTextView">
         <item name="android:textSize">@dimen/medium_text</item>
         <item name="android:gravity">center</item>
@@ -83,5 +87,12 @@
         <item name="android:theme">@style/SelectableItemTheme</item>
         <item name="android:foreground">?attr/selectableItemBackground</item>
         <item name="android:background">@color/light_background</item>
+    </style>
+
+    <style name="MenuItems">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:tint">@color/light_text</item>
+        <item name="android:background">@android:color/transparent</item>
     </style>
 </resources>
