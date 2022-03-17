@@ -1,27 +1,21 @@
 package com.domain.myapplication.adapters
 
 import android.content.Context
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.domain.myapplication.R
 import com.domain.myapplication.extensions.loadImageFromUrl
 import com.domain.myapplication.models.Item
 
 class CategoryItemsPagingAdapter(private val context: Context, itemLayout: Int, private val categoryPosition: Int) : BaseItemsPagingAdapter(context, itemLayout) {
-
     private var categoryItemVisibleListener: CategoryItemVisibleListener? = null
 
     override fun onBindViewHolder(baseItemViewHolder: BaseItemViewHolder, position: Int) {
         getItem(position)?.let { item ->
             val itemNameTv = baseItemViewHolder.itemView.findViewById<TextView>(R.id.tvItemName)
-            val previewRImv = baseItemViewHolder.itemView.findViewById<ImageView>(R.id.imgPreview)
-            val favImgb = baseItemViewHolder. itemView.findViewById<ImageView>(R.id.imgbFav)
-
             itemNameTv.text = "${item?.itemName}"
 
+            val previewRImv = baseItemViewHolder.itemView.findViewById<ImageView>(R.id.imgPreview)
             previewRImv.setImageResource(R.drawable.ic_normal_car)
             item?.image?.medium?.let{ url ->
                 previewRImv.loadImageFromUrl(context, url, R.drawable.ic_normal_car)

@@ -17,11 +17,9 @@ class ItemsPagingAdapter(private val context: Context, itemLayout: Int) : BaseIt
     override fun onBindViewHolder(baseItemViewHolder: BaseItemViewHolder, position: Int) {
         getItem(position)?.let { item ->
             val itemNameTv = baseItemViewHolder.itemView.findViewById<TextView>(R.id.tvItemName)
-            val previewRImv = baseItemViewHolder.itemView.findViewById<ImageView>(R.id.imgPreview)
-            val favImgb = baseItemViewHolder.itemView.findViewById<ImageView>(R.id.imgbFav)
-
             itemNameTv.text = "${item?.itemName}"
 
+            val previewRImv = baseItemViewHolder.itemView.findViewById<ImageView>(R.id.imgPreview)
             previewRImv.setImageResource(R.drawable.ic_normal_car)
             item?.image?.medium?.let{ url ->
                 previewRImv.loadImageFromUrl(context, url, R.drawable.ic_normal_car)
@@ -31,8 +29,9 @@ class ItemsPagingAdapter(private val context: Context, itemLayout: Int) : BaseIt
                 itemVisibleListener?.onItemVisible(item, position)
             }
 
-            val tintColor = if(item.isFav) {R.color.fav } else {R.color.grey_background }
-                favImgb?.let {
+            val favImgb = baseItemViewHolder.itemView.findViewById<ImageView>(R.id.imgbFav)
+            favImgb?.let {
+                val tintColor = if(item.isFav) {R.color.fav } else {R.color.grey_background }
                 val imgBtnFav = it as ImageView
                 imgBtnFav?.setColorFilter(getColor(context, tintColor), android.graphics.PorterDuff.Mode.MULTIPLY)
                 favImgb.setOnClickListener {
