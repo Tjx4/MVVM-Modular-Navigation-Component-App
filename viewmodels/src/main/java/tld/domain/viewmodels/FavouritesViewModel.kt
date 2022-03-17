@@ -7,6 +7,7 @@ import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.models.Item
 import com.domain.repositories.items.ItemsRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -25,6 +26,8 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
 
     suspend fun getFavourites() {
         val favourites = itemsRepository.getFavourites()
+
+        delay(200)
 
         withContext(Dispatchers.Main){
             when {
