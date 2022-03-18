@@ -116,7 +116,6 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
         }
     }
 
-
     fun showContent(){
         avlCategoryLoader.visibility = View.INVISIBLE
         rvCategories.visibility = View.VISIBLE
