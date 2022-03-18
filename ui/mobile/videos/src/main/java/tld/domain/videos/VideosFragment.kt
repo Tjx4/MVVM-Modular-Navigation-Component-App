@@ -79,6 +79,16 @@ class VideosFragment : TopNavigationFragment(), BaseItemsPagingAdapter.ItemClick
                         }
                     }
                     is LoadState.NotLoading -> {
+/*
+Todo remove
+val items = ArrayList<Item>()
+    itemsPagingAdapter.snapshot().forEach {
+        it?.let { item -> items.add(item) }
+    }
+
+videosViewModel.checkAndFetchCategoryImage2(items)
+
+*/
                         showContent()
                     }
                 }
@@ -101,10 +111,6 @@ class VideosFragment : TopNavigationFragment(), BaseItemsPagingAdapter.ItemClick
     private fun addObservers() {
         videosViewModel.currentItem.observe(viewLifecycleOwner) { onItemUpdated(it) }
         videosViewModel.favItem.observe(viewLifecycleOwner) { onItemAddedToFav(it) }
-    }
-
-    private fun onItemsInit() {
-        //itemsPagingAdapter.notifyDataSetChanged()
     }
 
     private fun onItemUpdated(position: Int) {

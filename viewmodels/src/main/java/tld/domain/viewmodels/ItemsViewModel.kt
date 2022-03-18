@@ -30,7 +30,7 @@ abstract class ItemsViewModel(application: Application, val itemsRepo: ItemsRepo
     }
     
     suspend fun getItemImage(item: Item, position: Int){
-        item.links?.get(0)?.href?.let { url ->
+        item.links?.get(Links.CardInfo.index)?.href?.let { url ->
             val itemImage = itemsRepo.getItemImage(url)
 
             withContext(Dispatchers.Main){

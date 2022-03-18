@@ -9,11 +9,13 @@ import androidx.paging.cachedIn
 import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.constants.CATEGORY_PAGE_SIZE
 import com.domain.myapplication.enums.Links
+import com.domain.myapplication.models.Image
 import com.domain.myapplication.models.Item
 import com.domain.myapplication.models.ItemCategory
 import com.domain.repositories.authentication.AuthenticationRepository
 import com.domain.repositories.items.ItemsRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import tld.domain.viewmodels.pagingSaurce.ItemCategoryPagingSource
@@ -62,7 +64,10 @@ class DashboardViewModel(application: Application, val authenticationRepository:
         if(item.image != null || item.links?.get(Links.CardInfo.index)?.href.isNullOrEmpty()) return
 
         viewModelScope.launch(Dispatchers.IO) {
-            getItemImage(item, itemPosition)
+
+            async {
+                getItemImage(item, itemPosition)
+            }.await()
 
             withContext(Dispatchers.Main) {
                 _currentCategoryAndItem.value = Pair(categoryPosition, itemPosition)
@@ -70,7 +75,6 @@ class DashboardViewModel(application: Application, val authenticationRepository:
 
         }
     }
-
 
     suspend fun logOutUser(){
         authenticationRepository.logOutUser()
