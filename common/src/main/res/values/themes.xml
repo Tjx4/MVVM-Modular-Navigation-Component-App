@@ -95,5 +95,7 @@
         <item name="android:tint">@color/light_text</item>
         <item name="android:padding">@dimen/small_margin</item>
         <item name="android:background">@android:color/transparent</item>
+        <item name="android:theme">@style/SelectableItemTheme</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
     </style>
 </resources>
