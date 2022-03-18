@@ -32,7 +32,7 @@
 
             <TextView
                 android:id="@+id/tvItemName"
-                style="@style/LargeTextView"
+                style="@style/HeadingTextView"
                 android:layout_width="0dp"
                 android:text="Name"
                 android:maxLines="1"
@@ -57,7 +57,7 @@
             <TextView
                 android:visibility="gone"
                 android:id="@+id/tvLocationDescription"
-                style="@style/MediumTextView"
+                style="@style/NormalTextView"
                 android:layout_width="match_parent"
                 android:gravity="left"
                 android:layout_marginLeft="@dimen/xsmall_margin"

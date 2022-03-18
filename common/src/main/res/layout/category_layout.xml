@@ -23,7 +23,7 @@
 
     <TextView
         android:id="@+id/tvNoItems"
-        style="@style/MediumTextView"
+        style="@style/NormalTextView"
         android:layout_width="match_parent"
         android:textColor="@color/light_text"
         android:text="No items found for this category"

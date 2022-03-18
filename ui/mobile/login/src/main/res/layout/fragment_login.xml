@@ -17,8 +17,8 @@
         android:background="@color/light_background">
 
         <TextView
-            android:id="@+id/tvTitle"
-            style="@style/LargeTextView"
+            android:id="@+id/tvNoContentMessage"
+            style="@style/HeadingTextView"
             android:textColor="@color/dark_text"
             android:layout_marginTop="@dimen/large_margin"
             app:layout_constraintTop_toTopOf="parent"
@@ -36,7 +36,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             android:layout_marginTop="@dimen/large_margin"
             android:layout_marginHorizontal="@dimen/large_margin"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvNoContentMessage"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 

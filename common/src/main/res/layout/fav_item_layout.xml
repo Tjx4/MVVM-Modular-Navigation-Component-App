@@ -29,7 +29,7 @@
 
         <TextView
             android:id="@+id/tvName"
-            style="@style/MediumTextView"
+            style="@style/NormalTextView"
             android:layout_width="0dp"
             android:textColor="@color/dark_text"
             tools:text="Name"

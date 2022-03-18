@@ -17,8 +17,8 @@
         style="@style/ParentView">
 
         <TextView
-            android:id="@+id/tvTitle"
-            style="@style/LargeTextView"
+            android:id="@+id/tvNoContentMessage"
+            style="@style/HeadingTextView"
             android:textColor="@color/dark_text"
             android:layout_width="wrap_content"
             app:layout_constraintTop_toTopOf="@+id/imgBtnBack"
@@ -36,7 +36,7 @@
             android:layout_marginTop="@dimen/large_margin"
             android:layout_marginHorizontal="@dimen/medium_margin"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvNoContentMessage"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
         <View
@@ -87,7 +87,7 @@
         <TextView
             android:visibility="invisible"
             android:id="@+id/tvNoItems"
-            style="@style/MediumTextView"
+            style="@style/NormalTextView"
             android:textColor="@color/dark_text"
             android:layout_width="wrap_content"
             android:layout_marginTop="@dimen/small_margin"

@@ -37,7 +37,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-    <style name="LargeTextView" parent="BaseTextView">
+    <style name="HeadingTextView" parent="BaseTextView">
         <item name="android:textSize">@dimen/large_text</item>
         <item name="android:gravity">center</item>
     </style>
@@ -45,11 +45,11 @@
         <item name="android:textSize">@dimen/sub_heading_text</item>
         <item name="android:gravity">center</item>
     </style>
-    <style name="MediumTextView" parent="BaseTextView">
+    <style name="NormalTextView" parent="BaseTextView">
         <item name="android:textSize">@dimen/medium_text</item>
         <item name="android:gravity">center</item>
     </style>
-    <style name="ErrorTextView" parent="MediumTextView">
+    <style name="ErrorTextView" parent="NormalTextView">
         <item name="android:textColor">@color/red_text</item>
     </style>
 

@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
@@ -118,19 +120,21 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
     fun showContent(){
         avlCategoryLoader.visibility = View.INVISIBLE
         rvCategories.visibility = View.VISIBLE
+        clError.visibility = View.INVISIBLE
     }
 
     fun showError(message: String) {
         avlCategoryLoader.visibility = View.INVISIBLE
         rvCategories.visibility = View.INVISIBLE
+        clError.visibility = View.VISIBLE
 
-        showErrorDialog(
-            requireContext(),
-            "Error",
-            message,
-            "Retry"
-        ) {
+        val noContentTv = clError.findViewById<TextView>(R.id.tvNoContentMessage)
+        noContentTv.text = message
+
+        val retryBtn = clError.findViewById<Button>(R.id.btnRetry)
+        retryBtn.setOnClickListener {
             avlCategoryLoader.visibility = View.VISIBLE
+            clError.visibility = View.INVISIBLE
             categoriesPagingAdapter.refresh()
         }
     }

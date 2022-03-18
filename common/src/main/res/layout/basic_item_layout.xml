@@ -31,7 +31,7 @@
 
             <TextView
                 android:id="@+id/tvItemName"
-                style="@style/MediumTextView"
+                style="@style/NormalTextView"
                 android:layout_width="match_parent"
                 android:text="Name"
                 android:textColor="@color/dark_text"
@@ -45,7 +45,7 @@
             <TextView
                 android:visibility="gone"
                 android:id="@+id/tvLocationDescription"
-                style="@style/MediumTextView"
+                style="@style/NormalTextView"
                 android:layout_width="match_parent"
                 android:gravity="left"
                 android:layout_marginLeft="@dimen/xsmall_margin"

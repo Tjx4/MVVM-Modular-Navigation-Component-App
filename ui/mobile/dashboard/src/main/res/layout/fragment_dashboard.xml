@@ -89,5 +89,16 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
+        <include
+            android:visibility="gone"
+            android:id="@+id/clError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/error_layout"
+            android:layout_marginTop="@dimen/medium_margin"
+            app:layout_constraintTop_toTopOf="@+id/rvCategories"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
