@@ -49,6 +49,16 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         }
     }
 
+    override suspend fun refreshList(url: String): ItemCategory? {
+        return try {
+            retrofitServices.getItemCategory(url)
+        }
+        catch (ex: Exception) {
+            //firebaseCrashlytics.recordException(ex)
+            null
+        }
+    }
+
     override suspend fun getFavourites(): List<Item>? {
         val favItems = ArrayList<Item>()
         database.favItemsDAO.getAllItems()?.forEach {

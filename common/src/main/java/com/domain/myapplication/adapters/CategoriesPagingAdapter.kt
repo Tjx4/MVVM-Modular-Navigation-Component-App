@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.domain.myapplication.R
 import com.domain.myapplication.base.fragments.BaseFragment
 import com.domain.myapplication.constants.ITEM_PAGE_SIZE
+import com.domain.myapplication.enums.Links
 import com.domain.myapplication.models.Item
 import com.domain.myapplication.models.ItemCategory
 import kotlinx.coroutines.flow.collectLatest
@@ -21,6 +22,7 @@ import java.lang.NullPointerException
 
 class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFragment) : PagingDataAdapter<ItemCategory, CategoriesPagingAdapter.CategoriesViewHolder>(CategoriesComparator) {
     private var categoryClickListener: CategoryClickListener? = null
+    private var categoryVisibleListener: CategoryVisibleListener? = null
     //private var categoriesItems: List<Item>? = null
     var subAdapters = ArrayList<CategoryItemsPagingAdapter>()
 
@@ -35,10 +37,10 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
     }
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
-        getItem(position)?.let { item ->
-            holder.itemTitleTv.text = "${item?.title}"
+        getItem(position)?.let { category ->
+            holder.itemTitleTv.text = "${category?.title}"
 
-            item.items?.let { categoriesItems ->
+            category.items?.let { categoriesItems ->
                 //this.categoriesItems = categoriesItems
 
                 val categoryItemsPagingAdapter = CategoryItemsPagingAdapter(context, R.layout.basic_item_layout, position)
@@ -61,6 +63,10 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
                     items.collectLatest {
                         categoryItemsPagingAdapter.submitData(it)
                     }
+                }
+
+                category?.links?.get(0)?.href?.let {
+                    categoryVisibleListener?.onCategoryVisible(category, position)
                 }
 
                 initChildeRecyclerView(categoryItemsPagingAdapter, holder)
@@ -173,6 +179,13 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
         this.categoryClickListener = categoryClickListener
     }
 
+    interface CategoryVisibleListener {
+        fun onCategoryVisible(itemCategory: ItemCategory, position: Int)
+    }
+
+    fun addCategoryVisibleListener(categoryVisibleListener: CategoryVisibleListener) {
+        this.categoryVisibleListener = categoryVisibleListener
+    }
 }
 
 object CategoriesComparator : DiffUtil.ItemCallback<ItemCategory>() {

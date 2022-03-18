@@ -15,6 +15,8 @@ interface RetrofitServices {
     suspend fun getItemImage(@Url url: String): Image?
     @GET("api/cars/itemVideos.php")
     suspend fun getItemVideo(@Query("api_key") apiKey: String, @Query("video_id") videoId: String): Video?
+    @GET
+    suspend fun getItemCategory(@Url url: String): ItemCategory?
 
     @POST("???????")
     suspend fun updatePassword(@Field("data")  data: HashMap<String, String>)

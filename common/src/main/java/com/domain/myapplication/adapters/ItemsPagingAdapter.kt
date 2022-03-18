@@ -10,6 +10,7 @@ import com.domain.myapplication.R
 import com.domain.myapplication.enums.Links
 import com.domain.myapplication.extensions.loadImageFromUrl
 import com.domain.myapplication.models.Item
+import com.domain.myapplication.models.ItemCategory
 
 class ItemsPagingAdapter(private val context: Context, itemLayout: Int) : BaseItemsPagingAdapter(context, itemLayout) {
     private var itemVisibleListener: ItemVisibleListener? = null

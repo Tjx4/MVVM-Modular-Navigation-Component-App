@@ -8,6 +8,8 @@ import kotlinx.android.parcel.Parcelize
 data class ItemCategory(
     @SerializedName("id")  var id: String?,
     @SerializedName("title") var title: String?,
-    @SerializedName("time_to_refresh_in_seconds") var timeToRefreshInSeconds: String?,
+    @SerializedName("time_to_refresh_in_seconds") var timeToRefreshInSeconds: Int?,
+    //@SerializedName("Product") var product: String?,
+    @SerializedName("links") var links: List<Link>?,
     @SerializedName("items") var items: List<Item>?,
 ) : Parcelable

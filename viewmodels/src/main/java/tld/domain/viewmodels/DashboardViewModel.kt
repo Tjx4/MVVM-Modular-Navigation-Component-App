@@ -14,10 +14,7 @@ import com.domain.myapplication.models.Item
 import com.domain.myapplication.models.ItemCategory
 import com.domain.repositories.authentication.AuthenticationRepository
 import com.domain.repositories.items.ItemsRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import tld.domain.viewmodels.pagingSaurce.ItemCategoryPagingSource
 
 class DashboardViewModel(application: Application, val authenticationRepository: AuthenticationRepository, val itemsRepository: ItemsRepository) : ItemsViewModel(application, itemsRepository){
@@ -74,6 +71,18 @@ class DashboardViewModel(application: Application, val authenticationRepository:
             }
 
         }
+    }
+
+    //Update workmanager
+    suspend fun startUpdateWorker(itemCategory: ItemCategory, position: Int){
+        val updateUrl = itemCategory.links?.get(1)?.href ?: return
+        val refreshInterval = itemCategory.timeToRefreshInSeconds ?: return
+
+        delay((refreshInterval * 1000).toLong())
+
+        itemsRepository.refreshList(updateUrl)
+
+       // _currentCategoryAndItem.value
     }
 
     suspend fun logOutUser(){

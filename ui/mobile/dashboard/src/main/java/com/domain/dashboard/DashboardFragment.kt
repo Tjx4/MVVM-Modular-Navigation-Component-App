@@ -19,6 +19,7 @@ import com.domain.myapplication.adapters.*
 import com.domain.myapplication.base.fragments.TopNavigationFragment
 import com.domain.myapplication.helpers.showErrorDialog
 import com.domain.myapplication.models.Item
+import com.domain.myapplication.models.ItemCategory
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +27,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import tld.domain.viewmodels.DashboardViewModel
 
-class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.CategoryClickListener, CategoryItemsPagingAdapter.CategoryItemVisibleListener, BaseItemsPagingAdapter.ItemClickListener {
+class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.CategoryClickListener,CategoriesPagingAdapter.CategoryVisibleListener, CategoryItemsPagingAdapter.CategoryItemVisibleListener, BaseItemsPagingAdapter.ItemClickListener {
     private lateinit var binding: FragmentDashboardBinding
     private val dashboardViewModel: DashboardViewModel by viewModel()
     private lateinit var categoriesPagingAdapter: CategoriesPagingAdapter
@@ -172,5 +173,11 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
 
     override fun onItemClicked(view: View, item: Item, position: Int) {
         drawerController.navigateFromDashboardToViewItem(item)
+    }
+
+    override fun onCategoryVisible(itemCategory: ItemCategory, position: Int) {
+        dashboardViewModel.viewModelScope.launch(Dispatchers.IO) {
+            dashboardViewModel.startUpdateWorker(itemCategory, position)
+        }
     }
 }
