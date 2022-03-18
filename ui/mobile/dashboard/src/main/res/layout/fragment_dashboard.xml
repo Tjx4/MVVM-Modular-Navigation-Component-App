@@ -90,7 +90,7 @@
             app:layout_constraintRight_toRightOf="parent"/>
 
         <include
-            android:visibility="gone"
+            android:visibility="invisible"
             android:id="@+id/clError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

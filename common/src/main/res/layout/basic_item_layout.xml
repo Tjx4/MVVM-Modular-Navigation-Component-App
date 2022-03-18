@@ -14,10 +14,11 @@
         android:elevation="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/SelectableItemBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/SelectableItemBackground"
-            android:paddingBottom="@dimen/xsmall_margin">
+            android:paddingBottom="@dimen/xsmall_margin"
+            android:focusableInTouchMode="true">
 
             <ImageView
                 android:id="@+id/imgPreview"

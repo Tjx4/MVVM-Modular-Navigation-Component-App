@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
 import com.domain.myapplication.R
+import com.domain.myapplication.enums.Links
 import com.domain.myapplication.extensions.loadImageFromUrl
 import com.domain.myapplication.models.Item
 
@@ -25,7 +26,7 @@ class ItemsPagingAdapter(private val context: Context, itemLayout: Int) : BaseIt
                 previewRImv.loadImageFromUrl(context, url, R.drawable.ic_normal_car)
             }
 
-            item?.links?.get(0)?.href?.let {
+            item?.links?.get(Links.CardInfo.index)?.href?.let {
                 itemVisibleListener?.onItemVisible(item, position)
             }
 

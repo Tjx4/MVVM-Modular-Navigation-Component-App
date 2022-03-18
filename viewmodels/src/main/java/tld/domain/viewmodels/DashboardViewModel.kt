@@ -8,6 +8,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.constants.CATEGORY_PAGE_SIZE
+import com.domain.myapplication.enums.Links
 import com.domain.myapplication.models.Item
 import com.domain.myapplication.models.ItemCategory
 import com.domain.repositories.authentication.AuthenticationRepository
@@ -58,11 +59,7 @@ class DashboardViewModel(application: Application, val authenticationRepository:
 */
 
     fun checkAndFetchCategoryImage(item: Item, categoryPosition: Int, itemPosition: Int){
-        item.links?.let {
-            val links = it
-        }
-
-        if(item.image != null || item.links?.get(0)?.href.isNullOrEmpty()) return
+        if(item.image != null || item.links?.get(Links.CardInfo.index)?.href.isNullOrEmpty()) return
 
         viewModelScope.launch(Dispatchers.IO) {
             getItemImage(item, itemPosition)

@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.domain.myapplication.enums.Links
 import com.domain.myapplication.models.Item
 import com.domain.repositories.items.ItemsRepository
 import kotlinx.coroutines.Dispatchers
@@ -21,7 +22,7 @@ abstract class ItemsViewModel(application: Application, val itemsRepo: ItemsRepo
         get() = _favItem
 
     fun checkAndFetchImage(item: Item, position: Int){
-        if(item.image != null || item.links?.get(0)?.href.isNullOrEmpty()) return
+        if(item.image != null || item.links?.get(Links.CardInfo.index)?.href.isNullOrEmpty()) return
 
         viewModelScope.launch(Dispatchers.IO) {
             getItemImage(item, position)

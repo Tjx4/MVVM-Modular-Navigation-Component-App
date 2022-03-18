@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.ImageView
 import android.widget.TextView
 import com.domain.myapplication.R
+import com.domain.myapplication.enums.Links
 import com.domain.myapplication.extensions.loadImageFromUrl
 import com.domain.myapplication.models.Item
 
@@ -21,7 +22,7 @@ class CategoryItemsPagingAdapter(private val context: Context, itemLayout: Int, 
                 previewRImv.loadImageFromUrl(context, url, R.drawable.ic_normal_car)
             }
 
-            item?.links?.get(0)?.href?.let {
+            item?.links?.get(Links.CardInfo.index)?.href?.let {
                 categoryItemVisibleListener?.onCategoryItemVisible(item, categoryPosition, position)
             }
 
