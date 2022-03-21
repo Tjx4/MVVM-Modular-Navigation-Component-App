@@ -23,7 +23,6 @@ import org.mockito.MockitoAnnotations.openMocks
 
 import java.util.regex.Pattern
 
-
 class LoginViewModelTest {
     private lateinit var loginViewModel: LoginViewModel
     @Mock
@@ -67,7 +66,7 @@ class LoginViewModelTest {
         val password = "P@12345"
         val expectedErrorMessage = "Incorrect password"
 
-        val mockResponse = LoginResponse(null, APIResponse(expectedErrorMessage))
+        val mockResponse = APIResponse(null, expectedErrorMessage)
         Mockito.`when`(loginViewModel.authenticationRepository.loginUser(username, password)).thenReturn(mockResponse)
         loginViewModel.loginUser(username, password)
 
@@ -81,7 +80,7 @@ class LoginViewModelTest {
         val picture = Image("", "", "")
         val user = User(username, "", picture)
 
-        val mockResponse = LoginResponse(user, null)
+        val mockResponse = APIResponse(user, null)
         Mockito.`when`(loginViewModel.authenticationRepository.loginUser(username, password)).thenReturn(mockResponse)
         loginViewModel.loginUser(username, password)
 

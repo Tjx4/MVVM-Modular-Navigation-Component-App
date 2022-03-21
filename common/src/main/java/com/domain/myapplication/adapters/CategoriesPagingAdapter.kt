@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 import java.lang.NullPointerException
 
 class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFragment) : PagingDataAdapter<ItemCategory, CategoriesPagingAdapter.CategoriesViewHolder>(CategoriesComparator) {
-    private var categoryClickListener: CategoryClickListener? = null
+    //private var categoryClickListener: CategoryClickListener? = null
     private var categoryVisibleListener: CategoryVisibleListener? = null
     //private var categoriesItems: List<Item>? = null
     var subAdapters = ArrayList<CategoryItemsPagingAdapter>()
@@ -123,7 +123,7 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
         }
 
         override fun onClick(view: View) {
-            categoryClickListener?.onCategoryClicked(view, adapterPosition)
+            //categoryClickListener?.onCategoryClicked(view, adapterPosition)
         }
     }
 
@@ -169,6 +169,7 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
         }
     }
 
+/*
     interface CategoryClickListener {
         fun onCategoryClicked(view: View, position: Int)
     }
@@ -176,7 +177,7 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
     fun addCategoryClickListener(categoryClickListener: CategoryClickListener) {
         this.categoryClickListener = categoryClickListener
     }
-
+*/
     interface CategoryVisibleListener {
         fun onCategoryVisible(itemCategory: ItemCategory, position: Int)
     }

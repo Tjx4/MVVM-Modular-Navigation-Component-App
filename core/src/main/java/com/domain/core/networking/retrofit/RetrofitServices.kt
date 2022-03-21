@@ -17,7 +17,12 @@ interface RetrofitServices {
     suspend fun getItemVideo(@Query("api_key") apiKey: String, @Query("video_id") videoId: String): Video?
     @GET
     suspend fun getItemCategory(@Url url: String): ItemCategory?
-
+    @GET
+    suspend fun cardInfo(@Url url: String): Item?
+    @PUT
+    suspend fun updateItem(@Url url: String, @Field("data")  data: HashMap<String, String>)
+    @DELETE
+    suspend fun deleteItem(@Url url: String)
     @POST("???????")
     suspend fun updatePassword(@Field("data")  data: HashMap<String, String>)
 }

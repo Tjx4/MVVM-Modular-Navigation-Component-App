@@ -62,7 +62,7 @@ class DashboardViewModel(application: Application, val authenticationRepository:
     }
 */
 
-    fun checkAndFetchCategoryImage(item: Item, categoryPosition: Int, itemPosition: Int){
+    fun checkAndFetchCategoryImage(item: Item, categoryPosition: Int, itemPosition: Int) {
         if(item.image != null || item.links?.get(Links.CardInfo.index)?.href.isNullOrEmpty()) return
 
         viewModelScope.launch(Dispatchers.IO) {
@@ -79,7 +79,7 @@ class DashboardViewModel(application: Application, val authenticationRepository:
     }
 
     //Update workmanager
-    suspend fun startUpdateWorker(itemCategory: ItemCategory, position: Int){
+    suspend fun startUpdateWorker(itemCategory: ItemCategory, position: Int) {
         val refreshInterval = itemCategory.timeToRefreshInSeconds ?: return
         delay((refreshInterval).toLong())
 
@@ -95,8 +95,39 @@ class DashboardViewModel(application: Application, val authenticationRepository:
                 }
             }
         }
+    }
 
-       // _currentCategoryAndItem.value
+    suspend fun getCardInfo(url: String, categoryPosition: Int, itemPosition: Int) {
+        val cardInfo = itemsRepository.getCardInfo(url)
+
+        withContext(Dispatchers.Main) {
+            when (cardInfo){
+                null -> { /* handle error */ }
+                else -> { /* Update live data */ }
+            }
+        }
+    }
+
+    suspend fun addItem(url: String, categoryPosition: Int, itemPosition: Int) {
+        val update = itemsRepository.addItem(url)
+
+        withContext(Dispatchers.Main) {
+            when (update){
+                null -> { /* handle error */ }
+                else -> { /* Update live data */ }
+            }
+        }
+    }
+
+    suspend fun deleteItem(url: String, categoryPosition: Int, itemPosition: Int) {
+        val delete = itemsRepository.deleteItem(url)
+
+        withContext(Dispatchers.Main) {
+            when (delete){
+                null -> { /* handle error */ }
+                else -> { /* Update live data */ }
+            }
+        }
     }
 
     suspend fun logOutUser(){

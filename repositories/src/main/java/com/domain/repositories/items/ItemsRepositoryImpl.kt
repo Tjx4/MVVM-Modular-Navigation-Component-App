@@ -49,6 +49,37 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         }
     }
 
+    override suspend fun getCardInfo(url: String): Item? {
+        return try {
+            retrofitServices.cardInfo(url)
+        }
+        catch (ex: Exception) {
+            //firebaseCrashlytics.recordException(ex)
+            null
+        }
+    }
+
+    override suspend fun addItem(url: String) {
+        try {
+            val data = HashMap<String, String>()
+            retrofitServices.updateItem(url, data)
+        }
+        catch (ex: Exception) {
+            //firebaseCrashlytics.recordException(ex)
+            null
+        }
+    }
+
+    override suspend fun deleteItem(url: String) {
+        try {
+            retrofitServices.deleteItem(url)
+        }
+        catch (ex: Exception) {
+            //firebaseCrashlytics.recordException(ex)
+            null
+        }
+    }
+
     override suspend fun refreshList(url: String): ItemCategory? {
         return try {
             retrofitServices.getItemCategory(url)
@@ -119,23 +150,23 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
 
     //Todo consider moving to extensions
     private fun getFavTableFromItem(item: Item) = FavItemsTable(
-            "${item.id}",
-            item.itemName,
-            item.image?.thumbNail,
-            item.image?.medium,
-            item.image?.xl,
-        /*
-            item.links?.get(0)?.rel,
-            item.links?.get(0)?.method,
-            item.links?.get(0)?.href,
-            item.links?.get(1)?.rel,
-            item.links?.get(1)?.method,
-            item.links?.get(1)?.href,
-            item.links?.get(2)?.rel,
-            item.links?.get(2)?.method,
-            item.links?.get(2)?.href
-    */
-        )
+        "${item.id}",
+        item.itemName,
+        item.image?.thumbNail,
+        item.image?.medium,
+        item.image?.xl,
+/*
+        item.links?.get(0)?.rel,
+        item.links?.get(0)?.method,
+        item.links?.get(0)?.href,
+        item.links?.get(1)?.rel,
+        item.links?.get(1)?.method,
+        item.links?.get(1)?.href,
+        item.links?.get(2)?.rel,
+        item.links?.get(2)?.method,
+        item.links?.get(2)?.href
+*/
+    )
 
     private fun getFavItemFromFavTable(favItemsTable: FavItemsTable) : Item {
         val image = Image(favItemsTable.imageThumbNail, favItemsTable.imageMedium, favItemsTable.imageXl)
