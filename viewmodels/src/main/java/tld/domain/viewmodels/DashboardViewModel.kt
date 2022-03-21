@@ -1,6 +1,7 @@
 package tld.domain.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -25,6 +26,10 @@ class DashboardViewModel(application: Application, val authenticationRepository:
     private var _currentCategoryAndItem: MutableLiveData<Pair<Int, Int>> = MutableLiveData()
     val currentCategoryAndItem: MutableLiveData<Pair<Int, Int>>
         get() = _currentCategoryAndItem
+
+    private val _updatedItemCategory: MutableLiveData<Pair<ItemCategory, Int>> = MutableLiveData()
+    val updatedItemCategory: MutableLiveData<Pair<ItemCategory, Int>>
+        get() = _updatedItemCategory
 
 /*
     private val _errorFetchingItems: MutableLiveData<Boolean> = MutableLiveData()
@@ -75,12 +80,21 @@ class DashboardViewModel(application: Application, val authenticationRepository:
 
     //Update workmanager
     suspend fun startUpdateWorker(itemCategory: ItemCategory, position: Int){
-        val updateUrl = itemCategory.links?.get(1)?.href ?: return
         val refreshInterval = itemCategory.timeToRefreshInSeconds ?: return
+        delay((refreshInterval).toLong())
 
-        delay((refreshInterval * 1000).toLong())
+        val updateUrl = itemCategory.links?.get(0)?.href ?: return
+        val newList = itemsRepository.refreshList(updateUrl)
 
-        itemsRepository.refreshList(updateUrl)
+        withContext(Dispatchers.Main) {
+            when (newList){
+                null -> { /* handle error */ }
+                else -> {
+                    _updatedItemCategory.value = Pair(newList, position)
+                    startUpdateWorker(itemCategory, position)
+                }
+            }
+        }
 
        // _currentCategoryAndItem.value
     }

@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Link(
-    @SerializedName("rel")  var rel: String?,
+    @SerializedName("rel")  var rel: List<String>?,
     @SerializedName("method")  var method: String?,
     @SerializedName("href")  var href: String?
 ) : Parcelable

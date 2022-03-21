@@ -22,25 +22,26 @@ data class FavItemsTable (
     @ColumnInfo(name = "imageXl")
     var imageXl: String? = null,
 
+    /*
     @ColumnInfo(name = "cardInfoRel")
-    var cardInfoRel: String? = null,
+    var cardInfoRel: List<String>? = null,
     @ColumnInfo(name = "cardInfoDataMethod")
     var cardInfoMethod: String? = null,
     @ColumnInfo(name = "metaDataHref")
     var cardInfoHref: String? = null,
 
     @ColumnInfo(name = "updateRel")
-    var updateRel: String? = null,
+    var updateRel: List<String>? = null,
     @ColumnInfo(name = "updateMethod")
     var updateMethod: String? = null,
     @ColumnInfo(name = "updateHref")
     var updateHref: String? = null,
 
     @ColumnInfo(name = "deleteRel")
-    var deleteRel: String? = null,
+    var deleteRel: List<String>? = null,
     @ColumnInfo(name = "deleteMethod")
     var deleteMethod: String? = null,
     @ColumnInfo(name = "deleteHref")
     var deleteHref: String? = null
-
+*/
 ): Parcelable

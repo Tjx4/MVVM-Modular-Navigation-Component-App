@@ -1,6 +1,7 @@
 package com.domain.dashboard
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuInflater
 import android.view.View
@@ -77,6 +78,7 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
     fun initRecyclerView(){
         categoriesPagingAdapter = CategoriesPagingAdapter(requireContext(), this)
         categoriesPagingAdapter.addCategoryClickListener(this)
+        categoriesPagingAdapter.addCategoryVisibleListener(this)
 
         rvCategories.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -147,6 +149,7 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
         dashboardViewModel.showLoading.observe(viewLifecycleOwner) { showLoading() }
         dashboardViewModel.logout.observe(viewLifecycleOwner) { onLogOut() }
         dashboardViewModel.currentCategoryAndItem.observe(viewLifecycleOwner) { onCategoryItemUpdated(it) }
+        dashboardViewModel.updatedItemCategory.observe(viewLifecycleOwner) { onCategoryUpdated(it) }
     }
 
     fun showLoading(){
@@ -165,6 +168,9 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
         val categoryPosition = categoryAndItem.first
         val itemPosition = categoryAndItem.second
         categoriesPagingAdapter.updateCurrentCategory(categoryPosition, itemPosition)
+    }
+    private fun onCategoryUpdated(categoryAndIndex: Pair<ItemCategory, Int>) {
+        Log.i("POS", "categoryAndIndex:$categoryAndIndex")
     }
 
     override fun onCategoryItemVisible(item: Item, categoryPosition: Int, itemPosition: Int) {

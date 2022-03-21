@@ -124,6 +124,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
             item.image?.thumbNail,
             item.image?.medium,
             item.image?.xl,
+        /*
             item.links?.get(0)?.rel,
             item.links?.get(0)?.method,
             item.links?.get(0)?.href,
@@ -133,18 +134,19 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
             item.links?.get(2)?.rel,
             item.links?.get(2)?.method,
             item.links?.get(2)?.href
+    */
         )
 
-    private fun getFavItemFromFavTable(item: FavItemsTable) : Item {
-        val image = Image(item.imageThumbNail, item.imageMedium, item.imageXl)
-
+    private fun getFavItemFromFavTable(favItemsTable: FavItemsTable) : Item {
+        val image = Image(favItemsTable.imageThumbNail, favItemsTable.imageMedium, favItemsTable.imageXl)
+/*
         val links = arrayListOf(
-            Link(item.cardInfoRel, item.cardInfoMethod, item.cardInfoHref),
-            Link(item.updateRel, item.updateMethod, item.updateHref),
-            Link(item.deleteRel, item.deleteMethod, item.deleteHref)
+            Link(favItemsTable.cardInfoRel, favItemsTable.cardInfoMethod, favItemsTable.cardInfoHref),
+            Link(favItemsTable.updateRel, favItemsTable.updateMethod, favItemsTable.updateHref),
+            Link(favItemsTable.deleteRel, favItemsTable.deleteMethod, favItemsTable.deleteHref)
         )
-
-        return Item(item.id, item.itemName, image, links, true)
+*/
+        return Item(favItemsTable.id, favItemsTable.itemName, image, null, true)
     }
 
 }

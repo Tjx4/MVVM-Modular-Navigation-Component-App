@@ -41,8 +41,6 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
             holder.itemTitleTv.text = "${category?.title}"
 
             category.items?.let { categoriesItems ->
-                //this.categoriesItems = categoriesItems
-
                 val categoryItemsPagingAdapter = CategoryItemsPagingAdapter(context, R.layout.basic_item_layout, position)
                 categoryItemsPagingAdapter.addItemClickListener(fragment as BaseItemsPagingAdapter.ItemClickListener)
                 categoryItemsPagingAdapter.addItemVisibleListener(fragment as CategoryItemsPagingAdapter.CategoryItemVisibleListener)

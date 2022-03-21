@@ -1,6 +1,7 @@
 package com.domain.myapplication.adapters
 
 import android.content.Context
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import com.domain.myapplication.R
