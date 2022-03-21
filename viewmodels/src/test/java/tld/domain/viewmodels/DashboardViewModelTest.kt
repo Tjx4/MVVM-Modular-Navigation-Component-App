@@ -3,10 +3,7 @@ package tld.domain.viewmodels
 import android.app.Application
 import android.content.ClipData
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.domain.myapplication.models.APIResponse
-import com.domain.myapplication.models.Image
-import com.domain.myapplication.models.Item
-import com.domain.myapplication.models.User
+import com.domain.myapplication.models.*
 import com.domain.repositories.authentication.AuthenticationRepository
 import com.domain.repositories.items.ItemsRepository
 import junit.framework.Assert
@@ -51,6 +48,32 @@ class DashboardViewModelTest {
     @After
     fun tearDown() {
         Dispatchers.resetMain()
+    }
+
+    @Test
+    fun `test refresh list fail`() = runBlockingTest {
+        val url = "https://domain.tld"
+        val position = 0
+        val expected = null
+
+        Mockito.`when`(dashboardViewModel.itemsRepository.refreshList(url)).thenReturn(null)
+        dashboardViewModel.updateList(url,  position)
+        val actual = ""
+
+        assertEquals(actual, expected)
+    }
+
+    @Test
+    fun `test refresh list success`() = runBlockingTest {
+        val url = "https://domain.tld"
+        val position = 0
+        val expected = ItemCategory("1", "title", null, null, null)
+
+        Mockito.`when`(dashboardViewModel.itemsRepository.refreshList(url)).thenReturn(null)
+        dashboardViewModel.updateList(url,  position)
+        val actual = ""
+
+        assertEquals(actual, expected)
     }
 
     @Test

@@ -55,26 +55,6 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
         }
     }
 
-    fun showPopup(v : View){
-        val popup = PopupMenu(requireContext(), v)
-        val inflater: MenuInflater = popup.menuInflater
-        inflater.inflate(R.menu.dashboard_menu, popup.menu)
-        popup.setOnMenuItemClickListener { menuItem ->
-            when(menuItem.itemId){
-                R.id.action_favourites -> {
-                    drawerController.navigateFromDashboardToFavourites()
-                }
-                R.id.action_logout -> {
-                    dashboardViewModel.viewModelScope.launch (Dispatchers.IO){
-                        dashboardViewModel.logOutUser()
-                    }
-                }
-            }
-            true
-        }
-        popup.show()
-    }
-
     fun initRecyclerView(){
         categoriesPagingAdapter = CategoriesPagingAdapter(requireContext(), this)
         //categoriesPagingAdapter.addCategoryClickListener(this)
@@ -117,6 +97,26 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
                 }
             }
         }
+    }
+
+    fun showPopup(v : View){
+        val popup = PopupMenu(requireContext(), v)
+        val inflater: MenuInflater = popup.menuInflater
+        inflater.inflate(R.menu.dashboard_menu, popup.menu)
+        popup.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.action_favourites -> {
+                    drawerController.navigateFromDashboardToFavourites()
+                }
+                R.id.action_logout -> {
+                    dashboardViewModel.viewModelScope.launch (Dispatchers.IO){
+                        dashboardViewModel.logOutUser()
+                    }
+                }
+            }
+            true
+        }
+        popup.show()
     }
 
     fun showContent(){

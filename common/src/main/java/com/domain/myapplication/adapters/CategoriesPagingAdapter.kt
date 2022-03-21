@@ -178,6 +178,7 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
         this.categoryClickListener = categoryClickListener
     }
 */
+
     interface CategoryVisibleListener {
         fun onCategoryVisible(itemCategory: ItemCategory, position: Int)
     }

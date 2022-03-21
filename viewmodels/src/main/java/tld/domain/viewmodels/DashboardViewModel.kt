@@ -84,14 +84,18 @@ class DashboardViewModel(application: Application, val authenticationRepository:
         delay((refreshInterval).toLong())
 
         val updateUrl = itemCategory.links?.get(0)?.href ?: return
-        val newList = itemsRepository.refreshList(updateUrl)
+
+    }
+
+    suspend fun updateList(url: String, position: Int) {
+        val newList = itemsRepository.refreshList(url)
 
         withContext(Dispatchers.Main) {
             when (newList){
                 null -> { /* handle error */ }
                 else -> {
                     _updatedItemCategory.value = Pair(newList, position)
-                    startUpdateWorker(itemCategory, position)
+                    startUpdateWorker(newList, position)
                 }
             }
         }
