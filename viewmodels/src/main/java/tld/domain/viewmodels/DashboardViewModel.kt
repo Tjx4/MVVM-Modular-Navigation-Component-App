@@ -1,12 +1,17 @@
 package tld.domain.viewmodels
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
+import androidx.work.ListenableWorker
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.Worker
+import androidx.work.WorkerParameters
 import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.constants.CATEGORY_PAGE_SIZE
 import com.domain.myapplication.enums.Links
@@ -17,6 +22,7 @@ import com.domain.repositories.authentication.AuthenticationRepository
 import com.domain.repositories.items.ItemsRepository
 import kotlinx.coroutines.*
 import tld.domain.viewmodels.pagingSaurce.ItemCategoryPagingSource
+import java.util.concurrent.TimeUnit
 
 class DashboardViewModel(application: Application, val authenticationRepository: AuthenticationRepository, val itemsRepository: ItemsRepository) : ItemsViewModel(application, itemsRepository){
     private val _showLoading: MutableLiveData<Boolean> = MutableLiveData()
@@ -80,11 +86,31 @@ class DashboardViewModel(application: Application, val authenticationRepository:
 
     //Update workmanager
     suspend fun startUpdateWorker(itemCategory: ItemCategory, position: Int) {
-        val refreshInterval = itemCategory.timeToRefreshInSeconds ?: return
-        delay((refreshInterval).toLong())
+        val refreshInterval = itemCategory.timeToRefreshInSeconds
+        val url = itemCategory.links?.get(0)?.href
 
-        val updateUrl = itemCategory.links?.get(0)?.href ?: return
+        when {
+            refreshInterval == null -> { /* handle url error */ }
+            url == null -> { /* handle url error */ }
+            else -> {
+                val logBuilder = PeriodicWorkRequestBuilder<RefreshWorker>(
+                    refreshInterval.toLong(),
+                    TimeUnit.SECONDS,
+                    15,
+                    TimeUnit.SECONDS
+                )
+            }
+        }
+    }
 
+    class RefreshWorker(context: Context,  params: WorkerParameters, val dashboardViewModel: DashboardViewModel) : Worker(context, params) {
+
+        override fun doWork(): Result {
+            val url = ""
+            val position = 0
+            dashboardViewModel.updateList(url, position)
+            return Result.success()
+        }
     }
 
     suspend fun updateList(url: String, position: Int) {
@@ -95,7 +121,6 @@ class DashboardViewModel(application: Application, val authenticationRepository:
                 null -> { /* handle error */ }
                 else -> {
                     _updatedItemCategory.value = Pair(newList, position)
-                    startUpdateWorker(newList, position)
                 }
             }
         }
