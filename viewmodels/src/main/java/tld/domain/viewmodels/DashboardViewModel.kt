@@ -8,10 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import androidx.work.ListenableWorker
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.Worker
-import androidx.work.WorkerParameters
+import androidx.work.*
 import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.constants.CATEGORY_PAGE_SIZE
 import com.domain.myapplication.enums.Links
@@ -85,7 +82,11 @@ class DashboardViewModel(application: Application, val authenticationRepository:
     }
 
     //Update workmanager
+    val startedWorkers = ArrayList<Int>()
     suspend fun startUpdateWorker(itemCategory: ItemCategory, position: Int) {
+        val isAlreayStarted = startedWorkers.any{ it == position }
+        if(isAlreayStarted) return
+
         val refreshInterval = itemCategory.timeToRefreshInSeconds
         val url = itemCategory.links?.get(0)?.href
 
@@ -98,7 +99,12 @@ class DashboardViewModel(application: Application, val authenticationRepository:
                     TimeUnit.SECONDS,
                     15,
                     TimeUnit.SECONDS
-                )
+                ).addTag("MY_WORKER")
+
+                val myWork = logBuilder.build()
+
+                WorkManager.getInstance().enqueueUniquePeriodicWork("MY_WORKER", ExistingPeriodicWorkPolicy.REPLACE, myWork)
+startedWorkers.add(position)
             }
         }
     }
