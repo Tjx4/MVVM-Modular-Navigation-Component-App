@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.enums.Links
 import com.domain.myapplication.models.Item
 import com.domain.repositories.items.ItemsRepository
@@ -11,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-abstract class ItemsViewModel(application: Application, val itemsRepo: ItemsRepository) : AndroidViewModel(application) {
+abstract class ItemsViewModel(application: Application, val itemsRepo: ItemsRepository) : BaseViewModel(application) {
 
     protected var _currentItem: MutableLiveData<Int> = MutableLiveData()
     val currentItem: MutableLiveData<Int>

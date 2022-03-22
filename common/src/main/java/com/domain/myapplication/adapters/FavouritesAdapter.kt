@@ -23,7 +23,7 @@ class FavouritesAdapter(private val context: Context, private val favouritesItem
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val favouriteItem = favouritesItems[position]
 
-        holder.nameTv.text = favouriteItem.itemName
+        holder.nameTv.text = favouriteItem.title
         favouriteItem.image?.thumbNail?.let {
             holder.iconImgB.loadImageFromUrl(context, it, R.drawable.ic_img_dark)
         }

@@ -1,7 +1,6 @@
 package com.domain.myapplication.adapters
 
 import android.content.Context
-import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import com.domain.myapplication.R
@@ -15,7 +14,7 @@ class CategoryItemsPagingAdapter(private val context: Context, itemLayout: Int, 
     override fun onBindViewHolder(baseItemViewHolder: BaseItemViewHolder, position: Int) {
         getItem(position)?.let { item ->
             val itemNameTv = baseItemViewHolder.itemView.findViewById<TextView>(R.id.tvItemName)
-            itemNameTv.text = "${item?.itemName}"
+            itemNameTv.text = "${item?.title}"
 
             val previewRImv = baseItemViewHolder.itemView.findViewById<ImageView>(R.id.imgPreview)
             previewRImv.setImageResource(R.drawable.ic_normal_car)

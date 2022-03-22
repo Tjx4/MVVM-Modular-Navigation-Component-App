@@ -118,7 +118,7 @@ videosViewModel.checkAndFetchCategoryImage2(items)
     }
 
     private fun onItemAddedToFav(item: Item) {
-        Toast.makeText(requireContext(), getString(R.string.item_added_to_fav, item.itemName), Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), getString(R.string.item_added_to_fav, item.title), Toast.LENGTH_SHORT).show()
     }
 
     fun showError(message: String) {

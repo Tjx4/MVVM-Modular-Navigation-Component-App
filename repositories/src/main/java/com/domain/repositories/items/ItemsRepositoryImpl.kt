@@ -151,7 +151,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
     //Todo consider moving to extensions
     private fun getFavTableFromItem(item: Item) = FavItemsTable(
         "${item.id}",
-        item.itemName,
+        item.title,
         item.image?.thumbNail,
         item.image?.medium,
         item.image?.xl,
@@ -177,7 +177,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
             Link(favItemsTable.deleteRel, favItemsTable.deleteMethod, favItemsTable.deleteHref)
         )
 */
-        return Item(favItemsTable.id, favItemsTable.itemName, image, null, true)
+        return Item(favItemsTable.id, favItemsTable.title, favItemsTable.type, favItemsTable.product, null, image, null, true)
     }
 
 }

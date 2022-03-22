@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -12,8 +13,12 @@ data class FavItemsTable (
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id")
     var id: String,
-    @ColumnInfo(name ="itemName")
-    var itemName: String?,
+    @ColumnInfo(name ="title")
+    var title: String?,
+    @ColumnInfo(name ="type")
+    var type: String?,
+    @ColumnInfo(name ="product")
+    var product: String?,
 
     @ColumnInfo(name = "imageThumbNail")
     var imageThumbNail: String? = null,

@@ -94,16 +94,26 @@ class DashboardViewModel(application: Application, val authenticationRepository:
             refreshInterval == null -> { /* handle url error */ }
             url == null -> { /* handle url error */ }
             else -> {
-                val logBuilder = PeriodicWorkRequestBuilder<RefreshWorker>(
+                /*
+                val periodicWork = PeriodicWorkRequestBuilder<RefreshWorker>(
                     refreshInterval.toLong(),
                     TimeUnit.SECONDS,
                     15,
                     TimeUnit.SECONDS
                 ).addTag("MY_WORKER")
 
-                val myWork = logBuilder.build()
+                val myWork = periodicWork.build()
+                */
+                val constraints = Constraints.Builder().setRequiresBatteryNotLow(true).build()
 
-                WorkManager.getInstance().enqueueUniquePeriodicWork("MY_WORKER", ExistingPeriodicWorkPolicy.REPLACE, myWork)
+                val periodicWork = PeriodicWorkRequest.Builder(
+                    RefreshWorker::class.java,
+                    refreshInterval.toLong(),
+                    TimeUnit.SECONDS
+                ).setConstraints(constraints)
+                    .build()
+
+                WorkManager.getInstance(app).enqueueUniquePeriodicWork("MY_WORKER", ExistingPeriodicWorkPolicy.REPLACE, periodicWork)
 startedWorkers.add(position)
             }
         }
@@ -114,7 +124,7 @@ startedWorkers.add(position)
         override fun doWork(): Result {
             val url = ""
             val position = 0
-            dashboardViewModel.updateList(url, position)
+           // dashboardViewModel.updateList(url, position)
             return Result.success()
         }
     }
