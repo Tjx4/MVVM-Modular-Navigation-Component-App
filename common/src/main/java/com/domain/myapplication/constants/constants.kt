@@ -16,3 +16,5 @@ const val DURATION_SHORT = 70L
 //
 const val ITEM_PAGE_SIZE = 5
 const val CATEGORY_PAGE_SIZE = 5
+//
+const val P_WORK = "periodic_work"

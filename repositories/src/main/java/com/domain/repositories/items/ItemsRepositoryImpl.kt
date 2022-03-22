@@ -152,6 +152,8 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
     private fun getFavTableFromItem(item: Item) = FavItemsTable(
         "${item.id}",
         item.title,
+        item.type,
+        item.product,
         item.image?.thumbNail,
         item.image?.medium,
         item.image?.xl,

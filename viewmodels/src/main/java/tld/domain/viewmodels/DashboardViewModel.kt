@@ -11,6 +11,7 @@ import androidx.paging.cachedIn
 import androidx.work.*
 import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.constants.CATEGORY_PAGE_SIZE
+import com.domain.myapplication.constants.P_WORK
 import com.domain.myapplication.enums.Links
 import com.domain.myapplication.models.Image
 import com.domain.myapplication.models.Item
@@ -104,13 +105,19 @@ class DashboardViewModel(application: Application, val authenticationRepository:
 
                 val myWork = periodicWork.build()
                 */
-                val constraints = Constraints.Builder().setRequiresBatteryNotLow(true).build()
+                val inputData = Data.Builder().putInt("", position).build()
+                val constraints = Constraints.Builder()
+                    .setRequiresBatteryNotLow(true)
+                    .build()
 
                 val periodicWork = PeriodicWorkRequest.Builder(
                     RefreshWorker::class.java,
                     refreshInterval.toLong(),
                     TimeUnit.SECONDS
                 ).setConstraints(constraints)
+                    .addTag(P_WORK)
+                    .setInputData(inputData)
+                    .setInitialDelay(refreshInterval.toLong(), TimeUnit.SECONDS)
                     .build()
 
                 WorkManager.getInstance(app).enqueueUniquePeriodicWork("MY_WORKER", ExistingPeriodicWorkPolicy.REPLACE, periodicWork)
@@ -119,7 +126,7 @@ startedWorkers.add(position)
         }
     }
 
-    class RefreshWorker(context: Context,  params: WorkerParameters, val dashboardViewModel: DashboardViewModel) : Worker(context, params) {
+    class RefreshWorker(context: Context,  val params: WorkerParameters, val dashboardViewModel: DashboardViewModel) : Worker(context, params) {
 
         override fun doWork(): Result {
             val url = ""
