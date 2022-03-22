@@ -83,7 +83,7 @@ class DashboardViewModel(application: Application, val authenticationRepository:
     }
 
     //Update workmanager
-    val startedWorkers = ArrayList<Int>()
+val startedWorkers = ArrayList<Int>()
     suspend fun startUpdateWorker(itemCategory: ItemCategory, position: Int) {
         val isAlreayStarted = startedWorkers.any{ it == position }
         if(isAlreayStarted) return

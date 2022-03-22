@@ -188,7 +188,7 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
 
     override fun onCategoryVisible(itemCategory: ItemCategory, position: Int) {
         dashboardViewModel.viewModelScope.launch(Dispatchers.IO) {
-           // dashboardViewModel.startUpdateWorker(itemCategory, position)
+            dashboardViewModel.startUpdateWorker(itemCategory, position)
         }
     }
 }
