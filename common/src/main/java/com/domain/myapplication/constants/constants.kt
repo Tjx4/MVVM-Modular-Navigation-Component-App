@@ -18,3 +18,5 @@ const val ITEM_PAGE_SIZE = 5
 const val CATEGORY_PAGE_SIZE = 5
 //
 const val P_WORK = "periodic_work"
+const val P_WORK_URL = "periodic_work_url"
+const val P_WORK_POS = "periodic_work_position"

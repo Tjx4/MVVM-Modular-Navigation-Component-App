@@ -170,6 +170,9 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
 
     private fun onCategoryUpdated(categoryAndIndex: Pair<ItemCategory, Int>) {
         Log.i("POS", "categoryAndIndex:$categoryAndIndex")
+
+        val position = categoryAndIndex.second
+        categoriesPagingAdapter.notifyItemChanged(position)
     }
 
 /*
@@ -188,7 +191,8 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
 
     override fun onCategoryVisible(itemCategory: ItemCategory, position: Int) {
         dashboardViewModel.viewModelScope.launch(Dispatchers.IO) {
-            dashboardViewModel.startUpdateWorker(itemCategory, position)
+            //dashboardViewModel.startUpdateWorker(itemCategory, position)
+            dashboardViewModel.startRecursiveUpdates(itemCategory, position)
         }
     }
 }

@@ -12,6 +12,8 @@ import androidx.work.*
 import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.constants.CATEGORY_PAGE_SIZE
 import com.domain.myapplication.constants.P_WORK
+import com.domain.myapplication.constants.P_WORK_POS
+import com.domain.myapplication.constants.P_WORK_URL
 import com.domain.myapplication.enums.Links
 import com.domain.myapplication.models.Image
 import com.domain.myapplication.models.Item
@@ -95,43 +97,58 @@ val startedWorkers = ArrayList<Int>()
             refreshInterval == null -> { /* handle url error */ }
             url == null -> { /* handle url error */ }
             else -> {
-                /*
-                val periodicWork = PeriodicWorkRequestBuilder<RefreshWorker>(
-                    refreshInterval.toLong(),
-                    TimeUnit.SECONDS,
-                    15,
-                    TimeUnit.SECONDS
-                ).addTag("MY_WORKER")
 
-                val myWork = periodicWork.build()
-                */
-                val inputData = Data.Builder().putInt("", position).build()
+                val inputData = Data.Builder()
+                    .putString(P_WORK_URL, url)
+                    .putInt(P_WORK_POS, position)
+                    .build()
+
                 val constraints = Constraints.Builder()
                     .setRequiresBatteryNotLow(true)
                     .build()
 
+/*
+val periodicWork = PeriodicWorkRequestBuilder<RefreshWorker>(
+  refreshInterval.toLong(),
+  TimeUnit.SECONDS,
+  15,
+  TimeUnit.SECONDS
+).addTag("MY_WORKER")
+
+val myWork = periodicWork.build()
+WorkManager.getInstance(app).enqueueUniquePeriodicWork("MY_WORKER", ExistingPeriodicWorkPolicy.REPLACE, myWork)
+*/
+
                 val periodicWork = PeriodicWorkRequest.Builder(
                     RefreshWorker::class.java,
-                    refreshInterval.toLong(),
+                    20,
                     TimeUnit.SECONDS
                 ).setConstraints(constraints)
                     .addTag(P_WORK)
                     .setInputData(inputData)
-                    .setInitialDelay(refreshInterval.toLong(), TimeUnit.SECONDS)
+                    //.setInitialDelay(refreshInterval.toLong(), TimeUnit.SECONDS)
                     .build()
 
-                WorkManager.getInstance(app).enqueueUniquePeriodicWork("MY_WORKER", ExistingPeriodicWorkPolicy.REPLACE, periodicWork)
+                WorkManager.getInstance(app).enqueueUniquePeriodicWork("MY_WORKER2", ExistingPeriodicWorkPolicy.REPLACE, periodicWork)
+
 startedWorkers.add(position)
             }
         }
     }
 
-    class RefreshWorker(context: Context,  val params: WorkerParameters, val dashboardViewModel: DashboardViewModel) : Worker(context, params) {
+    class RefreshWorker(context: Context,  val params: WorkerParameters, val dashboardViewModel: DashboardViewModel) : CoroutineWorker(context, params) {
+        override suspend fun doWork(): Result {
+            params.inputData.getString(P_WORK_URL)?.let { url ->
+                val position = params.inputData.getInt(P_WORK_POS, -1)
+                dashboardViewModel.updateList(url, position)
 
-        override fun doWork(): Result {
-            val url = ""
-            val position = 0
-           // dashboardViewModel.updateList(url, position)
+                dashboardViewModel.updatedItemCategory?.value?.first?.let {
+                    if (it == null){
+                        return Result.failure()
+                    }
+                }
+            }
+
             return Result.success()
         }
     }
@@ -142,11 +159,41 @@ startedWorkers.add(position)
         withContext(Dispatchers.Main) {
             when (newList){
                 null -> { /* handle error */ }
-                else -> {
-                    _updatedItemCategory.value = Pair(newList, position)
+                else -> _updatedItemCategory.value = Pair(newList, position)
+            }
+        }
+    }
+
+    suspend fun startRecursiveUpdates(itemCategory: ItemCategory, position: Int){
+        val isAlreadyStarted = startedWorkers.any{ it == position }
+        if(isAlreadyStarted) return
+
+        itemCategory.links?.get(0)?.href?.let { url ->
+            startedWorkers.add(position)
+            updateList2(url, position, itemCategory)
+        }
+    }
+
+    suspend fun updateList2(url: String, position: Int, itemCategory: ItemCategory) {
+        itemCategory.timeToRefreshInSeconds?.let { refreshInterval ->
+            delay((refreshInterval * 10).toLong())
+
+            val newItemCategory = itemsRepository.refreshList(url)
+            newItemCategory?.refreshIndex = newItemCategory?.refreshIndex ?: 0 + 1
+
+            withContext(Dispatchers.Main) {
+                when (newItemCategory){
+                    null -> { /* handle error */ }
+                    else -> {
+                        _updatedItemCategory.value = Pair(newItemCategory, position)
+                        withContext(Dispatchers.IO) {
+                            updateList2(url, position, itemCategory)
+                        }
+                    }
                 }
             }
         }
+
     }
 
     suspend fun getCardInfo(url: String, categoryPosition: Int, itemPosition: Int) {
