@@ -55,47 +55,18 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
         }
     }
 
-    fun initRecyclerView(){
+    fun initRecyclerView() {
         categoriesPagingAdapter = CategoriesPagingAdapter(requireContext(), this)
         //categoriesPagingAdapter.addCategoryClickListener(this)
         categoriesPagingAdapter.addCategoryVisibleListener(this)
 
         rvCategories.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(false)
             adapter = categoriesPagingAdapter.withLoadStateFooter(
                 footer = CategoryLoadStateAdapter(categoriesPagingAdapter)
             )
-        }
-
-        lifecycleScope.launch {
-            dashboardViewModel.categories.collectLatest {
-                categoriesPagingAdapter.submitData(it)
-            }
-        }
-
-        lifecycleScope.launch {
-            categoriesPagingAdapter.loadStateFlow.collectLatest { loadState ->
-                when (loadState.refresh) {
-                    is LoadState.Loading -> showLoading()
-                    is LoadState.Error -> {
-                        val error = when {
-                            loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                            loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-                            loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-                            else -> null
-                        }
-
-                        error?.let {
-                            val message = if(it.error.message.isNullOrEmpty()) getString(R.string.error) else it.error.message!!
-                            showError(message)
-                        }
-                    }
-                    is LoadState.NotLoading -> {
-                        showContent()
-                    }
-                }
-            }
         }
     }
 
@@ -119,13 +90,19 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
         popup.show()
     }
 
+    fun showLoading(){
+        avlCategoryLoader.visibility = View.VISIBLE
+        rvCategories.visibility = View.INVISIBLE
+        clError.visibility = View.INVISIBLE
+    }
+
     fun showContent(){
         avlCategoryLoader.visibility = View.INVISIBLE
         rvCategories.visibility = View.VISIBLE
         clError.visibility = View.INVISIBLE
     }
 
-    fun showError(message: String) {
+    fun showRetry(message: String) {
         avlCategoryLoader.visibility = View.INVISIBLE
         rvCategories.visibility = View.INVISIBLE
         clError.visibility = View.VISIBLE
@@ -143,15 +120,44 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
 
     private fun addObservers() {
         dashboardViewModel.showLoading.observe(viewLifecycleOwner) { showLoading() }
+        dashboardViewModel.types.observe(viewLifecycleOwner) { initPaging(it) }
+        dashboardViewModel.listsError.observe(viewLifecycleOwner) { showRetry(it) }
         dashboardViewModel.logout.observe(viewLifecycleOwner) { onLogOut() }
         dashboardViewModel.currentCategoryAndItem.observe(viewLifecycleOwner) { onCategoryItemUpdated(it) }
         dashboardViewModel.updatedItemCategory.observe(viewLifecycleOwner) { onCategoryUpdated(it) }
     }
 
-    fun showLoading(){
-        avlCategoryLoader.visibility = View.VISIBLE
-        rvCategories.visibility = View.INVISIBLE
-        clError.visibility = View.INVISIBLE
+    fun initPaging(lists: List<ItemCategory>){
+        lifecycleScope.launch {
+            dashboardViewModel.categories.collectLatest {
+                categoriesPagingAdapter.submitData(it)
+            }
+        }
+
+        lifecycleScope.launch {
+            categoriesPagingAdapter.loadStateFlow.collectLatest { loadState ->
+                when (loadState.refresh) {
+                    is LoadState.Loading -> showLoading()
+                    is LoadState.Error -> {
+                        val error = when {
+                            loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+                            loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+                            loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+                            else -> null
+                        }
+
+                        error?.let {
+                            val message = if(it.error.message.isNullOrEmpty()) getString(R.string.error) else it.error.message!!
+                            showRetry(message)
+                        }
+                    }
+                    is LoadState.NotLoading -> {
+                        showContent()
+                    }
+                }
+            }
+        }
+
     }
 
     fun onLogOut(){
@@ -192,7 +198,7 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
     override fun onCategoryVisible(itemCategory: ItemCategory, position: Int) {
         dashboardViewModel.viewModelScope.launch(Dispatchers.IO) {
             //dashboardViewModel.startUpdateWorker(itemCategory, position)
-            dashboardViewModel.startRecursiveUpdates(itemCategory, position)
+           // dashboardViewModel.startRecursiveUpdates(itemCategory, position)
         }
     }
 }

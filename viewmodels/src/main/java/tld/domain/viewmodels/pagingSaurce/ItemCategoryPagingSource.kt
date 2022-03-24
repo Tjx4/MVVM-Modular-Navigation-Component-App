@@ -7,14 +7,10 @@ import com.domain.myapplication.models.ItemCategory
 import com.domain.repositories.items.ItemsRepository
 import java.lang.NullPointerException
 
-class ItemCategoryPagingSource(private val itemsRepository: ItemsRepository) : PagingSource<Int, ItemCategory>() {
-    private var categories: List<ItemCategory>? = null
+class ItemCategoryPagingSource(val categories: List<ItemCategory>?) : PagingSource<Int, ItemCategory>() {
+
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ItemCategory> = try {
         val loadPage = params.key ?: 0
-
-        if(categories.isNullOrEmpty()){
-            categories = itemsRepository.getCategorizedItems()
-        }
 
         if (categories == null) {
             LoadResult.Error(NullPointerException("No items received"))

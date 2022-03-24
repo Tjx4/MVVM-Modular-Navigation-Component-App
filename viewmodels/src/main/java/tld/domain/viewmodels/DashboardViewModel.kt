@@ -2,20 +2,17 @@ package tld.domain.viewmodels
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import androidx.work.*
-import com.domain.myapplication.base.viewModel.BaseViewModel
 import com.domain.myapplication.constants.CATEGORY_PAGE_SIZE
 import com.domain.myapplication.constants.P_WORK
 import com.domain.myapplication.constants.P_WORK_POS
 import com.domain.myapplication.constants.P_WORK_URL
 import com.domain.myapplication.enums.Links
-import com.domain.myapplication.models.Image
 import com.domain.myapplication.models.Item
 import com.domain.myapplication.models.ItemCategory
 import com.domain.repositories.authentication.AuthenticationRepository
@@ -29,6 +26,14 @@ class DashboardViewModel(application: Application, val authenticationRepository:
     val showLoading: MutableLiveData<Boolean>
         get() = _showLoading
 
+    private val _listsError: MutableLiveData<String> = MutableLiveData()
+    val listsError: MutableLiveData<String>
+        get() = _listsError
+
+    private val _lists: MutableLiveData<List<ItemCategory>> = MutableLiveData()
+    val types: MutableLiveData<List<ItemCategory>>
+        get() = _lists
+
     private var _currentCategoryAndItem: MutableLiveData<Pair<Int, Int>> = MutableLiveData()
     val currentCategoryAndItem: MutableLiveData<Pair<Int, Int>>
         get() = _currentCategoryAndItem
@@ -37,36 +42,29 @@ class DashboardViewModel(application: Application, val authenticationRepository:
     val updatedItemCategory: MutableLiveData<Pair<ItemCategory, Int>>
         get() = _updatedItemCategory
 
-/*
-    private val _errorFetchingItems: MutableLiveData<Boolean> = MutableLiveData()
-    val errorFetchingItems: MutableLiveData<Boolean>
-        get() = _errorFetchingItems
-
-
-    private val _types: MutableLiveData<List<ItemCategory>> = MutableLiveData()
-    val types: MutableLiveData<List<ItemCategory>>
-        get() = _types
-*/
-
     private val _logout: MutableLiveData<Boolean> = MutableLiveData()
     val logout: MutableLiveData<Boolean>
         get() = _logout
 
     val categories = Pager(config = PagingConfig(pageSize = CATEGORY_PAGE_SIZE)) {
-        ItemCategoryPagingSource(itemsRepository)
+        ItemCategoryPagingSource(_lists.value)
     }.flow.cachedIn(viewModelScope)
 
-/*
+    init {
+        viewModelScope.launch(Dispatchers.IO) {
+            initDashboard()
+        }
+    }
+
     suspend fun initDashboard(){
-        val types = itemsRepository.getCategorizedItems()
+        val types = itemsRepository.getLists()
         withContext(Dispatchers.Main) {
             when(types.isNullOrEmpty()){
-                true -> _errorFetchingItems.value = true
-                else -> _types.value = types
+                true -> _listsError.value = app.getString(R.string.lists_error)
+                else -> _lists.value = types
             }
         }
     }
-*/
 
     fun checkAndFetchCategoryImage(item: Item, categoryPosition: Int, itemPosition: Int) {
         if(item.image != null || item.links?.get(Links.CardInfo.index)?.href.isNullOrEmpty()) return
@@ -179,7 +177,7 @@ startedWorkers.add(position)
             delay((refreshInterval * 10).toLong())
 
             val newItemCategory = itemsRepository.refreshList(url)
-            newItemCategory?.refreshIndex = newItemCategory?.refreshIndex ?: 0 + 1
+            //newItemCategory?.refreshIndex = newItemCategory?.refreshIndex ?: 0 + 1
 
             withContext(Dispatchers.Main) {
                 when (newItemCategory){
@@ -195,6 +193,10 @@ startedWorkers.add(position)
         }
 
     }
+
+
+
+
 
     suspend fun getCardInfo(url: String, categoryPosition: Int, itemPosition: Int) {
         val cardInfo = itemsRepository.getCardInfo(url)

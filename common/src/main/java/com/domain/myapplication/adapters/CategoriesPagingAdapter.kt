@@ -22,8 +22,8 @@ import java.lang.NullPointerException
 
 class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFragment) : PagingDataAdapter<ItemCategory, CategoriesPagingAdapter.CategoriesViewHolder>(CategoriesComparator) {
     //private var categoryClickListener: CategoryClickListener? = null
-    private var categoryVisibleListener: CategoryVisibleListener? = null
     //private var categoriesItems: List<Item>? = null
+    private var categoryVisibleListener: CategoryVisibleListener? = null
     var subAdapters = ArrayList<CategoryItemsPagingAdapter>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
@@ -38,7 +38,7 @@ class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFr
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
         getItem(position)?.let { category ->
-            holder.itemTitleTv.text = "(${category?.refreshIndex})${category?.title}"
+            holder.itemTitleTv.text = "${category?.title}"
 
             category.items?.let { categoriesItems ->
                 val categoryItemsPagingAdapter = CategoryItemsPagingAdapter(context, R.layout.basic_item_layout, position)
