@@ -6,7 +6,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ItemCategory(
-    var refreshIndex: Int = 0,
+    var refreshIndex: Int?,
+
 
     @SerializedName("id")  var id: String?,
     @SerializedName("title") var title: String?,
