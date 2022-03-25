@@ -4,7 +4,7 @@
     <dimen name="medium_text">16sp</dimen>
     <dimen name="medium_plus_text">21sp</dimen>
     <dimen name="sub_heading_text">19sp</dimen>
-    <dimen name="large_text">25sp</dimen>
+    <dimen name="heading_text">25sp</dimen>
 
     <dimen name="xsmall_margin">10dp</dimen>
     <dimen name="small_margin">15dp</dimen>

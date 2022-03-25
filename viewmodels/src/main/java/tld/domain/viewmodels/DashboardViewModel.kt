@@ -31,7 +31,7 @@ class DashboardViewModel(application: Application, val authenticationRepository:
         get() = _listsError
 
     private val _lists: MutableLiveData<List<ItemCategory>> = MutableLiveData()
-    val types: MutableLiveData<List<ItemCategory>>
+    val lists: MutableLiveData<List<ItemCategory>>
         get() = _lists
 
     private var _currentCategoryAndItem: MutableLiveData<Pair<Int, Int>> = MutableLiveData()

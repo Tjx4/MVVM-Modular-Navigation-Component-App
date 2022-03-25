@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.domain.dashboard.databinding.FragmentDashboardBinding
 import com.domain.myapplication.adapters.*
 import com.domain.myapplication.base.fragments.TopNavigationFragment
-import com.domain.myapplication.helpers.showErrorDialog
 import com.domain.myapplication.models.Item
 import com.domain.myapplication.models.ItemCategory
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -120,7 +119,7 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
 
     private fun addObservers() {
         dashboardViewModel.showLoading.observe(viewLifecycleOwner) { showLoading() }
-        dashboardViewModel.types.observe(viewLifecycleOwner) { initPaging(it) }
+        dashboardViewModel.lists.observe(viewLifecycleOwner) { initPaging(it) }
         dashboardViewModel.listsError.observe(viewLifecycleOwner) { showRetry(it) }
         dashboardViewModel.logout.observe(viewLifecycleOwner) { onLogOut() }
         dashboardViewModel.currentCategoryAndItem.observe(viewLifecycleOwner) { onCategoryItemUpdated(it) }

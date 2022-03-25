@@ -39,5 +39,4 @@ class CategoryLoadStateAdapter(
             retry.isVisible = loadState is LoadState.Error
         }
     }
-
 }
