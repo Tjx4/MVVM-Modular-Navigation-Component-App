@@ -79,14 +79,13 @@ class DashboardViewModelTest {
     @Test
     fun `test card info fail`() = runBlockingTest {
         val url = "https://domain.tld"
-        val expected = null
-
+        val expected = Item("1", "item Name", null, null, null, null, null, false)
         val categoryPosition = 0
         val itemPosition = 0
 
         Mockito.`when`(dashboardViewModel.itemsRepository.getCardInfo(url)).thenReturn(null)
-        dashboardViewModel.getCardInfo(url,  categoryPosition, itemPosition)
-        val actual = ""
+        dashboardViewModel.getCardInfo(expected,  categoryPosition, itemPosition)
+        val actual = dashboardViewModel.enrichedItem
 
         assertEquals(actual, expected)
     }
@@ -94,16 +93,15 @@ class DashboardViewModelTest {
     @Test
     fun `test card info success`() = runBlockingTest {
         val url = "https://domain.tld"
-        val expected = Item("1", "item Name", null, null, true)
-
+        val expected = Item("1", "item Name", null, null, null, null, null, false)
         val categoryPosition = 0
         val itemPosition = 0
 
-        Mockito.`when`(dashboardViewModel.itemsRepository.getCardInfo(url)).thenReturn(null)
-        dashboardViewModel.getCardInfo(url,  categoryPosition, itemPosition)
-        val actual = ""
+        Mockito.`when`(dashboardViewModel.itemsRepository.getCardInfo(url)).thenReturn(expected)
+        dashboardViewModel.getCardInfo(expected, categoryPosition, itemPosition)
+        val actual = dashboardViewModel.enrichedItem
 
-        assert(false)
+        assertEquals(actual, expected)
     }
 
 }

@@ -38,6 +38,10 @@ class DashboardViewModel(application: Application, val authenticationRepository:
     val currentCategoryAndItem: MutableLiveData<Pair<Int, Int>>
         get() = _currentCategoryAndItem
 
+    private val _enrichedItem: MutableLiveData<Item> = MutableLiveData()
+    val enrichedItem: MutableLiveData<Item>
+        get() = _enrichedItem
+
     private val _updatedItemCategory: MutableLiveData<Pair<ItemCategory, Int>> = MutableLiveData()
     val updatedItemCategory: MutableLiveData<Pair<ItemCategory, Int>>
         get() = _updatedItemCategory
@@ -194,11 +198,8 @@ startedWorkers.add(position)
 
     }
 
-
-
-
-
-    suspend fun getCardInfo(url: String, categoryPosition: Int, itemPosition: Int) {
+    suspend fun getCardInfo(item: Item, categoryPosition: Int, itemPosition: Int) {
+        val url = item.links?.get(0)?.href ?: ""
         val cardInfo = itemsRepository.getCardInfo(url)
 
         withContext(Dispatchers.Main) {
@@ -209,7 +210,8 @@ startedWorkers.add(position)
         }
     }
 
-    suspend fun addItem(url: String, categoryPosition: Int, itemPosition: Int) {
+    suspend fun addItem(item: Item, categoryPosition: Int, itemPosition: Int) {
+        val url = item.links?.get(0)?.href ?: ""
         val update = itemsRepository.addItem(url)
 
         withContext(Dispatchers.Main) {
@@ -220,7 +222,8 @@ startedWorkers.add(position)
         }
     }
 
-    suspend fun deleteItem(url: String, categoryPosition: Int, itemPosition: Int) {
+    suspend fun deleteItem(item: Item, categoryPosition: Int, itemPosition: Int) {
+        val url = item.links?.get(0)?.href ?: ""
         val delete = itemsRepository.deleteItem(url)
 
         withContext(Dispatchers.Main) {
