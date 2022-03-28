@@ -58,7 +58,7 @@ class DashboardViewModelTest {
 
         Mockito.`when`(dashboardViewModel.itemsRepository.refreshList(url)).thenReturn(null)
         dashboardViewModel.updateList(url,  position)
-        val actual = ""
+        val actual = dashboardViewModel.updatedItemCategory.value?.first
 
         assertEquals(actual, expected)
     }
@@ -71,7 +71,7 @@ class DashboardViewModelTest {
 
         Mockito.`when`(dashboardViewModel.itemsRepository.refreshList(url)).thenReturn(null)
         dashboardViewModel.updateList(url,  position)
-        val actual = ""
+        val actual = dashboardViewModel.updatedItemCategory.value?.first
 
         assertEquals(actual, expected)
     }
@@ -85,7 +85,7 @@ class DashboardViewModelTest {
 
         Mockito.`when`(dashboardViewModel.itemsRepository.getCardInfo(url)).thenReturn(null)
         dashboardViewModel.getCardInfo(expected,  categoryPosition, itemPosition)
-        val actual = dashboardViewModel.enrichedItem
+        val actual = dashboardViewModel.enrichedItem.value
 
         assertEquals(actual, expected)
     }
@@ -99,7 +99,7 @@ class DashboardViewModelTest {
 
         Mockito.`when`(dashboardViewModel.itemsRepository.getCardInfo(url)).thenReturn(expected)
         dashboardViewModel.getCardInfo(expected, categoryPosition, itemPosition)
-        val actual = dashboardViewModel.enrichedItem
+        val actual = dashboardViewModel.enrichedItem.value
 
         assertEquals(actual, expected)
     }
