@@ -6,7 +6,7 @@ buildscript {
     ext.multidex_version = "2.0.1"
     ext.gms_version = "17.0.0"
     ext.glide_version = "4.13.0"
-    ext.room_version = "2.3.0"
+    ext.room_version = "2.4.2"
     ext.nav_version = "2.3.2"
     ext.mockito = "3.4.6"
     ext.paging_version = "3.1.0"

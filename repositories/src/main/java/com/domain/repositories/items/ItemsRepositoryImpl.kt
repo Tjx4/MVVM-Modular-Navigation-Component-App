@@ -90,6 +90,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         }
     }
 
+
     override suspend fun getFavourites(): List<Item>? {
         val favItems = ArrayList<Item>()
         database.favItemsDAO.getAllItems()?.forEach {
@@ -148,7 +149,7 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         }
     }
 
-    //Todo consider moving to extensions
+
     private fun getFavTableFromItem(item: Item) = FavItemsTable(
         "${item.id}",
         item.title,
