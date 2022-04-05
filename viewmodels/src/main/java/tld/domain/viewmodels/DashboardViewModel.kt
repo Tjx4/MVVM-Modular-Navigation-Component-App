@@ -61,7 +61,7 @@ class DashboardViewModel(application: Application, val authenticationRepository:
     }
 
     suspend fun initDashboard(){
-        val types = itemsRepository.getLists()
+        val types = itemsRepository.getCategories()
         withContext(Dispatchers.Main) {
             when(types.isNullOrEmpty()){
                 true -> _listsError.value = app.getString(R.string.lists_error)

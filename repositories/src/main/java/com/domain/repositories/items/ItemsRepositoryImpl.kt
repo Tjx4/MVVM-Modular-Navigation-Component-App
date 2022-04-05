@@ -8,7 +8,7 @@ import com.domain.myapplication.models.*
 
 class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, private val database: MySqliteDB) : ItemsRepository {
 
-    override suspend fun getLists(): List<ItemCategory>? {
+    override suspend fun getCategories(): List<ItemCategory>? {
         return try {
             retrofitServices.getDashBoard(API_KEY)
         }
