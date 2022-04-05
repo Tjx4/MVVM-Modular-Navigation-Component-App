@@ -35,12 +35,13 @@ abstract class BaseFragment : Fragment() {
         drawerController.currentFragment = this
     }
 
-    open fun onBackPressed(){
-    }
+    open fun onBackPressed(){}
 
     open fun onKeyDown(keyCode: Int, event: KeyEvent?){
         when(keyCode){
-            KeyEvent.KEYCODE_BACK -> {}//onBackPressed()
+            KeyEvent.KEYCODE_BACK -> {
+                //onBackPressed()
+            }
         }
     }
 

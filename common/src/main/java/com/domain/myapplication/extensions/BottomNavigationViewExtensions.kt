@@ -42,7 +42,7 @@ fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: My
 
     this.setOnNavigationItemReselectedListener { item ->
         when(myDrawerController.currentFragment is TopNavigationFragment ){
-            true -> { /*No op*/}
+            true -> { /*No op*/ }
             else -> myDrawerController.onBackNav()
         }
 

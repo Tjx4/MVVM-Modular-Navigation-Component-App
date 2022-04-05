@@ -13,7 +13,6 @@ abstract class TopNavigationFragment : BaseFragment()  {
     }
     */
 
-
     override fun onBackPressed(){
     }
 
