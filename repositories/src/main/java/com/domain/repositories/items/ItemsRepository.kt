@@ -5,6 +5,7 @@ import com.domain.myapplication.models.*
 interface ItemsRepository {
     suspend fun getCategories(): List<ItemCategory>?
     suspend fun getRemoteItems(): List<Item>?
+    suspend fun getPagedItems(page: Int): PagedItems?
     suspend fun getItemImage(url: String): Image?
     suspend fun getItemVideo(id: String): APIResponse
     suspend fun refreshList(url: String): ItemCategory?

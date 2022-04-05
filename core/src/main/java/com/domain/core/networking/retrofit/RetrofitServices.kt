@@ -1,9 +1,6 @@
 package com.domain.core.networking.retrofit
 
-import com.domain.myapplication.models.Image
-import com.domain.myapplication.models.Item
-import com.domain.myapplication.models.ItemCategory
-import com.domain.myapplication.models.Video
+import com.domain.myapplication.models.*
 import retrofit2.http.*
 
 interface RetrofitServices {
@@ -11,6 +8,8 @@ interface RetrofitServices {
     suspend fun getDashBoard(@Query("api_key") apiKey: String): List<ItemCategory>?
     @GET("api/cars/items.php")
     suspend fun getItems(@Query("api_key") apiKey: String): List<Item>?
+    @GET("api/cars/pagedItems.php")
+    suspend fun getPagedItems(@Query("api_key") apiKey: String, @Query("page")page: Int): PagedItems?
     @GET
     suspend fun getItemImage(@Url url: String): Image?
     @GET("api/cars/itemVideos.php")

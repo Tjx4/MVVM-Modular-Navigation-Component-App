@@ -28,6 +28,16 @@ class ItemsRepositoryImpl(private val retrofitServices: RetrofitServices, privat
         }
     }
 
+    override suspend fun getPagedItems(page: Int): PagedItems? {
+        return try {
+            retrofitServices.getPagedItems(API_KEY, page)
+        }
+        catch (ex: Exception) {
+            //firebaseCrashlytics.recordException(ex)
+            null
+        }
+    }
+
     override suspend fun getItemImage(url: String): Image? {
         return try {
             retrofitServices.getItemImage(url)

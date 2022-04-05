@@ -10,39 +10,22 @@ import kotlinx.coroutines.withContext
 import java.lang.NullPointerException
 
 class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSource<Int, Item>() {
-    private var items: List<Item>? = null
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Item> = try {
         val loadPage = params.key ?: 0
+        val pagedItems = itemsRepository.getPagedItems(loadPage)
 
-        if(items.isNullOrEmpty()){
-            items = itemsRepository.getRemoteItems()
-        }
-
-        if (items == null) {
+        if (pagedItems == null) {
             LoadResult.Error(NullPointerException("No items received"))
         } else {
-            val currentPage = getCurrentPage(items!!, loadPage)
-            val mainPages = items!!.size / ITEM_PAGE_SIZE
-            val additionalPages = if((items!!.size % ITEM_PAGE_SIZE) > 0) 1 else 0
-            val pages = mainPages + additionalPages
-
-            /*
-            currentPage?.forEach {
-                val url = it.metaData
-                if(!url.isNullOrEmpty()){
-                    val image = itemsRepository.getItemImage(url)
-                    it.image = image
-                }
-            }
-            */
-
-            setFav(currentPage)
+            val items = pagedItems.items ?: ArrayList()
+            val pages = pagedItems?.pages ?: 0
+            setFav(items)
 
             val prevKey = if (loadPage < 1) null else loadPage - 1
-            val nextKey = if (loadPage < (pages - 1)) loadPage + 1 else null
+            val nextKey = if (loadPage < pages) loadPage + 1 else null
 
             LoadResult.Page(
-                data = currentPage,
+                data = items,
                 prevKey = prevKey,
                 nextKey = nextKey
             )
@@ -58,18 +41,6 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
                 item.isFav = favourites?.any{ it.id == item.id } ?: false
             }
         }
-    }
-
-   private fun getCurrentPage(response: List<Item>, loadPage: Int): List<Item>{
-        val pageData = response.withIndex().groupBy {
-            it.index / ITEM_PAGE_SIZE
-        }.values.map { items ->
-            items.map {
-                it.value
-            }
-        }
-
-        return pageData[loadPage]
     }
 
     override fun getRefreshKey(state: PagingState<Int, Item>): Int? {
