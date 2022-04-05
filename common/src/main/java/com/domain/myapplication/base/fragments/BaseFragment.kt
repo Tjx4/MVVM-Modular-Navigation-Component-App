@@ -17,16 +17,6 @@ abstract class BaseFragment : Fragment() {
         super.onAttach(context)
         drawerController = context as MyDrawerController
         drawerController.showBottomNav()
-
-        /*
-        requireActivity().onBackPressedDispatcher.addCallback(
-            this, object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    onBackPressed()
-                }
-            }
-        )
-        */
     }
 
     override fun onResume() {
@@ -38,9 +28,7 @@ abstract class BaseFragment : Fragment() {
 
     open fun onKeyDown(keyCode: Int, event: KeyEvent?){
         when(keyCode){
-            KeyEvent.KEYCODE_BACK -> {
-                //onBackPressed()
-            }
+            KeyEvent.KEYCODE_BACK -> { /*onBackPressed()*/ }
         }
     }
 
