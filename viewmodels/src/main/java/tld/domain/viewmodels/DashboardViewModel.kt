@@ -195,7 +195,6 @@ startedWorkers.add(position)
                 }
             }
         }
-
     }
 
     suspend fun getCardInfo(item: Item, categoryPosition: Int, itemPosition: Int) {
