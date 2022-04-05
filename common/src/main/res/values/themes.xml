@@ -37,6 +37,7 @@
         <item name="android:textColor">@color/light_text</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
     </style>
     <style name="HeadingTextView" parent="BaseTextView">
         <item name="android:textSize">@dimen/heading_text</item>

@@ -34,6 +34,10 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
         LoadResult.Error(e)
     }
 
+    override fun getRefreshKey(state: PagingState<Int, Item>): Int? {
+       return null
+    }
+
     private suspend fun setFav(items: List<Item>){
         withContext(Dispatchers.IO) {
             items?.forEach { item ->
@@ -43,7 +47,4 @@ class ItemPagingSource(private val itemsRepository: ItemsRepository) : PagingSou
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Item>): Int? {
-       return 0
-    }
 }
