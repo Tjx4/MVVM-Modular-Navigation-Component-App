@@ -13,6 +13,7 @@ import com.domain.myapplication.base.fragments.TopNavigationFragment
 import com.domain.myapplication.constants.PLAYER_ACTIVITY
 import com.domain.myapplication.constants.VIDEO_ID
 import com.domain.myapplication.drawerController.MyDrawerController
+import com.domain.myapplication.enums.TopNavigationScreens
 import com.domain.myapplication.extensions.FADE_IN_ACTIVITY
 import com.domain.myapplication.extensions.navigateToActivity
 import com.domain.myapplication.extensions.setupWithCustomAnimNavController
@@ -87,11 +88,9 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
     }
 
     fun handleTopNavigation() {
-        if(bnBottomNav.selectedItemId == R.id.dashboardFragment){
-            finish()
-        }
-        else{
-            bnBottomNav.selectedItemId = R.id.dashboardFragment
+        when(bnBottomNav.selectedItemId) {
+            TopNavigationScreens.dashboard.fragmentId -> finish()
+            else -> bnBottomNav.selectedItemId = TopNavigationScreens.dashboard.fragmentId
         }
     }
 

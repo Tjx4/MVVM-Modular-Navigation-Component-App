@@ -3,7 +3,6 @@ package com.domain.myapplication.base.fragments
 import android.content.Context
 import android.os.Bundle
 import android.view.KeyEvent
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.domain.myapplication.drawerController.MyDrawerController
 
@@ -35,7 +34,7 @@ abstract class BaseFragment : Fragment() {
         drawerController.currentFragment = this
     }
 
-    open fun onBackPressed(){}
+    open fun onBackPressed() {}
 
     open fun onKeyDown(keyCode: Int, event: KeyEvent?){
         when(keyCode){
