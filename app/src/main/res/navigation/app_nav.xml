@@ -11,7 +11,7 @@
 
         <action
             android:id="@+id/action_loginFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment"
+            app:destination="@id/dashboardScreen"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/no_transition"
             app:popEnterAnim="@anim/no_transition"
@@ -20,7 +20,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/dashboardFragment"
+        android:id="@+id/dashboardScreen"
         android:name="com.domain.dashboard.DashboardFragment"
         android:label="Dashboard">
         <action
@@ -69,7 +69,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/videosFragment"
+        android:id="@+id/videosScreen"
         android:name="tld.domain.videos.VideosFragment"
         android:label="VideosFragment" >
         <action
@@ -83,7 +83,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/downloadsFragment"
+        android:id="@+id/downloadsScreen"
         android:name="com.example.downloads.DownloadsFragment"
         android:label="DownloadsFragment" />
 

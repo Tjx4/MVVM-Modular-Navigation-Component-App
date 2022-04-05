@@ -34,7 +34,6 @@ fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: My
         val screen = TopNavigationScreens.values().first { it.fragmentId == item.itemId }
         val itemIndex = screen.index
         val navigationOptions = if(itemIndex >= lastItemIndex)  enterOptions else enterOptions //Todo fix return animation
-
         navController.navigate(screen.fragmentId, null, navigationOptions)
         lastItemIndex = itemIndex
 
