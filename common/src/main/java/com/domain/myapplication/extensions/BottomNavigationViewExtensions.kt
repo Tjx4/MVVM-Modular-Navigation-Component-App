@@ -8,12 +8,11 @@ import com.domain.myapplication.drawerController.MyDrawerController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: MyDrawerController, navController: NavController, enterAnim: Int, exitAnim: Int, popEnterAnim: Int, popExitAnim: Int) {
-
     var lastItemIndex = 0
 
     this.setOnNavigationItemSelectedListener { item ->
 
-        val options1 = NavOptions.Builder()
+        val enterOptions = NavOptions.Builder()
             .setLaunchSingleTop(true)
             .setEnterAnim(enterAnim)
             .setExitAnim(exitAnim)
@@ -22,7 +21,7 @@ fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: My
             .setPopUpTo(navController.graph.startDestination, false)
             .build()
 
-        val options2 = NavOptions.Builder()
+        val exitOption = NavOptions.Builder()
             .setLaunchSingleTop(true)
             .setEnterAnim(R.anim.no_transition)
             .setExitAnim(R.anim.no_transition)
@@ -31,21 +30,11 @@ fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: My
             .setPopUpTo(navController.graph.startDestination, false)
             .build()
 
-       val itemIndex = when (item.itemId) {
-            R.id.dashboardFragment -> 0
-            R.id.videosFragment -> 1
-            R.id.downloadsFragment -> 2
-           else -> 0
-        }
+        val screen = Screens.values().first { it.fragmentId == item.itemId }
+        val itemIndex = screen.index
+        val navigationOptions = if(itemIndex >= lastItemIndex)  enterOptions else enterOptions //Todo fix return animation
 
-        val options = if(itemIndex >= lastItemIndex)  options1 else options1 //Todo fix return animation
-
-        when (item.itemId) {
-            R.id.dashboardFragment -> navController.navigate(R.id.dashboardFragment, null, options)
-            R.id.videosFragment -> navController.navigate(R.id.videosFragment, null, options)
-            R.id.downloadsFragment -> navController.navigate(R.id.downloadsFragment, null, options)
-        }
-
+        navController.navigate(screen.fragmentId, null, navigationOptions)
         lastItemIndex = itemIndex
 
         true
@@ -53,10 +42,17 @@ fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: My
 
     this.setOnNavigationItemReselectedListener { item ->
         when(myDrawerController.currentFragment is TopNavigationFragment ){
-            true -> {}
+            true -> { /*No op*/}
             else -> myDrawerController.onBackNav()
         }
 
         return@setOnNavigationItemReselectedListener
     }
+
+}
+
+ enum class Screens(val index: Int, val fragmentId: Int) {
+    dashboard(0, R.id.dashboardFragment),
+    videos(1, R.id.videosFragment),
+     downloads(2, R.id.downloadsFragment)
 }
