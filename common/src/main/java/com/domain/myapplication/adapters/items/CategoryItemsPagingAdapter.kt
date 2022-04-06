@@ -1,4 +1,4 @@
-package com.domain.myapplication.adapters
+package com.domain.myapplication.adapters.items
 
 import android.content.Context
 import android.widget.ImageView

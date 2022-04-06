@@ -1,4 +1,4 @@
-package com.domain.myapplication.adapters
+package com.domain.myapplication.adapters.items
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -13,14 +13,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.domain.myapplication.R
 import com.domain.myapplication.base.fragments.BaseFragment
 import com.domain.myapplication.constants.ITEM_PAGE_SIZE
-import com.domain.myapplication.enums.Links
 import com.domain.myapplication.models.Item
 import com.domain.myapplication.models.ItemCategory
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.lang.NullPointerException
 
-class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFragment) : PagingDataAdapter<ItemCategory, CategoriesPagingAdapter.CategoriesViewHolder>(CategoriesComparator) {
+class CategoriesPagingAdapter(private val context: Context, val fragment: BaseFragment) : PagingDataAdapter<ItemCategory, CategoriesPagingAdapter.CategoriesViewHolder>(
+    CategoriesComparator
+) {
     //private var categoryClickListener: CategoryClickListener? = null
     //private var categoriesItems: List<Item>? = null
     private var categoryVisibleListener: CategoryVisibleListener? = null

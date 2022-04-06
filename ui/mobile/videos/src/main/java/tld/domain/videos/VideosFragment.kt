@@ -9,9 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.domain.myapplication.adapters.BaseItemsPagingAdapter
-import com.domain.myapplication.adapters.ItemsPagingAdapter
-import com.domain.myapplication.adapters.ItemLoadStateAdapter
+import com.domain.myapplication.adapters.items.BaseItemsPagingAdapter
+import com.domain.myapplication.adapters.items.ItemsPagingAdapter
+import com.domain.myapplication.adapters.items.ItemLoadStateAdapter
 import com.domain.myapplication.base.fragments.TopNavigationFragment
 import com.domain.myapplication.helpers.showErrorDialog
 import com.domain.myapplication.models.Item

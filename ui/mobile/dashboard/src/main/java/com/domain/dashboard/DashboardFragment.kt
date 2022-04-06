@@ -16,7 +16,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.domain.dashboard.databinding.FragmentDashboardBinding
-import com.domain.myapplication.adapters.*
+import com.domain.myapplication.adapters.items.BaseItemsPagingAdapter
+import com.domain.myapplication.adapters.items.CategoriesPagingAdapter
+import com.domain.myapplication.adapters.items.CategoryItemsPagingAdapter
+import com.domain.myapplication.adapters.items.CategoryLoadStateAdapter
 import com.domain.myapplication.base.fragments.TopNavigationFragment
 import com.domain.myapplication.models.Item
 import com.domain.myapplication.models.ItemCategory

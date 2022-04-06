@@ -1,4 +1,4 @@
-package com.domain.myapplication.adapters
+package com.domain.myapplication.adapters.items
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.domain.myapplication.models.Item
 
-abstract class BaseItemsPagingAdapter(private val context: Context, private val itemLayout: Int) : PagingDataAdapter<Item, BaseItemsPagingAdapter.BaseItemViewHolder>(ItemsComparator) {
+abstract class BaseItemsPagingAdapter(private val context: Context, private val itemLayout: Int) : PagingDataAdapter<Item, BaseItemsPagingAdapter.BaseItemViewHolder>(
+    ItemsComparator
+) {
     private var itemClickListener: ItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseItemViewHolder {

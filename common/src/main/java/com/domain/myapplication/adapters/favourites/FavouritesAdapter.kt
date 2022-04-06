@@ -1,4 +1,4 @@
-package com.domain.myapplication.adapters
+package com.domain.myapplication.adapters.favourites
 
 import android.content.Context
 import android.view.LayoutInflater

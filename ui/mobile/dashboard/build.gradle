@@ -64,6 +64,7 @@ dependencies {
 
     //Modules
     implementation project(':common')
+    implementation project(':ui:shared:common')
     implementation project(':core')
     implementation project(':viewmodels')
     implementation project(':repositories')
