@@ -5,7 +5,7 @@ import androidx.navigation.NavOptions
 import com.domain.myapplication.R
 import com.domain.myapplication.base.fragments.TopNavigationFragment
 import com.domain.myapplication.drawerController.MyDrawerController
-import com.domain.myapplication.enums.TopNavigationScreens
+import com.domain.myapplication.enums.NavigationScreens
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: MyDrawerController, navController: NavController, enterAnim: Int, exitAnim: Int, popEnterAnim: Int, popExitAnim: Int) {
@@ -31,7 +31,7 @@ fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: My
             .setPopUpTo(navController.graph.startDestination, false)
             .build()
 
-        val screen = TopNavigationScreens.values().first { it.fragmentId == item.itemId }
+        val screen = NavigationScreens.values().first { it.fragmentId == item.itemId }
         val itemIndex = screen.index
         val navigationOptions = if(itemIndex >= lastItemIndex)  enterOptions else enterOptions //Todo fix return animation
         navController.navigate(screen.fragmentId, null, navigationOptions)

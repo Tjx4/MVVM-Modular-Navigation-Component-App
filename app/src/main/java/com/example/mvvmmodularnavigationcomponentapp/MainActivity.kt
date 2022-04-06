@@ -6,19 +6,17 @@ import android.view.KeyEvent
 import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.plusAssign
 import com.domain.dashboard.DashboardFragmentDirections
 import com.domain.myapplication.base.fragments.BaseFragment
 import com.domain.myapplication.base.fragments.TopNavigationFragment
 import com.domain.myapplication.constants.PLAYER_ACTIVITY
 import com.domain.myapplication.constants.VIDEO_ID
 import com.domain.myapplication.drawerController.MyDrawerController
-import com.domain.myapplication.enums.TopNavigationScreens
+import com.domain.myapplication.enums.NavigationScreens
 import com.domain.myapplication.extensions.FADE_IN_ACTIVITY
 import com.domain.myapplication.extensions.navigateToActivity
 import com.domain.myapplication.extensions.setupWithCustomAnimNavController
 import com.domain.myapplication.models.Item
-import com.example.mvvmmodularnavigationcomponentapp.navigation.KeepStateNavigator
 import kotlinx.android.synthetic.main.activity_main.*
 import tld.domain.favourites.FavouritesFragmentDirections
 import tld.domain.login.LoginFragmentDirections
@@ -89,8 +87,8 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
 
     fun handleTopNavigation() {
         when(bnBottomNav.selectedItemId) {
-            TopNavigationScreens.dashboard.fragmentId -> finish()
-            else -> bnBottomNav.selectedItemId = TopNavigationScreens.dashboard.fragmentId
+            NavigationScreens.dashboard.fragmentId -> finish()
+            else -> bnBottomNav.selectedItemId = NavigationScreens.dashboard.fragmentId
         }
     }
 
