@@ -15,7 +15,6 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/repositories" />
             <option value="$PROJECT_DIR$/ui" />
-            <option value="$PROJECT_DIR$/ui/leanback" />
             <option value="$PROJECT_DIR$/ui/mobile" />
             <option value="$PROJECT_DIR$/ui/mobile/dashboard" />
             <option value="$PROJECT_DIR$/ui/mobile/downloads" />
