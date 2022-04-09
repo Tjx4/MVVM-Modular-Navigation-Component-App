@@ -19,7 +19,9 @@
             <option value="$PROJECT_DIR$/ui/mobile/dashboard" />
             <option value="$PROJECT_DIR$/ui/mobile/downloads" />
             <option value="$PROJECT_DIR$/ui/mobile/favourites" />
+            <option value="$PROJECT_DIR$/ui/mobile/latest" />
             <option value="$PROJECT_DIR$/ui/mobile/login" />
+            <option value="$PROJECT_DIR$/ui/mobile/more" />
             <option value="$PROJECT_DIR$/ui/mobile/splash" />
             <option value="$PROJECT_DIR$/ui/mobile/videos" />
             <option value="$PROJECT_DIR$/ui/mobile/viewItem" />

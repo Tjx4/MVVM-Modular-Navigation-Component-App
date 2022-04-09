@@ -32,7 +32,9 @@
         <entry key="ui/mobile/favourites/src/main/res/layout/fragment_favourites.xml" value="0.2755208333333333" />
         <entry key="ui/mobile/favourites/src/main/res/layout/fragment_view_favourite.xml" value="0.2755208333333333" />
         <entry key="ui/mobile/favourites/src/main/res/layout/fragment_view_item.xml" value="0.25104166666666666" />
+        <entry key="ui/mobile/latest/src/main/res/layout/fragment_latest.xml" value="0.21822916666666667" />
         <entry key="ui/mobile/login/src/main/res/layout/fragment_login.xml" value="0.28958333333333336" />
+        <entry key="ui/mobile/more/src/main/res/layout/fragment_more.xml" value="0.20416666666666666" />
         <entry key="ui/mobile/videos/src/main/res/layout/fragment_videos.xml" value="0.22083333333333333" />
         <entry key="ui/mobile/viewItem/src/main/res/layout/fragment_view_item.xml" value="0.25104166666666666" />
         <entry key="ui/shared/common/src/main/res/menu/dashboard_menu.xml" value="0.28020833333333334" />

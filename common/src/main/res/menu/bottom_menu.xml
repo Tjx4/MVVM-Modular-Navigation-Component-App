@@ -12,7 +12,18 @@
         android:icon="@drawable/ic_vids" />
 
     <item
+        android:id="@+id/latestScreen"
+        android:title="@string/latest"
+        android:icon="@drawable/ic_latest" />
+
+    <item
         android:id="@+id/downloadsScreen"
         android:title="@string/downloads"
         android:icon="@drawable/ic_downlods" />
+
+    <item
+        android:id="@+id/moreScreen"
+        android:title="@string/more"
+        android:icon="@drawable/ic_more" />
+
 </menu>

@@ -87,4 +87,14 @@
         android:name="com.example.downloads.DownloadsFragment"
         android:label="DownloadsFragment" />
 
+    <fragment
+        android:id="@+id/latestScreen"
+        android:name="com.domain.latest.LatestFragment"
+        android:label="LatestFragment" />
+
+    <fragment
+        android:id="@+id/moreScreen"
+        android:name="com.domain.more.MoreFragment"
+        android:label="MoreFragment" />
+
 </navigation>

@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navController = findNavController(R.id.navControllerFragment)
-        bnBottomNav.setupWithCustomAnimNavController(this, navController, R.anim.trail_out, R.anim.trail_in, R.anim.trail_out, R.anim.trail_in)
+        bnBottomNav.setupWithCustomAnimNavController(this, navController,  com.example.common.R.anim.trail_out, com.example.common.R.anim.trail_in, com.example.common.R.anim.trail_out, com.example.common.R.anim.trail_in)
     }
 
     override fun navigateFromLoginToDashboard() {
@@ -87,8 +87,8 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
 
     fun handleTopNavigation() {
         when(bnBottomNav.selectedItemId) {
-            NavigationScreens.dashboard.fragmentId -> finish()
-            else -> bnBottomNav.selectedItemId = NavigationScreens.dashboard.fragmentId
+            NavigationScreens.Dashboard.fragmentId -> finish()
+            else -> bnBottomNav.selectedItemId = NavigationScreens.Dashboard.fragmentId
         }
     }
 
