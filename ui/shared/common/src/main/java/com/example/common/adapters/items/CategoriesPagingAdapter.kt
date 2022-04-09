@@ -1,4 +1,4 @@
-package com.domain.myapplication.adapters.items
+package com.example.common.adapters.items
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,11 +10,11 @@ import androidx.paging.*
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.domain.myapplication.R
 import com.domain.myapplication.base.fragments.BaseFragment
 import com.domain.myapplication.constants.ITEM_PAGE_SIZE
 import com.domain.myapplication.models.Item
 import com.domain.myapplication.models.ItemCategory
+import com.example.common.R
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.lang.NullPointerException

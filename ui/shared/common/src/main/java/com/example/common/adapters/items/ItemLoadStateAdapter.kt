@@ -1,4 +1,4 @@
-package com.domain.myapplication.adapters.items
+package com.example.common.adapters.items
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.domain.myapplication.R
+import com.example.common.R
 import com.wang.avi.AVLoadingIndicatorView
 
 class ItemLoadStateAdapter(

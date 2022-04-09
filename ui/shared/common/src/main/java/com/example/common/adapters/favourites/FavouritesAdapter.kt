@@ -1,4 +1,4 @@
-package com.domain.myapplication.adapters.favourites
+package com.example.common.adapters.favourites
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.domain.myapplication.R
 import com.domain.myapplication.extensions.loadImageFromUrl
 import com.domain.myapplication.models.Item
+import com.example.common.R
 import com.makeramen.roundedimageview.RoundedImageView
 
 class FavouritesAdapter(private val context: Context, private val favouritesItems: List<Item>) : RecyclerView.Adapter<FavouritesAdapter.ViewHolder>() {

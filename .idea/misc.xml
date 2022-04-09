@@ -10,6 +10,7 @@
         <entry key="common/src/main/res/drawable/black_button_background.xml" value="0.24635416666666668" />
         <entry key="common/src/main/res/drawable/edittext_background.xml" value="0.240625" />
         <entry key="common/src/main/res/drawable/fx_button_background.xml" value="0.24791666666666667" />
+        <entry key="common/src/main/res/drawable/ic_home.xml" value="0.2845" />
         <entry key="common/src/main/res/drawable/large_outlet_background.xml" value="0.24635416666666668" />
         <entry key="common/src/main/res/drawable/splash_background.xml" value="0.2604166666666667" />
         <entry key="common/src/main/res/drawable/splash_background_gradient.xml" value="0.2604166666666667" />
@@ -34,6 +35,7 @@
         <entry key="ui/mobile/login/src/main/res/layout/fragment_login.xml" value="0.28958333333333336" />
         <entry key="ui/mobile/videos/src/main/res/layout/fragment_videos.xml" value="0.22083333333333333" />
         <entry key="ui/mobile/viewItem/src/main/res/layout/fragment_view_item.xml" value="0.25104166666666666" />
+        <entry key="ui/shared/common/src/main/res/menu/dashboard_menu.xml" value="0.28020833333333334" />
         <entry key="ui/shared/player/src/main/res/drawable/ic_home.xml" value="0.22" />
         <entry key="ui/shared/player/src/main/res/layout/activity_player.xml" value="0.20153985507246377" />
         <entry key="ui/shared/player/src/main/res/layout/weather_layout.xml" value="0.20153985507246377" />

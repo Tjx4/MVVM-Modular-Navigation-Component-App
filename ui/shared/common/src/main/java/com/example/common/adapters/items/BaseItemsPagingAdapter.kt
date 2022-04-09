@@ -1,4 +1,4 @@
-package com.domain.myapplication.adapters.items
+package com.example.common.adapters.items
 
 import android.content.Context
 import android.view.LayoutInflater

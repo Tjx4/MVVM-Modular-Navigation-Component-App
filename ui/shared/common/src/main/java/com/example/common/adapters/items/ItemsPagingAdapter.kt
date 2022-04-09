@@ -1,13 +1,13 @@
-package com.domain.myapplication.adapters.items
+package com.example.common.adapters.items
 
 import android.content.Context
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat.getColor
-import com.domain.myapplication.R
 import com.domain.myapplication.enums.Links
 import com.domain.myapplication.extensions.loadImageFromUrl
 import com.domain.myapplication.models.Item
+import com.example.common.R
 
 class ItemsPagingAdapter(private val context: Context, itemLayout: Int) : BaseItemsPagingAdapter(context, itemLayout) {
     private var itemVisibleListener: ItemVisibleListener? = null

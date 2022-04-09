@@ -8,7 +8,7 @@ import android.view.animation.Animation
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.domain.myapplication.adapters.favourites.FavouritesAdapter
+import com.example.common.adapters.favourites.FavouritesAdapter
 import com.domain.myapplication.base.fragments.SubNavigationFragment
 import com.domain.myapplication.constants.DURATION_SHORT
 import com.domain.myapplication.extensions.blinkView
