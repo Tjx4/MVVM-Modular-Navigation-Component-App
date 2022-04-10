@@ -89,7 +89,6 @@
                 android:name="favItem"
                 app:argType="com.domain.myapplication.models.Item"
                 app:nullable="false" />
-
         </action>
         <deepLink
             android:id="@+id/videos_deepLink"

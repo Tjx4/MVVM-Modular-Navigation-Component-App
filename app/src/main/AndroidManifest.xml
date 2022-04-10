@@ -19,7 +19,10 @@
         <activity
             android:theme="@style/NoActionBarTheme"
             android:name=".MainActivity"
-            android:exported="true"/>
+            android:exported="true">
+
+            <nav-graph android:value="@navigation/app_nav" />
+        </activity>
     </application>
 
 </manifest>
