@@ -44,10 +44,10 @@ android {
 
         //Platforms
         google {
-            dimension "platform"
+            dimension "$platform"
         }
         huawei {
-            dimension "platform"
+            dimension "$platform"
             versionNameSuffix "-HUAWEI"
         }
     }
