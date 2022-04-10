@@ -1,9 +1,11 @@
 package com.example.mvvmmodularnavigationcomponentapp
 
-import androidx.appcompat.app.AppCompatActivity
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.domain.dashboard.DashboardFragmentDirections
@@ -44,12 +46,12 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
     }
 
     override fun navigateFromFavouritesToViewItem(item: Item) {
-        val action = FavouritesFragmentDirections.actionFavouritesFragmentToViewFavouriteFragment(item)
+        val action = FavouritesFragmentDirections.actionFavouritesFragmentToViewItemFragment(item)
         navController.navigate(action)
     }
 
     override fun navigateFromVideoToViewItem(item: Item) {
-        val action = VideosFragmentDirections.actionVideosFragmentToViewFavouriteFragment(item)
+        val action = VideosFragmentDirections.actionVideosFragmentToViewItemFragment(item)
         navController.navigate(action)
     }
 
@@ -73,12 +75,38 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
         navController.popBackStack()
     }
 
-    override fun showBottomNav() {
-        bnBottomNav?.visibility = View.VISIBLE
+    override fun showBottomNav(onShow: () -> Unit) {
+        bnBottomNav?.let {
+            it.visibility = View.VISIBLE
+
+            it.animate()
+                .translationY(0f)
+                //.alpha(1f)
+                .setDuration(200)
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator?) {
+                        super.onAnimationEnd(animation)
+                        onShow.invoke()
+                    }
+                })
+        }
+
     }
 
-    override fun hideBottomNav() {
-        bnBottomNav?.visibility = View.INVISIBLE
+    override fun hideBottomNav(onHide: () -> Unit) {
+        bnBottomNav?.let {
+            it.animate()
+                .translationY(it.height.toFloat())
+                //.alpha(0.0f)
+                .setDuration(200)
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator?) {
+                        super.onAnimationEnd(animation)
+                        it.visibility = View.GONE
+                        onHide.invoke()
+                    }
+                })
+        }
     }
 
     override fun onBackNav() {

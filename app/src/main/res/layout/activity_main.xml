@@ -16,10 +16,10 @@
         app:navGraph="@navigation/app_nav"
         app:defaultNavHost="true"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bnBottomNav" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:visibility="invisible"
+        android:visibility="gone"
         android:id="@+id/bnBottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

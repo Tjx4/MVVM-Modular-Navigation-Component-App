@@ -17,6 +17,6 @@ interface MyDrawerController {
     fun navigateFromViewItemToPlayer(videoId: String)
     fun popAll()
     fun popBack()
-    fun showBottomNav()
-    fun hideBottomNav()
+    fun showBottomNav(onShow: () -> Unit = {})
+    fun hideBottomNav(onHide: () -> Unit = {})
 }
