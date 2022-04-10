@@ -8,17 +8,16 @@ import com.domain.myapplication.drawerController.MyDrawerController
 import com.domain.myapplication.enums.NavigationScreens
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: MyDrawerController, navController: NavController, enterAnim: Int, exitAnim: Int, popEnterAnim: Int, popExitAnim: Int) {
+fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: MyDrawerController, navController: NavController) {
     var lastItemIndex = 0
 
     this.setOnNavigationItemSelectedListener { item ->
-
         val enterOptions = NavOptions.Builder()
             .setLaunchSingleTop(true)
-            .setEnterAnim(enterAnim)
-            .setExitAnim(exitAnim)
-            .setPopEnterAnim(popEnterAnim)
-            .setPopExitAnim(popExitAnim)
+            .setEnterAnim(R.anim.trail_out)
+            .setExitAnim( R.anim.trail_in)
+            .setPopEnterAnim(R.anim.trail_out)
+            .setPopExitAnim(R.anim.trail_in)
             .setPopUpTo(navController.graph.startDestination, false)
             .build()
 
