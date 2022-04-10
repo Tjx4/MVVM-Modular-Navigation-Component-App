@@ -24,6 +24,35 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "$environment", "$platform", "$territory"
+    productFlavors {
+        //Environments
+        mock {
+            dimension "$environment"
+        }
+        staging {
+            dimension "$environment"
+        }
+        prod {
+            dimension "$environment"
+        }
+
+        //Platforms
+        google {
+            dimension "$platform"
+        }
+        huawei {
+            dimension "$platform"
+            versionNameSuffix "-HUAWEI"
+        }
+
+        //Territories
+        southAfrica {
+            dimension "$territory"
+        }
+
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

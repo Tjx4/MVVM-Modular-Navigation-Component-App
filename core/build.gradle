@@ -28,15 +28,12 @@ android {
     productFlavors {
         //Environments
         mock {
-            applicationId "com.domain.core.mock"
             dimension "$environment"
         }
         staging {
-            applicationId "com.domain.core.staging"
             dimension "$environment"
         }
         prod {
-            applicationId "com.domain.core"
             dimension "$environment"
         }
 
@@ -55,6 +52,7 @@ android {
         }
 
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
