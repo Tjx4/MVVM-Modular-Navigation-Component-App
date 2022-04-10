@@ -17,7 +17,7 @@ fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: My
             .setEnterAnim(R.anim.slide_in_right)
             .setExitAnim(R.anim.slide_out_left)
             .setPopEnterAnim(R.anim.slide_in_left)
-            .setPopExitAnim(R.anim.slide_out_right)
+            .setPopExitAnim(R.anim.no_transition)
             .setPopUpTo(navController.graph.startDestination, false)
             .build()
 
@@ -25,7 +25,7 @@ fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: My
             .setLaunchSingleTop(true)
             .setEnterAnim(R.anim.slide_in_left)
             .setExitAnim(R.anim.slide_out_right)
-            .setPopEnterAnim(R.anim.slide_in_right)
+            .setPopEnterAnim(R.anim.no_transition)
             .setPopExitAnim(R.anim.slide_out_left)
             .setPopUpTo(navController.graph.startDestination, false)
             .build()
