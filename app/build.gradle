@@ -26,6 +26,31 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "$environment", "$platform"
+    productFlavors {
+        //Environments
+        mock {
+            applicationId "com.example.mvvmmodularnavigationcomponentapp.mock"
+            dimension "$environment"
+        }
+        staging {
+            applicationId "com.example.mvvmmodularnavigationcomponentapp.staging"
+            dimension "$environment"
+        }
+        prod {
+            applicationId "com.example.mvvmmodularnavigationcomponentapp"
+            dimension "$environment"
+        }
+
+        //Platforms
+        google {
+            dimension "platform"
+        }
+        huawei {
+            dimension "platform"
+            versionNameSuffix "-HUAWEI"
+        }
+    }
     dataBinding {
         enabled = true
     }
