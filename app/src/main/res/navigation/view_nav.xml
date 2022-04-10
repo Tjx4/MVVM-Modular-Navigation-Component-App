@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/view_nav"
+    app:startDestination="@id/viewItemFragment">
+
+    <fragment
+        android:id="@+id/viewItemFragment"
+        android:name="tld.domain.viewitem.ViewItemFragment"
+        android:label="ViewItemFragment">
+        <argument
+            android:name="favItem"
+            app:argType="com.domain.myapplication.models.Item"
+            app:nullable="false" />
+    </fragment>
+
+</navigation>

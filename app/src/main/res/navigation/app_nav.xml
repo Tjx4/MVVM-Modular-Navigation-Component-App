@@ -34,12 +34,19 @@
 
         <action
             android:id="@+id/action_dashboardFragment_to_viewItemFragment"
-            app:destination="@id/viewItemFragment"
+            app:destination="@id/view_nav"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/no_transition"
             app:popEnterAnim="@anim/no_transition"
             app:popExitAnim="@anim/fade_out"
-            app:popUpToInclusive="false"/>
+            app:popUpToInclusive="false">
+
+        <argument
+            android:name="favItem"
+            app:argType="com.domain.myapplication.models.Item"
+            app:nullable="false" />
+
+        </action>
 
     </fragment>
 
@@ -50,22 +57,19 @@
 
         <action
             android:id="@+id/action_favouritesFragment_to_viewFavouriteFragment"
-            app:destination="@id/viewItemFragment"
+            app:destination="@id/view_nav"
             app:enterAnim="@anim/slide_left"
             app:exitAnim="@anim/no_transition"
             app:popEnterAnim="@anim/no_transition"
             app:popExitAnim="@anim/slide_right"
-            app:popUpToInclusive="false"/>
-    </fragment>
+            app:popUpToInclusive="false">
 
-    <fragment
-        android:id="@+id/viewItemFragment"
-        android:name="tld.domain.viewitem.ViewItemFragment"
-        android:label="ViewItemFragment">
-        <argument
-            android:name="favItem"
-            app:argType="com.domain.myapplication.models.Item"
-            app:nullable="false" />
+            <argument
+                android:name="favItem"
+                app:argType="com.domain.myapplication.models.Item"
+                app:nullable="false" />
+
+        </action>
     </fragment>
 
     <fragment
@@ -74,12 +78,19 @@
         android:label="VideosFragment" >
         <action
             android:id="@+id/action_videosFragment_to_viewFavouriteFragment"
-            app:destination="@id/viewItemFragment"
+            app:destination="@id/view_nav"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/no_transition"
             app:popEnterAnim="@anim/no_transition"
             app:popExitAnim="@anim/fade_out"
-            app:popUpToInclusive="false"/>
+            app:popUpToInclusive="false">
+
+            <argument
+                android:name="favItem"
+                app:argType="com.domain.myapplication.models.Item"
+                app:nullable="false" />
+
+        </action>
     </fragment>
 
     <fragment
@@ -96,5 +107,7 @@
         android:id="@+id/moreScreen"
         android:name="com.domain.more.MoreFragment"
         android:label="MoreFragment" />
+
+  <include app:graph="@navigation/view_nav"/>
 
 </navigation>
