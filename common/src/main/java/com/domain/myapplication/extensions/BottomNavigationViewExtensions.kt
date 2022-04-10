@@ -23,16 +23,16 @@ fun BottomNavigationView.setupWithCustomAnimNavController(myDrawerController: My
 
         val exitOption = NavOptions.Builder()
             .setLaunchSingleTop(true)
-            .setEnterAnim(R.anim.no_transition)
-            .setExitAnim(R.anim.no_transition)
-            .setPopEnterAnim(R.anim.no_transition)
-            .setPopExitAnim(R.anim.no_transition)
+            .setEnterAnim(R.anim.slide_in_left)
+            .setExitAnim(R.anim.slide_out_right)
+            .setPopEnterAnim(R.anim.slide_in_right)
+            .setPopExitAnim(R.anim.slide_out_left)
             .setPopUpTo(navController.graph.startDestination, false)
             .build()
 
         val screen = NavigationScreens.values().first { it.fragmentId == item.itemId }
         val itemIndex = screen.index
-        val navigationOptions = if(itemIndex >= lastItemIndex)  enterOptions else enterOptions //Todo fix return animation
+        val navigationOptions = if(itemIndex >= lastItemIndex)  enterOptions else exitOption
         navController.navigate(screen.fragmentId, null, navigationOptions)
         lastItemIndex = itemIndex
 
