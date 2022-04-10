@@ -24,6 +24,37 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "$environment", "$platform"
+    productFlavors {
+        //Environments
+        mock {
+            dimension "$environment"
+        }
+        staging {
+            dimension "$environment"
+        }
+        prod {
+            dimension "$environment"
+        }
+
+        //Platforms
+        google {
+            dimension "$platform"
+        }
+        huawei {
+            dimension "$platform"
+        }
+    }
+
+/*
+    android.variantFilter { variant ->
+        def names = variant.flavors*.name
+        def buildType = variant.buildType.name
+        if ((buildType.equals("release") && names.contains("mock")) || (buildType.equals("release") && names.contains("staging"))) {
+            setIgnore(true)
+        }
+    }
+*/
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
