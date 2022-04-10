@@ -75,7 +75,7 @@
     <fragment
         android:id="@+id/videosScreen"
         android:name="tld.domain.videos.VideosFragment"
-        android:label="VideosFragment" >
+        android:label="VideosFragment">
         <action
             android:id="@+id/action_videosFragment_to_viewItemFragment"
             app:destination="@id/view_nav"
@@ -91,6 +91,9 @@
                 app:nullable="false" />
 
         </action>
+        <deepLink
+            android:id="@+id/videos_deepLink"
+            app:uri="https://domain.tld/vidios" />
     </fragment>
 
     <fragment
