@@ -24,7 +24,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    flavorDimensions "$environment", "$platform", "$territory"
+    flavorDimensions "$environment", "$platform"
     productFlavors {
         //Environments
         mock {
@@ -43,16 +43,18 @@ android {
         }
         huawei {
             dimension "$platform"
-            versionNameSuffix "-HUAWEI"
         }
-
-        //Territories
-        southAfrica {
-            dimension "$territory"
-        }
-
     }
 
+/*
+    android.variantFilter { variant ->
+        def names = variant.flavors*.name
+        def buildType = variant.buildType.name
+        if ((buildType.equals("release") && names.contains("mock")) || (buildType.equals("release") && names.contains("staging"))) {
+            setIgnore(true)
+        }
+    }
+*/
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

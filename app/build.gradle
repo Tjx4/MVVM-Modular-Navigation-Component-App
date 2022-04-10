@@ -36,14 +36,17 @@ android {
         //Environments
         mock {
             applicationId "com.example.mvvmmodularnavigationcomponentapp.mock"
+            manifestPlaceholders = [variant: "(Mock) Car app"]
             dimension "$environment"
         }
         staging {
             applicationId "com.example.mvvmmodularnavigationcomponentapp.staging"
+            manifestPlaceholders = [variant: "(Staging) Car app"]
             dimension "$environment"
         }
         prod {
             applicationId "com.example.mvvmmodularnavigationcomponentapp"
+            manifestPlaceholders = [variant: "Car app"]
             dimension "$environment"
         }
 
@@ -61,6 +64,7 @@ android {
             dimension "$territory"
         }
     }
+
     dataBinding {
         enabled = true
     }
