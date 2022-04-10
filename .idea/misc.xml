@@ -5,6 +5,7 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.2453125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24427083333333333" />
+        <entry key="app/src/main/res/layout/notification_badge.xml" value="0.25729166666666664" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2604166666666667" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2604166666666667" />
         <entry key="common/src/main/res/drawable/black_button_background.xml" value="0.24635416666666668" />
@@ -12,6 +13,8 @@
         <entry key="common/src/main/res/drawable/fx_button_background.xml" value="0.24791666666666667" />
         <entry key="common/src/main/res/drawable/ic_home.xml" value="0.2845" />
         <entry key="common/src/main/res/drawable/large_outlet_background.xml" value="0.24635416666666668" />
+        <entry key="common/src/main/res/drawable/navigation_view_colored.xml" value="0.1665" />
+        <entry key="common/src/main/res/drawable/notification_badge.xml" value="0.1665" />
         <entry key="common/src/main/res/drawable/splash_background.xml" value="0.2604166666666667" />
         <entry key="common/src/main/res/drawable/splash_background_gradient.xml" value="0.2604166666666667" />
         <entry key="common/src/main/res/layout/basic_item_layout.xml" value="0.22916666666666666" />
@@ -37,6 +40,9 @@
         <entry key="ui/mobile/more/src/main/res/layout/fragment_more.xml" value="0.20416666666666666" />
         <entry key="ui/mobile/videos/src/main/res/layout/fragment_videos.xml" value="0.22083333333333333" />
         <entry key="ui/mobile/viewItem/src/main/res/layout/fragment_view_item.xml" value="0.25104166666666666" />
+        <entry key="ui/shared/common/src/main/res/drawable/news_bottom_nav_bg.xml" value="0.1665" />
+        <entry key="ui/shared/common/src/main/res/layout/load_state_layout.xml" value="0.22083333333333333" />
+        <entry key="ui/shared/common/src/main/res/layout/notification_badge.xml" value="0.25729166666666664" />
         <entry key="ui/shared/common/src/main/res/menu/dashboard_menu.xml" value="0.28020833333333334" />
         <entry key="ui/shared/player/src/main/res/drawable/ic_home.xml" value="0.22" />
         <entry key="ui/shared/player/src/main/res/layout/activity_player.xml" value="0.20153985507246377" />

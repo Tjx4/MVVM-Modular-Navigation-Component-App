@@ -2,9 +2,13 @@ package com.example.mvvmmodularnavigationcomponentapp
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.content.Context
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
+import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -19,10 +23,13 @@ import com.domain.myapplication.extensions.FADE_IN_ACTIVITY
 import com.domain.myapplication.extensions.navigateToActivity
 import com.domain.myapplication.extensions.setupWithCustomAnimNavController
 import com.domain.myapplication.models.Item
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import tld.domain.favourites.FavouritesFragmentDirections
 import tld.domain.login.LoginFragmentDirections
 import tld.domain.videos.VideosFragmentDirections
+
 
 class MainActivity : AppCompatActivity(), MyDrawerController {
     override var currentFragment: BaseFragment? = null
@@ -33,6 +40,29 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
         setContentView(R.layout.activity_main)
         navController = findNavController(R.id.navControllerFragment)
         bnBottomNav.setupWithCustomAnimNavController(this, navController)
+
+        showBadge(this, bnBottomNav, com.example.common.R.id.moreScreen, "1")
+    }
+
+    fun showBadge(
+        context: Context?,
+        bottomNavigationView: BottomNavigationView,
+        @IdRes itemId: Int,
+        value: String?
+    ) {
+        removeBadge(bottomNavigationView, itemId)
+        val itemView: BottomNavigationItemView = bottomNavigationView.findViewById(itemId)
+        val badge: View = LayoutInflater.from(context).inflate(com.example.common.R.layout.layout_news_badge, bottomNavigationView, false)
+        val text: TextView = badge.findViewById(com.example.common.R.id.badge_text_view)
+        text.text = value
+        itemView.addView(badge)
+    }
+
+    fun removeBadge(bottomNavigationView: BottomNavigationView, @IdRes itemId: Int) {
+        val itemView: BottomNavigationItemView = bottomNavigationView.findViewById(itemId)
+        if (itemView.childCount == 3) {
+            itemView.removeViewAt(2)
+        }
     }
 
     override fun navigateFromLoginToDashboard() {

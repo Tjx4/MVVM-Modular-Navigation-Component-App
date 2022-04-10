@@ -29,6 +29,8 @@
 
     <style name="NavigationBar">
         <item name="android:background">@color/dark_background</item>
+        <item name="itemTextColor">@drawable/navigation_view_colored</item>
+        <item name="itemIconTint">@drawable/navigation_view_colored</item>
     </style>
 
     <style name="ParentView">

@@ -29,6 +29,13 @@
 
     <style name="NavigationBar">
         <item name="android:background">@color/teal_200</item>
+        <item name="itemTextColor">@drawable/navigation_view_colored</item>
+        <item name="itemIconTint">@drawable/navigation_view_colored</item>
+        <!--
+        <item name="itemBackground">@color/blue_3</item>
+        <item name="paddingStart">@dimen/bottom_navigation_padding</item>
+        <item name="paddingEnd">@dimen/bottom_navigation_padding</item>
+        -->
     </style>
 
     <style name="ParentView">
