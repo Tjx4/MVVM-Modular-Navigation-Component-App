@@ -2,6 +2,7 @@
 buildscript {
     ext.environment = "environment"
     ext.platform = "platform"
+    ext.territory = "territory"
 
     ext.kotlin_version = "1.5.20"
     ext.work_runtimen = "2.8.0-alpha01"

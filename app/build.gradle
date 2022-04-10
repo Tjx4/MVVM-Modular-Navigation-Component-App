@@ -26,7 +26,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    flavorDimensions "$environment", "$platform"
+    flavorDimensions "$environment", "$platform", "$territory"
     productFlavors {
         //Environments
         mock {
@@ -49,6 +49,11 @@ android {
         huawei {
             dimension "$platform"
             versionNameSuffix "-HUAWEI"
+        }
+
+        //Territories
+        southAfrica {
+            dimension "$territory"
         }
     }
     dataBinding {
