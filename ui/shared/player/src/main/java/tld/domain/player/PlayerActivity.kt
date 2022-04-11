@@ -28,7 +28,7 @@ import tld.domain.player.databinding.ActivityPlayerBinding
 import tld.domain.viewmodels.PlayerViewModel
 
 
-class PlayerActivity : AppCompatActivity() {
+abstract class PlayerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPlayerBinding
     private val playerViewModel: PlayerViewModel by viewModel()
 

@@ -110,6 +110,7 @@
         android:name="com.domain.more.MoreFragment"
         android:label="MoreFragment" />
 
-  <include app:graph="@navigation/view_nav"/>
+  <include
+      app:graph="@navigation/view_nav"/>
 
 </navigation>
