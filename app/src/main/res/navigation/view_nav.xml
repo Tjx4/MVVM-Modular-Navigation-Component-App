@@ -19,7 +19,13 @@
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/no_transition"
             app:popEnterAnim="@anim/no_transition"
-            app:popExitAnim="@anim/fade_out"/>
+            app:popExitAnim="@anim/fade_out">
+            <argument
+                android:name="videoId"
+                app:argType="string"
+                app:nullable="false" />
+        </action>
+
     </fragment>
 
     <activity
@@ -31,6 +37,10 @@
             android:name="videoId"
             app:argType="string"
             app:nullable="false" />
+
+        <deepLink
+            android:id="@+id/player_deepLink"
+            app:uri="https://domain.tld/player/videoId={videoId}" />
     </activity>
 
 </navigation>
