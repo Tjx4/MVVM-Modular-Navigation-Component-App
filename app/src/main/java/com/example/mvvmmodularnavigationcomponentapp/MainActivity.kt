@@ -29,6 +29,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import tld.domain.favourites.FavouritesFragmentDirections
 import tld.domain.login.LoginFragmentDirections
 import tld.domain.videos.VideosFragmentDirections
+import tld.domain.viewitem.ViewItemFragmentDirections
 
 
 class MainActivity : AppCompatActivity(), MyDrawerController {
@@ -91,9 +92,8 @@ class MainActivity : AppCompatActivity(), MyDrawerController {
     }
 
     override fun navigateFromViewItemToPlayer(videoId: String) {
-        val payload = Bundle()
-        payload.putString(VIDEO_ID, videoId)
-        navigateToActivity(PLAYER_ACTIVITY, payload, FADE_IN_ACTIVITY)
+        val action = ViewItemFragmentDirections.actionViewItemFragmentToPlayerActivity(videoId)
+        navController.navigate(action)
     }
 
     override fun popAll() {

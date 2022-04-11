@@ -12,6 +12,25 @@
             android:name="favItem"
             app:argType="com.domain.myapplication.models.Item"
             app:nullable="false" />
+
+        <action
+            android:id="@+id/action_viewItemFragment_to_playerActivity"
+            app:destination="@id/playerActivity"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/no_transition"
+            app:popEnterAnim="@anim/no_transition"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
+
+    <activity
+        android:id="@+id/playerActivity"
+        android:name="tld.domain.player.PlayerActivity"
+        android:label="PlayerActivity">
+
+        <argument
+            android:name="videoId"
+            app:argType="string"
+            app:nullable="false" />
+    </activity>
 
 </navigation>

@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.animation.Animation
 import androidx.databinding.DataBindingUtil
 import com.domain.myapplication.constants.DURATION_SHORT
+import com.domain.myapplication.constants.FAV_ITEM
 import com.domain.myapplication.constants.PAYLOAD_KEY
 import com.domain.myapplication.constants.VIDEO_ID
 import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.helpers.vibratePhone
+import com.domain.myapplication.models.Item
 import com.example.common.player.BasePlayerActivity
 import kotlinx.android.synthetic.main.activity_player.*
 import tld.domain.player.databinding.ActivityPlayerBinding
@@ -21,7 +23,7 @@ class PlayerActivity : BasePlayerActivity() {
         binding.playerViewModel = playerViewModel
         binding.lifecycleOwner = this
 
-        val videoId = intent.extras?.getBundle(PAYLOAD_KEY)?.getString(VIDEO_ID)
+        val videoId = intent.extras?.getString(VIDEO_ID)
         playerViewModel.setVideoId(videoId)
 
         initPlayerViews()
