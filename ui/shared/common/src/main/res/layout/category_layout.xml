@@ -14,11 +14,11 @@
         android:maxLines="1"
         android:gravity="left"/>
 
+    <!-- android:layoutAnimation="@anim/layout_horizontal_animation" -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCategoryItems"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layoutAnimation="@anim/layout_horizontal_animation"
         android:layout_marginTop="@dimen/small_margin"
         android:focusableInTouchMode="true"/>
 
