@@ -3,14 +3,22 @@ package com.domain.myapplication.base.fragments
 import android.content.Context
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.domain.myapplication.drawerController.MyDrawerController
 
 abstract class BaseFragment : Fragment() {
    protected lateinit var drawerController: MyDrawerController
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        drawerController.showBottomNav()
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onAttach(context: Context) {
