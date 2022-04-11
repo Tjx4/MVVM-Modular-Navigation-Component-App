@@ -1,61 +1,33 @@
-package tld.domain.player
+package com.example.common.player
 
 import android.annotation.SuppressLint
-import android.os.Bundle
 import android.view.View
-import android.view.animation.Animation
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.viewModelScope
-import com.domain.myapplication.constants.DURATION_SHORT
-import com.domain.myapplication.constants.PAYLOAD_KEY
-import com.domain.myapplication.constants.VIDEO_ID
-import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.helpers.showErrorDialog
-import com.domain.myapplication.helpers.vibratePhone
 import com.domain.myapplication.models.Video
+import com.example.common.R
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.source.TrackGroupArray
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray
+import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.util.MimeTypes
 import com.google.android.exoplayer2.util.Util
-import kotlinx.android.synthetic.main.activity_player.*
+import com.wang.avi.AVLoadingIndicatorView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import tld.domain.player.databinding.ActivityPlayerBinding
 import tld.domain.viewmodels.PlayerViewModel
 
-
-abstract class PlayerActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityPlayerBinding
-    private val playerViewModel: PlayerViewModel by viewModel()
-
-    private var player: SimpleExoPlayer? = null
-    private var playWhenReady = true
-    private var currentWindow = 0
-    //private var playbackPosition: Long = 0
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_player)
-        binding.playerViewModel = playerViewModel
-        binding.lifecycleOwner = this
-
-        val videoId = intent.extras?.getBundle(PAYLOAD_KEY)?.getString(VIDEO_ID)
-        playerViewModel.setVideoId(videoId)
-
-        imgBtnBack.setOnClickListener {
-            vibratePhone(this, DURATION_SHORT)
-            it.blinkView(0.6f, 1.0f, 100, 2, Animation.ABSOLUTE, 0, {
-                onBackPressed()
-            })
-
-        }
-
-        addObservers()
-    }
+abstract class BasePlayerActivity : AppCompatActivity() {
+    protected val playerViewModel: PlayerViewModel by viewModel()
+    protected var playerView: PlayerView? = null
+    protected var avLoadingIndicatorView: AVLoadingIndicatorView? = null
+    protected var player: SimpleExoPlayer? = null
+    protected var playWhenReady = true
+    protected var currentWindow = 0
+    //protected var playbackPosition: Long = 0
 
     override fun onStart() {
         super.onStart()
@@ -90,26 +62,29 @@ abstract class PlayerActivity : AppCompatActivity() {
         }
     }
 
-    private fun addObservers() {
-        playerViewModel.isLoading.observe(this, { onLoading() })
-        playerViewModel.showVideo.observe(this, { showContent() })
-        playerViewModel.videoIdError.observe(this, { onVideoIdError() })
-        playerViewModel.videoId.observe(this, { onVideoIdSet(it) })
-        playerViewModel.videoError.observe(this, { onVideoError(it) })
-        playerViewModel.video.observe(this, { onVideoSet(it) })
-        playerViewModel.noVideo.observe(this, { onNoVideoFound() })
-        playerViewModel.videoUri.observe(this, { initializePlayer(it) })
+    abstract fun setVideosViews()
+    abstract fun toggleControllerVisible(visibility: Int)
+
+    protected fun addObservers() {
+        playerViewModel.isLoading.observe(this) { onLoading() }
+        playerViewModel.showVideo.observe(this) { showContent() }
+        playerViewModel.videoIdError.observe(this) { onVideoIdError() }
+        playerViewModel.videoId.observe(this) { onVideoIdSet(it) }
+        playerViewModel.videoError.observe(this) { onVideoError(it) }
+        playerViewModel.video.observe(this) { onVideoSet(it) }
+        playerViewModel.noVideo.observe(this) { onNoVideoFound() }
+        playerViewModel.videoUri.observe(this) { initializePlayer(it) }
     }
 
-    private fun onLoading(){
-        avlPlayerLoader.visibility = View.VISIBLE
+    protected fun onLoading(){
+        avLoadingIndicatorView?.visibility = View.VISIBLE
     }
 
-    private fun showContent(){
-        avlPlayerLoader.visibility = View.GONE
+    protected fun showContent(){
+        avLoadingIndicatorView?.visibility = View.GONE
     }
 
-    private fun onVideoIdError(){
+    protected fun onVideoIdError(){
         showContent()
 
         showErrorDialog(
@@ -122,11 +97,11 @@ abstract class PlayerActivity : AppCompatActivity() {
         }
     }
 
-    private fun onVideoIdSet(videoId: String){
+    protected fun onVideoIdSet(videoId: String){
         fetchVideoById(videoId)
     }
 
-    private fun onVideoError(errorMessage: String){
+    protected fun onVideoError(errorMessage: String){
         showContent()
 
         showErrorDialog(
@@ -136,13 +111,13 @@ abstract class PlayerActivity : AppCompatActivity() {
             getString(R.string.retry)
         ) {
             playerViewModel.videoId.value?.let {
-                avlPlayerLoader.visibility = View.VISIBLE
+                avLoadingIndicatorView?.visibility = View.VISIBLE
                 fetchVideoById(it)
             }
         }
     }
 
-    private fun fetchVideoById(videoId: String){
+    protected fun fetchVideoById(videoId: String){
         playerViewModel.let {
             it.viewModelScope.launch(Dispatchers.IO) {
                 it.getVideo(videoId)
@@ -150,11 +125,11 @@ abstract class PlayerActivity : AppCompatActivity() {
         }
     }
 
-    private fun onVideoSet(video: Video){
+    protected fun onVideoSet(video: Video){
         playerViewModel.startPlayback(video)
     }
 
-    private fun onNoVideoFound(){
+    protected fun onNoVideoFound(){
         showContent()
 
         showErrorDialog(
@@ -167,7 +142,7 @@ abstract class PlayerActivity : AppCompatActivity() {
         }
     }
 
-    private fun initializePlayer(url: String) {
+    protected fun initializePlayer(url: String) {
         if(player == null){
             val trackSelector = DefaultTrackSelector(this)
             trackSelector.setParameters(trackSelector.buildUponParameters().setMaxVideoSizeSd())
@@ -181,7 +156,7 @@ abstract class PlayerActivity : AppCompatActivity() {
                 .setLoadControl(loadControl)
                 .build()
 
-            video_view.player = player
+            playerView?.player = player
         }
 
         val mediaItem = MediaItem.fromUri(url)
@@ -215,7 +190,7 @@ abstract class PlayerActivity : AppCompatActivity() {
         addPlayerListener()
     }
 
-    private fun addPlayerListener() {
+    protected fun addPlayerListener() {
         player?.addListener(object : Player.EventListener {
             fun onTimelineChanged(timeline: Timeline?, manifest: Any?) {
 
@@ -247,17 +222,12 @@ abstract class PlayerActivity : AppCompatActivity() {
             }
         })
 
-        video_view.setControllerVisibilityListener { visibility ->
-            //Todo move logic
-            if (visibility == View.VISIBLE) {
-                imgBtnBack.visibility = View.VISIBLE
-            } else {
-                imgBtnBack.visibility = View.GONE
-            }
+        playerView?.setControllerVisibilityListener { visibility ->
+            toggleControllerVisible(visibility)
         }
     }
 
-    private fun releasePlayer() {
+    protected fun releasePlayer() {
         player?.let {
             //playbackPosition = it.currentPosition
             currentWindow = it.currentWindowIndex
@@ -268,14 +238,14 @@ abstract class PlayerActivity : AppCompatActivity() {
     }
 
     @SuppressLint("InlinedApi")
-    private fun hideSystemUi() {
-        video_view.systemUiVisibility = (
-                    View.SYSTEM_UI_FLAG_LOW_PROFILE
-                    or View.SYSTEM_UI_FLAG_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                )
+    protected fun hideSystemUi() {
+        playerView?.systemUiVisibility = (
+            View.SYSTEM_UI_FLAG_LOW_PROFILE
+            or View.SYSTEM_UI_FLAG_FULLSCREEN
+            or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+            or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+        )
     }
 }

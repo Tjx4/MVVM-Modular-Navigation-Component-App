@@ -122,5 +122,5 @@ dependencies {
     implementation project(':ui:mobile:latest')
     implementation project(':ui:mobile:downloads')
     implementation project(':ui:mobile:more')
-    implementation project(':ui:shared:player')
+    implementation project(':ui:mobile:player')
 }

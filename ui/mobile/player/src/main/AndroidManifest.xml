@@ -5,9 +5,7 @@
     <application>
         <activity
             android:name=".PlayerActivity"
-            android:theme="@style/NoActionBarTheme"
-            android:exported="false"
-            android:screenOrientation="landscape"/>
+            android:exported="false" />
     </application>
 
 </manifest>
