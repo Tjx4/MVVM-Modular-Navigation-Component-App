@@ -22,6 +22,14 @@ class PlayerViewModel(application: Application, val authenticationRepository: Au
     val showVideo: MutableLiveData<Boolean>
         get() = _showVideo
 
+    private val _showControls: MutableLiveData<Boolean> = MutableLiveData()
+    val showControls: MutableLiveData<Boolean>
+        get() = _showControls
+
+    private val _hideControls: MutableLiveData<Boolean> = MutableLiveData()
+    val hideControls: MutableLiveData<Boolean>
+        get() = _hideControls
+
     private val _videoIdError: MutableLiveData<Boolean> = MutableLiveData()
     val videoIdError: MutableLiveData<Boolean>
         get() = _videoIdError
@@ -86,6 +94,14 @@ class PlayerViewModel(application: Application, val authenticationRepository: Au
             else -> _videoError.value = error.message
         }
         */
+    }
+
+    fun toggleControllerVisible(visibility: Int) {
+        if (visibility == View.VISIBLE) {
+            _showControls.value = true
+        } else {
+            _hideControls.value = true
+        }
     }
 
 }

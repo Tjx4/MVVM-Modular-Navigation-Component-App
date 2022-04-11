@@ -24,6 +24,7 @@ import tld.domain.viewmodels.PlayerViewModel
 abstract class BasePlayerActivity : AppCompatActivity() {
     protected val playerViewModel: PlayerViewModel by viewModel()
     protected var playerView: PlayerView? = null
+    protected var btnBack: View? = null
     protected var avLoadingIndicatorView: AVLoadingIndicatorView? = null
     protected var player: SimpleExoPlayer? = null
     protected var playWhenReady = true
@@ -63,12 +64,13 @@ abstract class BasePlayerActivity : AppCompatActivity() {
         }
     }
 
-    abstract fun setVideosViews()
-    abstract fun toggleControllerVisible(visibility: Int)
+    abstract fun initPlayerViews()
 
     protected fun addObservers() {
         playerViewModel.isLoading.observe(this) { onLoading() }
         playerViewModel.showVideo.observe(this) { showContent() }
+        playerViewModel.showControls.observe(this) { showControls() }
+        playerViewModel.hideControls.observe(this) { hideControls() }
         playerViewModel.videoIdError.observe(this) { onVideoIdError() }
         playerViewModel.videoId.observe(this) { onVideoIdSet(it) }
         playerViewModel.videoError.observe(this) { onVideoError(it) }
@@ -83,6 +85,14 @@ abstract class BasePlayerActivity : AppCompatActivity() {
 
     protected fun showContent(){
         avLoadingIndicatorView?.visibility = View.GONE
+    }
+
+    protected fun showControls(){
+        btnBack?.visibility = View.VISIBLE
+    }
+
+    protected fun hideControls(){
+        btnBack?.visibility = View.GONE
     }
 
     protected fun onVideoIdError(){
@@ -224,7 +234,7 @@ abstract class BasePlayerActivity : AppCompatActivity() {
         })
 
         playerView?.setControllerVisibilityListener { visibility ->
-            toggleControllerVisible(visibility)
+            playerViewModel.toggleControllerVisible(visibility)
         }
     }
 
