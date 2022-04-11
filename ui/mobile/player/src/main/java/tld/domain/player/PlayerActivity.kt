@@ -32,6 +32,7 @@ class PlayerActivity : BasePlayerActivity() {
             })
         }
 
+        setVideosViews()
         addObservers()
     }
 

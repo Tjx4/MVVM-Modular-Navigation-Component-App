@@ -4,8 +4,10 @@
 
     <application>
         <activity
+            android:theme="@style/NoActionBarTheme"
             android:name=".PlayerActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>
