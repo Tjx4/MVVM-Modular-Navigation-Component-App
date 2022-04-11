@@ -9,7 +9,7 @@ object API {
     init {
         val builder = Retrofit
             .Builder()
-            .baseUrl(Environments.Mock.url)
+            .baseUrl(Environments.Staging.url)
             .addConverterFactory(GsonConverterFactory.create())
 
         val retrofit = builder.build()
