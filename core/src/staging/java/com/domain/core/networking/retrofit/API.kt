@@ -3,6 +3,7 @@ package com.domain.core.networking.retrofit
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/*
 object API {
     var retrofit: RetrofitServices
 
@@ -16,4 +17,4 @@ object API {
         API.retrofit = retrofit.create(RetrofitServices::class.java)
     }
 }
-
+*/
