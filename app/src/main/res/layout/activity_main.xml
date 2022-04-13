@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:background="@color/light_background"
-    android:animateLayoutChanges="true">
+    android:animateLayoutChanges="false">
 
     <fragment
         android:id="@+id/navControllerFragment"
