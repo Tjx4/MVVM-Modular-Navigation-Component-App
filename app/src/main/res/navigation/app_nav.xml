@@ -92,7 +92,7 @@
         </action>
         <deepLink
             android:id="@+id/videos_deepLink"
-            app:uri="https://domain.tld/vidios" />
+            app:uri="https://domain.tld/videos" />
     </fragment>
 
     <fragment
