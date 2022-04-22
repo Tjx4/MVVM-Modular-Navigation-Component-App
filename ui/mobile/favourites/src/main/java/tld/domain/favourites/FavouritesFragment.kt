@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.common.adapters.favourites.FavouritesAdapter
 import com.domain.myapplication.base.fragments.SubNavigationFragment
+import com.domain.myapplication.base.fragments.TopNavigationFragment
 import com.domain.myapplication.constants.DURATION_SHORT
 import com.domain.myapplication.extensions.blinkView
 import com.domain.myapplication.extensions.runWhenReady
@@ -25,6 +26,11 @@ import tld.domain.viewmodels.FavouritesViewModel
 class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.FavouritesClickListener {
     private lateinit var binding: FragmentFavouritesBinding
     private val favouritesViewModel: FavouritesViewModel by viewModel()
+
+    override fun onStart() {
+        super.onStart()
+        drawerController.showBottomNav()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
