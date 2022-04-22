@@ -23,6 +23,12 @@ class FavouritesViewModel(application: Application, private val itemsRepository:
     val noItems: MutableLiveData<Boolean>
         get() = _noItems
 
+    init {
+        viewModelScope.launch(Dispatchers.IO) {
+            getFavourites()
+        }
+    }
+
     suspend fun getFavourites() {
         val favourites = itemsRepository.getFavourites()
 
