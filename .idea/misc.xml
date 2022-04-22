@@ -43,6 +43,7 @@
         <entry key="ui/mobile/videos/src/main/res/layout/fragment_videos.xml" value="0.22083333333333333" />
         <entry key="ui/mobile/viewItem/src/main/res/layout/fragment_view_item.xml" value="0.25104166666666666" />
         <entry key="ui/shared/common/src/main/res/drawable/news_bottom_nav_bg.xml" value="0.1665" />
+        <entry key="ui/shared/common/src/main/res/layout/layout_news_badge.xml" value="0.21603260869565216" />
         <entry key="ui/shared/common/src/main/res/layout/load_state_layout.xml" value="0.22083333333333333" />
         <entry key="ui/shared/common/src/main/res/layout/notification_badge.xml" value="0.25729166666666664" />
         <entry key="ui/shared/common/src/main/res/menu/dashboard_menu.xml" value="0.28020833333333334" />

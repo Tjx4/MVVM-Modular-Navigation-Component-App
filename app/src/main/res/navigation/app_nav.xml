@@ -26,10 +26,10 @@
         <action
             android:id="@+id/action_dashboardFragment_to_favouritesFragment"
             app:destination="@id/favouritesFragment"
-            app:enterAnim="@anim/slide_left"
+            app:enterAnim="@anim/slide_left_and_fade"
             app:exitAnim="@anim/no_transition"
             app:popEnterAnim="@anim/no_transition"
-            app:popExitAnim="@anim/slide_right"
+            app:popExitAnim="@anim/slide_right_and_fade"
             app:popUpToInclusive="true" />
 
         <action
@@ -58,10 +58,10 @@
         <action
             android:id="@+id/action_favouritesFragment_to_viewItemFragment"
             app:destination="@id/view_nav"
-            app:enterAnim="@anim/slide_left"
+            app:enterAnim="@anim/slide_left_and_fade"
             app:exitAnim="@anim/no_transition"
             app:popEnterAnim="@anim/no_transition"
-            app:popExitAnim="@anim/slide_right"
+            app:popExitAnim="@anim/slide_right_and_fade"
             app:popUpToInclusive="false">
 
             <argument
