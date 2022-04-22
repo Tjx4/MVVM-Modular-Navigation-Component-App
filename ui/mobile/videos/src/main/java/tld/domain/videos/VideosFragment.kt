@@ -27,6 +27,16 @@ class VideosFragment : TopNavigationFragment(), BaseItemsPagingAdapter.ItemClick
     private val videosViewModel: VideosViewModel by viewModel()
     private lateinit var itemsPagingAdapter: ItemsPagingAdapter
 
+    override fun onStart() {
+        super.onStart()
+        drawerController.showBottomNav()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        videosViewModel.currentItem.observe(this) { onItemUpdated(it) }
+        videosViewModel.favItem.observe(this) { onItemAddedToFav(it) }
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_videos, container, false)
@@ -37,7 +47,6 @@ class VideosFragment : TopNavigationFragment(), BaseItemsPagingAdapter.ItemClick
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        addObservers()
         initRecyclerView()
     }
 
@@ -106,11 +115,6 @@ videosViewModel.checkAndFetchCategoryImage2(items)
 
     override fun onItemVisible(item: Item, position: Int) {
         videosViewModel.checkAndFetchImage(item, position)
-    }
-
-    private fun addObservers() {
-        videosViewModel.currentItem.observe(viewLifecycleOwner) { onItemUpdated(it) }
-        videosViewModel.favItem.observe(viewLifecycleOwner) { onItemAddedToFav(it) }
     }
 
     private fun onItemUpdated(position: Int) {

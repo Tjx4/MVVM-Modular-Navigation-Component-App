@@ -17,7 +17,7 @@ abstract class BaseFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        drawerController.showBottomNav()
+        drawerController.hideBottomNav()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

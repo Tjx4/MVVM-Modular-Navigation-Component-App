@@ -35,6 +35,21 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
     private val dashboardViewModel: DashboardViewModel by viewModel()
     private lateinit var categoriesPagingAdapter: CategoriesPagingAdapter
 
+    override fun onStart() {
+        super.onStart()
+        drawerController.showBottomNav()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        dashboardViewModel.showLoading.observe(this) { showLoading() }
+        dashboardViewModel.lists.observe(this) { initPaging(it) }
+        dashboardViewModel.listsError.observe(this) { showRetry(it) }
+        dashboardViewModel.logout.observe(this) { onLogOut() }
+        dashboardViewModel.currentCategoryAndItem.observe(this) { onCategoryItemUpdated(it) }
+        dashboardViewModel.updatedItemCategory.observe(this) { onCategoryUpdated(it) }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false)
@@ -45,7 +60,10 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        addObservers()
+        dashboardViewModel.viewModelScope.launch(Dispatchers.IO) {
+            dashboardViewModel.initDashboard()
+        }
+
         initRecyclerView()
 
         btnSearch.setOnClickListener {
@@ -118,15 +136,6 @@ class DashboardFragment : TopNavigationFragment(), CategoriesPagingAdapter.Categ
             clError.visibility = View.INVISIBLE
             categoriesPagingAdapter.refresh()
         }
-    }
-
-    private fun addObservers() {
-        dashboardViewModel.showLoading.observe(viewLifecycleOwner) { showLoading() }
-        dashboardViewModel.lists.observe(viewLifecycleOwner) { initPaging(it) }
-        dashboardViewModel.listsError.observe(viewLifecycleOwner) { showRetry(it) }
-        dashboardViewModel.logout.observe(viewLifecycleOwner) { onLogOut() }
-        dashboardViewModel.currentCategoryAndItem.observe(viewLifecycleOwner) { onCategoryItemUpdated(it) }
-        dashboardViewModel.updatedItemCategory.observe(viewLifecycleOwner) { onCategoryUpdated(it) }
     }
 
     fun initPaging(lists: List<ItemCategory>){

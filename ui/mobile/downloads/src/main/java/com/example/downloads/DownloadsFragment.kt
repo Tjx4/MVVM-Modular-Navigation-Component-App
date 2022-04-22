@@ -16,6 +16,11 @@ class DownloadsFragment : TopNavigationFragment() {
     private lateinit var binding: FragmentDownloadsBinding
     private val downloadsViewModel: DownloadsViewModel by viewModel()
 
+    override fun onStart() {
+        super.onStart()
+        drawerController.showBottomNav()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_downloads, container, false)

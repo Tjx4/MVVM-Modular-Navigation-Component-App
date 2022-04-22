@@ -54,12 +54,6 @@ class DashboardViewModel(application: Application, val authenticationRepository:
         ItemCategoryPagingSource(_lists.value)
     }.flow.cachedIn(viewModelScope)
 
-    init {
-        viewModelScope.launch(Dispatchers.IO) {
-            initDashboard()
-        }
-    }
-
     suspend fun initDashboard(){
         val types = itemsRepository.getCategories()
         withContext(Dispatchers.Main) {

@@ -7,12 +7,18 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.domain.more.databinding.FragmentMoreBinding
+import com.domain.myapplication.base.fragments.TopNavigationFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import tld.domain.viewmodels.MoreViewModel
 
-class MoreFragment : Fragment() {
+class MoreFragment : TopNavigationFragment() {
     private lateinit var binding: FragmentMoreBinding
     private val moreViewModel: MoreViewModel by viewModel()
+
+    override fun onStart() {
+        super.onStart()
+        drawerController.showBottomNav()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)

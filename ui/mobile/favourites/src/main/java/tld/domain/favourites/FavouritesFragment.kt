@@ -26,6 +26,13 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
     private lateinit var binding: FragmentFavouritesBinding
     private val favouritesViewModel: FavouritesViewModel by viewModel()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        favouritesViewModel.showLoading.observe(this) { onShowLoading() }
+        favouritesViewModel.items.observe(this) { onFavItemsSet(it) }
+        favouritesViewModel.noItems.observe(this) { onNoItems() }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favourites, container, false)
@@ -34,13 +41,8 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        addObservers()
 
         favouritesViewModel.viewModelScope.launch(Dispatchers.IO) {
             favouritesViewModel.getFavourites()
@@ -56,12 +58,6 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
         btnClear.setOnClickListener {
             favouritesViewModel.clearItems()
         }
-    }
-
-    private fun addObservers() {
-        favouritesViewModel.showLoading.observe(viewLifecycleOwner) { onShowLoading() }
-        favouritesViewModel.items.observe(viewLifecycleOwner) { onFavItemsSet(it) }
-        favouritesViewModel.noItems.observe(viewLifecycleOwner) { onNoItems() }
     }
 
     private fun onShowLoading(){
