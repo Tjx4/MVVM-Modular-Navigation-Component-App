@@ -24,34 +24,4 @@ class VideosViewModel(application: Application, val itemsRepository: ItemsReposi
         ItemPagingSource(itemsRepository)
     }.flow.cachedIn(viewModelScope)
 
-/*
-Todo remove
-
-    fun checkAndFetchCategoryImage2(items: List<Item>){
-        viewModelScope.launch(Dispatchers.IO) {
-            var index = 0
-            for(item in items) {
-                if(item.image != null || item.links?.get(Links.CardInfo.index)?.href.isNullOrEmpty()) continue
-
-
-                    var itemImage: Image? = null
-                    async {
-                        item.links?.get(Links.CardInfo.index)?.href?.let { url ->
-                            itemImage = itemsRepo.getItemImage(url)
-                        }
-                    }.await()
-
-                    withContext(Dispatchers.Main) {
-                        item.image = itemImage
-                        _currentItem.value = index
-                        index++
-                }
-            }
-
-        }
-
-        val done = true
-    }
-*/
-
 }

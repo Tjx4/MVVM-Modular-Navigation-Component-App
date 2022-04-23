@@ -26,6 +26,7 @@ import tld.domain.viewmodels.FavouritesViewModel
 class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.FavouritesClickListener {
     private lateinit var binding: FragmentFavouritesBinding
     private val favouritesViewModel: FavouritesViewModel by viewModel()
+    private var favouritesAdapter:FavouritesAdapter? = null
 
     override fun onStart() {
         super.onStart()
@@ -49,9 +50,8 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        favouritesViewModel.viewModelScope.launch(Dispatchers.IO) {
-            favouritesViewModel.getFavourites()
+        favouritesViewModel.items.value?.let {
+            onFavItemsSet(it)
         }
 
         imgBtnBack.setOnClickListener {
@@ -82,8 +82,8 @@ class FavouritesFragment : SubNavigationFragment(), FavouritesAdapter.Favourites
 
         favouritesLayoutManager.initialPrefetchItemCount = items.size
         rvFavourites?.layoutManager = favouritesLayoutManager
-        var favouritesAdapter = FavouritesAdapter(requireContext(), items)
-        favouritesAdapter.setFavouritesClickListener(this)
+        favouritesAdapter = FavouritesAdapter(requireContext(), items)
+        favouritesAdapter?.setFavouritesClickListener(this)
         rvFavourites?.adapter = favouritesAdapter
 
         rvFavourites.runWhenReady {
