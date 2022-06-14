@@ -1,0 +1,30 @@
+R_DEF: Internal format may change without notice
+local
+drawable news_bottom_nav_bg
+id ImgBtnLocation
+id b_retry
+id badge_frame_layout
+id badge_text_view
+id btnMore
+id btnRetry
+id imgFavouriteItemIcon
+id imgIcon
+id imgPreview
+id imgbFav
+id pb_progress
+id rvCategoryItems
+id tvItemName
+id tvItemTitle
+id tvLocationDescription
+id tvName
+id tvNoContentMessage
+id tvNoItems
+id txtDistance
+layout basic_item_layout
+layout category_layout
+layout error_layout
+layout fav_item_layout
+layout item_layout
+layout layout_news_badge
+layout load_state_layout
+layout weather_layout

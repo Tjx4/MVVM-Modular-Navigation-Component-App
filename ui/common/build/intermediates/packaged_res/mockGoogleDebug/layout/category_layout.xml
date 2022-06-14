@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/small_margin"
+    android:paddingBottom="@dimen/small_margin"
+    android:background="@color/dark_background">
+
+    <TextView
+        android:id="@+id/tvItemTitle"
+        style="@style/SubHeadingTextView"
+        android:text="Tittle"
+        android:maxLines="1"
+        android:gravity="left"/>
+
+    <!-- android:layoutAnimation="@anim/layout_horizontal_animation" -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCategoryItems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:focusableInTouchMode="true"/>
+
+    <TextView
+        android:id="@+id/tvNoItems"
+        style="@style/NormalTextView"
+        android:layout_width="match_parent"
+        android:textColor="@color/light_text"
+        android:text="No items found for this category"
+        android:maxLines="1"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/small_margin"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
