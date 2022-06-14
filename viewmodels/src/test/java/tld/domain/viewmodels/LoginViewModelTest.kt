@@ -54,7 +54,7 @@ class LoginViewModelTest {
         val expectedErrorMessage = "Error login in please check your details"
 
         Mockito.`when`(loginViewModel.authenticationRepository.loginUser(username, password)).thenReturn(null)
-        Mockito.`when`(mockApplication.getString(R.string.login_error_message)).thenReturn(expectedErrorMessage)
+        Mockito.`when`(mockApplication.getString(com.domain.myapplication.R.string.login_error_message)).thenReturn(expectedErrorMessage)
         loginViewModel.loginUser(username, password)
 
         assertEquals(expectedErrorMessage, loginViewModel.loginErrorMessage.value)
@@ -78,17 +78,18 @@ class LoginViewModelTest {
         val username = "email@domain.tld"
         val password = "P@12345"
         val picture = Image("", "", "")
-        val user = User(username, "", picture)
+        val expected = User(username, "", picture)
 
-        val mockResponse = APIResponse(user, null)
+        val mockResponse = APIResponse(expected, null)
         Mockito.`when`(loginViewModel.authenticationRepository.loginUser(username, password)).thenReturn(mockResponse)
         loginViewModel.loginUser(username, password)
+        val actual = loginViewModel.currentUser.value
 
-        assertEquals(user, loginViewModel.currentUser.value)
+        assertEquals(actual, expected)
     }
 
     @Test
-    fun `is password contain a minimum of 7 characters`() = runBlockingTest {
+    fun `is password contain a minimum of 7 characters`()  {
         val password = "P@12345"
 
         val actual = loginViewModel.isValidPassword(password)
@@ -98,7 +99,7 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `is password contain a special characters`() = runBlockingTest {
+    fun `is password contain a special characters`() {
         val password = "P@12345"
 
         val actual = loginViewModel.isValidPassword(password)

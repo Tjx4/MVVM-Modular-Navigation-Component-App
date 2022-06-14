@@ -74,7 +74,7 @@ class LoginViewModel(application: Application, val authenticationRepository: Aut
 
         withContext(Dispatchers.Main) {
             when(response?.data) {
-                null -> _loginErrorMessage.value = response.errorMessage
+                null -> _loginErrorMessage.value = response?.errorMessage ?: app.getString(R.string.login_error_message)
                 else -> _currentUser.value = response.data as User
             }
         }
