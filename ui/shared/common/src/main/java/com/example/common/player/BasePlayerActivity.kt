@@ -79,23 +79,23 @@ abstract class BasePlayerActivity : AppCompatActivity() {
         playerViewModel.videoUri.observe(this) { initializePlayer(it) }
     }
 
-    protected fun onLoading(){
+    protected fun onLoading() {
         avLoadingIndicatorView?.visibility = View.VISIBLE
     }
 
-    protected fun showContent(){
+    protected fun showContent() {
         avLoadingIndicatorView?.visibility = View.GONE
     }
 
-    protected fun showControls(){
+    protected fun showControls() {
         btnBack?.visibility = View.VISIBLE
     }
 
-    protected fun hideControls(){
+    protected fun hideControls() {
         btnBack?.visibility = View.GONE
     }
 
-    protected fun onVideoIdError(){
+    protected fun onVideoIdError() {
         showContent()
 
         showErrorDialog(
@@ -108,11 +108,11 @@ abstract class BasePlayerActivity : AppCompatActivity() {
         }
     }
 
-    protected fun onVideoIdSet(videoId: String){
+    protected fun onVideoIdSet(videoId: String) {
         fetchVideoById(videoId)
     }
 
-    protected fun onVideoError(errorMessage: String){
+    protected fun onVideoError(errorMessage: String) {
         showContent()
 
         showErrorDialog(
@@ -128,7 +128,7 @@ abstract class BasePlayerActivity : AppCompatActivity() {
         }
     }
 
-    protected fun fetchVideoById(videoId: String){
+    protected fun fetchVideoById(videoId: String) {
         playerViewModel.let {
             it.viewModelScope.launch(Dispatchers.IO) {
                 it.getVideo(videoId)
@@ -136,11 +136,11 @@ abstract class BasePlayerActivity : AppCompatActivity() {
         }
     }
 
-    protected fun onVideoSet(video: Video){
+    protected fun onVideoSet(video: Video) {
         playerViewModel.startPlayback(video)
     }
 
-    protected fun onNoVideoFound(){
+    protected fun onNoVideoFound() {
         showContent()
 
         showErrorDialog(
@@ -154,7 +154,7 @@ abstract class BasePlayerActivity : AppCompatActivity() {
     }
 
     protected fun initializePlayer(url: String) {
-        if(player == null){
+        if (player == null) {
             val trackSelector = DefaultTrackSelector(this)
             trackSelector.setParameters(trackSelector.buildUponParameters().setMaxVideoSizeSd())
 
@@ -180,17 +180,17 @@ abstract class BasePlayerActivity : AppCompatActivity() {
         player?.addMediaItem(secondMediaItem)
 
 /*
-//Dash?
+    //Dash?
+    player = SimpleExoPlayer.Builder(this).build()
+    video_view.player = player
 
-        player = SimpleExoPlayer.Builder(this).build()
-        video_view.player = player
-
-        val mediaItem = MediaItem.fromUri(url)
-        player?.setMediaItem(mediaItem)
+    val mediaItem = MediaItem.fromUri(url)
+    player?.setMediaItem(mediaItem)
+*/
 
 // val secondMediaItem = MediaItem.fromUri("http://appicsoftware.xyz/api/cars/videos/bugatti/4k_bug.mp4")
 // player?.addMediaItem(secondMediaItem)
-*/
+
 
         player?.let {
             it.playWhenReady = playWhenReady
@@ -207,7 +207,10 @@ abstract class BasePlayerActivity : AppCompatActivity() {
 
             }
 
-            override fun onTracksChanged(trackGroups: TrackGroupArray, trackSelections: TrackSelectionArray) {
+            override fun onTracksChanged(
+                trackGroups: TrackGroupArray,
+                trackSelections: TrackSelectionArray
+            ) {
 
             }
 
@@ -251,12 +254,12 @@ abstract class BasePlayerActivity : AppCompatActivity() {
     @SuppressLint("InlinedApi")
     protected fun hideSystemUi() {
         playerView?.systemUiVisibility = (
-            View.SYSTEM_UI_FLAG_LOW_PROFILE
-            or View.SYSTEM_UI_FLAG_FULLSCREEN
-            or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-            or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-            or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-        )
+                View.SYSTEM_UI_FLAG_LOW_PROFILE
+                        or View.SYSTEM_UI_FLAG_FULLSCREEN
+                        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                )
     }
 }
